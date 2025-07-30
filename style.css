@@ -1,116 +1,70 @@
-:root {
-  --bg-light: #ffffff;
-  --bg-dark: #0d0d0d;
-  --text-light: #111111;
-  --text-dark: #f5f5f5;
-  --dot-green: #00ff57;
-  --dot-yellow: #ffcc00;
-  --button-light: #000000;
-  --button-dark: #ffffff;
-}
-
+/* Base Styles */
 body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-  font-family: "Inter", sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   padding: 2rem;
+  background: #fff;
+  color: #111;
+  transition: all 0.3s ease;
+  line-height: 1.6;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  padding: 0.3rem 0.5rem;
-  transition: transform 0.2s ease;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.15);
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+h1.title {
   text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.subtitles {
-  font-size: 1rem;
-  font-weight: 400;
-  opacity: 0.8;
-  margin-bottom: 3rem;
+p.subtitles {
   text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Pulse Dots */
+.pulse-dot {
+  height: 12px;
+  width: 12px;
+  background-color: #33ff33;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: pulse 1.2s infinite;
+}
+
+.pulse-dot.yellow {
+  background-color: #facc15;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .active-line {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
 }
 
-.pulse-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--dot-green);
-  box-shadow: 0 0 0 rgba(0, 255, 0, 0.4);
-  animation: pulse 1.5s infinite;
-}
-
-.pulse-dot.yellow {
-  background-color: var(--dot-yellow);
-  box-shadow: 0 0 0 rgba(255, 204, 0, 0.4);
-  animation: pulse-yellow 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
-  }
-  70% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
-  }
-}
-
-@keyframes pulse-yellow {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
-  }
-  70% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 10px rgba(255, 204, 0, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
-  }
-}
-
+/* Project Blocks */
 .projects {
-  max-width: 600px;
+  max-width: 700px;
+  margin: 0 auto 2rem;
   padding: 0 1rem;
 }
 
@@ -118,70 +72,72 @@ body {
   margin-bottom: 2rem;
 }
 
-.project h3 {
-  margin: 0 0 0.3rem;
-}
-
-.project a {
+.project h3 a {
+  font-size: 1.25rem;
+  color: #000;
   text-decoration: none;
-  font-weight: 500;
-  color: var(--text-light);
+  position: relative;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
 }
 
-body.dark .project a {
-  color: var(--text-dark);
+.project h3 a:hover {
+  border-bottom: 2px solid #33ff33;
 }
 
+/* Socials */
 .socials {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  text-align: center;
+  margin-top: 2.5rem;
 }
 
 .social-button {
-  padding: 0.6rem 1rem;
-  border: none;
-  background-color: var(--button-light);
-  color: #fff;
-  font-weight: 500;
+  display: inline-block;
+  margin: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #111;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  color: #111;
+  background: #000;
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-body.dark .social-button {
-  background-color: var(--button-dark);
+.social-button:hover {
+  background: #33ff33;
   color: #000;
 }
 
-body.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .title {
-    font-size: 1.5rem;
-  }
+/* Dark Theme */
+body.dark {
+  background: #0d0d0d;
+  color: #eee;
+}
 
-  .subtitles {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-  }
+body.dark .project h3 a {
+  color: #fff;
+}
 
-  .active-line {
-    font-size: 1.1rem;
-    flex-direction: row;
-    gap: 0.5rem;
-  }
+body.dark .social-button {
+  background: #fff;
+  color: #000;
+  border-color: #eee;
+}
 
-  .theme-toggle {
-    font-size: 1.6rem;
-    padding: 0.3rem 0.4rem;
-  }
-
-  .social-button {
-    font-size: 0.9rem;
-    padding: 0.5rem 0.8rem;
-  }
+body.dark .social-button:hover {
+  background: #facc15;
+  color: #111;
 }
