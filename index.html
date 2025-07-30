@@ -5,24 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan McHargue | Founder</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    html, body {
       margin: 0;
       padding: 2rem;
-      transition: background 0.3s ease, color 0.3s ease;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: white;
       color: black;
-      overflow: hidden;
-    }
-
-    canvas#bgCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .dark {
@@ -30,8 +19,21 @@
       color: white;
     }
 
-    .theme-toggle {
+    canvas#bgCanvas {
       position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body > *:not(canvas) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .theme-toggle {
+      position: fixed;
       top: 20px;
       right: 20px;
       background: none;
@@ -51,14 +53,8 @@
     }
 
     @keyframes fadeInSlide {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .subtitles {
@@ -110,8 +106,6 @@
       max-width: 700px;
       margin: 0 auto;
       padding: 0 1rem;
-      position: relative;
-      z-index: 1;
     }
 
     .project {
@@ -147,8 +141,6 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-top: 2rem;
-      position: relative;
-      z-index: 1;
     }
 
     .social-button {
@@ -223,10 +215,16 @@
 
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    const dots = Array.from({ length: 20 }, () => createDot());
+    function resizeCanvas() {
+      canvas.width = document.body.scrollWidth;
+      canvas.height = document.body.scrollHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const dots = Array.from({ length: 30 }, () => createDot());
 
     function createDot() {
       return {
@@ -246,11 +244,17 @@
     }
 
     function drawLine(dot1, dot2, color) {
-      ctx.beginPath();
-      ctx.moveTo(dot1.x, dot1.y);
-      ctx.lineTo(dot2.x, dot2.y);
-      ctx.strokeStyle = `rgba(${color},${Math.min(dot1.alpha, dot2.alpha) * 0.3})`;
-      ctx.stroke();
+      const dx = dot1.x - dot2.x;
+      const dy = dot1.y - dot2.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 150) {
+        ctx.beginPath();
+        ctx.moveTo(dot1.x, dot1.y);
+        ctx.lineTo(dot2.x, dot2.y);
+        ctx.strokeStyle = `rgba(${color},${Math.min(dot1.alpha, dot2.alpha) * 0.3})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
     }
 
     function animate() {
@@ -271,10 +275,7 @@
 
       for (let i = 0; i < dots.length; i++) {
         for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 150) drawLine(dots[i], dots[j], color);
+          drawLine(dots[i], dots[j], color);
         }
       }
 
