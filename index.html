@@ -7,22 +7,18 @@
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       width: 100%;
-      height: 100%;
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: white;
+      background-color: white;
       color: black;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body.dark {
-      background: #0a0a0a;
+      background-color: #0a0a0a;
       color: white;
-    }
-
-    .container {
-      padding: 2rem;
     }
 
     .theme-toggle {
@@ -40,6 +36,7 @@
       font-size: 2.5rem;
       font-weight: bold;
       text-align: center;
+      margin-top: 2rem;
       margin-bottom: 0.25rem;
       animation: fadeInSlide 1s ease forwards;
       opacity: 0;
@@ -133,7 +130,7 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 2rem;
+      margin: 3rem 0 2rem;
     }
 
     .social-button {
@@ -157,46 +154,44 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
 
-    <h1 class="title">Ryan McHargue</h1>
-    <p class="subtitles">Founder • Creator • Strategist</p>
+  <h1 class="title">Ryan McHargue</h1>
+  <p class="subtitles">Founder • Creator • Strategist</p>
 
-    <div class="active-line">
-      <span class="pulse-dot"></span> <span>Active Projects:</span>
+  <div class="active-line">
+    <span class="pulse-dot"></span> <span>Active Projects:</span>
+  </div>
+
+  <div class="projects">
+    <div class="project">
+      <h3><a href="https://haloquit.com" target="_blank">Halo</a></h3>
+      <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
     </div>
-
-    <div class="projects">
-      <div class="project">
-        <h3><a href="https://haloquit.com" target="_blank">Halo</a></h3>
-        <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
-      </div>
-      <div class="project">
-        <h3><a href="https://amarnagallery.com" target="_blank">Amarna Gallery</a></h3>
-        <p>Amarna is a private art house that curates exclusive collections, immersive art experiences, and high-value collaborations. We work with a hand-selected network of contemporary artists, collectors, and luxury brands, ensuring that every piece we present embodies creativity, innovation, and timeless appeal.</p>
-      </div>
-      <div class="project">
-        <h3><a href="https://www.tryneutrals.ai" target="_blank">Neutrals</a></h3>
-        <p>Whether you follow Trump closely or just want balanced coverage, our AI-driven platform delivers the latest headlines without the polarizing rhetoric. We continuously scan leading news sources, then automatically reframe articles to remove political bias.</p>
-      </div>
+    <div class="project">
+      <h3><a href="https://amarnagallery.com" target="_blank">Amarna Gallery</a></h3>
+      <p>Amarna is a private art house that curates exclusive collections, immersive art experiences, and high-value collaborations. We work with a hand-selected network of contemporary artists, collectors, and luxury brands, ensuring that every piece we present embodies creativity, innovation, and timeless appeal.</p>
     </div>
-
-    <div class="active-line">
-      <span class="pulse-dot yellow"></span> <span>Backburner:</span>
+    <div class="project">
+      <h3><a href="https://www.tryneutrals.ai" target="_blank">Neutrals</a></h3>
+      <p>Whether you follow Trump closely or just want balanced coverage, our AI-driven platform delivers the latest headlines without the polarizing rhetoric. We continuously scan leading news sources, then automatically reframe articles to remove political bias.</p>
     </div>
+  </div>
 
-    <div class="projects">
-      <div class="project">
-        <h3>Shoq</h3>
-        <p>Data-driven platform designed to provide clothing stores with precise qualitative insights based on customer location, style preferences, and purchasing behavior. Using LiDar sensors in store fronts to signal inventory and consumer pattern shifts.</p>
-      </div>
-    </div>
+  <div class="active-line">
+    <span class="pulse-dot yellow"></span> <span>Backburner:</span>
+  </div>
 
-    <div class="socials">
-      <a href="https://instagram.com/ryanmchargue" target="_blank" class="social-button">IG - @ryanmchargue</a>
-      <a href="https://twitter.com/ryanmcharguee" target="_blank" class="social-button">X - @ryanmcharguee</a>
+  <div class="projects">
+    <div class="project">
+      <h3>Shoq</h3>
+      <p>Data-driven platform designed to provide clothing stores with precise qualitative insights based on customer location, style preferences, and purchasing behavior. Using LiDar sensors in store fronts to signal inventory and consumer pattern shifts.</p>
     </div>
+  </div>
+
+  <div class="socials">
+    <a href="https://instagram.com/ryanmchargue" target="_blank" class="social-button">IG - @ryanmchargue</a>
+    <a href="https://twitter.com/ryanmcharguee" target="_blank" class="social-button">X - @ryanmcharguee</a>
   </div>
 
   <script>
