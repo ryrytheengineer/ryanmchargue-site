@@ -26,10 +26,14 @@ body {
   right: 1rem;
   cursor: pointer;
   background: none;
-  border: 1px solid #ccc;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15);
 }
 
 .title {
@@ -82,4 +86,27 @@ body {
 body.dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitles {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .active-line {
+    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .theme-toggle {
+    font-size: 1.6rem;
+    padding: 0.3rem 0.4rem;
+  }
 }
