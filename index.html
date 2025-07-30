@@ -4,171 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan McHargue | Founder</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 2rem;
-      width: 100%;
-      min-height: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: white;
-      color: black;
-      transition: background 0.3s ease, color 0.3s ease;
-      box-sizing: border-box;
-    }
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        document.body.classList.toggle('dark');
+      });
 
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
-
-    html.dark, body.dark {
-      background: #0a0a0a;
-      color: white;
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 0.25rem;
-      animation: fadeInSlide 1s ease forwards;
-      opacity: 0;
-    }
-
-    @keyframes fadeInSlide {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .subtitles {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: gray;
-    }
-
-    .active-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      font-size: 1.25rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      flex-wrap: wrap;
-    }
-
-    .pulse-dot {
-      height: 12px;
-      width: 12px;
-      border-radius: 50%;
-      background: #00ff7f;
-      box-shadow: 0 0 0 rgba(0, 255, 127, 0.7);
-      animation: pulse 1.5s infinite;
-    }
-
-    .pulse-dot.yellow {
-      background: #ffd700;
-      box-shadow: 0 0 0 rgba(255, 215, 0, 0.7);
-      animation: pulse-yellow 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,255,127,0.7); }
-      70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0,255,127,0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,255,127,0); }
-    }
-
-    @keyframes pulse-yellow {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,215,0,0.7); }
-      70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255,215,0,0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,215,0,0); }
-    }
-
-    .projects {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .project {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      border-radius: 12px;
-      background: rgba(0, 0, 0, 0.035);
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .dark .project {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .project:hover {
-      transform: translateY(-2px);
-    }
-
-    .project h3 a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-
-    .project h3 a:hover {
-      border-color: currentColor;
-    }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-
-    .social-button {
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      border-radius: 5px;
-      background: black;
-      color: white;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .dark .social-button {
-      background: white;
-      color: black;
-    }
-
-    .social-button:hover {
-      opacity: 0.85;
-    }
-  </style>
+      const socials = document.querySelector('.socials');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            socials.classList.add('show');
+          }
+        });
+      });
+      observer.observe(socials);
+    });
+  </script>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
-
-  <h1 class="title">Ryan McHargue</h1>
-  <p class="subtitles">Founder • Creator • Strategist</p>
+  <button id="themeToggle" class="theme-toggle">🌙</button>
+  <div class="title">Ryan McHargue</div>
+  <div class="subtitles">Founder · Product Designer · Operator</div>
 
   <div class="active-line">
-    <span class="pulse-dot"></span> <span>Active Projects:</span>
+    <div class="pulse-dot"></div>
+    Active Projects:
   </div>
 
   <div class="projects">
@@ -178,37 +42,29 @@
     </div>
     <div class="project">
       <h3><a href="https://amarnagallery.com" target="_blank">Amarna Gallery</a></h3>
-      <p>Amarna is a private art house that curates exclusive collections, immersive art experiences, and high-value collaborations. We work with a hand-selected network of contemporary artists, collectors, and luxury brands, ensuring that every piece we present embodies creativity, innovation, and timeless appeal.</p>
+      <p>Private art house curating exclusive collections, immersive experiences, and high-value collaborations with top artists and luxury brands.</p>
     </div>
     <div class="project">
       <h3><a href="https://www.tryneutrals.ai" target="_blank">Neutrals</a></h3>
-      <p>Whether you follow Trump closely or just want balanced coverage, our AI-driven platform delivers the latest headlines without the polarizing rhetoric. We continuously scan leading news sources, then automatically reframe articles to remove political bias.</p>
+      <p>AI-driven platform that delivers the latest headlines without polarizing rhetoric by reframing biased articles in real time.</p>
     </div>
-  </div>
 
-  <div class="active-line">
-    <span class="pulse-dot yellow"></span> <span>Backburner:</span>
-  </div>
+    <hr class="section-divider">
 
-  <div class="projects">
+    <div class="active-line">
+      <div class="pulse-dot yellow"></div>
+      Backburner:
+    </div>
+
     <div class="project">
-      <h3>Shoq</h3>
-      <p>Data-driven platform designed to provide clothing stores with precise qualitative insights based on customer location, style preferences, and purchasing behavior. Using LiDar sensors in store fronts to signal inventory and consumer pattern shifts.</p>
+      <h3><a href="#">Shoq</a></h3>
+      <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
     </div>
   </div>
 
   <div class="socials">
-    <a href="https://instagram.com/ryanmchargue" target="_blank" class="social-button">IG - @ryanmchargue</a>
-    <a href="https://twitter.com/ryanmcharguee" target="_blank" class="social-button">X - @ryanmcharguee</a>
+    <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank">IG @ryanmchargue</a>
+    <a class="social-button" href="https://x.com/ryanmcharguee" target="_blank">X @ryanmcharguee</a>
   </div>
-
-  <script>
-    function toggleTheme() {
-      const toggleBtn = document.getElementById('themeToggle');
-      document.body.classList.toggle('dark');
-      document.documentElement.classList.toggle('dark');
-      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    }
-  </script>
 </body>
 </html>
