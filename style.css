@@ -183,7 +183,7 @@ html.dark, body.dark {
 .title-container {
   position: relative;
   width: fit-content;
-  margin: 0 auto 0.1rem;
+  margin: 0 auto 1.5rem;
 }
 
 .title {
