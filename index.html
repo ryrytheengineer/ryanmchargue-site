@@ -21,52 +21,48 @@
       animation: shine 4s linear infinite, fadeInSlide 1s ease forwards;
     }
 
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
+    .sobriety-ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem auto 2rem;
+      font-size: 0.9rem;
       color: gray;
-      transition: transform 0.3s ease, color 0.3s ease;
+      position: relative;
     }
 
-    .dark .theme-toggle {
-      color: white;
+    .sobriety-ring::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      border: 2px solid lightgray;
+      animation: rotate-ring 6s linear infinite;
     }
 
-    .theme-toggle:hover {
-      transform: scale(1.2);
+    .dark .sobriety-ring {
+      border-color: #888;
+      color: #ccc;
     }
 
-    .pulse-dot.red {
-      background: red;
-      box-shadow: 0 0 0 rgba(255, 0, 0, 0.7);
-      animation: pulse-red 1.5s infinite;
+    .dark .sobriety-ring::before {
+      border-color: #444;
     }
 
-    @keyframes pulse-red {
+    @keyframes rotate-ring {
       0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
-      }
-      70% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+        transform: rotate(0deg);
       }
       100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        transform: rotate(360deg);
       }
-    }
-
-    .sobriety-counter {
-      text-align: center;
-      font-size: 1rem;
-      color: gray;
-      margin-bottom: 2rem;
     }
   </style>
   <script>
@@ -88,17 +84,6 @@
 
       updateIcon();
 
-      const socials = document.querySelector('.socials');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            socials.classList.add('show');
-          }
-        });
-      });
-      observer.observe(socials);
-
-      // Sobriety Counter
       const counter = document.getElementById('sobriety-counter');
       const startDate = new Date();
       startDate.setDate(startDate.getDate() - 205);
@@ -113,78 +98,3 @@
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
         const years = Math.floor(days / 365);
-        const months = Math.floor((days % 365) / 30);
-        const remDays = (days % 365) % 30;
-
-        counter.textContent = `${years}y ${months}m ${remDays}d ${hours}h ${minutes}m ${seconds}s sober`;
-      };
-
-      setInterval(updateCounter, 1000);
-      updateCounter();
-    });
-  </script>
-</head>
-<body>
-  <button id="themeToggle" class="theme-toggle">🌙</button>
-  <div class="title">Ryan McHargue</div>
-  <div class="subtitles">Founder · Product Designer · Operator</div>
-  <div id="sobriety-counter" class="sobriety-counter"></div>
-
-  <div class="active-line">
-    <div class="pulse-dot"></div>
-    Active Projects:
-  </div>
-
-  <div class="projects">
-    <div class="project">
-      <h3><a href="https://haloquit.com" target="_blank">Halo</a></h3>
-      <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
-    </div>
-    <div class="project">
-      <h3><a href="https://amarnagallery.com" target="_blank">Amarna Gallery</a></h3>
-      <p>Private art house curating exclusive collections, immersive experiences, and high-value collaborations with top artists and luxury brands.</p>
-    </div>
-    <div class="project">
-      <h3><a href="https://www.tryneutrals.ai" target="_blank">Neutrals</a></h3>
-      <p>AI-driven platform that delivers the latest headlines without polarizing rhetoric by reframing biased articles in real time.</p>
-    </div>
-
-    <hr class="section-divider">
-
-    <div class="active-line">
-      <div class="pulse-dot yellow"></div>
-      Backburner:
-    </div>
-
-    <div class="project">
-      <h3><a href="#">Shoq</a></h3>
-      <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
-    </div>
-
-    <hr class="section-divider">
-
-    <div class="active-line">
-      <div class="pulse-dot red"></div>
-      Archived:
-    </div>
-
-    <div class="project">
-      <h3><a href="#">Lucky Eight Media</a></h3>
-      <ul>
-        <li>$230,000 in revenue generated in year 1 (July 2018-December 2018, 6 months)</li>
-        <li>Employs 7 individuals</li>
-        <li>Offices in QOZ</li>
-        <li>Featured in The News Journal’s Top 10 list of Fasting Growing Startups in Delaware</li>
-        <li>Featured in Tech Tribune’s 2019 Best Tech Startups list</li>
-        <li>Featured in Philadelphia Business Journal’s Top 500 Startups list</li>
-        <li>YC Startup School</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="socials">
-    <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank">IG @ryanmchargue</a>
-    <a class="social-button" href="https://x.com/ryanmcharguee" target="_blank">X @ryanmcharguee</a>
-  </div>
-</body>
-</html>
