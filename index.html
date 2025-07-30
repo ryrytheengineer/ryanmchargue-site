@@ -44,10 +44,21 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.getElementById('themeToggle');
+      const isDark = () =>
+        document.documentElement.classList.contains('dark') ||
+        document.body.classList.contains('dark');
+
+      const updateIcon = () => {
+        toggle.textContent = isDark() ? '☀️' : '🌙';
+      };
+
       toggle.addEventListener('click', () => {
         document.documentElement.classList.toggle('dark');
         document.body.classList.toggle('dark');
+        updateIcon();
       });
+
+      updateIcon();
 
       const socials = document.querySelector('.socials');
       const observer = new IntersectionObserver(entries => {
