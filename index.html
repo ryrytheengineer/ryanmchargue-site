@@ -24,32 +24,7 @@
 
       updateIcon();
 
-      const counter = document.getElementById('sobriety-counter');
-      const fill = document.getElementById('sobriety-fill');
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() - 205);
-
-      const updateCounter = () => {
-        const now = new Date();
-        let diff = now - startDate;
-
-        const seconds = Math.floor(diff / 1000) % 60;
-        const minutes = Math.floor(diff / 1000 / 60) % 60;
-        const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-        const years = Math.floor(days / 365);
-        const months = Math.floor((days % 365) / 30);
-        const remDays = (days % 365) % 30;
-
-        counter.textContent = `${years}y ${months}m ${remDays}d ${hours}h ${minutes}m ${seconds}s sober`;
-        const pct = ((seconds + minutes * 60 + hours * 3600) / 86400) * 100;
-        fill.style.width = `${pct}%`;
-      };
-
-      setInterval(updateCounter, 1000);
-      updateCounter();
-    });
+    
   </script>
 </head>
 <body>
