@@ -4,59 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan McHargue | Founder</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 0.25rem;
-      animation: fadeInSlide 1s ease forwards;
-      opacity: 0;
-      background: linear-gradient(90deg, #444, #999, #444);
-      background-size: 200% auto;
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-      animation: shine 4s linear infinite, fadeInSlide 1s ease forwards;
-    }
-
-    .sobriety-bar-container {
-      max-width: 300px;
-      margin: 1.5rem auto 2rem;
-      text-align: center;
-    }
-
-    .sobriety-counter-label {
-      color: gray;
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .sobriety-bar {
-      width: 100%;
-      height: 8px;
-      background: #ddd;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .sobriety-bar-fill {
-      height: 100%;
-      background: gray;
-      width: 0%;
-      transition: width 1s linear;
-    }
-
-    .dark .sobriety-bar {
-      background: #444;
-    }
-
-    .dark .sobriety-bar-fill {
-      background: #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.getElementById('themeToggle');
@@ -107,13 +55,7 @@
 <body>
   <button id="themeToggle" class="theme-toggle">🌙</button>
 
-  <div class="title-container">
-    <div class="title">Ryan McHargue</div>
-    <svg class="underline-svg" viewBox="0 0 120 20" preserveAspectRatio="none">
-      <path d="M 0 15 Q 30 0, 60 15 T 120 15" />
-    </svg>
-  </div>
-
+  <div class="title">Ryan McHargue</div>
   <div class="subtitles">Founder · Product Designer · Operator</div>
 
   <div class="sobriety-bar-container">
