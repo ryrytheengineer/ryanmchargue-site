@@ -1,86 +1,91 @@
-/* Base Styling */
+/* Global Styles */
 body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-  padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 2rem 1.5rem;
   background-color: #fff;
   color: #111;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s, color 0.3s;
+  max-width: 800px;
+  margin-inline: auto;
 }
 
-h1.title {
-  font-size: 2.5rem;
+.dark {
+  background-color: #111;
+  color: #f5f5f5;
+}
+
+/* Title and Subtitles */
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .subtitles {
   text-align: center;
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
 }
 
-/* Theme toggle */
+/* Theme Toggle */
 .theme-toggle {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.2rem;
+  right: 1.2rem;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
-/* Pulsing dot */
-.pulse-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #00e676;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  animation: pulse 1.5s infinite ease-in-out;
-  vertical-align: middle;
+/* Section Headings with Pulse */
+.active-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 2rem 0 1rem;
 }
 
+/* Pulse Dot - Green */
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #00ff5a;
+  box-shadow: 0 0 0 0 rgba(0, 255, 90, 0.7);
+  animation: pulse 1.6s infinite;
+}
+
+/* Pulse Dot - Yellow */
 .pulse-dot.yellow {
   background-color: #facc15;
+  box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.6);
 }
 
 @keyframes pulse {
   0% {
-    transform: scale(1);
-    opacity: 0.7;
+    box-shadow: 0 0 0 0 rgba(0, 255, 90, 0.7);
   }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.2;
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 90, 0);
   }
   100% {
-    transform: scale(1);
-    opacity: 0.7;
+    box-shadow: 0 0 0 0 rgba(0, 255, 90, 0);
   }
 }
 
-/* Section headers */
-.active-line {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Projects */
+/* Project Blocks */
 .projects {
-  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .project {
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
 }
 
 .project h3 {
@@ -89,38 +94,47 @@ h1.title {
 }
 
 .project a {
-  color: #000;
+  color: inherit;
   text-decoration: none;
+  font-weight: 600;
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease;
-  padding-bottom: 2px;
 }
 
 .project a:hover {
-  border-color: #000;
+  color: #00ff5a;
+  border-bottom: 2px solid #00ff5a;
 }
 
+.dark .project a:hover {
+  color: #facc15;
+  border-bottom: 2px solid #facc15;
+}
+
+/* Project Descriptions */
 .project p {
-  margin-top: 0.25rem;
-  color: #333;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
-/* Social buttons */
+/* Social Links */
 .socials {
+  margin-top: 3rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .social-button {
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: none;
   background-color: #000;
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-weight: 500;
   transition: background-color 0.2s ease;
 }
 
@@ -128,33 +142,11 @@ h1.title {
   background-color: #333;
 }
 
-/* Dark Theme */
-body.dark {
-  background-color: #121212;
-  color: #eee;
-}
-
-body.dark .subtitles {
-  color: #aaa;
-}
-
-body.dark .project a {
-  color: #fff;
-}
-
-body.dark .project a:hover {
-  border-color: #fff;
-}
-
-body.dark .project p {
-  color: #ccc;
-}
-
-body.dark .social-button {
+.dark .social-button {
   background-color: #fff;
-  color: #111;
+  color: #000;
 }
 
-body.dark .social-button:hover {
-  background-color: #ccc;
+.dark .social-button:hover {
+  background-color: #f5f5f5;
 }
