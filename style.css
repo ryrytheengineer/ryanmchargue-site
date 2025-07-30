@@ -60,9 +60,13 @@ html.dark, body.dark {
 .subtitles {
   text-align: center;
   font-size: 1.1rem;
+  margin-top: 1.5rem; /* Add this line */
   margin-bottom: 2rem;
   color: gray;
+  position: relative;
+  z-index: 1;
 }
+
 
 .active-line {
   display: flex;
@@ -206,10 +210,11 @@ html.dark, body.dark {
   bottom: -10px;
   left: 0;
   width: 100%;
-  height: 20px;
-  z-index: 10; /* Ensures it's on top */
-  pointer-events: none; /* Prevents it from blocking clicks */
+  height: 30px;
+  z-index: 10;
+  pointer-events: none;
 }
+
 
 .underline-svg path {
   stroke: gray;
