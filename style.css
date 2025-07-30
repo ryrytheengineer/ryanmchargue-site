@@ -59,6 +59,7 @@ body {
 .pulse-dot.yellow {
   background: #ffd700;
   box-shadow: 0 0 0 rgba(255, 215, 0, 0.7);
+  animation: pulse-yellow 1.5s infinite;
 }
 
 @keyframes pulse {
@@ -74,10 +75,6 @@ body {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(0, 255, 127, 0);
   }
-}
-
-.pulse-dot.yellow {
-  animation: pulse-yellow 1.5s infinite;
 }
 
 @keyframes pulse-yellow {
