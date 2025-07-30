@@ -40,6 +40,27 @@
     .theme-toggle:hover {
       transform: scale(1.2);
     }
+
+    .pulse-dot.red {
+      background: red;
+      box-shadow: 0 0 0 rgba(255, 0, 0, 0.7);
+      animation: pulse-red 1.5s infinite;
+    }
+
+    @keyframes pulse-red {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+      }
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -106,6 +127,26 @@
     <div class="project">
       <h3><a href="#">Shoq</a></h3>
       <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="active-line">
+      <div class="pulse-dot red"></div>
+      Archived:
+    </div>
+
+    <div class="project">
+      <h3><a href="#">Lucky Eight Media</a></h3>
+      <ul>
+        <li>$230,000 in revenue generated in year 1 (July 2018-December 2018, 6 months)</li>
+        <li>Employs 7 individuals</li>
+        <li>Offices in QOZ</li>
+        <li>Featured in The News Journal’s Top 10 list of Fasting Growing Startups in Delaware</li>
+        <li>Featured in Tech Tribune’s 2019 Best Tech Startups list</li>
+        <li>Featured in Philadelphia Business Journal’s Top 500 Startups list</li>
+        <li>YC Startup School</li>
+      </ul>
     </div>
   </div>
 
