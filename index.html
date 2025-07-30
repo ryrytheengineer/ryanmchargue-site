@@ -61,6 +61,13 @@
         box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
       }
     }
+
+    .sobriety-counter {
+      text-align: center;
+      font-size: 1rem;
+      color: gray;
+      margin-bottom: 2rem;
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -90,6 +97,30 @@
         });
       });
       observer.observe(socials);
+
+      // Sobriety Counter
+      const counter = document.getElementById('sobriety-counter');
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() - 205);
+
+      const updateCounter = () => {
+        const now = new Date();
+        let diff = now - startDate;
+
+        const seconds = Math.floor(diff / 1000) % 60;
+        const minutes = Math.floor(diff / 1000 / 60) % 60;
+        const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        const years = Math.floor(days / 365);
+        const months = Math.floor((days % 365) / 30);
+        const remDays = (days % 365) % 30;
+
+        counter.textContent = `${years}y ${months}m ${remDays}d ${hours}h ${minutes}m ${seconds}s sober`;
+      };
+
+      setInterval(updateCounter, 1000);
+      updateCounter();
     });
   </script>
 </head>
@@ -97,6 +128,7 @@
   <button id="themeToggle" class="theme-toggle">🌙</button>
   <div class="title">Ryan McHargue</div>
   <div class="subtitles">Founder · Product Designer · Operator</div>
+  <div id="sobriety-counter" class="sobriety-counter"></div>
 
   <div class="active-line">
     <div class="pulse-dot"></div>
