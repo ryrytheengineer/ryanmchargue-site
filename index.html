@@ -175,11 +175,10 @@
   </style>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
 
   <h1 class="title">Ryan McHargue</h1>
   <p class="subtitles">Founder • Creator • Strategist</p>
-  <p class="subtitles">Miami • SF </p>
 
   <div class="active-line">
     <span class="pulse-dot"></span> <span>Active Projects:</span>
@@ -218,7 +217,11 @@
 
   <script>
     function toggleTheme() {
-      document.body.classList.toggle('dark');
+      const body = document.body;
+      const toggleBtn = document.getElementById('themeToggle');
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
     }
   </script>
 </body>
