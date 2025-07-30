@@ -37,32 +37,6 @@
       margin-bottom: 0.25rem;
       animation: fadeInSlide 1s ease forwards;
       opacity: 0;
-      position: relative;
-      display: inline-block;
-    }
-
-    .dot-bounce {
-      position: absolute;
-      top: -10px;
-      left: 0;
-      height: 8px;
-      width: 8px;
-      border-radius: 50%;
-      background-color: #00ff7f;
-      animation: bounceDot 3s linear infinite;
-    }
-
-    @keyframes bounceDot {
-      0%   { left: 0%; }
-      10%  { top: -10px; }
-      20%  { top: -2px; }
-      33%  { left: 14%; }
-      43%  { top: -10px; }
-      53%  { top: -2px; }
-      66%  { left: 28%; }
-      76%  { top: -10px; }
-      86%  { top: -2px; }
-      100% { left: 100%; top: -2px; }
     }
 
     @keyframes fadeInSlide {
@@ -191,10 +165,7 @@
 <body>
   <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
-  <h1 class="title">
-    <span class="dot-bounce"></span>
-    Ryan McHargue
-  </h1>
+  <h1 class="title">Ryan McHargue</h1>
   <p class="subtitles">Founder • Creator • Strategist</p>
 
   <div class="active-line">
