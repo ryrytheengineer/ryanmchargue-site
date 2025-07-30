@@ -98,3 +98,80 @@
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
         const years = Math.floor(days / 365);
+        const months = Math.floor((days % 365) / 30);
+        const remDays = (days % 365) % 30;
+
+        counter.textContent = `${years}y ${months}m ${remDays}d ${hours}h ${minutes}m ${seconds}s sober`;
+      };
+
+      setInterval(updateCounter, 1000);
+      updateCounter();
+    });
+  </script>
+</head>
+<body>
+  <button id="themeToggle" class="theme-toggle">🌙</button>
+  <div class="title">Ryan McHargue</div>
+  <div class="subtitles">Founder · Product Designer · Operator</div>
+  <div class="sobriety-ring">
+    <div id="sobriety-counter"></div>
+  </div>
+
+  <div class="active-line">
+    <div class="pulse-dot"></div>
+    Active Projects:
+  </div>
+
+  <div class="projects">
+    <div class="project">
+      <h3><a href="https://haloquit.com" target="_blank">Halo</a></h3>
+      <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
+    </div>
+    <div class="project">
+      <h3><a href="https://amarnagallery.com" target="_blank">Amarna Gallery</a></h3>
+      <p>Private art house curating exclusive collections, immersive experiences, and high-value collaborations with top artists and luxury brands.</p>
+    </div>
+    <div class="project">
+      <h3><a href="https://www.tryneutrals.ai" target="_blank">Neutrals</a></h3>
+      <p>AI-driven platform that delivers the latest headlines without polarizing rhetoric by reframing biased articles in real time.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="active-line">
+      <div class="pulse-dot yellow"></div>
+      Backburner:
+    </div>
+
+    <div class="project">
+      <h3><a href="#">Shoq</a></h3>
+      <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="active-line">
+      <div class="pulse-dot red"></div>
+      Archived:
+    </div>
+
+    <div class="project">
+      <h3><a href="#">Lucky Eight Media</a></h3>
+      <ul>
+        <li>$230,000 in revenue generated in year 1 (July 2018-December 2018, 6 months)</li>
+        <li>Employs 7 individuals</li>
+        <li>Offices in QOZ</li>
+        <li>Featured in The News Journal’s Top 10 list of Fasting Growing Startups in Delaware</li>
+        <li>Featured in Tech Tribune’s 2019 Best Tech Startups list</li>
+        <li>Featured in Philadelphia Business Journal’s Top 500 Startups list</li>
+        <li>YC Startup School</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="socials">
+    <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank">IG @ryanmchargue</a>
+    <a class="social-button" href="https://x.com/ryanmcharguee" target="_blank">X @ryanmcharguee</a>
+  </div>
+</body>
+</html>
