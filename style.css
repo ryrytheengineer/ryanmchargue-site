@@ -1,37 +1,48 @@
-/* Base Styles */
+/* Base Styling */
 body {
-  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 2rem;
-  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #fff;
   color: #111;
-  transition: all 0.3s ease;
-  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1.title {
-  text-align: center;
   font-size: 2.5rem;
-  font-weight: 700;
+  text-align: center;
   margin-bottom: 0.5rem;
 }
 
-p.subtitles {
+.subtitles {
   text-align: center;
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 2rem;
 }
 
-/* Pulse Dots */
+/* Theme toggle */
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Pulsing dot */
 .pulse-dot {
-  height: 12px;
-  width: 12px;
-  background-color: #33ff33;
-  border-radius: 50%;
   display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #00e676;
+  border-radius: 50%;
   margin-right: 0.5rem;
-  animation: pulse 1.2s infinite;
+  animation: pulse 1.5s infinite ease-in-out;
+  vertical-align: middle;
 }
 
 .pulse-dot.yellow {
@@ -41,103 +52,109 @@ p.subtitles {
 @keyframes pulse {
   0% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.7;
   }
   50% {
     transform: scale(1.5);
-    opacity: 0.5;
+    opacity: 0.2;
   }
   100% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.7;
   }
 }
 
+/* Section headers */
 .active-line {
   display: flex;
   align-items: center;
-  justify-content: center;
   font-weight: 600;
-  margin: 2rem 0 1rem;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-/* Project Blocks */
+/* Projects */
 .projects {
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  padding: 0 1rem;
+  margin-bottom: 2rem;
 }
 
 .project {
   margin-bottom: 2rem;
 }
 
-.project h3 a {
-  font-size: 1.25rem;
+.project h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.project a {
   color: #000;
   text-decoration: none;
-  position: relative;
-  transition: all 0.2s ease;
   border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  padding-bottom: 2px;
 }
 
-.project h3 a:hover {
-  border-bottom: 2px solid #33ff33;
+.project a:hover {
+  border-color: #000;
 }
 
-/* Socials */
+.project p {
+  margin-top: 0.25rem;
+  color: #333;
+}
+
+/* Social buttons */
 .socials {
-  text-align: center;
-  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }
 
 .social-button {
-  display: inline-block;
-  margin: 0.25rem 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #111;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background-color: #000;
+  color: white;
   text-decoration: none;
   font-weight: 500;
-  color: #111;
-  background: #000;
-  color: #fff;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .social-button:hover {
-  background: #33ff33;
-  color: #000;
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+  background-color: #333;
 }
 
 /* Dark Theme */
 body.dark {
-  background: #0d0d0d;
+  background-color: #121212;
   color: #eee;
 }
 
-body.dark .project h3 a {
+body.dark .subtitles {
+  color: #aaa;
+}
+
+body.dark .project a {
   color: #fff;
 }
 
+body.dark .project a:hover {
+  border-color: #fff;
+}
+
+body.dark .project p {
+  color: #ccc;
+}
+
 body.dark .social-button {
-  background: #fff;
-  color: #000;
-  border-color: #eee;
+  background-color: #fff;
+  color: #111;
 }
 
 body.dark .social-button:hover {
-  background: #facc15;
-  color: #111;
+  background-color: #ccc;
 }
