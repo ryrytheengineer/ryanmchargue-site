@@ -22,6 +22,7 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
 
     .dark {
@@ -109,6 +110,8 @@
       max-width: 700px;
       margin: 0 auto;
       padding: 0 1rem;
+      position: relative;
+      z-index: 1;
     }
 
     .project {
@@ -144,6 +147,8 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-top: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     .social-button {
@@ -216,7 +221,6 @@
       toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
     }
 
-    // Pulsing dots with lines
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -234,23 +238,26 @@
       };
     }
 
-    function drawDot(dot) {
+    function drawDot(dot, color) {
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, 2, 0, 2 * Math.PI);
-      ctx.fillStyle = `rgba(0,255,127,${dot.alpha})`;
+      ctx.fillStyle = `rgba(${color},${dot.alpha})`;
       ctx.fill();
     }
 
-    function drawLine(dot1, dot2) {
+    function drawLine(dot1, dot2, color) {
       ctx.beginPath();
       ctx.moveTo(dot1.x, dot1.y);
       ctx.lineTo(dot2.x, dot2.y);
-      ctx.strokeStyle = `rgba(0,255,127,${Math.min(dot1.alpha, dot2.alpha) * 0.3})`;
+      ctx.strokeStyle = `rgba(${color},${Math.min(dot1.alpha, dot2.alpha) * 0.3})`;
       ctx.stroke();
     }
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isDark = document.body.classList.contains("dark");
+      const color = isDark ? "0,255,127" : "255,50,50";
+
       dots.forEach(dot => {
         dot.alpha += dot.direction * dot.speed;
         if (dot.alpha >= 1) {
@@ -259,7 +266,7 @@
         } else if (dot.alpha <= 0) {
           Object.assign(dot, createDot());
         }
-        drawDot(dot);
+        drawDot(dot, color);
       });
 
       for (let i = 0; i < dots.length; i++) {
@@ -267,7 +274,7 @@
           const dx = dots[i].x - dots[j].x;
           const dy = dots[i].y - dots[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 150) drawLine(dots[i], dots[j]);
+          if (distance < 150) drawLine(dots[i], dots[j], color);
         }
       }
 
