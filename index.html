@@ -38,13 +38,13 @@
     .sobriety-ring::before {
       content: "";
       position: absolute;
-      top: -4px;
-      left: -4px;
-      width: 128px;
-      height: 128px;
+      top: -10px;
+      left: -10px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: 2px solid lightgray;
-      animation: rotate-ring 6s linear infinite;
+      background: rgba(128, 128, 128, 0.2);
+      animation: pulse-ring 2s infinite;
     }
 
     .dark .sobriety-ring {
@@ -53,15 +53,21 @@
     }
 
     .dark .sobriety-ring::before {
-      border-color: #444;
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    @keyframes rotate-ring {
+    @keyframes pulse-ring {
       0% {
-        transform: rotate(0deg);
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+      70% {
+        transform: scale(1.1);
+        opacity: 0;
       }
       100% {
-        transform: rotate(360deg);
+        transform: scale(0.95);
+        opacity: 0;
       }
     }
   </style>
