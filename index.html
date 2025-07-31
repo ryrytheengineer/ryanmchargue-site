@@ -247,43 +247,55 @@
       }, 100);
       
       // 3D Tilt Effect on Project Cards
-      document.querySelectorAll('.project').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          
-          card.style.transform = `
-            perspective(1000px)
-            rotateY(${(x - 0.5) * 10}deg)
-            rotateX(${(y - 0.5) * -10}deg)
-            translateZ(10px)
-          `;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
-        });
-        
-        // Touch support for mobile
-        card.addEventListener('touchmove', (e) => {
-          const touch = e.touches[0];
-          const rect = card.getBoundingClientRect();
-          const x = (touch.clientX - rect.left) / rect.width;
-          const y = (touch.clientY - rect.top) / rect.height;
-          
-          card.style.transform = `
-            perspective(1000px)
-            rotateY(${(x - 0.5) * 5}deg)
-            rotateX(${(y - 0.5) * -5}deg)
-            translateZ(5px)
-          `;
-        });
-        
-        card.addEventListener('touchend', () => {
-          card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
-        });
-      });
+document.querySelectorAll('.project').forEach(card => {
+  // Mouse events for desktop
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    card.style.transform = `
+      perspective(1000px)
+      rotateY(${(x - 0.5) * 10}deg)
+      rotateX(${(y - 0.5) * -10}deg)
+      translateZ(10px)
+    `;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+  });
+  
+  // Touch events for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  
+  card.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const rect = card.getBoundingClientRect();
+    touchStartX = (touch.clientX - rect.left) / rect.width;
+    touchStartY = (touch.clientY - rect.top) / rect.height;
+  });
+  
+  card.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // Prevent scrolling while tilting
+    const touch = e.touches[0];
+    const rect = card.getBoundingClientRect();
+    const x = (touch.clientX - rect.left) / rect.width;
+    const y = (touch.clientY - rect.top) / rect.height;
+    
+    card.style.transform = `
+      perspective(1000px)
+      rotateY(${(x - 0.5) * 8}deg)
+      rotateX(${(y - 0.5) * -8}deg)
+      translateZ(5px)
+    `;
+  });
+  
+  card.addEventListener('touchend', () => {
+    card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
       
       // Interactive Background - Click ripples
       document.addEventListener('click', (e) => {
