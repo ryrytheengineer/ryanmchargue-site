@@ -43,6 +43,16 @@
         <article class="project">
           <h3><a href="https://haloquit.com" target="_blank" rel="noopener noreferrer">Halo</a></h3>
           <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
+          <div class="achievements">
+            <div class="achievement">
+              <span class="achievement-number" data-target="2.1" data-suffix="M">$0M</span>
+              <span class="achievement-label">Revenue (2 years)</span>
+            </div>
+          </div>
+          <ul class="achievement-list">
+            <li>Featured at WVS Dubai</li>
+            <li>Based in Miami</li>
+          </ul>
           <div class="project-tech">
             <span class="tech-tag">Healthcare</span>
             <span class="tech-tag">Behavioral Science</span>
@@ -102,11 +112,11 @@
           <h3>Lucky Eight Media</h3>
           <div class="achievements">
             <div class="achievement">
-              <span class="achievement-number">$230K</span>
+              <span class="achievement-number" data-target="230" data-suffix="K">$0K</span>
               <span class="achievement-label">Revenue (6 months)</span>
             </div>
             <div class="achievement">
-              <span class="achievement-number">7</span>
+              <span class="achievement-number" data-target="7">0</span>
               <span class="achievement-label">Employees</span>
             </div>
           </div>
@@ -205,21 +215,30 @@
         });
       });
       
-      // Counter animation for achievement numbers
-      const animateCounter = (element, target) => {
+      // Enhanced counter animation
+      const animateCounter = (element) => {
+        const target = parseFloat(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        const prefix = element.textContent.includes('$') ? '$' : '';
+        const duration = 2000; // 2 seconds
+        const steps = 60;
+        const increment = target / steps;
         let current = 0;
-        const increment = target / 50;
-        const isRevenue = element.textContent.includes('$');
         
         const updateCounter = () => {
           current += increment;
           if (current < target) {
-            element.textContent = isRevenue ? 
-              `$${Math.floor(current)}K` : 
-              Math.floor(current);
-            requestAnimationFrame(updateCounter);
+            element.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
+            setTimeout(updateCounter, duration / steps);
           } else {
-            element.textContent = isRevenue ? `$${target}K` : target;
+            // Handle the final value based on the data
+            if (suffix === 'M') {
+              element.textContent = `${prefix}${target}${suffix}`;
+            } else if (suffix === 'K') {
+              element.textContent = `${prefix}${Math.round(target)}${suffix}`;
+            } else {
+              element.textContent = `${prefix}${Math.round(target)}`;
+            }
           }
         };
         
@@ -237,8 +256,7 @@
           if (entry.isIntersecting) {
             // Animate achievement numbers
             if (entry.target.classList.contains('achievement-number')) {
-              const value = parseInt(entry.target.textContent.replace(/\D/g, ''));
-              animateCounter(entry.target, value);
+              animateCounter(entry.target);
               observer.unobserve(entry.target);
             }
           }
