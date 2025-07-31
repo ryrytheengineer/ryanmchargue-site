@@ -7,16 +7,19 @@
 :root {
   --bg-light: #ffffff;
   --text-light: #000000;
-  --accent: #666666;
-  --accent-hover: #333333;
+  --accent: #0066ff;
+  --accent-hover: #0052cc;
   --gray: #666666;
   --light-gray: #f5f5f5;
   --border: #e0e0e0;
+  --green: #00ff88;
+  --yellow: #ffcc00;
+  --red: #ff4444;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
   --silver: #c0c0c0;
   --light-silver: #e8e8e8;
   --dark-silver: #808080;
-  --white: #ffffff;
-  --black: #000000;
 }
 
 :root.dark {
@@ -25,8 +28,8 @@
   --gray: #999999;
   --light-gray: #1a1a1a;
   --border: #333333;
-  --accent: #999999;
-  --accent-hover: #cccccc;
+  --accent: #0066ff;
+  --accent-hover: #0099ff;
 }
 
 body {
@@ -39,49 +42,64 @@ body {
   position: relative;
 }
 
-/* Animated gradient orbs - now monochrome */
+/* Animated gradient orbs - MONOCHROME */
 .gradient-orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
+  filter: blur(120px);
+  opacity: 0.2;
   animation: float 20s infinite ease-in-out;
   pointer-events: none;
   z-index: -1;
 }
 
 .orb1 {
-  width: 600px;
-  height: 600px;
-  background: linear-gradient(135deg, var(--silver), var(--light-silver));
-  top: -200px;
-  left: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, #333333, #000000);
+  top: -300px;
+  left: -300px;
   animation-delay: 0s;
 }
 
 .orb2 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, var(--dark-silver), var(--silver));
-  bottom: -100px;
-  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #666666, #1a1a1a);
+  bottom: -200px;
+  right: -200px;
   animation-delay: 10s;
 }
 
 .orb3 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, var(--light-silver), var(--white));
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #4a4a4a, #000000);
   top: 50%;
   left: 50%;
   animation-delay: 5s;
 }
 
+:root.dark .orb1 {
+  background: radial-gradient(circle, #ffffff, #666666);
+  opacity: 0.1;
+}
+
+:root.dark .orb2 {
+  background: radial-gradient(circle, #cccccc, #333333);
+  opacity: 0.1;
+}
+
+:root.dark .orb3 {
+  background: radial-gradient(circle, #999999, #1a1a1a);
+  opacity: 0.1;
+}
+
 @keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(100px, -100px) scale(1.1); }
-  50% { transform: translate(-100px, 100px) scale(0.9); }
-  75% { transform: translate(50px, 50px) scale(1.05); }
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(100px, -100px) scale(1.2) rotate(90deg); }
+  50% { transform: translate(-100px, 100px) scale(0.8) rotate(180deg); }
+  75% { transform: translate(50px, 50px) scale(1.1) rotate(270deg); }
 }
 
 /* Grid background with animated lines */
@@ -92,15 +110,15 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(128, 128, 128, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(128, 128, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 128, 128, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: -2;
 }
 
 .grid-line {
   position: fixed;
-  background: linear-gradient(90deg, transparent, var(--silver), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   opacity: 0;
   z-index: -1;
 }
@@ -135,7 +153,9 @@ body {
   width: 60px;
   height: 60px;
   border: none;
-  background: linear-gradient(135deg, var(--light-gray), var(--border));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   cursor: pointer;
   font-size: 24px;
@@ -153,7 +173,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--silver), var(--dark-silver));
+  background: linear-gradient(135deg, var(--accent), var(--purple));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: inherit;
@@ -198,6 +218,10 @@ body {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
+  background: linear-gradient(135deg, var(--text-light), var(--gray));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .title::before,
@@ -213,13 +237,13 @@ body {
 
 .title:active::before {
   animation: glitch1 0.3s ease infinite;
-  color: var(--silver);
+  color: var(--accent);
   opacity: 0.8;
 }
 
 .title:active::after {
   animation: glitch2 0.3s ease infinite;
-  color: var(--dark-silver);
+  color: var(--pink);
   opacity: 0.8;
 }
 
@@ -261,7 +285,7 @@ body {
   padding: 0 2rem 4rem;
 }
 
-/* Section headers with animated pulse */
+/* Section headers with animated pulse - KEEPING COLORS */
 .active-line {
   display: flex;
   align-items: center;
@@ -273,10 +297,11 @@ body {
 .pulse-dot {
   width: 12px;
   height: 12px;
-  background: var(--silver);
+  background: var(--green);
   border-radius: 50%;
   position: relative;
   animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 20px var(--green);
 }
 
 .pulse-dot::before {
@@ -293,8 +318,14 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 20px currentColor;
+  }
+  50% { 
+    transform: scale(1.2); 
+    box-shadow: 0 0 40px currentColor;
+  }
 }
 
 @keyframes ripple {
@@ -303,14 +334,16 @@ body {
 }
 
 .pulse-dot.yellow {
-  background: var(--dark-silver);
+  background: var(--yellow);
+  box-shadow: 0 0 20px var(--yellow);
 }
 
 .pulse-dot.red {
-  background: var(--gray);
+  background: var(--red);
+  box-shadow: 0 0 20px var(--red);
 }
 
-/* Project cards with 3D hover effect */
+/* Project cards with 3D hover effect and subtle color accents */
 .projects {
   display: grid;
   gap: 2rem;
@@ -318,8 +351,9 @@ body {
 }
 
 .project {
-  background: var(--light-gray);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 2rem;
   position: relative;
@@ -331,9 +365,34 @@ body {
   animation: slideInUp 0.6s ease-out forwards;
 }
 
-.project:nth-child(1) { animation-delay: 0.1s; }
-.project:nth-child(2) { animation-delay: 0.2s; }
-.project:nth-child(3) { animation-delay: 0.3s; }
+:root.dark .project {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle color accents for each project */
+.project:nth-child(1) { 
+  animation-delay: 0.1s;
+  border-top: 2px solid var(--green);
+}
+
+.project:nth-child(2) { 
+  animation-delay: 0.2s;
+  border-top: 2px solid var(--accent);
+}
+
+.project:nth-child(3) { 
+  animation-delay: 0.3s;
+  border-top: 2px solid var(--purple);
+}
+
+.section:nth-child(3) .project {
+  border-top: 2px solid var(--yellow);
+}
+
+.section:nth-child(5) .project {
+  border-top: 2px solid var(--red);
+}
 
 @keyframes slideInUp {
   from {
@@ -353,10 +412,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, transparent, var(--silver), transparent);
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transform: translateX(-100%);
   transition: transform 0.6s ease;
-  opacity: 0.1;
 }
 
 .project:active {
@@ -387,7 +445,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--silver), var(--dark-silver));
+  background: linear-gradient(90deg, var(--accent), var(--purple));
   transition: width 0.3s ease;
 }
 
@@ -411,12 +469,13 @@ body {
 .tech-tag {
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
-  background: var(--light-gray);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .tech-tag::before {
@@ -426,7 +485,7 @@ body {
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, var(--silver), transparent);
+  background: radial-gradient(circle, var(--accent), transparent);
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
   border-radius: 50%;
@@ -434,7 +493,7 @@ body {
 
 .tech-tag:active {
   color: white;
-  border-color: var(--dark-silver);
+  border-color: var(--accent);
 }
 
 .tech-tag:active::before {
@@ -453,23 +512,26 @@ body {
 .achievement {
   text-align: center;
   padding: 1.5rem;
-  background: var(--bg-light);
+  background: rgba(0, 255, 136, 0.05);
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 255, 136, 0.2);
   transition: all 0.3s ease;
 }
 
 .achievement:active {
   transform: translateY(-5px);
-  border-color: var(--silver);
-  box-shadow: 0 5px 20px rgba(192, 192, 192, 0.3);
+  border-color: var(--green);
+  box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
 }
 
 .achievement-number {
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-light);
+  background: linear-gradient(135deg, var(--green), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
 }
 
@@ -497,15 +559,16 @@ body {
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--silver);
+  color: var(--green);
   font-weight: bold;
+  text-shadow: 0 0 10px var(--green);
 }
 
 /* Section divider with gradient */
 .section-divider {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   margin: 3rem 0;
   position: relative;
   overflow: hidden;
@@ -518,7 +581,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, var(--silver), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: scan 3s ease-in-out infinite;
 }
 
@@ -531,7 +594,7 @@ body {
 .footer {
   text-align: center;
   padding: 4rem 2rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 4rem;
 }
 
@@ -547,8 +610,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 1.5rem;
-  background: var(--light-gray);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   text-decoration: none;
   color: var(--text-light);
@@ -564,7 +628,7 @@ body {
   left: 50%;
   width: 0;
   height: 0;
-  background: linear-gradient(135deg, var(--silver), var(--dark-silver));
+  background: linear-gradient(135deg, var(--accent), var(--purple));
   transform: translate(-50%, -50%);
   border-radius: 50%;
   transition: all 0.5s ease;
@@ -572,7 +636,7 @@ body {
 
 .social-button:active {
   transform: translateY(-3px) scale(0.95);
-  box-shadow: 0 10px 30px rgba(192, 192, 192, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
   color: white;
   border-color: transparent;
 }
@@ -644,27 +708,26 @@ body.loaded::before {
   }
 
   .orb1 {
+    width: 500px;
+    height: 500px;
+  }
+
+  .orb2 {
     width: 400px;
     height: 400px;
   }
 
-  .orb2 {
+  .orb3 {
     width: 300px;
     height: 300px;
   }
-
-  .orb3 {
-    width: 200
-    width: 200px;
-   height: 200px;
- }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
- *, *::before, *::after {
-   animation-duration: 0.01ms !important;
-   animation-iteration-count: 1 !important;
-   transition-duration: 0.01ms !important;
- }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
