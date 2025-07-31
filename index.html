@@ -246,54 +246,30 @@
         document.body.classList.add('loaded');
       }, 100);
       
-      // 3D Tilt Effect on Project Cards
-document.querySelectorAll('.project').forEach(card => {
-  // Mouse events for desktop
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
+      // 3D tilt effect removed for better mobile scrolling
+
+// Add ripple effect on project cards (keeping this existing functionality)
+document.querySelectorAll('.project').forEach(project => {
+  project.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
     
-    card.style.transform = `
-      perspective(1000px)
-      rotateY(${(x - 0.5) * 10}deg)
-      rotateX(${(y - 0.5) * -10}deg)
-      translateZ(10px)
-    `;
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
-  });
-  
-  // Touch events for mobile
-  let touchStartX = 0;
-  let touchStartY = 0;
-  
-  card.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    const rect = card.getBoundingClientRect();
-    touchStartX = (touch.clientX - rect.left) / rect.width;
-    touchStartY = (touch.clientY - rect.top) / rect.height;
-  });
-  
-  card.addEventListener('touchmove', (e) => {
-    e.preventDefault(); // Prevent scrolling while tilting
-    const touch = e.touches[0];
-    const rect = card.getBoundingClientRect();
-    const x = (touch.clientX - rect.left) / rect.width;
-    const y = (touch.clientY - rect.top) / rect.height;
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.background = 'rgba(255, 255, 255, 0.2)';
+    ripple.style.transform = 'scale(0)';
+    ripple.style.animation = 'rippleEffect 0.6s ease-out';
+    ripple.style.pointerEvents = 'none';
     
-    card.style.transform = `
-      perspective(1000px)
-      rotateY(${(x - 0.5) * 8}deg)
-      rotateX(${(y - 0.5) * -8}deg)
-      translateZ(5px)
-    `;
-  });
-  
-  card.addEventListener('touchend', () => {
-    card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+    this.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
   });
 });
       
