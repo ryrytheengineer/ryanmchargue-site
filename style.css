@@ -50,6 +50,7 @@ body {
   pointer-events: none;
   z-index: -1;
   will-change: transform;
+  transition: transform 0.3s ease;
 }
 
 .orb1 {
@@ -117,6 +118,32 @@ body {
   75% { 
     transform: translate(5%, 5%) scale(1.05) rotate(270deg);
     border-radius: 45% 55% 55% 45%;
+  }
+}
+
+/* Click ripple effect */
+.click-ripple {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: clickRipple 1s ease-out;
+  z-index: 1000;
+}
+
+@keyframes clickRipple {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
   }
 }
 
@@ -214,6 +241,186 @@ body {
   transform: rotate(360deg);
 }
 
+/* Contact toggle button */
+.contact-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 6rem;
+  width: 56px;
+  height: 56px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+:root.dark .contact-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-toggle:hover {
+  transform: scale(1.05);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-toggle:active {
+  transform: scale(0.92);
+}
+
+/* Contact Panel */
+.contact-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 400px;
+  background: var(--bg-light);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+  padding: 3rem 2rem;
+  overflow-y: auto;
+}
+
+:root.dark .contact-panel {
+  background: #0a0a0a;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.contact-panel.active {
+  transform: translateX(0);
+}
+
+.contact-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--gray);
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contact-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.contact-panel h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-panel p {
+  color: var(--gray);
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: var(--light-gray);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  color: var(--text-light);
+}
+
+:root.dark .contact-form input,
+:root.dark .contact-form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 102, 255, 0.1);
+}
+
+.submit-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.contact-direct {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.contact-direct p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-direct a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.contact-direct a:hover {
+  opacity: 0.8;
+}
+
 /* Header */
 .header {
   text-align: center;
@@ -234,12 +441,16 @@ body {
 }
 
 .title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 800;
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
   position: relative;
   display: inline-block;
+  line-height: 1.2;
+}
+
+.title #greeting {
   background: linear-gradient(
     135deg,
     var(--text-light) 0%,
@@ -279,20 +490,20 @@ body {
   }
 }
 
-/* Currently Listening Section */
+/* Currently Listening Section - MORE SUBTLE */
 .currently-listening {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--gray);
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.8s forwards;
   position: relative;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -300,12 +511,14 @@ body {
 .listening-icon {
   color: var(--green);
   animation: musicPulse 2s ease-in-out infinite;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 @keyframes musicPulse {
   0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
 }
 
 .artists-marquee {
@@ -319,9 +532,10 @@ body {
 .artists {
   display: inline-block;
   padding-right: 3rem;
-  animation: marquee 30s linear infinite;
-  color: var(--text-light);
-  font-weight: 500;
+  animation: marquee 35s linear infinite;
+  color: var(--gray);
+  font-weight: 400;
+  opacity: 0.8;
 }
 
 @keyframes marquee {
@@ -429,7 +643,7 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Project cards with proper contrast */
+/* Project cards with proper contrast - OPAQUE IN DARK MODE */
 .project {
   background: var(--light-gray);
   border: 1px solid var(--border);
@@ -442,12 +656,13 @@ body {
   opacity: 0;
   animation: projectReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transform-style: preserve-3d;
 }
 
 :root.dark .project {
-  background: rgba(255, 255, 255, 0.03);
+  background: #0f0f0f; /* OPAQUE DARK BACKGROUND */
   border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Consistent colored accents for sections */
@@ -816,12 +1031,25 @@ body.loaded::before {
     font-size: 20px;
   }
 
+  .contact-toggle {
+    top: 1rem;
+    right: 4.5rem;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .contact-panel {
+    width: 100%;
+    max-width: 400px;
+  }
+
   .header {
     padding-top: 5rem;
   }
 
   .title {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
   }
 
   .subtitles {
@@ -830,12 +1058,12 @@ body.loaded::before {
   }
 
   .currently-listening {
-    font-size: 0.8rem;
-    max-width: 300px;
+    font-size: 0.7rem;
+    max-width: 280px;
   }
   
   .artists-marquee {
-    max-width: 250px;
+    max-width: 230px;
   }
 
   .active-line h2 {
