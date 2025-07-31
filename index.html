@@ -25,9 +25,31 @@
     <span aria-label="Switch to dark mode">🌙</span>
   </button>
   
+  <!-- Quick Contact Button -->
+  <button id="contactToggle" class="contact-toggle" aria-label="Quick contact">
+    <span>✉️</span>
+  </button>
+  
+  <!-- Quick Contact Panel -->
+  <div id="contactPanel" class="contact-panel">
+    <button class="contact-close" aria-label="Close contact panel">&times;</button>
+    <h3>Let's Connect</h3>
+    <p>Have a project in mind? Let's chat.</p>
+    <form class="contact-form" id="contactForm">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <div class="contact-direct">
+      <p>Or email directly:</p>
+      <a href="mailto:ryan@trymelody.com">ryan@trymelody.com</a>
+    </div>
+  </div>
+  
   <!-- Header -->
   <header class="header">
-    <h1 class="title">Ryan McHargue</h1>
+    <h1 class="title"><span id="greeting">Good morning</span>, Ryan here!</h1>
     <p class="subtitles">Founder · Product Designer · Operator</p>
     <div class="currently-listening">
       <span class="listening-icon">♫</span>
@@ -198,34 +220,144 @@
       
       updateIcon();
       
+      // Dynamic greeting based on time
+      const updateGreeting = () => {
+        const hour = new Date().getHours();
+        const greetingEl = document.getElementById('greeting');
+        let greeting;
+        
+        if (hour < 12) {
+          greeting = "Good morning";
+        } else if (hour < 18) {
+          greeting = "Good afternoon";
+        } else {
+          greeting = "Good evening";
+        }
+        
+        greetingEl.textContent = greeting;
+      };
+      
+      updateGreeting();
+      // Update greeting every minute
+      setInterval(updateGreeting, 60000);
+      
       // Add loading animation
       setTimeout(() => {
         document.body.classList.add('loaded');
       }, 100);
       
-      // Add ripple effect on project cards
-      document.querySelectorAll('.project').forEach(project => {
-        project.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          const rect = this.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
+      // 3D Tilt Effect on Project Cards
+      document.querySelectorAll('.project').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
           
-          ripple.style.width = ripple.style.height = size + 'px';
-          ripple.style.left = x + 'px';
-          ripple.style.top = y + 'px';
-          ripple.style.position = 'absolute';
-          ripple.style.borderRadius = '50%';
-          ripple.style.background = 'rgba(255, 255, 255, 0.2)';
-          ripple.style.transform = 'scale(0)';
-          ripple.style.animation = 'rippleEffect 0.6s ease-out';
-          ripple.style.pointerEvents = 'none';
-          
-          this.appendChild(ripple);
-          
-          setTimeout(() => ripple.remove(), 600);
+          card.style.transform = `
+            perspective(1000px)
+            rotateY(${(x - 0.5) * 10}deg)
+            rotateX(${(y - 0.5) * -10}deg)
+            translateZ(10px)
+          `;
         });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+        });
+        
+        // Touch support for mobile
+        card.addEventListener('touchmove', (e) => {
+          const touch = e.touches[0];
+          const rect = card.getBoundingClientRect();
+          const x = (touch.clientX - rect.left) / rect.width;
+          const y = (touch.clientY - rect.top) / rect.height;
+          
+          card.style.transform = `
+            perspective(1000px)
+            rotateY(${(x - 0.5) * 5}deg)
+            rotateX(${(y - 0.5) * -5}deg)
+            translateZ(5px)
+          `;
+        });
+        
+        card.addEventListener('touchend', () => {
+          card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+        });
+      });
+      
+      // Interactive Background - Click ripples
+      document.addEventListener('click', (e) => {
+        // Don't create ripples on interactive elements
+        if (e.target.closest('button, a, input, textarea, .project')) return;
+        
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        document.body.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 1000);
+      });
+      
+      // Interactive orbs that react to mouse
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        
+        document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
+          const speed = 1 + index * 0.5;
+          orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+        });
+      });
+      
+      // Quick Contact Panel
+      const contactToggle = document.getElementById('contactToggle');
+      const contactPanel = document.getElementById('contactPanel');
+      const contactClose = document.querySelector('.contact-close');
+      const contactForm = document.getElementById('contactForm');
+      
+      contactToggle.addEventListener('click', () => {
+        contactPanel.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      contactClose.addEventListener('click', () => {
+        contactPanel.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on outside click
+      contactPanel.addEventListener('click', (e) => {
+        if (e.target === contactPanel) {
+          contactPanel.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Handle form submission
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        // Here you would normally send the data to your server
+        console.log('Form data:', data);
+        
+        // For now, just show success
+        const btn = contactForm.querySelector('.submit-btn');
+        btn.textContent = 'Message Sent! ✓';
+        btn.style.background = 'var(--green)';
+        
+        setTimeout(() => {
+          contactForm.reset();
+          btn.textContent = 'Send Message';
+          btn.style.background = '';
+          contactPanel.classList.remove('active');
+          document.body.style.overflow = '';
+        }, 2000);
       });
       
       // Parallax effect on scroll
