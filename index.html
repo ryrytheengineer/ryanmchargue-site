@@ -34,9 +34,9 @@
   <!-- Main content -->
   <main class="main-content">
     <!-- Active Projects -->
-    <section class="section">
+    <section class="section active-section">
       <div class="active-line">
-        <div class="pulse-dot" aria-hidden="true"></div>
+        <div class="pulse-dot green" aria-hidden="true"></div>
         <h2>Active Projects</h2>
       </div>
       <div class="projects">
@@ -86,7 +86,7 @@
     <hr class="section-divider">
     
     <!-- Backburner Projects -->
-    <section class="section">
+    <section class="section backburner-section">
       <div class="active-line">
         <div class="pulse-dot yellow" aria-hidden="true"></div>
         <h2>Backburner</h2>
@@ -106,13 +106,13 @@
     <hr class="section-divider">
     
     <!-- Archived Projects -->
-    <section class="section">
+    <section class="section archived-section">
       <div class="active-line">
         <div class="pulse-dot red" aria-hidden="true"></div>
         <h2>Archived</h2>
       </div>
       <div class="projects">
-        <article class="project archived">
+        <article class="project">
           <h3>Lucky Eight Media</h3>
           <div class="achievements">
             <div class="achievement">
@@ -171,7 +171,8 @@
           '<span aria-label="Switch to dark mode">🌙</span>';
       };
       
-      toggle.addEventListener('click', () => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
         html.classList.toggle('dark');
         body.classList.toggle('dark');
         localStorage.setItem('theme', isDark() ? 'dark' : 'light');
@@ -211,12 +212,21 @@
       });
       
       // Parallax effect on scroll
-      window.addEventListener('scroll', () => {
+      let ticking = false;
+      function updateParallax() {
         const scrolled = window.pageYOffset;
         document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
           const speed = 0.5 + (index * 0.2);
           orb.style.transform = `translateY(${scrolled * speed}px)`;
         });
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
       });
       
       // Enhanced counter animation with number formatting
@@ -224,7 +234,7 @@
         const target = parseFloat(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const prefix = element.textContent.includes('$') ? '$' : '';
-        const duration = 2000; // 2 seconds
+        const duration = 2000;
         const steps = 60;
         const increment = target / steps;
         let current = 0;
@@ -245,7 +255,6 @@
             }
             setTimeout(updateCounter, duration / steps);
           } else {
-            // Handle the final value based on the data
             if (suffix === 'M') {
               element.textContent = `${prefix}${target}${suffix}`;
             } else if (suffix === 'K') {
@@ -268,7 +277,6 @@
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Animate achievement numbers
             if (entry.target.classList.contains('achievement-number')) {
               animateCounter(entry.target);
               observer.unobserve(entry.target);
@@ -277,7 +285,6 @@
         });
       }, observerOptions);
       
-      // Observe achievement numbers
       document.querySelectorAll('.achievement-number').forEach(el => {
         observer.observe(el);
       });
