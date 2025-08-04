@@ -480,7 +480,7 @@ body,
 
 /* Remove the separate #greeting styling */
 
-.title #greeting {
+/*.title #greeting {
   background: linear-gradient(
     135deg,
     var(--text-light) 0%,
