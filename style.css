@@ -1348,4 +1348,9 @@ body.loaded::before {
 .social-button {
   transform: translateZ(0);
   will-change: transform;
+
+  /* Force hide loading screen */
+body.loaded::before {
+  display: none !important;
+}
 }
