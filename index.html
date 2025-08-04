@@ -454,6 +454,15 @@ document.querySelectorAll('.project').forEach(project => {
       }
     `;
     document.head.appendChild(style);
+    // Force remove loading screen
+setTimeout(() => {
+  document.body.classList.add('loaded');
+  // Force remove the loading screen if it's stuck
+  const loadingScreen = document.querySelector('body::before');
+  if (loadingScreen) {
+    document.body.style.setProperty('--loading-display', 'none');
+  }
+}, 500);
   </script>
 </body>
 </html>
