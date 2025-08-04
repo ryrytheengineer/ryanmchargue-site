@@ -264,32 +264,27 @@
       
       updateIcon();
 
-      // Dynamic greeting based on time
-     /* const updateGreeting = () => {
-        const hour = new Date().getHours();
-        const greetingEl = document.getElementById('greeting');
-        let greeting;
-        
-        if (hour < 12) {
-          greeting = "Good morning";
-        } else if (hour < 18) {
-          greeting = "Good afternoon";
-        } else {
-          greeting = "Good evening";
-        }
-        
-        greetingEl.textContent = greeting;
-      };
-      
-      updateGreeting();
-      // Update greeting every minute
-      setInterval(updateGreeting, 60000);
-      
-      // Add loading animation
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-      }, 100);
-      */
+      // Dynamic greeting based on time - WITH SAFETY CHECK
+const greetingEl = document.getElementById('greeting');
+if (greetingEl) {
+  const updateGreeting = () => {
+    const hour = new Date().getHours();
+    let greeting;
+    
+    if (hour < 12) {
+      greeting = "Good morning";
+    } else if (hour < 18) {
+      greeting = "Good afternoon";
+    } else {
+      greeting = "Good evening";
+    }
+    
+    greetingEl.textContent = greeting;
+  };
+  
+  updateGreeting();
+  setInterval(updateGreeting, 60000);
+}
       
       // 3D tilt effect removed for better mobile scrolling
 
