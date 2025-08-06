@@ -535,6 +535,11 @@ body,
   padding: 0.2rem 0;
 }
 
+:root.dark .title {
+  color: #ffffff;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
 @keyframes shimmer {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -562,6 +567,14 @@ body,
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--copper), transparent);
   opacity: 0.7;
+}
+
+:root.dark .subtitles {
+  color: #b8b8b8;
+}
+
+:root.dark .subtitles::after {
+  background: linear-gradient(90deg, transparent, #4a9eff, transparent);
 }
 
 @keyframes fadeInUp {
@@ -648,6 +661,10 @@ body,
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+:root.dark .active-line h2 {
+  color: #ffffff;
 }
 
 /* Pulse dots with unique colors - FIXED PULSE */
@@ -770,9 +787,27 @@ body,
 }
 
 :root.dark .project {
-  background: #0f0f0f;
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: #1a1f2e;
+  border-color: rgba(255, 255, 255, 0.15);
+  border-left-color: #4a9eff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark .project h3 {
+  color: #e8e8e8;
+}
+
+:root.dark .project h3 a {
+  color: #e8e8e8;
+}
+
+:root.dark .project h3 a:hover {
+  color: #ffffff;
+  border-bottom-color: #4a9eff;
+}
+
+:root.dark .project p {
+  color: #b8b8b8;
 }
 
 /* Masculine colored accents for sections */
