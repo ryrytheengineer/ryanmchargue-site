@@ -393,11 +393,12 @@ document.querySelectorAll('.project').forEach(project => {
         const duration = 3000; // Longer for more drama
         const startTime = performance.now();
         
-        // Add visual effects
-        element.style.transform = 'scale(1.05)';
+        // Add visual effects (cleaner, less blur)
+        element.style.transform = 'scale(1.02)';
         element.style.color = '#4a9eff';
-        element.style.textShadow = '0 0 10px rgba(74, 158, 255, 0.5)';
-        element.style.transition = 'all 0.3s ease';
+        element.style.textShadow = '0 1px 3px rgba(74, 158, 255, 0.3)';
+        element.style.transition = 'all 0.2s ease';
+        element.style.fontWeight = 'bold';
         
         const formatNumber = (num) => {
           return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -448,11 +449,12 @@ document.querySelectorAll('.project').forEach(project => {
             
             // Reset visual effects
             setTimeout(() => {
-              element.style.transform = 'scale(1)';
+              element.style.transform = '';
               element.style.color = '';
               element.style.textShadow = '';
+              element.style.fontWeight = '';
               element.classList.remove('counting');
-            }, 500);
+            }, 300);
           }
         };
         
