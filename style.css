@@ -6,37 +6,46 @@
 }
 
 :root {
-  --bg-light: #ffffff;
-  --text-light: #000000;
-  --accent: #0066ff;
-  --accent-hover: #0052cc;
-  --gray: #666666;
-  --light-gray: #f8f8f8;
-  --border: #e5e5e5;
-  --green: #00ff88;
-  --yellow: #ffcc00;
-  --red: #ff4444;
-  --purple: #8b5cf6;
-  --pink: #ec4899;
+  --bg-light: #fafafa;
+  --text-light: #1a1a1a;
+  --accent: #2c5aa0;
+  --accent-hover: #1e3f73;
+  --gray: #4a4a4a;
+  --light-gray: #f5f5f5;
+  --border: #d0d0d0;
+  --green: #2d5a27;
+  --yellow: #8b6914;
+  --red: #8b2635;
+  --purple: #4a4a8b;
+  --pink: #8b4a6b;
+  --navy: #1e2a4a;
+  --charcoal: #2a2a2a;
+  --steel: #4a5568;
+  --copper: #b07f57;
+  --forest: #2d4a2d;
 }
 
 :root.dark {
-  --bg-light: #000000;
-  --text-light: #ffffff;
-  --gray: #999999;
-  --light-gray: #0a0a0a;
-  --border: #1a1a1a;
+  --bg-light: #0f1419;
+  --text-light: #e8e8e8;
+  --gray: #8a8a8a;
+  --light-gray: #1a1f2e;
+  --border: #2a3441;
+  --navy: #0f1419;
+  --charcoal: #1a1f2e;
+  --steel: #2a3441;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg-light);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #f0f2f5 100%);
   color: var(--text-light);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
 }
 
 /* Add a specific class for smooth transitions on other properties */
@@ -55,13 +64,13 @@ body,
   transition: background-color 0s, color 0s;
 }
 
-/* Animated gradient orbs - MONOCHROME */
+/* Professional background elements */
 .gradient-orb {
   position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  animation: floatAndMorph 25s infinite ease-in-out;
+  border-radius: 0;
+  filter: blur(80px);
+  opacity: 0.08;
+  animation: subtleFloat 40s infinite ease-in-out;
   pointer-events: none;
   z-index: -1;
   will-change: transform;
@@ -69,70 +78,64 @@ body,
 }
 
 .orb1 {
-  width: 80vw;
-  height: 80vw;
-  max-width: 800px;
-  max-height: 800px;
-  background: radial-gradient(circle at 30% 30%, #333333, #000000);
-  top: -40%;
-  left: -20%;
+  width: 60vw;
+  height: 40vh;
+  max-width: 600px;
+  max-height: 400px;
+  background: linear-gradient(135deg, var(--navy), var(--steel));
+  top: -20%;
+  left: -15%;
   animation-delay: 0s;
+  transform: rotate(25deg);
 }
 
 .orb2 {
-  width: 60vw;
-  height: 60vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: radial-gradient(circle at 70% 70%, #1a1a1a, #000000);
-  bottom: -30%;
-  right: -20%;
-  animation-delay: 8s;
+  width: 50vw;
+  height: 35vh;
+  max-width: 500px;
+  max-height: 350px;
+  background: linear-gradient(135deg, var(--charcoal), var(--steel));
+  bottom: -15%;
+  right: -10%;
+  animation-delay: 20s;
+  transform: rotate(-15deg);
 }
 
 .orb3 {
-  width: 50vw;
-  height: 50vw;
-  max-width: 500px;
-  max-height: 500px;
-  background: radial-gradient(circle at 50% 50%, #2a2a2a, #000000);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: 16s;
+  width: 40vw;
+  height: 30vh;
+  max-width: 400px;
+  max-height: 300px;
+  background: linear-gradient(135deg, var(--steel), var(--copper));
+  top: 60%;
+  left: 70%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation-delay: 30s;
 }
 
 :root.dark .orb1 {
-  background: radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a);
-  opacity: 0.2;
+  background: linear-gradient(135deg, #0a0f1a, #1a1f2e);
+  opacity: 0.12;
 }
 
 :root.dark .orb2 {
-  background: radial-gradient(circle at 70% 70%, #2a2a2a, #0a0a0a);
-  opacity: 0.2;
+  background: linear-gradient(135deg, #1a1f2e, #2a3441);
+  opacity: 0.12;
 }
 
 :root.dark .orb3 {
-  background: radial-gradient(circle at 50% 50%, #1f1f1f, #0a0a0a);
-  opacity: 0.2;
+  background: linear-gradient(135deg, #2a3441, #3a4552);
+  opacity: 0.12;
 }
 
-@keyframes floatAndMorph {
+@keyframes subtleFloat {
   0%, 100% { 
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    border-radius: 50%;
-  }
-  25% { 
-    transform: translate(10%, -10%) scale(1.1) rotate(90deg);
-    border-radius: 40% 60% 60% 40%;
+    transform: translate(0, 0) scale(1) rotate(var(--start-rotation, 0deg));
+    opacity: 0.08;
   }
   50% { 
-    transform: translate(-10%, 10%) scale(0.9) rotate(180deg);
-    border-radius: 60% 40% 40% 60%;
-  }
-  75% { 
-    transform: translate(5%, 5%) scale(1.05) rotate(270deg);
-    border-radius: 45% 55% 55% 45%;
+    transform: translate(5%, -3%) scale(1.05) rotate(calc(var(--start-rotation, 0deg) + 5deg));
+    opacity: 0.12;
   }
 }
 
@@ -455,26 +458,27 @@ body,
   }
 }
 
-/* Title with gradient animation */
+/* Professional title styling */
 .title {
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
   position: relative;
   display: inline-block;
-  line-height: 1.2;
+  line-height: 1.1;
   background: linear-gradient(
     135deg,
     var(--text-light) 0%,
-    var(--gray) 50%,
-    var(--text-light) 100%
+    var(--navy) 40%,
+    var(--steel) 100%
   );
-  background-size: 200% 200%;
+  background-size: 100% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3s ease-in-out infinite;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
 @keyframes shimmer {
@@ -483,13 +487,27 @@ body,
 }
 
 .subtitles {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  color: var(--gray);
-  letter-spacing: 0.3em;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--steel);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.5s forwards;
   white-space: nowrap;
+  font-weight: 600;
+  position: relative;
+}
+
+.subtitles::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--copper), transparent);
+  opacity: 0.7;
 }
 
 @keyframes fadeInUp {
@@ -656,20 +674,31 @@ body,
   margin-bottom: 3rem;
 }
 
-/* Project cards with proper contrast - OPAQUE IN DARK MODE */
+/* Professional project cards */
 .project {
-  background: var(--light-gray);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 2.5rem;
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   opacity: 0;
   animation: projectReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.06);
   transform-style: preserve-3d;
+  border-left: 4px solid transparent;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+  border-color: var(--steel);
 }
 
 :root.dark .project {
@@ -678,17 +707,38 @@ body,
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Consistent colored accents for sections */
+/* Professional colored accents for sections */
 .active-section .project {
-  border-top: 3px solid var(--green);
+  border-left-color: var(--forest);
+}
+
+.active-section .project:hover {
+  border-left-color: var(--forest);
+  box-shadow: 
+    0 8px 25px rgba(45, 90, 39, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .backburner-section .project {
-  border-top: 3px solid var(--yellow);
+  border-left-color: var(--copper);
+}
+
+.backburner-section .project:hover {
+  border-left-color: var(--copper);
+  box-shadow: 
+    0 8px 25px rgba(176, 127, 87, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .archived-section .project {
-  border-top: 3px solid var(--red);
+  border-left-color: var(--red);
+}
+
+.archived-section .project:hover {
+  border-left-color: var(--red);
+  box-shadow: 
+    0 8px 25px rgba(139, 38, 53, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .project:nth-child(1) { animation-delay: 0.1s; }
