@@ -6,23 +6,25 @@
 }
 
 :root {
-  --bg-light: #fafafa;
-  --text-light: #1a1a1a;
-  --accent: #2c5aa0;
-  --accent-hover: #1e3f73;
-  --gray: #4a4a4a;
-  --light-gray: #f5f5f5;
-  --border: #d0d0d0;
-  --green: #2d5a27;
+  --bg-light: #f8f9fa;
+  --text-light: #1a1d23;
+  --accent: #2c4a6b;
+  --accent-hover: #1e3a5f;
+  --gray: #495057;
+  --light-gray: #f1f3f4;
+  --border: #dee2e6;
+  --green: #2d5a3d;
   --yellow: #8b6914;
   --red: #8b2635;
   --purple: #4a4a8b;
   --pink: #8b4a6b;
   --navy: #1e2a4a;
-  --charcoal: #2a2a2a;
-  --steel: #4a5568;
-  --copper: #b07f57;
-  --forest: #2d4a2d;
+  --charcoal: #2c3e50;
+  --steel: #546e7a;
+  --copper: #a0785a;
+  --forest: #2d5a3d;
+  --slate: #34495e;
+  --warm-gray: #6c757d;
 }
 
 :root.dark {
@@ -34,6 +36,8 @@
   --navy: #0f1419;
   --charcoal: #1a1f2e;
   --steel: #2a3441;
+  --slate: #1e2a3a;
+  --warm-gray: #6c7b8a;
 }
 
 body {
@@ -139,6 +143,17 @@ body,
   }
 }
 
+@keyframes subtleTextureShift {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate(2px, -2px) scale(1.005);
+    opacity: 0.8;
+  }
+}
+
 /* Click ripple effect */
 .click-ripple {
   position: fixed;
@@ -165,24 +180,48 @@ body,
   }
 }
 
-/* Grid background - MORE VISIBLE */
+/* Subtle diagonal texture background */
 .grid-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(128, 128, 128, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(128, 128, 128, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(44, 74, 107, 0.02) 40px,
+      rgba(44, 74, 107, 0.02) 80px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(84, 110, 122, 0.015) 40px,
+      rgba(84, 110, 122, 0.015) 80px
+    );
+  animation: subtleTextureShift 80s ease-in-out infinite;
   z-index: -2;
 }
 
 :root.dark .grid-background {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.012) 40px,
+      rgba(255, 255, 255, 0.012) 80px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.008) 40px,
+      rgba(255, 255, 255, 0.008) 80px
+    );
 }
 
 /* Scanning lines */
@@ -215,29 +254,30 @@ body,
   50% { left: 50%; opacity: 0.5; }
 }
 
-/* Theme toggle */
+/* Professional theme toggle */
 .theme-toggle {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--slate) 0%, var(--steel) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    0 3px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
 :root.dark .theme-toggle {
@@ -1221,21 +1261,23 @@ body,
   align-items: center;
   gap: 0.5rem;
   padding: 0.9rem 1.4rem;
-  background: var(--light-gray);
-  border: 1px solid var(--border);
-  border-radius: 25px;
+  background: linear-gradient(135deg, var(--slate) 0%, var(--steel) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   text-decoration: none;
-  color: var(--text-light);
+  color: white;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 :root.dark .social-button {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--slate) 0%, var(--steel) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .social-button::before {
