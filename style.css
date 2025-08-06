@@ -923,30 +923,18 @@ body,
   font-size: 0.95rem;
 }
 
-/* Clean counter animations */
+/* Fast flicking counter styles */
 .counting {
-  animation: countingPulse 0.3s ease-out;
+  display: inline-block;
+  transform-origin: center;
+  will-change: transform;
 }
 
-@keyframes countingPulse {
-  0% { 
-    transform: scale(1); 
-  }
-  50% { 
-    transform: scale(1.03); 
-  }
-  100% { 
-    transform: scale(1); 
-  }
-}
-
-/* Subtle highlight during counting */
-[data-target].counting {
-  background: rgba(74, 158, 255, 0.05);
-  padding: 0.1rem 0.3rem;
-  border-radius: 3px;
-  position: relative;
-  overflow: hidden;
+/* Ensure smooth scaling without layout shifts */
+[data-target] {
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
 }
 
 /* Tech tags */

@@ -382,7 +382,7 @@ document.querySelectorAll('.project').forEach(project => {
         }
       });
       
-      // Dramatic counter animation with visual effects
+      // Super fast flicking counter that grows then pops back
       const animateCounter = (element) => {
         if (element.classList.contains('counting')) return;
         element.classList.add('counting');
@@ -390,45 +390,56 @@ document.querySelectorAll('.project').forEach(project => {
         const target = parseFloat(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const prefix = element.textContent.includes('$') ? '$' : '';
-        const duration = 3000; // Longer for more drama
+        const duration = 4500; // 4.5 seconds total
         const startTime = performance.now();
-        
-        // Add visual effects (cleaner, less blur)
-        element.style.transform = 'scale(1.02)';
-        element.style.color = '#4a9eff';
-        element.style.textShadow = '0 1px 3px rgba(74, 158, 255, 0.3)';
-        element.style.transition = 'all 0.2s ease';
-        element.style.fontWeight = 'bold';
         
         const formatNumber = (num) => {
           return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         };
         
-        const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
-        
         const updateCounter = (currentTime) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          const easedProgress = easeOutQuart(progress);
           
-          // Create dramatic number jumps
+          // Super fast random flicking for first 80% of animation
           let current;
-          if (progress < 0.7) {
-            // Fast initial counting
-            current = target * easedProgress * 1.2;
+          if (progress < 0.8) {
+            // Fast random flicking - numbers jump around wildly
+            const baseProgress = progress / 0.8; // 0 to 1 over first 80%
+            const baseValue = target * baseProgress;
+            // Add wild random jumps
+            current = baseValue + (Math.random() - 0.5) * target * 0.3;
+            current = Math.max(0, Math.min(current, target * 1.2));
           } else {
-            // Slow down and settle on target
-            current = target * (0.84 + (easedProgress - 0.7) * 0.533);
+            // Final 20% - smooth approach to target
+            const finalProgress = (progress - 0.8) / 0.2; // 0 to 1 over final 20%
+            const easeOut = 1 - Math.pow(1 - finalProgress, 3);
+            current = target * (0.8 + easeOut * 0.2);
           }
           
-          current = Math.min(current, target);
-          
-          // Add random flicker effect during counting
-          if (progress < 0.95 && Math.random() < 0.1) {
-            current += (Math.random() - 0.5) * target * 0.1;
+          // Scale grows as we approach target, then pops back
+          let scale;
+          if (progress < 0.85) {
+            // Grow larger as we get closer
+            scale = 1 + progress * 0.8; // grows to 1.8x
+          } else if (progress < 0.95) {
+            // Stay large briefly
+            scale = 1.8;
+          } else {
+            // Pop back to normal with bounce
+            const popProgress = (progress - 0.95) / 0.05;
+            const bounce = 1 - Math.pow(1 - popProgress, 2);
+            scale = 1.8 - (0.8 * bounce);
           }
+          
+          // Apply visual effects
+          element.style.transform = `scale(${scale})`;
+          element.style.color = progress < 0.95 ? '#4a9eff' : '';
+          element.style.fontWeight = progress < 0.95 ? 'bold' : '';
+          element.style.transition = progress > 0.95 ? 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
           
           if (progress < 1) {
+            // Update the number display
             if (suffix === 'M') {
               element.textContent = `${prefix}${Math.max(0, current).toFixed(1)}${suffix}`;
             } else if (suffix === 'K') {
@@ -438,7 +449,7 @@ document.querySelectorAll('.project').forEach(project => {
             }
             requestAnimationFrame(updateCounter);
           } else {
-            // Final value and reset styles
+            // Final value - exact target
             if (suffix === 'M') {
               element.textContent = `${prefix}${target}${suffix}`;
             } else if (suffix === 'K') {
@@ -447,14 +458,19 @@ document.querySelectorAll('.project').forEach(project => {
               element.textContent = formatNumber(Math.round(target));
             }
             
-            // Reset visual effects
+            // Final pop back to normal
             setTimeout(() => {
-              element.style.transform = '';
+              element.style.transform = 'scale(1)';
               element.style.color = '';
-              element.style.textShadow = '';
               element.style.fontWeight = '';
-              element.classList.remove('counting');
-            }, 300);
+              element.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+              
+              setTimeout(() => {
+                element.style.transform = '';
+                element.style.transition = '';
+                element.classList.remove('counting');
+              }, 300);
+            }, 100);
           }
         };
         
