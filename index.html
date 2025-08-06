@@ -390,7 +390,7 @@ document.querySelectorAll('.project').forEach(project => {
         const target = parseFloat(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const prefix = element.textContent.includes('$') ? '$' : '';
-        const duration = 4500; // 4.5 seconds total
+        const duration = 2000; // 2 seconds total
         const startTime = performance.now();
         
         const formatNumber = (num) => {
@@ -401,42 +401,42 @@ document.querySelectorAll('.project').forEach(project => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
           
-          // Super fast random flicking for first 80% of animation
-          let current;
-          if (progress < 0.8) {
-            // Fast random flicking - numbers jump around wildly
-            const baseProgress = progress / 0.8; // 0 to 1 over first 80%
-            const baseValue = target * baseProgress;
-            // Add wild random jumps
-            current = baseValue + (Math.random() - 0.5) * target * 0.3;
-            current = Math.max(0, Math.min(current, target * 1.2));
-          } else {
-            // Final 20% - smooth approach to target
-            const finalProgress = (progress - 0.8) / 0.2; // 0 to 1 over final 20%
-            const easeOut = 1 - Math.pow(1 - finalProgress, 3);
-            current = target * (0.8 + easeOut * 0.2);
-          }
+                     // Super fast random flicking for first 75% of animation
+           let current;
+           if (progress < 0.75) {
+             // Fast random flicking - numbers jump around
+             const baseProgress = progress / 0.75; // 0 to 1 over first 75%
+             const baseValue = target * baseProgress;
+             // Add random jumps (reduced variance)
+             current = baseValue + (Math.random() - 0.5) * target * 0.15;
+             current = Math.max(0, Math.min(current, target * 1.1));
+                     } else {
+             // Final 25% - smooth approach to target
+             const finalProgress = (progress - 0.75) / 0.25; // 0 to 1 over final 25%
+             const easeOut = 1 - Math.pow(1 - finalProgress, 3);
+             current = target * (0.75 + easeOut * 0.25);
+           }
           
-          // Scale grows as we approach target, then pops back
-          let scale;
-          if (progress < 0.85) {
-            // Grow larger as we get closer
-            scale = 1 + progress * 0.8; // grows to 1.8x
-          } else if (progress < 0.95) {
-            // Stay large briefly
-            scale = 1.8;
-          } else {
-            // Pop back to normal with bounce
-            const popProgress = (progress - 0.95) / 0.05;
-            const bounce = 1 - Math.pow(1 - popProgress, 2);
-            scale = 1.8 - (0.8 * bounce);
-          }
+                     // Scale grows as we approach target, then pops back
+           let scale;
+           if (progress < 0.8) {
+             // Grow larger as we get closer
+             scale = 1 + progress * 0.6; // grows to 1.6x
+           } else if (progress < 0.9) {
+             // Stay large briefly
+             scale = 1.6;
+           } else {
+             // Pop back to normal with bounce
+             const popProgress = (progress - 0.9) / 0.1;
+             const bounce = 1 - Math.pow(1 - popProgress, 2);
+             scale = 1.6 - (0.6 * bounce);
+           }
           
           // Apply visual effects
           element.style.transform = `scale(${scale})`;
-          element.style.color = progress < 0.95 ? '#4a9eff' : '';
-          element.style.fontWeight = progress < 0.95 ? 'bold' : '';
-          element.style.transition = progress > 0.95 ? 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
+                     element.style.color = progress < 0.9 ? '#4a9eff' : '';
+           element.style.fontWeight = progress < 0.9 ? 'bold' : '';
+           element.style.transition = progress > 0.9 ? 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
           
           if (progress < 1) {
             // Update the number display
