@@ -520,24 +520,26 @@ body,
   }
 }
 
-/* Strong navy title */
+/* Masculine industrial title */
 .title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 900;
   margin-bottom: 2rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   position: relative;
   display: inline-block;
-  line-height: 1.3;
+  line-height: 1.1;
   color: var(--navy);
-  text-shadow: 0 3px 6px rgba(30, 42, 74, 0.2);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  padding: 0.2rem 0;
+  text-shadow: 0 4px 8px rgba(30, 42, 74, 0.3);
+  font-family: 'Inter', 'Helvetica Neue', 'Arial Black', 'Trebuchet MS', Arial, sans-serif;
+  padding: 0.3rem 0;
+  font-variation-settings: 'wght' 900;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 :root.dark .title {
   color: #ffffff;
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes shimmer {
