@@ -382,32 +382,62 @@ document.querySelectorAll('.project').forEach(project => {
         }
       });
       
-      // Enhanced counter animation with number formatting
+      // Dramatic counter animation with visual effects
       const animateCounter = (element) => {
+        if (element.classList.contains('counting')) return;
+        element.classList.add('counting');
+        
         const target = parseFloat(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const prefix = element.textContent.includes('$') ? '$' : '';
-        const duration = 2000;
-        const steps = 60;
-        const increment = target / steps;
-        let current = 0;
+        const duration = 3000; // Longer for more drama
+        const startTime = performance.now();
+        
+        // Add visual effects
+        element.style.transform = 'scale(1.05)';
+        element.style.color = '#4a9eff';
+        element.style.textShadow = '0 0 10px rgba(74, 158, 255, 0.5)';
+        element.style.transition = 'all 0.3s ease';
         
         const formatNumber = (num) => {
           return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         };
         
-        const updateCounter = () => {
-          current += increment;
-          if (current < target) {
-            if (suffix === 'M') {
-              element.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
-            } else if (suffix === 'K') {
-              element.textContent = `${prefix}${Math.round(current)}${suffix}`;
-            } else {
-              element.textContent = formatNumber(Math.round(current));
-            }
-            setTimeout(updateCounter, duration / steps);
+        const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+        
+        const updateCounter = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutQuart(progress);
+          
+          // Create dramatic number jumps
+          let current;
+          if (progress < 0.7) {
+            // Fast initial counting
+            current = target * easedProgress * 1.2;
           } else {
+            // Slow down and settle on target
+            current = target * (0.84 + (easedProgress - 0.7) * 0.533);
+          }
+          
+          current = Math.min(current, target);
+          
+          // Add random flicker effect during counting
+          if (progress < 0.95 && Math.random() < 0.1) {
+            current += (Math.random() - 0.5) * target * 0.1;
+          }
+          
+          if (progress < 1) {
+            if (suffix === 'M') {
+              element.textContent = `${prefix}${Math.max(0, current).toFixed(1)}${suffix}`;
+            } else if (suffix === 'K') {
+              element.textContent = `${prefix}${Math.max(0, Math.round(current))}${suffix}`;
+            } else {
+              element.textContent = formatNumber(Math.max(0, Math.round(current)));
+            }
+            requestAnimationFrame(updateCounter);
+          } else {
+            // Final value and reset styles
             if (suffix === 'M') {
               element.textContent = `${prefix}${target}${suffix}`;
             } else if (suffix === 'K') {
@@ -415,10 +445,18 @@ document.querySelectorAll('.project').forEach(project => {
             } else {
               element.textContent = formatNumber(Math.round(target));
             }
+            
+            // Reset visual effects
+            setTimeout(() => {
+              element.style.transform = 'scale(1)';
+              element.style.color = '';
+              element.style.textShadow = '';
+              element.classList.remove('counting');
+            }, 500);
           }
         };
         
-        updateCounter();
+        requestAnimationFrame(updateCounter);
       };
       
       // Intersection Observer for animations
