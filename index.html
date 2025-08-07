@@ -255,10 +255,24 @@
       
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
+        
+        // Force instant theme switch by temporarily disabling all transitions
+        const style = document.createElement('style');
+        style.textContent = '*, *::before, *::after { transition: none !important; animation-duration: 0s !important; }';
+        document.head.appendChild(style);
+        
+        // Toggle theme
         html.classList.toggle('dark');
         body.classList.toggle('dark');
         localStorage.setItem('theme', isDark() ? 'dark' : 'light');
         updateIcon();
+        
+        // Re-enable transitions after a brief moment
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.head.removeChild(style);
+          });
+        });
       });
       
       updateIcon();
