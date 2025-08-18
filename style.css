@@ -1621,6 +1621,7 @@ body.loaded::before {
 
   .project {
     padding: 2rem;
+    margin-left: 0;
   }
 
   .terminal {
@@ -1635,36 +1636,48 @@ body.loaded::before {
     font-size: 0.8rem;
   }
 
+  /* Move gym badges to bottom on mobile to avoid covering content */
   .gym-badges {
-    left: 5px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
     gap: 8px;
-    top: 40%;
-  }
-
-  .gym-badge {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    border-width: 2px;
-  }
-
-  .gym-badge:hover {
-    transform: scale(1.05);
-  }
-}
-
-/* Extra small mobile screens */
-@media (max-width: 480px) {
-  .gym-badges {
-    left: 3px;
-    gap: 6px;
-    top: 35%;
+    width: auto;
+    justify-content: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 8px 12px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
   }
 
   .gym-badge {
     width: 35px;
     height: 35px;
     font-size: 14px;
+    border-width: 2px;
+  }
+
+  .gym-badge:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  .gym-badges {
+    bottom: 15px;
+    gap: 6px;
+    padding: 6px 10px;
+  }
+
+  .gym-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
     border-width: 2px;
   }
 }
