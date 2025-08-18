@@ -1636,49 +1636,35 @@ body.loaded::before {
     font-size: 0.8rem;
   }
 
-  /* Move gym badges to bottom on mobile to avoid covering content */
   .gym-badges {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row;
     gap: 8px;
-    width: auto;
-    justify-content: center;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 8px 12px;
-    border-radius: 25px;
-    border: 2px solid rgba(255, 215, 0, 0.3);
+    margin-top: 1.5rem;
   }
 
   .gym-badge {
-    width: 35px;
-    height: 35px;
-    font-size: 14px;
-    border-width: 2px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    border-width: 3px;
   }
 
   .gym-badge:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 
 /* Extra small mobile screens */
 @media (max-width: 480px) {
   .gym-badges {
-    bottom: 15px;
     gap: 6px;
-    padding: 6px 10px;
+    margin-top: 1rem;
   }
 
   .gym-badge {
-    width: 32px;
-    height: 32px;
-    font-size: 12px;
-    border-width: 2px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-width: 3px;
   }
 }
 
@@ -1792,13 +1778,12 @@ body.loaded::before {
 
 /* Gym Badges */
 .gym-badges {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
   z-index: 100;
 }
 
