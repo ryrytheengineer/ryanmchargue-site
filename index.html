@@ -3,75 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ryan McHargue - Founder, Product Designer, and Operator. Explore active projects including Halo, Amarna Gallery, and Neutrals." />
-  <meta name="keywords" content="Ryan McHargue, Founder, Product Designer, Operator, Halo, Amarna Gallery, Neutrals" />
+  <meta name="description" content="Ryan McHargue - Pokémon Master, Product Designer, and Founder. Explore active projects including Halo, Amarna Gallery, and Neutrals." />
+  <meta name="keywords" content="Ryan McHargue, Pokémon Master, Product Designer, Founder, Halo, Amarna Gallery, Neutrals" />
   <meta name="author" content="Ryan McHargue" />
-  <title>Ryan McHargue | Founder</title>
+  <title>Ryan McHargue | Pokémon Master</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Animated gradient orbs -->
+  <!-- Animated Pokéball orbs -->
   <div class="gradient-orb orb1"></div>
   <div class="gradient-orb orb2"></div>
   <div class="gradient-orb orb3"></div>
   
-  <!-- Grid background with scanning lines -->
+  <!-- Pokémon grid background with energy lines -->
   <div class="grid-background" aria-hidden="true"></div>
   <div class="grid-line grid-line-h" aria-hidden="true"></div>
   <div class="grid-line grid-line-v" aria-hidden="true"></div>
   
-  <!-- Theme toggle -->
+  <!-- Floating Background Pokémon -->
+  <div class="floating-pokemon pikachu" aria-hidden="true">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" class="pokemon-sprite">
+  </div>
+  <div class="floating-pokemon eevee" aria-hidden="true">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png" alt="" class="pokemon-sprite">
+  </div>
+  <div class="floating-pokemon mew" aria-hidden="true">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png" alt="" class="pokemon-sprite">
+  </div>
+
+  <!-- Gym Badges Collection -->
+  <div class="gym-badges">
+    <div class="gym-badge boulder earned" title="Boulder Badge - Brock's Gym">🗻</div>
+    <div class="gym-badge cascade earned" title="Cascade Badge - Misty's Gym">💧</div>
+    <div class="gym-badge thunder earned" title="Thunder Badge - Lt. Surge's Gym">⚡</div>
+    <div class="gym-badge rainbow earned" title="Rainbow Badge - Erika's Gym">🌸</div>
+    <div class="gym-badge soul earned" title="Soul Badge - Koga's Gym">💀</div>
+    <div class="gym-badge marsh earned" title="Marsh Badge - Sabrina's Gym">🔮</div>
+    <div class="gym-badge volcano earned" title="Volcano Badge - Blaine's Gym">🔥</div>
+    <div class="gym-badge earth earned" title="Earth Badge - Giovanni's Gym">🌍</div>
+  </div>
+  
+  <!-- Pokédex theme toggle -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
     <span aria-label="Switch to dark mode">🌙</span>
   </button>
   
-  <!-- Quick Contact Button -->
+  <!-- Pokémon Center Contact Button -->
   <button id="contactToggle" class="contact-toggle" aria-label="Quick contact">
-    <span>✉️</span>
+    <span>⚡</span>
   </button>
   
-  <!-- Quick Contact Panel -->
+  <!-- Pokédex Contact Panel -->
   <div id="contactPanel" class="contact-panel">
     <button class="contact-close" aria-label="Close contact panel">&times;</button>
-    <h3>Let's Connect</h3>
-    <p>Have a project in mind? Let's chat.</p>
+    <h3>Trainer Contact</h3>
+    <p>Ready for a new adventure? Let's team up!</p>
     <form class="contact-form" id="contactForm">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+      <input type="text" name="name" placeholder="Trainer name" required>
+      <input type="email" name="email" placeholder="Pokédex email" required>
+      <textarea name="message" placeholder="Tell me about your quest..." rows="4" required></textarea>
       <button type="submit" class="submit-btn">Send Message</button>
     </form>
     <div class="contact-direct">
-      <p>Or email directly:</p>
+      <p>Or contact directly:</p>
       <a href="mailto:ryan@trymelody.com">ryan@trymelody.com</a>
     </div>
   </div>
   
-  <!-- Replace the header section with this -->
+  <!-- Pokémon Trainer Header -->
 <header class="header">
+  <div class="header-pokemon">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="pokemon-sprite" title="Pikachu - The Electric Mouse Pokémon">
+  </div>
   <h1 class="title">Ryan McHargue</h1>
-  <p class="subtitles">Founder · Product Designer · Operator</p>
+      <p class="subtitles">Pokémon Master · Product Designer · Founder</p>
   <div class="currently-listening">
-    <span class="listening-icon">♫</span>
+    <span class="listening-icon">🎵</span>
     <div class="artists-marquee">
-      <span class="artists">Currently Listening To: Lil Tjay, MRCY, Rels B, $uicideBoy$, Morgan Wallen, Evan Honer</span>
-      <span class="artists">Currently Listening To: Lil Tjay, MRCY, Rels B, $uicideBoy$, Morgan Wallen, Evan Honer</span>
+      <span class="artists">Currently Vibing To: Charlotte de Witte, Blondish, Jack Rock, Future, CeeLo Green, Toby Keith</span>
+      <span class="artists">Currently Vibing To: Charlotte de Witte, Blondish, Jack Rock, Future, CeeLo Green, Toby Keith</span>
     </div>
   </div>
 </header>
   
   <!-- Main content -->
   <main class="main-content">
-    <!-- Active Projects -->
+    <!-- Active Gym Battles -->
     <section class="section active-section">
       <div class="active-line">
         <div class="pulse-dot green" aria-hidden="true"></div>
-        <h2>Active Projects</h2>
+        <h2>Active Gym Battles</h2>
       </div>
       <div class="projects">
         <article class="project">
+  <div class="project-pokemon">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" alt="Mewtwo" class="pokemon-sprite" title="Mewtwo - The Genetic Pokémon">
+  </div>
   <h3><a href="https://haloquit.com" target="_blank" rel="noopener noreferrer">Halo</a></h3>
-  <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
+  <p>Elite Four Challenge: Smart Zero Nicotine Behavioral Aid helping trainers break free from addiction status effects.</p>
   <div class="project-status">
     <span class="live-dot"></span>
     <span>Launching V5.0 next month</span>
@@ -79,34 +108,37 @@
   <div class="achievements">
     <div class="achievement">
       <span class="achievement-number" data-target="2.1" data-suffix="M">$0M</span>
-      <span class="achievement-label">Revenue (2 years)</span>
+      <span class="achievement-label">Pokédollars (2 years)</span>
     </div>
     <div class="achievement">
       <span class="achievement-number" data-target="70054">0</span>
-      <span class="achievement-label">Customers</span>
+      <span class="achievement-label">Trainers Helped</span>
     </div>
     <div class="achievement">
       <span class="achievement-number" data-target="50" data-suffix="M+">0M+</span>
-      <span class="achievement-label">Impressions</span>
+      <span class="achievement-label">Battle Views</span>
     </div>
   </div>
   <ul class="achievement-list">
-    <li>Featured at WVS Dubai</li>
-    <li>100% organic marketing</li>
-    <li>Bicoastal team (Miami × SF)</li>
-    <li>Bootstrapped without fundraising</li>
+    <li>Featured at World Pokémon Summit Dubai</li>
+    <li>100% wild encounter marketing</li>
+    <li>Bicoastal gym (Miami × SF)</li>
+    <li>Self-funded without Team Rocket</li>
   </ul>
   <div class="project-tech">
-    <span class="tech-tag">Healthcare</span>
-    <span class="tech-tag">Behavioral Science</span>
+    <span class="tech-tag">Psychic</span>
+    <span class="tech-tag">Fighting</span>
   </div>
 </article>
         
         <article class="project">
+          <div class="project-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png" alt="Articuno" class="pokemon-sprite" title="Articuno - The Freeze Pokémon">
+          </div>
           <h3><a href="https://amarnagallery.com" target="_blank" rel="noopener noreferrer">Amarna Gallery</a></h3>
-          <p>Private art house curating exclusive collections, immersive experiences, and high-value collaborations with top artists and luxury brands.</p>
+          <p>Legendary Art Collection: Private gallery curating rare art pieces, immersive experiences, and epic collaborations with champion artists.</p>
           <div class="collaborations">
-            <span class="collab-label">Notable Collaborations:</span>
+            <span class="collab-label">Champion Collaborations:</span>
             <div class="collab-names">
               <span class="collab-name">Grant Cardone</span>
               <span class="collab-name">Jorge Masvidal</span>
@@ -115,17 +147,20 @@
             </div>
           </div>
           <div class="project-tech">
-            <span class="tech-tag">Art</span>
-            <span class="tech-tag">Luxury</span>
+            <span class="tech-tag">Fairy</span>
+            <span class="tech-tag">Steel</span>
           </div>
         </article>
         
         <article class="project">
+          <div class="project-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png" alt="Alakazam" class="pokemon-sprite" title="Alakazam - The Psi Pokémon">
+          </div>
           <h3><a href="https://www.tryneutrals.ai" target="_blank" rel="noopener noreferrer">Neutrals</a></h3>
-          <p>AI-driven platform that delivers the latest headlines without polarizing rhetoric by reframing biased articles in real time.</p>
+          <p>AI Pokédex: Advanced platform that analyzes news patterns and removes bias effects in real-time, like a super-effective move against misinformation.</p>
           <div class="project-tech">
-            <span class="tech-tag">AI/ML</span>
-            <span class="tech-tag">News</span>
+            <span class="tech-tag">Electric</span>
+            <span class="tech-tag">Psychic</span>
           </div>
         </article>
       </div>
@@ -133,19 +168,22 @@
     
     <hr class="section-divider">
     
-    <!-- Backburner Projects -->
+    <!-- Training Ground -->
     <section class="section backburner-section">
       <div class="active-line">
         <div class="pulse-dot yellow" aria-hidden="true"></div>
-        <h2>Backburner</h2>
+        <h2>Training Ground</h2>
       </div>
       <div class="projects">
         <article class="project">
+          <div class="project-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png" alt="Raichu" class="pokemon-sprite" title="Raichu - The Mouse Pokémon">
+          </div>
           <h3><a href="#" aria-disabled="true">Shoq</a></h3>
-          <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
+          <p>Data Analytics Gym: Platform offering retail trainers real-time insights on customer behavior using advanced sensor technology and battle analytics.</p>
           <div class="project-tech">
-            <span class="tech-tag">LiDAR</span>
-            <span class="tech-tag">Analytics</span>
+            <span class="tech-tag">Ground</span>
+            <span class="tech-tag">Rock</span>
           </div>
         </article>
       </div>
@@ -153,58 +191,64 @@
     
     <hr class="section-divider">
     
-    <!-- Archived Projects -->
+    <!-- Hall of Fame -->
     <section class="section archived-section">
       <div class="active-line">
         <div class="pulse-dot red" aria-hidden="true"></div>
-        <h2>Archived</h2>
+        <h2>Hall of Fame</h2>
       </div>
       <div class="projects">
         <article class="project">
+          <div class="project-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png" alt="Steelix" class="pokemon-sprite" title="Steelix - The Iron Snake Pokémon">
+          </div>
           <h3>Lucky Eight Media</h3>
           <div class="achievements">
             <div class="achievement">
               <span class="achievement-number" data-target="230" data-suffix="K">$0K</span>
-              <span class="achievement-label">Revenue (6 months)</span>
+              <span class="achievement-label">Pokédollars (6 months)</span>
             </div>
             <div class="achievement">
               <span class="achievement-number" data-target="7">0</span>
-              <span class="achievement-label">Employees</span>
+              <span class="achievement-label">Team Members</span>
             </div>
           </div>
           <ul class="achievement-list">
-            <li>Featured in The News Journal's Top 10 Fastest Growing Startups in Delaware</li>
-            <li>Featured in Tech Tribune's 2019 Best Tech Startups list</li>
-            <li>Featured in Philadelphia Business Journal's Top 500 Startups list</li>
-            <li>YC Startup School participant</li>
-            <li>QOZ office location</li>
+            <li>Featured in The News Journal's Top 10 Fastest Growing Gyms in Delaware</li>
+            <li>Featured in Tech Tribune's 2019 Best Tech Gyms list</li>
+            <li>Featured in Philadelphia Business Journal's Top 500 Gyms list</li>
+            <li>Pokémon Academy Startup School participant</li>
+            <li>Victory Road office location</li>
           </ul>
         </article>
       </div>
     </section>
   </main>
 
-  <!-- Currently Building Terminal -->
+  <!-- Pokédex Terminal -->
 <section class="terminal-section">
   <div class="terminal">
+    <div class="terminal-pokemon">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="Porygon" class="pokemon-sprite" title="Porygon - The Virtual Pokémon">
+    </div>
     <div class="terminal-header">
       <div class="terminal-buttons">
         <span class="terminal-btn close"></span>
         <span class="terminal-btn minimize"></span>
         <span class="terminal-btn maximize"></span>
       </div>
-      <span class="terminal-title">ryan@mchargue:~$</span>
+      <span class="terminal-title">ryan@pokédex:~$</span>
     </div>
     <div class="terminal-body">
       <div class="terminal-line">
         <span class="prompt">$</span>
-        <span class="command">cat currently_building.txt</span>
+        <span class="command">cat currently_training.txt</span>
       </div>
       <div class="terminal-output">
         <p class="typing-text">
-          <span class="typing-1">🚀 Building: AI-powered sentiment analysis for Neutrals v2.0</span><br>
-          <span class="typing-2">🎨 Designing: Next-gen wellness tracker integration for Halo</span><br>
-          <span class="typing-3">🤝 Exploring: Strategic partnerships for Amarna's Miami Art Week</span>
+          <span class="typing-1">⚡ Training: AI-powered sentiment analysis for Neutrals v2.0</span><br>
+          <span class="typing-2">🔥 Evolving: Next-gen wellness tracker integration for Halo</span><br>
+          <span class="typing-3">💎 Strategizing: Epic partnerships for Amarna's Miami Art Week</span>
         </p>
       </div>
       <div class="terminal-line active">
@@ -214,14 +258,15 @@
     </div>
   </div>
 </section>
-  <!-- Footer -->
+  
+  <!-- Pokémon Location Footer -->
 <footer class="footer">
   <div class="coordinates">
-    <span>📍 25.7617° N, 80.1918° W</span>
+    <span>📍 Pallet Town: 25.7617° N, 80.1918° W</span>
   </div>
   <div class="socials">
     <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
-      <span class="social-icon">📷</span>
+      <span class="social-icon">📸</span>
       <span>IG @ryanmchargue</span>
     </a>
     <a class="social-button" href="https://x.com/ryanmcharguee" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
@@ -236,6 +281,12 @@
       const toggle = document.getElementById('themeToggle');
       const body = document.body;
       const html = document.documentElement;
+      
+      // Force clear any gym themes on page load to ensure rainbow theme
+      html.classList.remove(
+        'boulder-theme', 'cascade-theme', 'thunder-theme', 'rainbow-theme',
+        'soul-theme', 'marsh-theme', 'volcano-theme', 'earth-theme'
+      );
       
       // Check for saved theme preference
       const savedTheme = localStorage.getItem('theme');
@@ -260,36 +311,45 @@
         updateIcon();
       });
       
-      updateIcon();
+      // Double-click theme toggle to reset to default rainbow theme
+      toggle.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        html.classList.remove(
+          'boulder-theme', 'cascade-theme', 'thunder-theme', 'rainbow-theme',
+          'soul-theme', 'marsh-theme', 'volcano-theme', 'earth-theme'
+        );
+        document.querySelectorAll('.gym-badge').forEach(b => b.classList.remove('active'));
+        localStorage.removeItem('gymTheme');
+      });
       
-      // 3D tilt effect removed for better mobile scrolling
+      updateIcon();
 
-// Add ripple effect on project cards (keeping this existing functionality)
+// Add Pokémon battle effect on project cards
 document.querySelectorAll('.project').forEach(project => {
   project.addEventListener('click', function(e) {
-    const ripple = document.createElement('span');
+    const sparkle = document.createElement('span');
     const rect = this.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
     const x = e.clientX - rect.left - size / 2;
     const y = e.clientY - rect.top - size / 2;
     
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-    ripple.style.position = 'absolute';
-    ripple.style.borderRadius = '50%';
-    ripple.style.background = 'rgba(255, 255, 255, 0.2)';
-    ripple.style.transform = 'scale(0)';
-    ripple.style.animation = 'rippleEffect 0.6s ease-out';
-    ripple.style.pointerEvents = 'none';
+    sparkle.style.width = sparkle.style.height = size + 'px';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    sparkle.style.position = 'absolute';
+    sparkle.style.borderRadius = '50%';
+    sparkle.style.background = 'radial-gradient(circle, rgba(255, 235, 59, 0.4), transparent)';
+    sparkle.style.transform = 'scale(0)';
+    sparkle.style.animation = 'pokemonSparkle 0.8s ease-out';
+    sparkle.style.pointerEvents = 'none';
     
-    this.appendChild(ripple);
+    this.appendChild(sparkle);
     
-    setTimeout(() => ripple.remove(), 600);
+    setTimeout(() => sparkle.remove(), 800);
   });
 });
       
-      // Interactive Background - Click ripples
+      // Interactive Background - Pokémon energy ripples
       document.addEventListener('click', (e) => {
         // Don't create ripples on interactive elements
         if (e.target.closest('button, a, input, textarea, .project')) return;
@@ -298,26 +358,27 @@ document.querySelectorAll('.project').forEach(project => {
         ripple.className = 'click-ripple';
         ripple.style.left = e.clientX + 'px';
         ripple.style.top = e.clientY + 'px';
+        ripple.style.background = 'radial-gradient(circle, rgba(255, 235, 59, 0.4), transparent)';
         document.body.appendChild(ripple);
         
         setTimeout(() => ripple.remove(), 1000);
       });
       
-      // Interactive orbs that react to mouse
+      // Interactive Pokéballs that react to mouse
       let mouseX = 0;
       let mouseY = 0;
       
       document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
-        mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 30;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 30;
         
         document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
-          const speed = 1 + index * 0.5;
+          const speed = 1 + index * 0.3;
           orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
         });
       });
       
-      // Quick Contact Panel
+      // Pokémon Center Contact Panel
       const contactToggle = document.getElementById('contactToggle');
       const contactPanel = document.getElementById('contactPanel');
       const contactClose = document.querySelector('.contact-close');
@@ -348,12 +409,12 @@ document.querySelectorAll('.project').forEach(project => {
         const data = Object.fromEntries(formData);
         
         // Here you would normally send the data to your server
-        console.log('Form data:', data);
+        console.log('Trainer message:', data);
         
         // For now, just show success
         const btn = contactForm.querySelector('.submit-btn');
-        btn.textContent = 'Message Sent! ✓';
-        btn.style.background = 'var(--green)';
+        btn.textContent = 'Message Sent! ⚡';
+        btn.style.background = 'linear-gradient(135deg, var(--grass), var(--electric))';
         
         setTimeout(() => {
           contactForm.reset();
@@ -364,12 +425,12 @@ document.querySelectorAll('.project').forEach(project => {
         }, 2000);
       });
       
-      // Parallax effect on scroll
+      // Pokémon parallax effect on scroll
       let ticking = false;
       function updateParallax() {
         const scrolled = window.pageYOffset;
         document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
-          const speed = 0.5 + (index * 0.2);
+          const speed = 0.3 + (index * 0.15);
           orb.style.transform = `translateY(${scrolled * speed}px)`;
         });
         ticking = false;
@@ -382,7 +443,7 @@ document.querySelectorAll('.project').forEach(project => {
         }
       });
       
-      // Super fast flicking counter that grows then pops back
+      // Pokémon stats counter animation
       const animateCounter = (element) => {
         if (element.classList.contains('counting')) return;
         element.classList.add('counting');
@@ -390,7 +451,7 @@ document.querySelectorAll('.project').forEach(project => {
         const target = parseFloat(element.getAttribute('data-target'));
         const suffix = element.getAttribute('data-suffix') || '';
         const prefix = element.textContent.includes('$') ? '$' : '';
-        const duration = 2000; // 2 seconds total
+        const duration = 2500; // Slightly longer for Pokémon effect
         const startTime = performance.now();
         
         const formatNumber = (num) => {
@@ -401,42 +462,43 @@ document.querySelectorAll('.project').forEach(project => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
           
-                     // Super fast random flicking for first 75% of animation
-           let current;
-           if (progress < 0.75) {
-             // Fast random flicking - numbers jump around
-             const baseProgress = progress / 0.75; // 0 to 1 over first 75%
-             const baseValue = target * baseProgress;
-             // Add random jumps (reduced variance)
-             current = baseValue + (Math.random() - 0.5) * target * 0.15;
-             current = Math.max(0, Math.min(current, target * 1.1));
-                     } else {
-             // Final 25% - smooth approach to target
-             const finalProgress = (progress - 0.75) / 0.25; // 0 to 1 over final 25%
-             const easeOut = 1 - Math.pow(1 - finalProgress, 3);
-             current = target * (0.75 + easeOut * 0.25);
-           }
+          // Super fast random flicking for first 70% of animation
+          let current;
+          if (progress < 0.7) {
+            // Fast random flicking - numbers jump around like Pokémon stats
+            const baseProgress = progress / 0.7;
+            const baseValue = target * baseProgress;
+            // Add random jumps (Pokémon battle effect)
+            current = baseValue + (Math.random() - 0.5) * target * 0.2;
+            current = Math.max(0, Math.min(current, target * 1.15));
+          } else {
+            // Final 30% - smooth approach to target
+            const finalProgress = (progress - 0.7) / 0.3;
+            const easeOut = 1 - Math.pow(1 - finalProgress, 3);
+            current = target * (0.7 + easeOut * 0.3);
+          }
           
-                     // Scale grows as we approach target, then pops back
-           let scale;
-           if (progress < 0.8) {
-             // Grow larger as we get closer
-             scale = 1 + progress * 0.6; // grows to 1.6x
-           } else if (progress < 0.9) {
-             // Stay large briefly
-             scale = 1.6;
-           } else {
-             // Pop back to normal with bounce
-             const popProgress = (progress - 0.9) / 0.1;
-             const bounce = 1 - Math.pow(1 - popProgress, 2);
-             scale = 1.6 - (0.6 * bounce);
-           }
+          // Scale grows as we approach target, then pops back (Pokémon level up effect)
+          let scale;
+          if (progress < 0.75) {
+            // Grow larger as we get closer
+            scale = 1 + progress * 0.8; // grows to 1.8x
+          } else if (progress < 0.85) {
+            // Stay large briefly
+            scale = 1.8;
+          } else {
+            // Pop back to normal with bounce
+            const popProgress = (progress - 0.85) / 0.15;
+            const bounce = 1 - Math.pow(1 - popProgress, 2);
+            scale = 1.8 - (0.8 * bounce);
+          }
           
-          // Apply visual effects
+          // Apply Pokémon visual effects
           element.style.transform = `scale(${scale})`;
-                     element.style.color = progress < 0.9 ? '#4a9eff' : '';
-           element.style.fontWeight = progress < 0.9 ? 'bold' : '';
-           element.style.transition = progress > 0.9 ? 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
+          element.style.color = progress < 0.85 ? '#ffeb3b' : '';
+          element.style.fontWeight = progress < 0.85 ? 'bold' : '';
+          element.style.textShadow = progress < 0.85 ? '0 0 15px rgba(255, 235, 59, 0.8)' : '';
+          element.style.transition = progress > 0.85 ? 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
           
           if (progress < 1) {
             // Update the number display
@@ -458,26 +520,27 @@ document.querySelectorAll('.project').forEach(project => {
               element.textContent = formatNumber(Math.round(target));
             }
             
-            // Final pop back to normal
+            // Final Pokémon level-up pop
             setTimeout(() => {
               element.style.transform = 'scale(1)';
               element.style.color = '';
               element.style.fontWeight = '';
-              element.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+              element.style.textShadow = '';
+              element.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
               
               setTimeout(() => {
                 element.style.transform = '';
                 element.style.transition = '';
                 element.classList.remove('counting');
-              }, 300);
-            }, 100);
+              }, 400);
+            }, 150);
           }
         };
         
         requestAnimationFrame(updateCounter);
       };
       
-      // Intersection Observer for animations
+      // Intersection Observer for Pokémon animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -497,20 +560,105 @@ document.querySelectorAll('.project').forEach(project => {
       document.querySelectorAll('.achievement-number').forEach(el => {
         observer.observe(el);
       });
+
+      // Gym Badge Theme Switching
+      const gymBadges = document.querySelectorAll('.gym-badge');
+      const htmlElement = document.documentElement;
+      
+      gymBadges.forEach(badge => {
+        badge.addEventListener('click', () => {
+          // Remove active class from all badges
+          gymBadges.forEach(b => b.classList.remove('active'));
+          
+          // Add active class to clicked badge
+          badge.classList.add('active');
+          
+          // Remove all existing theme classes
+          htmlElement.classList.remove(
+            'boulder-theme', 'cascade-theme', 'thunder-theme', 'rainbow-theme',
+            'soul-theme', 'marsh-theme', 'volcano-theme', 'earth-theme'
+          );
+          
+          // Add the appropriate theme class based on badge type
+          if (badge.classList.contains('boulder')) {
+            htmlElement.classList.add('boulder-theme');
+          } else if (badge.classList.contains('cascade')) {
+            htmlElement.classList.add('cascade-theme');
+          } else if (badge.classList.contains('thunder')) {
+            htmlElement.classList.add('thunder-theme');
+          } else if (badge.classList.contains('rainbow')) {
+            htmlElement.classList.add('rainbow-theme');
+          } else if (badge.classList.contains('soul')) {
+            htmlElement.classList.add('soul-theme');
+          } else if (badge.classList.contains('marsh')) {
+            htmlElement.classList.add('marsh-theme');
+          } else if (badge.classList.contains('volcano')) {
+            htmlElement.classList.add('volcano-theme');
+          } else if (badge.classList.contains('earth')) {
+            htmlElement.classList.add('earth-theme');
+          }
+          
+          // Save the selected theme
+          localStorage.setItem('gymTheme', htmlElement.className);
+        });
+      });
+      
+      // Always start with default rainbow theme - comment out theme loading for now
+      gymBadges.forEach(b => b.classList.remove('active'));
+      
+      // Temporarily disable saved theme loading to ensure rainbow theme
+      // const savedGymTheme = localStorage.getItem('gymTheme');
+      // if (savedGymTheme && savedGymTheme.includes('-theme')) {
+      //   htmlElement.className = savedGymTheme;
+      //   const activeTheme = savedGymTheme.match(/(boulder|cascade|thunder|rainbow|soul|marsh|volcano|earth)-theme/);
+      //   if (activeTheme) {
+      //     const badgeType = activeTheme[1];
+      //     const activeBadge = document.querySelector(`.gym-badge.${badgeType}`);
+      //     if (activeBadge) {
+      //       gymBadges.forEach(b => b.classList.remove('active'));
+      //       activeBadge.classList.add('active');
+      //     }
+      //   }
+      // }
     });
     
-    // Add ripple animation styles
+    // Add Pokémon battle animation styles
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes rippleEffect {
+      @keyframes pokemonSparkle {
         to {
           transform: scale(4);
           opacity: 0;
         }
       }
+      
+      .click-ripple {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: pokemonRipple 1.2s ease-out;
+        z-index: 1000;
+      }
+      
+      @keyframes pokemonRipple {
+        0% {
+          width: 20px;
+          height: 20px;
+          opacity: 1;
+        }
+        100% {
+          width: 250px;
+          height: 250px;
+          opacity: 0;
+        }
+      }
     `;
     document.head.appendChild(style);
-    // Force remove loading screen
+    
+    // Force remove loading screen with Pokémon effect
 setTimeout(() => {
   document.body.classList.add('loaded');
   // Force remove the loading screen if it's stuck
@@ -518,7 +666,7 @@ setTimeout(() => {
   if (loadingScreen) {
     document.body.style.setProperty('--loading-display', 'none');
   }
-}, 500);
+}, 800);
   </script>
 </body>
 </html>
