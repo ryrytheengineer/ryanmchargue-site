@@ -7,6 +7,9 @@
   <meta name="keywords" content="Ryan McHargue, Founder, Product Designer, Operator, Halo, Amarna Gallery, Neutrals" />
   <meta name="author" content="Ryan McHargue" />
   <title>Ryan McHargue | Founder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -21,6 +24,53 @@
   <div class="grid-line grid-line-h" aria-hidden="true"></div>
   <div class="grid-line grid-line-v" aria-hidden="true"></div>
   
+  <!-- Fallout 4 Wasteland Effects -->
+  <div class="wasteland-effects" aria-hidden="true">
+    <!-- Radiation particles -->
+    <div class="radiation-particle particle-1"></div>
+    <div class="radiation-particle particle-2"></div>
+    <div class="radiation-particle particle-3"></div>
+    <div class="radiation-particle particle-4"></div>
+    <div class="radiation-particle particle-5"></div>
+    
+    <!-- Dust storms -->
+    <div class="dust-storm storm-1"></div>
+    <div class="dust-storm storm-2"></div>
+    
+    <!-- Vault-Tec scanlines -->
+    <div class="scanlines"></div>
+  </div>
+  
+  <!-- Pip-Boy HUD Elements -->
+  <div class="pip-boy-hud">
+    <!-- Radiation Meter -->
+    <div class="radiation-meter">
+      <div class="meter-label">RAD</div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="radiationLevel"></div>
+      </div>
+      <div class="meter-value">0</div>
+    </div>
+    
+    <!-- Health Bar -->
+    <div class="health-meter">
+      <div class="meter-label">HP</div>
+      <div class="meter-bar">
+        <div class="meter-fill health-fill" id="healthLevel"></div>
+      </div>
+      <div class="meter-value">100</div>
+    </div>
+    
+    <!-- XP Progress -->
+    <div class="xp-meter">
+      <div class="meter-label">XP</div>
+      <div class="meter-bar">
+        <div class="meter-fill xp-fill" id="xpLevel"></div>
+      </div>
+      <div class="meter-value">0</div>
+    </div>
+  </div>
+
   <!-- Theme toggle -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
     <span aria-label="Switch to dark mode">🌙</span>
@@ -52,6 +102,46 @@
 <header class="header">
   <h1 class="title">Ryan McHargue</h1>
   <p class="subtitles">Founder · Product Designer · Operator</p>
+  
+  <!-- S.P.E.C.I.A.L. Professional Stats -->
+  <div class="special-stats">
+    <div class="stat-item">
+      <span class="stat-label">S</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="9"></div></div>
+      <span class="stat-name">Strategy</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">P</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="10"></div></div>
+      <span class="stat-name">Product Design</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">E</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="8"></div></div>
+      <span class="stat-name">Execution</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">C</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="9"></div></div>
+      <span class="stat-name">Communication</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">I</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="10"></div></div>
+      <span class="stat-name">Innovation</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">A</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="8"></div></div>
+      <span class="stat-name">Analytics</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">L</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="9"></div></div>
+      <span class="stat-name">Leadership</span>
+    </div>
+  </div>
+  
   <div class="currently-listening">
     <span class="listening-icon">♫</span>
     <div class="artists-marquee">
@@ -67,7 +157,8 @@
     <section class="section active-section">
       <div class="active-line">
         <div class="pulse-dot green" aria-hidden="true"></div>
-        <h2>Active Projects</h2>
+        <h2>Active Quests</h2>
+        <div class="quest-status">ACTIVE</div>
       </div>
       <div class="projects">
         <article class="project">
@@ -138,7 +229,8 @@
     <section class="section backburner-section">
       <div class="active-line">
         <div class="pulse-dot yellow" aria-hidden="true"></div>
-        <h2>Backburner</h2>
+        <h2>Side Quests</h2>
+        <div class="quest-status">ON HOLD</div>
       </div>
       <div class="projects">
         <article class="project">
@@ -158,7 +250,8 @@
     <section class="section archived-section">
       <div class="active-line">
         <div class="pulse-dot red" aria-hidden="true"></div>
-        <h2>Archived</h2>
+        <h2>Completed Quests</h2>
+        <div class="quest-status">FINISHED</div>
       </div>
       <div class="projects">
         <article class="project">
@@ -203,9 +296,9 @@
       </div>
       <div class="terminal-output">
         <p class="typing-text">
-          <span class="typing-1">🚀 Building: AI-powered sentiment analysis for Neutrals v2.0</span><br>
-          <span class="typing-2">🎨 Designing: Next-gen wellness tracker integration for Halo</span><br>
-          <span class="typing-3">🤝 Exploring: Strategic partnerships for Amarna's Miami Art Week</span>
+          <span class="typing-1">⚡ Building: AI-powered sentiment analysis for Neutrals v2.0</span><br>
+          <span class="typing-2">🔧 Designing: Next-gen wellness tracker integration for Halo</span><br>
+          <span class="typing-3">🎯 Exploring: Strategic partnerships for Amarna's Miami Art Week</span>
         </p>
       </div>
       <div class="terminal-line active">
@@ -218,7 +311,7 @@
   <!-- Footer -->
 <footer class="footer">
   <div class="coordinates">
-    <span>📍 25.7617° N, 80.1918° W</span>
+    <span>🏎️ 25.7617° N, 80.1918° W</span>
   </div>
   <div class="socials">
     <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
@@ -514,6 +607,68 @@ document.querySelectorAll('.project').forEach(project => {
       });
     });
     
+    // Pip-Boy HUD Interactive Features
+    const radiationMeter = document.getElementById('radiationLevel');
+    const healthMeter = document.getElementById('healthLevel');
+    const xpMeter = document.getElementById('xpLevel');
+    const radiationValue = document.querySelector('.radiation-meter .meter-value');
+    const healthValue = document.querySelector('.health-meter .meter-value');
+    const xpValue = document.querySelector('.xp-meter .meter-value');
+    
+    // Initialize health to 100%
+    healthMeter.style.width = '100%';
+    
+    // Update HUD based on scroll position
+    function updateHUD() {
+      const scrollPercent = Math.min(window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight) * 100, 100);
+      
+      // Radiation increases as you scroll (exploring the wasteland)
+      const radiationLevel = Math.floor(scrollPercent / 2);
+      radiationMeter.style.width = radiationLevel + '%';
+      radiationValue.textContent = radiationLevel;
+      
+      // Health decreases slightly with radiation
+      const healthLevel = Math.max(100 - Math.floor(radiationLevel / 4), 75);
+      healthMeter.style.width = healthLevel + '%';
+      healthValue.textContent = healthLevel;
+      
+      // XP increases as you explore content
+      const xpLevel = Math.floor(scrollPercent);
+      xpMeter.style.width = xpLevel + '%';
+      xpValue.textContent = xpLevel;
+    }
+    
+    // Smooth scroll updates
+    let hudTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!hudTicking) {
+        requestAnimationFrame(() => {
+          updateHUD();
+          hudTicking = false;
+        });
+        hudTicking = true;
+      }
+    });
+    
+    // Initialize HUD
+    updateHUD();
+    
+    // Add subtle click sound effect (visual feedback) - works for both click and touch
+    ['click', 'touchstart'].forEach(eventType => {
+      document.addEventListener(eventType, (e) => {
+        if (e.target.closest('.project, .tech-tag, .social-button, button')) {
+          // Create visual feedback for clicks/touches
+          const clickedElement = e.target.closest('.project, .tech-tag, .social-button, button');
+          clickedElement.style.filter = 'brightness(1.2)';
+          clickedElement.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            clickedElement.style.filter = '';
+            clickedElement.style.transform = '';
+          }, 150);
+        }
+      });
+    });
+    
     // Add ripple animation styles
     const style = document.createElement('style');
     style.textContent = `
@@ -525,15 +680,16 @@ document.querySelectorAll('.project').forEach(project => {
       }
     `;
     document.head.appendChild(style);
+    
     // Force remove loading screen
-setTimeout(() => {
-  document.body.classList.add('loaded');
-  // Force remove the loading screen if it's stuck
-  const loadingScreen = document.querySelector('body::before');
-  if (loadingScreen) {
-    document.body.style.setProperty('--loading-display', 'none');
-  }
-}, 500);
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+      // Force remove the loading screen if it's stuck
+      const loadingScreen = document.querySelector('body::before');
+      if (loadingScreen) {
+        document.body.style.setProperty('--loading-display', 'none');
+      }
+    }, 500);
   </script>
 </body>
 </html>
