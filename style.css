@@ -579,10 +579,12 @@ body {
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
 
+.stat-fill[data-level="1"] { animation-name: statFill1; }
 .stat-fill[data-level="8"] { animation-name: statFill8; }
 .stat-fill[data-level="9"] { animation-name: statFill9; }
 .stat-fill[data-level="10"] { animation-name: statFill10; }
 
+@keyframes statFill1 { to { width: 10%; } }
 @keyframes statFill8 { to { width: 80%; } }
 @keyframes statFill9 { to { width: 90%; } }
 @keyframes statFill10 { to { width: 100%; } }
