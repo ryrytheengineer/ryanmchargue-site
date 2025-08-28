@@ -691,6 +691,125 @@ body {
   50% { opacity: 1; }
 }
 
+/* Premium Project Card Styling */
+.project:first-child,
+.project:nth-child(2) {
+  background: linear-gradient(135deg, rgba(255, 176, 0, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%);
+  border: 2px solid var(--pip-boy-amber);
+  box-shadow: 
+    0 0 20px rgba(255, 176, 0, 0.2),
+    inset 0 1px 0 rgba(255, 176, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.project:first-child::before,
+.project:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 176, 0, 0.1), transparent);
+  animation: premiumShine 3s ease-in-out infinite;
+}
+
+@keyframes premiumShine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.project:first-child h3,
+.project:nth-child(2) h3 {
+  color: var(--pip-boy-amber);
+  text-shadow: 0 0 10px rgba(255, 176, 0, 0.3);
+  font-weight: 700;
+}
+
+.project:first-child .tech-tag,
+.project:nth-child(2) .tech-tag {
+  background: rgba(255, 176, 0, 0.15);
+  border-color: var(--pip-boy-amber);
+  color: var(--pip-boy-amber);
+  font-weight: 600;
+}
+
+/* Status badge styling */
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.status-badge.developing {
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid var(--radiation-green);
+  color: var(--radiation-green);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+}
+
+.status-badge.active {
+  background: rgba(255, 176, 0, 0.1);
+  border: 1px solid var(--pip-boy-amber);
+  color: var(--pip-boy-amber);
+  text-shadow: 0 0 5px rgba(255, 176, 0, 0.3);
+}
+
+.status-badge.legacy {
+  background: linear-gradient(135deg, rgba(255, 176, 0, 0.15), rgba(218, 165, 32, 0.1));
+  border: 2px solid var(--pip-boy-amber);
+  color: var(--pip-boy-amber);
+  text-shadow: 0 0 8px rgba(255, 176, 0, 0.4);
+  font-weight: 800;
+  animation: legacyPulse 3s ease-in-out infinite;
+}
+
+@keyframes legacyPulse {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(255, 176, 0, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(255, 176, 0, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+/* Collaborator Name Badges (Purple Outlined) */
+.collab-name {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background: rgba(138, 43, 226, 0.1);
+  border: 2px solid #8A2BE2;
+  border-radius: 6px;
+  color: #8A2BE2;
+  font-family: 'Exo 2', sans-serif;
+  text-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.2rem;
+}
+
+.collab-name:hover {
+  background: rgba(138, 43, 226, 0.2);
+  box-shadow: 0 0 12px rgba(138, 43, 226, 0.3);
+  transform: translateY(-1px);
+}
+
+.collab-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 /* Main content */
 .main-content {
   max-width: 900px;
@@ -774,6 +893,9 @@ body {
     0 4px 20px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 215, 0, 0.1);
   border-left: 4px solid var(--pip-boy-amber);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .project::before {
@@ -815,7 +937,7 @@ body {
 .project h3 {
   font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin: 0;
   letter-spacing: 0.02em;
   color: var(--pip-boy-amber);
   font-family: 'Exo 2', sans-serif;
@@ -839,8 +961,9 @@ body {
 .project p {
   color: var(--steel);
   line-height: 1.7;
-  margin-bottom: 1.2rem;
+  margin: 0;
   font-size: 0.95rem;
+  font-weight: 500;
 }
 
 /* Tech tags with Fallout styling */
@@ -848,6 +971,11 @@ body {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin: 0;
+}
+
+.project-status {
+  margin: 0;
 }
 
 .tech-tag {
@@ -1022,7 +1150,7 @@ body {
   font-size: 0.85rem;
   color: var(--steel);
   margin-bottom: 2rem;
-  opacity: 0.8;
+    opacity: 0.8;
   font-family: 'Share Tech Mono', monospace;
   letter-spacing: 0.1em;
 }
@@ -1081,7 +1209,7 @@ body {
     font-size: 20px;
     transform: none !important;
   }
-  
+
   .contact-toggle {
     top: 1rem !important;
     right: 4rem !important;
@@ -1110,8 +1238,46 @@ body {
     max-width: 300px;
   }
 
+  /* Fix mobile card spacing */
+  .main-content {
+    padding: 0 2rem;
+    max-width: calc(100vw - 4rem);
+    width: calc(100vw - 4rem);
+    box-sizing: border-box;
+  }
+  
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
   .project {
     padding: 1.5rem;
+    margin: 0 auto;
+    border-radius: 12px;
+    width: calc(100% - 2rem);
+    max-width: calc(100vw - 6rem);
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+  
+  .active-line {
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .header {
+    padding: 6rem 1rem 2rem 1rem;
+    text-align: center;
   }
 
   .terminal {
@@ -1121,7 +1287,7 @@ body {
   .terminal-body {
     padding: 1rem;
   }
-  
+
   .achievements {
     grid-template-columns: 1fr;
     gap: 0.8rem;
@@ -1136,7 +1302,7 @@ body {
     width: 200px;
     justify-content: center;
   }
-  
+
   .special-stats {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     padding: 1rem;
@@ -1222,6 +1388,19 @@ body {
     .meter-value {
       font-size: 0.5rem;
       width: 15px;
+    }
+    
+    /* Extra small mobile fixes */
+    .main-content {
+      padding: 0 1rem;
+      width: calc(100vw - 2rem);
+      max-width: calc(100vw - 2rem);
+    }
+    
+    .project {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
     }
   }
 }
