@@ -143,23 +143,6 @@ p {
   pointer-events: none;
 }
 
-.nav::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 159, 225, 1) 50%,
-    transparent 100%
-  );
-  box-shadow: 0 0 15px rgba(75, 159, 225, 0.8);
-  animation: stealthScan 8s ease-in-out infinite;
-  pointer-events: none;
-}
 
 [data-theme="dark"] .nav {
   background: rgba(28, 28, 30, 0.8);
@@ -506,7 +489,7 @@ p {
   overflow: hidden;
 }
 
-/* About Section Stealth Effects */
+/* About Section Stealth Effects - Subtle */
 .about::before {
   content: '';
   position: absolute;
@@ -517,34 +500,14 @@ p {
   background: linear-gradient(
     135deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.2) 30%,
+    rgba(75, 159, 225, 0.03) 30%,
     transparent 60%,
-    rgba(75, 159, 225, 0.12) 90%,
+    rgba(75, 159, 225, 0.02) 90%,
     transparent 100%
   );
   background-size: 300% 300%;
-  animation: stealthFlow 10s ease-in-out infinite;
+  animation: stealthFlow 20s ease-in-out infinite;
   pointer-events: none;
-}
-
-.about::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -100%;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 159, 225, 0.8) 50%,
-    transparent 100%
-  );
-  box-shadow: 0 0 20px rgba(75, 159, 225, 0.6);
-  animation: stealthScan 14s ease-in-out infinite;
-  animation-delay: 3s;
-  pointer-events: none;
-  z-index: 1;
 }
 
 [data-theme="dark"] .about::before {
@@ -695,7 +658,7 @@ p {
   overflow: hidden;
 }
 
-/* Work Section Stealth Effects */
+/* Work Section Stealth Effects - Subtle */
 .work::before {
   content: '';
   position: absolute;
@@ -706,34 +669,14 @@ p {
   background: linear-gradient(
     -45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.15) 25%,
+    rgba(75, 159, 225, 0.04) 25%,
     transparent 50%,
-    rgba(75, 159, 225, 0.1) 75%,
+    rgba(75, 159, 225, 0.02) 75%,
     transparent 100%
   );
   background-size: 400% 400%;
-  animation: stealthFlow 12s ease-in-out infinite reverse;
+  animation: stealthFlow 25s ease-in-out infinite reverse;
   pointer-events: none;
-}
-
-.work::after {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 159, 225, 0.9) 50%,
-    transparent 100%
-  );
-  box-shadow: 0 0 25px rgba(75, 159, 225, 0.7);
-  animation: stealthScan 16s ease-in-out infinite;
-  animation-delay: 6s;
-  pointer-events: none;
-  z-index: 1;
 }
 
 [data-theme="dark"] .work::before {
@@ -958,7 +901,7 @@ p {
   overflow: hidden;
 }
 
-/* Contact Section Stealth Effects */
+/* Contact Section Stealth Effects - Subtle */
 .contact::before {
   content: '';
   position: absolute;
@@ -969,35 +912,15 @@ p {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.15) 20%,
+    rgba(75, 159, 225, 0.04) 20%,
     transparent 40%,
-    rgba(75, 159, 225, 0.1) 60%,
+    rgba(75, 159, 225, 0.02) 60%,
     transparent 80%,
-    rgba(75, 159, 225, 0.15) 100%
+    rgba(75, 159, 225, 0.04) 100%
   );
   background-size: 300% 100%;
-  animation: stealthFlow 14s ease-in-out infinite;
+  animation: stealthFlow 22s ease-in-out infinite;
   pointer-events: none;
-}
-
-.contact::after {
-  content: '';
-  position: absolute;
-  bottom: 30%;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 159, 225, 0.9) 50%,
-    transparent 100%
-  );
-  box-shadow: 0 0 20px rgba(75, 159, 225, 0.6);
-  animation: stealthScan 18s ease-in-out infinite;
-  animation-delay: 9s;
-  pointer-events: none;
-  z-index: 1;
 }
 
 [data-theme="dark"] .contact::before {
@@ -1078,7 +1001,7 @@ p {
   overflow: hidden;
 }
 
-/* Footer Stealth Effects */
+/* Footer Stealth Effects - Very Subtle */
 .footer::before {
   content: '';
   position: absolute;
@@ -1088,41 +1011,21 @@ p {
   bottom: 0;
   background: linear-gradient(
     180deg,
-    rgba(75, 159, 225, 0.08) 0%,
-    transparent 30%,
-    rgba(75, 159, 225, 0.12) 70%,
-    transparent 100%
+    rgba(75, 159, 225, 0.02) 0%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.03) 100%
   );
   background-size: 100% 200%;
-  animation: stealthFlow 16s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.footer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(75, 159, 225, 0.8) 50%,
-    transparent 100%
-  );
-  box-shadow: 0 0 20px rgba(75, 159, 225, 0.6);
-  animation: stealthScan 12s ease-in-out infinite;
+  animation: stealthFlow 30s ease-in-out infinite;
   pointer-events: none;
 }
 
 [data-theme="dark"] .footer::before {
   background: linear-gradient(
     180deg,
-    rgba(75, 159, 225, 0.12) 0%,
-    transparent 30%,
-    rgba(75, 159, 225, 0.18) 70%,
-    transparent 100%
+    rgba(75, 159, 225, 0.04) 0%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.05) 100%
   );
 }
 

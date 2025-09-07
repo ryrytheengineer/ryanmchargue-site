@@ -47,7 +47,6 @@
 
   <!-- About Section -->
   <section class="about" id="about">
-    <div class="stealth-particles" id="aboutParticles"></div>
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -75,7 +74,6 @@
 
   <!-- Work Section -->
   <section class="work" id="work">
-    <div class="stealth-particles" id="workParticles"></div>
     <div class="container">
       <h2 class="section-title">Selected Work</h2>
       <div class="projects-grid">
@@ -221,7 +219,6 @@
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
-    <div class="stealth-particles" id="contactParticles"></div>
     <div class="container">
       <div class="contact-content">
         <h2>Let's work together</h2>
@@ -344,13 +341,8 @@
       }
     }
 
-    // Initialize all stealth particles when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      createStealthParticles(); // Hero section - 40 particles
-      createSectionParticles('aboutParticles', 25); // About section
-      createSectionParticles('workParticles', 30); // Work section
-      createSectionParticles('contactParticles', 20); // Contact section
-    });
+    // Initialize stealth particles for hero section only
+    document.addEventListener('DOMContentLoaded', createStealthParticles);
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
