@@ -30,6 +30,7 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <div class="stealth-particles" id="stealthParticles"></div>
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-location">Miami | SF</div>
@@ -278,6 +279,31 @@
     }
     
     // Static text - no rotation needed for "sh*t"
+
+    // Stealth Particles Animation
+    function createStealthParticles() {
+      const particlesContainer = document.getElementById('stealthParticles');
+      const particleCount = 8; // Keep it subtle
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'stealth-particle';
+        
+        // Random horizontal position
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // Random animation delay for staggered effect
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        
+        // Slight random animation duration for organic feel
+        particle.style.animationDuration = (12 + Math.random() * 6) + 's';
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Initialize stealth particles when page loads
+    document.addEventListener('DOMContentLoaded', createStealthParticles);
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

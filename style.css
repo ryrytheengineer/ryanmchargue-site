@@ -170,6 +170,93 @@ p {
   align-items: center;
   padding: 8rem 0 4rem;
   background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stealth Animation Background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.02) 25%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.01) 75%,
+    transparent 100%
+  );
+  background-size: 400% 400%;
+  animation: stealthFlow 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .hero::before {
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.03) 25%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.015) 75%,
+    transparent 100%
+  );
+  background-size: 400% 400%;
+}
+
+@keyframes stealthFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Stealth Particles */
+.stealth-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stealth-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(75, 159, 225, 0.1);
+  border-radius: 50%;
+  animation: stealthFloat 15s linear infinite;
+}
+
+[data-theme="dark"] .stealth-particle {
+  background: rgba(75, 159, 225, 0.15);
+}
+
+@keyframes stealthFloat {
+  0% {
+    transform: translateX(-10px) translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0px) translateY(90vh) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(10px) translateY(10vh) scale(1);
+  }
+  100% {
+    transform: translateX(20px) translateY(0vh) scale(0);
+    opacity: 0;
+  }
 }
 
 .hero-container {
@@ -177,6 +264,8 @@ p {
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
