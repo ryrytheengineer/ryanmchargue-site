@@ -204,13 +204,13 @@ p {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.12) 25%,
+    rgba(75, 159, 225, 0.25) 25%,
     transparent 50%,
-    rgba(75, 159, 225, 0.08) 75%,
+    rgba(75, 159, 225, 0.15) 75%,
     transparent 100%
   );
   background-size: 400% 400%;
-  animation: stealthFlow 12s ease-in-out infinite;
+  animation: stealthFlow 8s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -218,9 +218,9 @@ p {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.15) 25%,
+    rgba(75, 159, 225, 0.3) 25%,
     transparent 50%,
-    rgba(75, 159, 225, 0.1) 75%,
+    rgba(75, 159, 225, 0.2) 75%,
     transparent 100%
   );
   background-size: 400% 400%;
@@ -248,17 +248,17 @@ p {
 
 .stealth-particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(75, 159, 225, 0.8);
+  width: 6px;
+  height: 6px;
+  background: rgba(75, 159, 225, 1);
   border-radius: 50%;
-  animation: stealthFloat 10s linear infinite;
-  box-shadow: 0 0 12px rgba(75, 159, 225, 0.6), 0 0 24px rgba(75, 159, 225, 0.3);
+  animation: stealthFloat 8s linear infinite;
+  box-shadow: 0 0 20px rgba(75, 159, 225, 0.8), 0 0 40px rgba(75, 159, 225, 0.5), 0 0 60px rgba(75, 159, 225, 0.3);
 }
 
 [data-theme="dark"] .stealth-particle {
-  background: rgba(75, 159, 225, 0.9);
-  box-shadow: 0 0 15px rgba(75, 159, 225, 0.7), 0 0 30px rgba(75, 159, 225, 0.4);
+  background: rgba(75, 159, 225, 1);
+  box-shadow: 0 0 25px rgba(75, 159, 225, 0.9), 0 0 50px rgba(75, 159, 225, 0.6), 0 0 75px rgba(75, 159, 225, 0.4);
 }
 
 @keyframes stealthFloat {
@@ -287,15 +287,15 @@ p {
   top: 0;
   left: -100%;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.8) 50%,
+    rgba(75, 159, 225, 1) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 20px rgba(75, 159, 225, 0.6);
-  animation: stealthScan 8s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(75, 159, 225, 0.8), 0 0 60px rgba(75, 159, 225, 0.5);
+  animation: stealthScan 6s ease-in-out infinite;
   pointer-events: none;
   z-index: 3;
 }
@@ -414,12 +414,12 @@ p {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
+  width: 80px;
+  height: 3px;
   background: var(--carolina-blue);
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
-  animation: stealthPulse 3s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(75, 159, 225, 0.8), 0 0 30px rgba(75, 159, 225, 0.5), 0 0 45px rgba(75, 159, 225, 0.3);
+  animation: stealthPulse 2s ease-in-out infinite;
 }
 
 @keyframes stealthPulse {
@@ -449,13 +449,13 @@ p {
   background: linear-gradient(
     135deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.08) 30%,
+    rgba(75, 159, 225, 0.2) 30%,
     transparent 60%,
-    rgba(75, 159, 225, 0.05) 90%,
+    rgba(75, 159, 225, 0.12) 90%,
     transparent 100%
   );
   background-size: 300% 300%;
-  animation: stealthFlow 15s ease-in-out infinite;
+  animation: stealthFlow 10s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -463,9 +463,9 @@ p {
   background: linear-gradient(
     135deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.12) 30%,
+    rgba(75, 159, 225, 0.25) 30%,
     transparent 60%,
-    rgba(75, 159, 225, 0.08) 90%,
+    rgba(75, 159, 225, 0.15) 90%,
     transparent 100%
   );
 }
@@ -530,18 +530,18 @@ p {
 .stat-card::after {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -3px;
   left: -100%;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.8) 50%,
+    rgba(75, 159, 225, 1) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 10px rgba(75, 159, 225, 0.5);
-  animation: stealthCardScan 6s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(75, 159, 225, 0.8), 0 0 40px rgba(75, 159, 225, 0.5);
+  animation: stealthCardScan 4s ease-in-out infinite;
   animation-delay: var(--scan-delay, 0s);
 }
 
@@ -624,7 +624,7 @@ p {
     transparent 100%
   );
   background-size: 400% 400%;
-  animation: stealthFlow 18s ease-in-out infinite reverse;
+  animation: stealthFlow 12s ease-in-out infinite reverse;
   pointer-events: none;
 }
 
@@ -667,7 +667,7 @@ p {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.3) 50%,
+    rgba(75, 159, 225, 0.8) 50%,
     transparent 100%
   );
   background-size: 200% 200%;
@@ -723,12 +723,12 @@ p {
 
 .status-dot.active {
   background: var(--carolina-blue);
-  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
+  box-shadow: 0 0 15px rgba(75, 159, 225, 0.8), 0 0 30px rgba(75, 159, 225, 0.5), 0 0 45px rgba(75, 159, 225, 0.3);
 }
 
 .status-dot.paused {
   background: var(--carolina-blue);
-  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
+  box-shadow: 0 0 15px rgba(75, 159, 225, 0.8), 0 0 30px rgba(75, 159, 225, 0.5), 0 0 45px rgba(75, 159, 225, 0.3);
 }
 
 .status-dot.archived {
@@ -868,7 +868,7 @@ p {
     rgba(75, 159, 225, 0.08) 100%
   );
   background-size: 300% 100%;
-  animation: stealthFlow 20s ease-in-out infinite;
+  animation: stealthFlow 14s ease-in-out infinite;
   pointer-events: none;
 }
 
