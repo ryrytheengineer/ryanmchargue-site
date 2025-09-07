@@ -64,8 +64,7 @@ h1 {
 }
 
 .rotating-words {
-  color: var(--led-pink);
-  text-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+  color: var(--carolina-blue);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
   transform: translateY(0);
@@ -271,9 +270,8 @@ p {
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
-  height: 3px;
-  background: var(--led-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  height: 2px;
+  background: var(--carolina-blue);
   border-radius: 2px;
 }
 
@@ -352,8 +350,8 @@ p {
 }
 
 .stat-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 20px rgba(75, 159, 225, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
   border-color: rgba(75, 159, 225, 0.2);
 }
 
@@ -401,8 +399,8 @@ p {
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px var(--shadow-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px var(--shadow);
 }
 
 .project-card.featured {
@@ -430,13 +428,11 @@ p {
 }
 
 .status-dot.active {
-  background: var(--led-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  background: var(--carolina-blue);
 }
 
 .status-dot.paused {
-  background: var(--led-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+  background: var(--carolina-blue);
 }
 
 .status-dot.archived {
@@ -450,8 +446,8 @@ p {
     transform: scale(1);
   }
   50% {
-    opacity: 0.7;
-    transform: scale(1.2);
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
@@ -503,7 +499,7 @@ p {
 }
 
 .project-link a:hover {
-  color: var(--led-pink);
+  color: var(--carolina-blue);
   opacity: 1;
   text-decoration: underline;
 }
