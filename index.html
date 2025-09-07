@@ -33,7 +33,7 @@
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-location">Miami | SF</div>
-        <h1>Building <span class="rotating-words" id="rotatingWords">products</span> that matter</h1>
+        <h1>Building <span class="rotating-words" id="rotatingWords">sh*t</span> that matters</h1>
         <p class="hero-subtitle">Founder and product designer focused on building solutions that solve real problems and create meaningful impact.</p>
         <div class="hero-buttons">
           <a href="#work" class="btn btn-primary">View My Work</a>
@@ -277,27 +277,7 @@
       themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
     }
     
-    // Rotating Words Functionality
-    const words = ['products', 'experiences', 'solutions', 'innovations', 'ventures', 'companies'];
-    const rotatingElement = document.getElementById('rotatingWords');
-    let currentIndex = 0;
-
-    function rotateWords() {
-      rotatingElement.style.opacity = '0';
-      rotatingElement.style.transform = 'translateY(-10px)';
-      
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % words.length;
-        rotatingElement.textContent = words[currentIndex];
-        rotatingElement.style.opacity = '1';
-        rotatingElement.style.transform = 'translateY(0)';
-      }, 600);
-    }
-
-    // Start rotation after 3 seconds, then every 3 seconds for smoother experience
-    setTimeout(() => {
-      setInterval(rotateWords, 3000);
-    }, 3000);
+    // Static text - no rotation needed for "sh*t"
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
