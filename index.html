@@ -47,6 +47,7 @@
 
   <!-- About Section -->
   <section class="about" id="about">
+    <div class="stealth-particles" id="aboutParticles"></div>
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -74,6 +75,7 @@
 
   <!-- Work Section -->
   <section class="work" id="work">
+    <div class="stealth-particles" id="workParticles"></div>
     <div class="container">
       <h2 class="section-title">Selected Work</h2>
       <div class="projects-grid">
@@ -219,6 +221,7 @@
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
+    <div class="stealth-particles" id="contactParticles"></div>
     <div class="container">
       <div class="contact-content">
         <h2>Let's work together</h2>
@@ -311,8 +314,43 @@
       }
     }
 
-    // Initialize stealth particles when page loads
-    document.addEventListener('DOMContentLoaded', createStealthParticles);
+    // Create particles for other sections
+    function createSectionParticles(containerId, count = 20) {
+      const particlesContainer = document.getElementById(containerId);
+      if (!particlesContainer) return;
+      
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'stealth-particle';
+        
+        // Random horizontal position
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // Random animation delay for staggered effect
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        
+        // Varied animation duration
+        particle.style.animationDuration = (6 + Math.random() * 8) + 's';
+        
+        // Size variation
+        const size = 3 + Math.random() * 4;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Opacity variation
+        particle.style.opacity = 0.6 + Math.random() * 0.4;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Initialize all stealth particles when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      createStealthParticles(); // Hero section - 40 particles
+      createSectionParticles('aboutParticles', 25); // About section
+      createSectionParticles('workParticles', 30); // Work section
+      createSectionParticles('contactParticles', 20); // Contact section
+    });
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
