@@ -284,7 +284,7 @@
     // Stealth Particles Animation
     function createStealthParticles() {
       const particlesContainer = document.getElementById('stealthParticles');
-      const particleCount = 8; // Keep it subtle
+      const particleCount = 15; // More visible particles
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -294,10 +294,15 @@
         particle.style.left = Math.random() * 100 + '%';
         
         // Random animation delay for staggered effect
-        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDelay = Math.random() * 12 + 's';
         
         // Slight random animation duration for organic feel
-        particle.style.animationDuration = (12 + Math.random() * 6) + 's';
+        particle.style.animationDuration = (8 + Math.random() * 8) + 's';
+        
+        // Add slight random size variation
+        const size = 2 + Math.random() * 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
         
         particlesContainer.appendChild(particle);
       }

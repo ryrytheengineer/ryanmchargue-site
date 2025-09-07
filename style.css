@@ -185,13 +185,13 @@ p {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.02) 25%,
+    rgba(75, 159, 225, 0.05) 25%,
     transparent 50%,
-    rgba(75, 159, 225, 0.01) 75%,
+    rgba(75, 159, 225, 0.03) 75%,
     transparent 100%
   );
   background-size: 400% 400%;
-  animation: stealthFlow 20s ease-in-out infinite;
+  animation: stealthFlow 12s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -199,9 +199,9 @@ p {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(75, 159, 225, 0.03) 25%,
+    rgba(75, 159, 225, 0.06) 25%,
     transparent 50%,
-    rgba(75, 159, 225, 0.015) 75%,
+    rgba(75, 159, 225, 0.04) 75%,
     transparent 100%
   );
   background-size: 400% 400%;
@@ -229,15 +229,17 @@ p {
 
 .stealth-particle {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(75, 159, 225, 0.1);
+  width: 3px;
+  height: 3px;
+  background: rgba(75, 159, 225, 0.3);
   border-radius: 50%;
-  animation: stealthFloat 15s linear infinite;
+  animation: stealthFloat 12s linear infinite;
+  box-shadow: 0 0 6px rgba(75, 159, 225, 0.2);
 }
 
 [data-theme="dark"] .stealth-particle {
-  background: rgba(75, 159, 225, 0.15);
+  background: rgba(75, 159, 225, 0.4);
+  box-shadow: 0 0 8px rgba(75, 159, 225, 0.3);
 }
 
 @keyframes stealthFloat {
