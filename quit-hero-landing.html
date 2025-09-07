@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quit Hero - Elite Performance Vaping Cessation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+            background: #000000;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ec4899;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+        }
+        
+        .cta-btn:hover {
+            background: linear-gradient(135deg, #93c5fd, #f472b6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236,72,153,0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(127,184,229,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(236,72,153,0.1) 0%, transparent 50%);
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-stat {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .hero-stat-label {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn-primary {
+            background: #ec4899;
+            color: #000000;
+            padding: 16px 32px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #f472b6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236,72,153,0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: #7FB8E5;
+            padding: 16px 32px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-secondary:hover {
+            border-color: rgba(236,72,153,0.4);
+            background: linear-gradient(135deg, rgba(127,184,229,0.1), rgba(236,72,153,0.1));
+            transform: translateY(-2px);
+        }
+        
+        /* Phone Mockup */
+        .phone-mockup {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .device-frame-landing {
+            width: 300px;
+            height: 650px;
+            background: #1c1c1e;
+            border-radius: 36px;
+            padding: 3px;
+            box-shadow: 
+                0 40px 80px rgba(0,0,0,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 40px rgba(236,72,153,0.2);
+            animation: phoneFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        
+        .screen-landing {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            border-radius: 33px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Mini App Interface */
+        .mini-status-bar {
+            height: 35px;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .mini-nav-header {
+            background: rgba(0,0,0,0.95);
+            padding: 12px 16px;
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+        }
+        
+        .mini-nav-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .mini-content {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .mini-stats-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 16px;
+            padding: 20px 16px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mini-stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(127,184,229,0.5), rgba(236,72,153,0.5), transparent);
+        }
+        
+        .mini-primary-stat {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .mini-stat-number {
+            font-size: 42px;
+            font-weight: 900;
+            color: #7FB8E5;
+            line-height: 0.9;
+            margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(127,184,229,0.5);
+        }
+        
+        .mini-stat-label {
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .mini-status-badge {
+            background: rgba(236,72,153,0.2);
+            border: 1px solid #ec4899;
+            color: #ec4899;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .mini-secondary-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mini-progress-ring {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 8px;
+        }
+        
+        .mini-progress-ring svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .mini-ring-bg {
+            fill: none;
+            stroke: rgba(127,184,229,0.2);
+            stroke-width: 4;
+        }
+        
+        .mini-ring-fill {
+            fill: none;
+            stroke: url(#miniPinkGradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            transition: stroke-dasharray 0.5s ease;
+            filter: drop-shadow(0 0 4px rgba(236,72,153,0.3));
+        }
+        
+        .mini-ring-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .mini-ring-value {
+            color: #7FB8E5;
+            font-size: 10px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .mini-ring-label {
+            color: #64748b;
+            font-size: 7px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+        
+        .mini-calendar-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .mini-calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .mini-calendar-title {
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .mini-calendar-nav {
+            color: #7FB8E5;
+            font-size: 14px;
+            font-weight: 800;
+        }
+        
+        .mini-calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        
+        .mini-day-header {
+            color: #64748b;
+            font-size: 7px;
+            font-weight: 600;
+            text-align: center;
+            padding: 2px 0;
+        }
+        
+        .mini-day-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 7px;
+            font-weight: 600;
+            color: #94a3b8;
+            background: rgba(127,184,229,0.05);
+        }
+        
+        .mini-day-item.today {
+            background: #7FB8E5;
+            color: #000000;
+        }
+        
+        .mini-day-item.level-4 {
+            background: rgba(127,184,229,0.85);
+            color: white;
+        }
+        
+        .mini-coach-section {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .mini-coach-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .mini-coach-mascot {
+            width: 32px;
+            height: 32px;
+            background: rgba(127,184,229,0.2);
+            border: 1px solid #7FB8E5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .mini-coach-mascot::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 8px;
+            height: 8px;
+            background: #ec4899;
+            border: 1px solid #000000;
+            border-radius: 50%;
+        }
+        
+        .mini-coach-info h4 {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        
+        .mini-coach-info p {
+            color: #7FB8E5;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .mini-coach-preview {
+            color: #94a3b8;
+            font-size: 11px;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+        
+        .mini-feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .mini-feature-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .mini-feature-card:hover {
+            border-color: rgba(236,72,153,0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(236,72,153,0.2);
+        }
+        
+        .mini-feature-icon {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .mini-feature-title {
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+        }
+        
+        .mini-tab-bar {
+            background: rgba(0,0,0,0.95);
+            border-top: 0.5px solid rgba(255,255,255,0.1);
+            display: flex;
+            height: 60px;
+            padding: 8px;
+        }
+        
+        .mini-tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 8px;
+            font-weight: 600;
+        }
+        
+        .mini-tab-item.active {
+            color: #ec4899;
+        }
+        
+        .mini-tab-icon {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 2px;
+            background: currentColor;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        
+        .icon-dashboard { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z'/%3E%3C/svg%3E"); }
+        .icon-calendar-tab { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E"); }
+        .icon-chat-tab { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E"); }
+        
+        /* Features Section */
+        .features {
+            padding: 120px 24px;
+            position: relative;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: #94a3b8;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card-landing {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card-landing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(127,184,229,0.5), rgba(236,72,153,0.5), transparent);
+        }
+        
+        .feature-card-landing:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236,72,153,0.4);
+            box-shadow: 0 20px 40px rgba(236,72,153,0.2);
+        }
+        
+        .feature-icon-landing {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+        
+        .feature-title-landing {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .feature-description-landing {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 120px 24px;
+            background: rgba(15,23,42,0.3);
+        }
+        
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 40px 24px;
+            position: relative;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(127,184,229,0.5), rgba(236,72,153,0.5), transparent);
+        }
+        
+        .stat-number-landing {
+            font-size: 56px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+        
+        .stat-label-landing {
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* App Preview Section */
+        .app-preview {
+            padding: 120px 24px;
+            position: relative;
+        }
+        
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .preview-content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .preview-content p {
+            font-size: 18px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li::before {
+            content: '🐺';
+            margin-right: 12px;
+            font-size: 20px;
+        }
+        
+        .app-screens {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .screen-preview {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .screen-preview:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236,72,153,0.4);
+            box-shadow: 0 12px 32px rgba(236,72,153,0.2);
+        }
+        
+        .screen-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .screen-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .screen-desc {
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 24px;
+            background: rgba(15,23,42,0.3);
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.3);
+            border-radius: 16px;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236,72,153,0.4);
+            box-shadow: 0 12px 32px rgba(236,72,153,0.2);
+        }
+        
+        .download-icon {
+            font-size: 32px;
+        }
+        
+        .download-text {
+            text-align: left;
+        }
+        
+        .download-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .download-subtitle {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 80px 24px 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7FB8E5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+        
+        .footer-text {
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ec4899;
+        }
+        
+        .copyright {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            
+            .preview-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">Quit Hero</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#preview">Preview</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+            <a href="#download" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Elite Performance<br>Vaping Cessation</h1>
+                <p>Transform your quit journey with Tesla-level precision. AI-powered coaching, neural optimization tracking, and performance analytics designed for champions.</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">94%</div>
+                        <div class="hero-stat-label">Success Rate</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">$4.2K</div>
+                        <div class="hero-stat-label">Avg Saved</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">90 Days</div>
+                        <div class="hero-stat-label">Neural Reset</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#download" class="btn-primary">Start Your Journey</a>
+                    <a href="#preview" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+            
+            <div class="phone-mockup">
+                <div class="device-frame-landing">
+                    <div class="screen-landing">
+                        <!-- Mini Status Bar -->
+                        <div class="mini-status-bar">
+                            <div>15:38</div>
+                            <div>●●●●● 100%</div>
+                        </div>
+                        
+                        <!-- Mini Navigation -->
+                        <div class="mini-nav-header">
+                            <h1 class="mini-nav-title">Quit Hero</h1>
+                        </div>
+                        
+                        <!-- Mini App Content -->
+                        <div class="mini-content">
+                            <!-- Mini Stats Card -->
+                            <div class="mini-stats-card">
+                                <div class="mini-primary-stat">
+                                    <div class="mini-stat-number">23</div>
+                                    <div class="mini-stat-label">Days Clean</div>
+                                    <div class="mini-status-badge">Elite Status</div>
+                                </div>
+                                <div class="mini-secondary-stats">
+                                    <div class="mini-progress-ring">
+                                        <svg width="60" height="60">
+                                            <circle class="mini-ring-bg" cx="30" cy="30" r="26"></circle>
+                                            <circle class="mini-ring-fill" cx="30" cy="30" r="26" 
+                                                    stroke-dasharray="163" stroke-dashoffset="32"></circle>
+                                        </svg>
+                                        <div class="mini-ring-text">
+                                            <div class="mini-ring-value">$287</div>
+                                            <div class="mini-ring-label">Saved</div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-progress-ring">
+                                        <svg width="60" height="60">
+                                            <circle class="mini-ring-bg" cx="30" cy="30" r="26"></circle>
+                                            <circle class="mini-ring-fill" cx="30" cy="30" r="26" 
+                                                    stroke-dasharray="163" stroke-dashoffset="16"></circle>
+                                        </svg>
+                                        <div class="mini-ring-text">
+                                            <div class="mini-ring-value">1,840</div>
+                                            <div class="mini-ring-label">Puffs</div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-progress-ring">
+                                        <svg width="60" height="60">
+                                            <circle class="mini-ring-bg" cx="30" cy="30" r="26"></circle>
+                                            <circle class="mini-ring-fill" cx="30" cy="30" r="26" 
+                                                    stroke-dasharray="163" stroke-dashoffset="3"></circle>
+                                        </svg>
+                                        <div class="mini-ring-text">
+                                            <div class="mini-ring-value">98%</div>
+                                            <div class="mini-ring-label">Lung</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mini Calendar Card -->
+                            <div class="mini-calendar-card">
+                                <div class="mini-calendar-header">
+                                    <div class="mini-calendar-title">September Activity</div>
+                                    <div class="mini-calendar-nav">→</div>
+                                </div>
+                                <div class="mini-calendar-grid">
+                                    <div class="mini-day-header">S</div>
+                                    <div class="mini-day-header">M</div>
+                                    <div class="mini-day-header">T</div>
+                                    <div class="mini-day-header">W</div>
+                                    <div class="mini-day-header">T</div>
+                                    <div class="mini-day-header">F</div>
+                                    <div class="mini-day-header">S</div>
+                                    
+                                    <div class="mini-day-item level-4">1</div>
+                                    <div class="mini-day-item today">2</div>
+                                    <div class="mini-day-item">3</div>
+                                    <div class="mini-day-item">4</div>
+                                    <div class="mini-day-item">5</div>
+                                    <div class="mini-day-item">6</div>
+                                    <div class="mini-day-item">7</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mini Coach Preview -->
+                            <div class="mini-coach-section">
+                                <div class="mini-coach-header">
+                                    <div class="mini-coach-mascot">🐺</div>
+                                    <div class="mini-coach-info">
+                                        <h4>Luna - AI Coach</h4>
+                                        <p>Active • Ready to support</p>
+                                    </div>
+                                </div>
+                                <div class="mini-coach-preview">
+                                    "Impressive! 23 days shows exceptional willpower. Your respiratory system is rebuilding itself."
+                                </div>
+                            </div>
+                            
+                            <!-- Mini Feature Grid -->
+                            <div class="mini-feature-grid">
+                                <div class="mini-feature-card">
+                                    <div class="mini-feature-icon">📖</div>
+                                    <div class="mini-feature-title">Smart Journal</div>
+                                </div>
+                                <div class="mini-feature-card">
+                                    <div class="mini-feature-icon">🧠</div>
+                                    <div class="mini-feature-title">Learn</div>
+                                </div>
+                                <div class="mini-feature-card">
+                                    <div class="mini-feature-icon">🫁</div>
+                                    <div class="mini-feature-title">Breathe</div>
+                                </div>
+                                <div class="mini-feature-card">
+                                    <div class="mini-feature-icon">⚡</div>
+                                    <div class="mini-feature-title">Cravings</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Tab Bar -->
+                        <div class="mini-tab-bar">
+                            <div class="mini-tab-item active">
+                                <div class="mini-tab-icon icon-dashboard"></div>
+                                <span>Dashboard</span>
+                            </div>
+                            <div class="mini-tab-item">
+                                <div class="mini-tab-icon icon-calendar-tab"></div>
+                                <span>Calendar</span>
+                            </div>
+                            <div class="mini-tab-item">
+                                <div class="mini-tab-icon icon-chat-tab"></div>
+                                <span>Coach</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Performance-Driven Features</h2>
+                <p class="section-subtitle">Every feature designed with elite performance psychology and neuroscience research to optimize your quit journey.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">🐺</span>
+                    <h3 class="feature-title-landing">Luna AI Coach</h3>
+                    <p class="feature-description-landing">Elite performance coaching powered by advanced AI. Get personalized strategies, real-time support, and championship-level mindset training.</p>
+                </div>
+                
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">📊</span>
+                    <h3 class="feature-title-landing">Neural Analytics</h3>
+                    <p class="feature-description-landing">Track your brain's recovery with precision. Monitor neuroplasticity, cognitive enhancement, and performance optimization metrics.</p>
+                </div>
+                
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">🫁</span>
+                    <h3 class="feature-title-landing">Biofeedback Training</h3>
+                    <p class="feature-description-landing">Advanced breathing protocols and respiratory tracking. Build mental resilience with scientifically-proven techniques.</p>
+                </div>
+                
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">⚡</span>
+                    <h3 class="feature-title-landing">Craving Interruption</h3>
+                    <p class="feature-description-landing">Instant neural reset protocols. Interrupt craving cycles with precision-timed interventions and cognitive reframing.</p>
+                </div>
+                
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">🧠</span>
+                    <h3 class="feature-title-landing">Performance Journal</h3>
+                    <p class="feature-description-landing">Track patterns, insights, and breakthroughs. Advanced mood analytics and cognitive performance monitoring.</p>
+                </div>
+                
+                <div class="feature-card-landing fade-in">
+                    <span class="feature-icon-landing">💎</span>
+                    <h3 class="feature-title-landing">Elite Education</h3>
+                    <p class="feature-description-landing">Master-level content on neuroplasticity, respiratory optimization, and cognitive enhancement strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Preview Section -->
+    <section class="app-preview" id="preview">
+        <div class="preview-container">
+            <div class="preview-content fade-in">
+                <h2>Your Command Center</h2>
+                <p>Experience the most sophisticated quit tracking interface ever created. Every metric, every insight, every breakthrough - tracked with clinical precision.</p>
+                
+                <ul class="feature-list">
+                    <li>Real-time neuroplasticity monitoring</li>
+                    <li>Advanced respiratory recovery tracking</li>
+                    <li>AI-powered performance coaching</li>
+                    <li>Financial optimization calculator</li>
+                    <li>Elite-level craving management</li>
+                    <li>Cognitive enhancement protocols</li>
+                </ul>
+                
+                <a href="#download" class="btn-primary">Experience Elite Performance</a>
+            </div>
+            
+            <div class="app-screens fade-in">
+                <div class="screen-preview">
+                    <span class="screen-icon">📊</span>
+                    <div class="screen-title">Performance Dashboard</div>
+                    <div class="screen-desc">Real-time analytics and progress tracking</div>
+                </div>
+                
+                <div class="screen-preview">
+                    <span class="screen-icon">🐺</span>
+                    <div class="screen-title">AI Coach Luna</div>
+                    <div class="screen-desc">24/7 elite performance coaching</div>
+                </div>
+                
+                <div class="screen-preview">
+                    <span class="screen-icon">🧬</span>
+                    <div class="screen-title">Neural Tracking</div>
+                    <div class="screen-desc">Monitor brain recovery and optimization</div>
+                </div>
+                
+                <div class="screen-preview">
+                    <span class="screen-icon">⚡</span>
+                    <div class="screen-title">Craving Protocol</div>
+                    <div class="screen-desc">Instant neural reset techniques</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Elite Results</h2>
+                <p class="section-subtitle">Join thousands of high performers who've optimized their neural architecture for peak performance.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number-landing">94%</div>
+                    <div class="stat-label-landing">Success Rate</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number-landing">12.5K</div>
+                    <div class="stat-label-landing">Champions</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number-landing">$127M</div>
+                    <div class="stat-label-landing">Total Saved</div>
+                </div>
+                
+                <div class="stat-item fade-in">
+                    <div class="stat-number-landing">4.9★</div>
+                    <div class="stat-label-landing">App Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="cta-section" id="download">
+        <div class="cta-container">
+            <h2 class="fade-in">Ready to Optimize Your Performance?</h2>
+            <p class="fade-in">Join the elite tier of performers who've mastered their neural architecture. Your breakthrough starts now.</p>
+            
+            <div class="cta-buttons fade-in">
+                <a href="#" class="download-btn">
+                    <span class="download-icon">📱</span>
+                    <div class="download-text">
+                        <div class="download-title">Download for iOS</div>
+                        <div class="download-subtitle">App Store</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="download-btn">
+                    <span class="download-icon">🤖</span>
+                    <div class="download-text">
+                        <div class="download-title">Download for Android</div>
+                        <div class="download-subtitle">Google Play</div>
+                    </div>
+                </a>
+                
+                <a href="/Users/ryanmchargue/ryanmchargue-site/quit-hero.html" class="download-btn">
+                    <span class="download-icon">🌐</span>
+                    <div class="download-text">
+                        <div class="download-title">Try Web Demo</div>
+                        <div class="download-subtitle">No download required</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">Quit Hero</div>
+            <p class="footer-text">Elite performance vaping cessation for champions.</p>
+            
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <p class="copyright">© 2024 Quit Hero. Optimizing human performance.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Dynamic stats counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (target > 1000) {
+                    element.textContent = (current / 1000).toFixed(1) + 'K';
+                } else if (target > 1000000) {
+                    element.textContent = '$' + (current / 1000000).toFixed(0) + 'M';
+                } else {
+                    element.textContent = Math.floor(current) + (target === 4.9 ? '★' : '%');
+                }
+            }, 20);
+        }
+        
+        // Trigger counter animations when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number-landing');
+                    const targets = [94, 12500, 127, 4.9];
+                    
+                    numbers.forEach((num, index) => {
+                        setTimeout(() => {
+                            animateCounter(num, targets[index]);
+                        }, index * 200);
+                    });
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+        });
+    </script>
+</body>
+</html>

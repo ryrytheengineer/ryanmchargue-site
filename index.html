@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ryan McHargue - Founder, Product Designer, and Operator. Explore active projects including Halo, Amarna Gallery, and Neutrals." />
+  <meta name="keywords" content="Ryan McHargue, Founder, Product Designer, Operator, Halo, Amarna Gallery, Neutrals" />
+  <meta name="author" content="Ryan McHargue" />
+  <title>Ryan McHargue | Founder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated gradient orbs -->
+  <div class="gradient-orb orb1"></div>
+  <div class="gradient-orb orb2"></div>
+  <div class="gradient-orb orb3"></div>
+  <div class="gradient-orb orb4"></div>
+  
+  <!-- Grid background with scanning lines -->
+  <div class="grid-background" aria-hidden="true"></div>
+  <div class="grid-line grid-line-h" aria-hidden="true"></div>
+  <div class="grid-line grid-line-v" aria-hidden="true"></div>
+  
+  <!-- Fallout 4 Wasteland Effects -->
+  <div class="wasteland-effects" aria-hidden="true">
+    <!-- Radiation particles -->
+    <div class="radiation-particle particle-1"></div>
+    <div class="radiation-particle particle-2"></div>
+    <div class="radiation-particle particle-3"></div>
+    <div class="radiation-particle particle-4"></div>
+    <div class="radiation-particle particle-5"></div>
+    
+    <!-- Dust storms -->
+    <div class="dust-storm storm-1"></div>
+    <div class="dust-storm storm-2"></div>
+    
+    <!-- Vault-Tec scanlines -->
+    <div class="scanlines"></div>
+  </div>
+  
+  <!-- Pip-Boy HUD Elements -->
+  <div class="pip-boy-hud">
+    <!-- Radiation Meter -->
+    <div class="radiation-meter">
+      <div class="meter-label">RAD</div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="radiationLevel"></div>
+      </div>
+      <div class="meter-value">0</div>
+    </div>
+    
+    <!-- Health Bar -->
+    <div class="health-meter">
+      <div class="meter-label">HP</div>
+      <div class="meter-bar">
+        <div class="meter-fill health-fill" id="healthLevel"></div>
+      </div>
+      <div class="meter-value">100</div>
+    </div>
+    
+    <!-- XP Progress -->
+    <div class="xp-meter">
+      <div class="meter-label">XP</div>
+      <div class="meter-bar">
+        <div class="meter-fill xp-fill" id="xpLevel"></div>
+      </div>
+      <div class="meter-value">0</div>
+    </div>
+  </div>
+
+  <!-- Theme toggle -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+    <span aria-label="Switch to dark mode">🌙</span>
+  </button>
+  
+  <!-- Quick Contact Button -->
+  <button id="contactToggle" class="contact-toggle" aria-label="Quick contact">
+    <span>✉️</span>
+  </button>
+  
+  <!-- Quick Contact Panel -->
+  <div id="contactPanel" class="contact-panel">
+    <button class="contact-close" aria-label="Close contact panel">&times;</button>
+    <h3>Let's Connect</h3>
+    <p>Have a project in mind? Let's chat.</p>
+    <form class="contact-form" id="contactForm">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <div class="contact-direct">
+      <p>Or email directly:</p>
+      <a href="mailto:ryan@trymelody.com">ryan@trymelody.com</a>
+    </div>
+  </div>
+  
+  <!-- Replace the header section with this -->
+<header class="header">
+  <h1 class="title">Ryan McHargue</h1>
+  <p class="subtitles">Founder · Product Designer · Operator</p>
+  
+  <!-- S.P.E.C.I.A.L. Professional Stats -->
+  <div class="special-stats">
+    <div class="stat-item">
+      <span class="stat-label">S</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="9"></div></div>
+      <span class="stat-name">Strategy</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">P</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="10"></div></div>
+      <span class="stat-name">Product Design</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">E</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="8"></div></div>
+      <span class="stat-name">Execution</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">C</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="9"></div></div>
+      <span class="stat-name">Cooking</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">I</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="10"></div></div>
+      <span class="stat-name">Innovation</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">A</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="8"></div></div>
+      <span class="stat-name">Analytics</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">L</span>
+      <div class="stat-bar"><div class="stat-fill" data-level="1"></div></div>
+      <span class="stat-name">Loser</span>
+    </div>
+  </div>
+  
+  <div class="currently-listening">
+    <span class="listening-icon">♫</span>
+    <div class="artists-marquee">
+      <span class="artists">Currently Listening To: Lil Tjay, MRCY, Rels B, $uicideBoy$, Morgan Wallen, Evan Honer</span>
+      <span class="artists">Currently Listening To: Lil Tjay, MRCY, Rels B, $uicideBoy$, Morgan Wallen, Evan Honer</span>
+    </div>
+  </div>
+</header>
+  
+  <!-- Main content -->
+  <main class="main-content">
+    <!-- Active Projects -->
+    <section class="section active-section">
+      <div class="active-line">
+        <div class="pulse-dot green" aria-hidden="true"></div>
+        <h2>Active Quests</h2>
+        <div class="quest-status">ACTIVE</div>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <h3><a href="#" target="_blank" rel="noopener noreferrer">McHargue Group</a></h3>
+          <p>A new group with a fresh vision rooted in our family's values and heritage. Building something meaningful across art, estates, and technology in Miami, San Francisco, and North Carolina. This represents our commitment to creating lasting value while staying true to our roots and the principles that guide us forward.</p>
+          <div class="project-status">
+            <span class="status-badge legacy">🏛️ BUILDING</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Family Legacy</span>
+            <span class="tech-tag">Art</span>
+            <span class="tech-tag">Estates</span>
+            <span class="tech-tag">Technology</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://haloquit.com" target="_blank" rel="noopener noreferrer">Halo</a></h3>
+  <p>Smart Zero Nicotine Behavioral Aid for people looking for an alternative to nicotine.</p>
+  <div class="project-status">
+    <span class="live-dot"></span>
+    <span>Launching V5.0 next month</span>
+  </div>
+  <div class="achievements">
+    <div class="achievement">
+      <span class="achievement-number" data-target="2.1" data-suffix="M">$0M</span>
+      <span class="achievement-label">Revenue (2 years)</span>
+    </div>
+    <div class="achievement">
+      <span class="achievement-number" data-target="70054">0</span>
+      <span class="achievement-label">Customers</span>
+    </div>
+    <div class="achievement">
+      <span class="achievement-number" data-target="50" data-suffix="M+">0M+</span>
+      <span class="achievement-label">Impressions</span>
+    </div>
+  </div>
+  <ul class="achievement-list">
+    <li>Featured at WVS Dubai</li>
+    <li>100% organic marketing</li>
+    <li>Bicoastal team (Miami × SF)</li>
+    <li>Bootstrapped without fundraising</li>
+  </ul>
+  <div class="project-tech">
+    <span class="tech-tag">Healthcare</span>
+    <span class="tech-tag">Behavioral Science</span>
+  </div>
+</article>
+
+        <article class="project">
+          <h3><a href="#" target="_blank" rel="noopener noreferrer">Revyval Systems</a></h3>
+          <p>Advanced longevity supplement company revolutionizing morning and nighttime optimization protocols. Founded on Joe Do It Online's proven approach to biohacking and cellular regeneration, featuring pharmaceutical-grade compounds including CoQ10 for mitochondrial energy, NMN for NAD+ restoration, and PQQ for cognitive enhancement. Clinical-grade formulations designed for peak performance and longevity.</p>
+          <div class="project-status">
+            <span class="status-badge developing">🧬 DEVELOPING</span>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Longevity Science</span>
+            <span class="tech-tag">Supplement Formulation</span>
+            <span class="tech-tag">Biohacking Protocols</span>
+            <span class="tech-tag">Clinical Research</span>
+          </div>
+        </article>
+        
+        <article class="project">
+          <h3><a href="https://amarnagallery.com" target="_blank" rel="noopener noreferrer">Amarna Gallery</a></h3>
+          <p>Private art house curating exclusive collections, immersive experiences, and high-value collaborations with top artists and luxury brands.</p>
+          <div class="collaborations">
+            <span class="collab-label">Notable Collaborations:</span>
+            <div class="collab-names">
+              <span class="collab-name">Grant Cardone</span>
+              <span class="collab-name">Jorge Masvidal</span>
+              <span class="collab-name">Diogo Snow</span>
+              <span class="collab-name">Ronaldinho</span>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Art</span>
+            <span class="tech-tag">Luxury</span>
+          </div>
+        </article>
+        
+        <article class="project">
+          <h3><a href="https://www.tryneutrals.ai" target="_blank" rel="noopener noreferrer">Neutrals</a></h3>
+          <p>AI-driven platform that delivers the latest headlines without polarizing rhetoric by reframing biased articles in real time.</p>
+          <div class="project-tech">
+            <span class="tech-tag">AI/ML</span>
+            <span class="tech-tag">News</span>
+          </div>
+        </article>
+      </div>
+    </section>
+    
+    <hr class="section-divider">
+    
+    <!-- Backburner Projects -->
+    <section class="section backburner-section">
+      <div class="active-line">
+        <div class="pulse-dot yellow" aria-hidden="true"></div>
+        <h2>Side Quests</h2>
+        <div class="quest-status">ON HOLD</div>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <h3><a href="#" aria-disabled="true">Shoq</a></h3>
+          <p>Data-driven platform offering clothing retailers real-time insights on customer preferences using LiDAR sensors and behavioral analytics.</p>
+          <div class="project-tech">
+            <span class="tech-tag">LiDAR</span>
+            <span class="tech-tag">Analytics</span>
+          </div>
+        </article>
+      </div>
+    </section>
+    
+    <hr class="section-divider">
+    
+    <!-- Archived Projects -->
+    <section class="section archived-section">
+      <div class="active-line">
+        <div class="pulse-dot red" aria-hidden="true"></div>
+        <h2>Completed Quests</h2>
+        <div class="quest-status">FINISHED</div>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <h3>Lucky Eight Media</h3>
+          <div class="achievements">
+            <div class="achievement">
+              <span class="achievement-number" data-target="230" data-suffix="K">$0K</span>
+              <span class="achievement-label">Revenue (6 months)</span>
+            </div>
+            <div class="achievement">
+              <span class="achievement-number" data-target="7">0</span>
+              <span class="achievement-label">Employees</span>
+            </div>
+          </div>
+          <ul class="achievement-list">
+            <li>Featured in The News Journal's Top 10 Fastest Growing Startups in Delaware</li>
+            <li>Featured in Tech Tribune's 2019 Best Tech Startups list</li>
+            <li>Featured in Philadelphia Business Journal's Top 500 Startups list</li>
+            <li>YC Startup School participant</li>
+            <li>QOZ office location</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Currently Building Terminal -->
+<section class="terminal-section">
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-buttons">
+        <span class="terminal-btn close"></span>
+        <span class="terminal-btn minimize"></span>
+        <span class="terminal-btn maximize"></span>
+      </div>
+      <span class="terminal-title">ryan@mchargue:~$</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-line">
+        <span class="prompt">$</span>
+        <span class="command">cat currently_building.txt</span>
+      </div>
+      <div class="terminal-output">
+        
+        <p class="typing-text">
+          <span class="typing-1">⚡ Building: AI-powered sentiment analysis for Neutrals v2.0</span><br>
+          <span class="typing-2">🔧 Designing: Next-gen wellness tracker integration for Halo</span><br>
+          <span class="typing-3">🎯 Exploring: Strategic partnerships for Amarna's Miami Art Week</span>
+        </p>
+      </div>
+      <div class="terminal-line active">
+        <span class="prompt">$</span>
+        <span class="cursor">_</span>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Footer -->
+<footer class="footer">
+  <div class="coordinates">
+    <span>🏎️ 25.7617° N, 80.1918° W</span>
+  </div>
+  <div class="socials">
+    <a class="social-button" href="https://instagram.com/ryanmchargue" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+      <span class="social-icon">📷</span>
+      <span>IG @ryanmchargue</span>
+    </a>
+    <a class="social-button" href="https://x.com/ryanmcharguee" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
+      <span class="social-icon">🐦</span>
+      <span>X @ryanmcharguee</span>
+    </a>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const html = document.documentElement;
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        html.classList.add('dark');
+        body.classList.add('dark');
+      }
+      
+      const isDark = () => html.classList.contains('dark');
+      
+      const updateIcon = () => {
+        toggle.innerHTML = isDark() ? 
+          '<span aria-label="Switch to light mode">☀️</span>' : 
+          '<span aria-label="Switch to dark mode">🌙</span>';
+      };
+      
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Force instant theme switch by temporarily disabling all transitions
+        const style = document.createElement('style');
+        style.textContent = '*, *::before, *::after { transition: none !important; animation-duration: 0s !important; }';
+        document.head.appendChild(style);
+        
+        // Toggle theme
+        html.classList.toggle('dark');
+        body.classList.toggle('dark');
+        localStorage.setItem('theme', isDark() ? 'dark' : 'light');
+        updateIcon();
+        
+        // Re-enable transitions after a brief moment
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.head.removeChild(style);
+          });
+        });
+      });
+      
+      updateIcon();
+      
+      // 3D tilt effect removed for better mobile scrolling
+
+// Add ripple effect on project cards (keeping this existing functionality)
+document.querySelectorAll('.project').forEach(project => {
+  project.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.background = 'rgba(255, 255, 255, 0.2)';
+    ripple.style.transform = 'scale(0)';
+    ripple.style.animation = 'rippleEffect 0.6s ease-out';
+    ripple.style.pointerEvents = 'none';
+    
+    this.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+      
+      // Interactive Background - Click ripples
+      document.addEventListener('click', (e) => {
+        // Don't create ripples on interactive elements
+        if (e.target.closest('button, a, input, textarea, .project')) return;
+        
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        document.body.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 1000);
+      });
+      
+      // Interactive orbs that react to mouse
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        
+        document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
+          const speed = 1 + index * 0.5;
+          orb.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+        });
+      });
+      
+      // Quick Contact Panel
+      const contactToggle = document.getElementById('contactToggle');
+      const contactPanel = document.getElementById('contactPanel');
+      const contactClose = document.querySelector('.contact-close');
+      const contactForm = document.getElementById('contactForm');
+      
+      contactToggle.addEventListener('click', () => {
+        contactPanel.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      contactClose.addEventListener('click', () => {
+        contactPanel.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on outside click
+      contactPanel.addEventListener('click', (e) => {
+        if (e.target === contactPanel) {
+          contactPanel.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Handle form submission
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        // Here you would normally send the data to your server
+        console.log('Form data:', data);
+        
+        // For now, just show success
+        const btn = contactForm.querySelector('.submit-btn');
+        btn.textContent = 'Message Sent! ✓';
+        btn.style.background = 'var(--green)';
+        
+        setTimeout(() => {
+          contactForm.reset();
+          btn.textContent = 'Send Message';
+          btn.style.background = '';
+          contactPanel.classList.remove('active');
+          document.body.style.overflow = '';
+        }, 2000);
+      });
+      
+      // Parallax effect on scroll
+      let ticking = false;
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        document.querySelectorAll('.gradient-orb').forEach((orb, index) => {
+          const speed = 0.5 + (index * 0.2);
+          orb.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      });
+      
+      // Super fast flicking counter that grows then pops back
+      const animateCounter = (element) => {
+        if (element.classList.contains('counting')) return;
+        element.classList.add('counting');
+        
+        const target = parseFloat(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        const prefix = element.textContent.includes('$') ? '$' : '';
+        const duration = 2000; // 2 seconds total
+        const startTime = performance.now();
+        
+        const formatNumber = (num) => {
+          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+        
+        const updateCounter = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+                     // Super fast random flicking for first 75% of animation
+           let current;
+           if (progress < 0.75) {
+             // Fast random flicking - numbers jump around
+             const baseProgress = progress / 0.75; // 0 to 1 over first 75%
+             const baseValue = target * baseProgress;
+             // Add random jumps (reduced variance)
+             current = baseValue + (Math.random() - 0.5) * target * 0.15;
+             current = Math.max(0, Math.min(current, target * 1.1));
+                     } else {
+             // Final 25% - smooth approach to target
+             const finalProgress = (progress - 0.75) / 0.25; // 0 to 1 over final 25%
+             const easeOut = 1 - Math.pow(1 - finalProgress, 3);
+             current = target * (0.75 + easeOut * 0.25);
+           }
+          
+                     // Scale grows as we approach target, then pops back
+           let scale;
+           if (progress < 0.8) {
+             // Grow larger as we get closer
+             scale = 1 + progress * 0.6; // grows to 1.6x
+           } else if (progress < 0.9) {
+             // Stay large briefly
+             scale = 1.6;
+           } else {
+             // Pop back to normal with bounce
+             const popProgress = (progress - 0.9) / 0.1;
+             const bounce = 1 - Math.pow(1 - popProgress, 2);
+             scale = 1.6 - (0.6 * bounce);
+           }
+          
+          // Apply visual effects
+          element.style.transform = `scale(${scale})`;
+                     element.style.color = progress < 0.9 ? '#4a9eff' : '';
+           element.style.fontWeight = progress < 0.9 ? 'bold' : '';
+           element.style.transition = progress > 0.9 ? 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)' : 'none';
+          
+          if (progress < 1) {
+            // Update the number display
+            if (suffix === 'M') {
+              element.textContent = `${prefix}${Math.max(0, current).toFixed(1)}${suffix}`;
+            } else if (suffix === 'K') {
+              element.textContent = `${prefix}${Math.max(0, Math.round(current))}${suffix}`;
+            } else {
+              element.textContent = formatNumber(Math.max(0, Math.round(current)));
+            }
+            requestAnimationFrame(updateCounter);
+          } else {
+            // Final value - exact target
+            if (suffix === 'M') {
+              element.textContent = `${prefix}${target}${suffix}`;
+            } else if (suffix === 'K') {
+              element.textContent = `${prefix}${Math.round(target)}${suffix}`;
+            } else {
+              element.textContent = formatNumber(Math.round(target));
+            }
+            
+            // Final pop back to normal
+            setTimeout(() => {
+              element.style.transform = 'scale(1)';
+              element.style.color = '';
+              element.style.fontWeight = '';
+              element.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+              
+              setTimeout(() => {
+                element.style.transform = '';
+                element.style.transition = '';
+                element.classList.remove('counting');
+              }, 300);
+            }, 100);
+          }
+        };
+        
+        requestAnimationFrame(updateCounter);
+      };
+      
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains('achievement-number')) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.achievement-number').forEach(el => {
+        observer.observe(el);
+      });
+    });
+    
+    // Pip-Boy HUD Interactive Features
+    const radiationMeter = document.getElementById('radiationLevel');
+    const healthMeter = document.getElementById('healthLevel');
+    const xpMeter = document.getElementById('xpLevel');
+    const radiationValue = document.querySelector('.radiation-meter .meter-value');
+    const healthValue = document.querySelector('.health-meter .meter-value');
+    const xpValue = document.querySelector('.xp-meter .meter-value');
+    
+    // Initialize health to 100%
+    healthMeter.style.width = '100%';
+    
+    // Update HUD based on scroll position
+    function updateHUD() {
+      const scrollPercent = Math.min(window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight) * 100, 100);
+      
+      // Radiation increases as you scroll (exploring the wasteland)
+      const radiationLevel = Math.floor(scrollPercent / 2);
+      radiationMeter.style.width = radiationLevel + '%';
+      radiationValue.textContent = radiationLevel;
+      
+      // Health decreases slightly with radiation
+      const healthLevel = Math.max(100 - Math.floor(radiationLevel / 4), 75);
+      healthMeter.style.width = healthLevel + '%';
+      healthValue.textContent = healthLevel;
+      
+      // XP increases as you explore content
+      const xpLevel = Math.floor(scrollPercent);
+      xpMeter.style.width = xpLevel + '%';
+      xpValue.textContent = xpLevel;
+    }
+    
+    // Smooth scroll updates
+    let hudTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!hudTicking) {
+        requestAnimationFrame(() => {
+          updateHUD();
+          hudTicking = false;
+        });
+        hudTicking = true;
+      }
+    });
+    
+    // Initialize HUD
+    updateHUD();
+    
+    // Add subtle click sound effect (visual feedback) - works for both click and touch
+    ['click', 'touchstart'].forEach(eventType => {
+      document.addEventListener(eventType, (e) => {
+        if (e.target.closest('.project, .tech-tag, .social-button, button')) {
+          // Create visual feedback for clicks/touches
+          const clickedElement = e.target.closest('.project, .tech-tag, .social-button, button');
+          clickedElement.style.filter = 'brightness(1.2)';
+          clickedElement.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            clickedElement.style.filter = '';
+            clickedElement.style.transform = '';
+          }, 150);
+        }
+      });
+    });
+    
+    // Add ripple animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes rippleEffect {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Force remove loading screen
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+      // Force remove the loading screen if it's stuck
+      const loadingScreen = document.querySelector('body::before');
+      if (loadingScreen) {
+        document.body.style.setProperty('--loading-display', 'none');
+      }
+    }, 500);
+  </script>
+</body>
+</html>

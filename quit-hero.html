@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quit Hero - Performance Vaping Cessation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .device-frame {
+            width: 375px;
+            height: 812px;
+            background: #1c1c1e;
+            border-radius: 42px;
+            padding: 4px;
+            box-shadow: 
+                0 40px 80px rgba(0,0,0,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* iOS Status Bar */
+        .status-bar {
+            height: 47px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .status-left {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+        
+        /* iOS Navigation Header */
+        .nav-header {
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 24px;
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 99;
+        }
+        
+        .nav-title {
+            color: white;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Main Content Container */
+        .content-container {
+            background: #000000;
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+            position: relative;
+            height: calc(812px - 47px - 66px - 84px); /* Device height minus status bar + nav + tab bar */
+        }
+        
+        .view {
+            display: none;
+            min-height: 100%;
+            background: #000000;
+            overflow-y: auto;
+            padding-bottom: 20px; /* Extra space at bottom */
+        }
+        
+        .view.active {
+            display: block;
+        }
+        
+        /* Home Dashboard */
+        .dashboard-section {
+            padding: 24px;
+        }
+        
+        .stats-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 32px 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(127,184,229,0.5);
+        }
+        
+        .primary-stat {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .stat-number {
+            font-size: 84px;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 8px;
+            position: relative;
+            background: linear-gradient(180deg, 
+                #ffffff 0%,
+                #e5e7eb 15%,
+                #d1d5db 30%,
+                #9ca3af 45%,
+                #6b7280 60%,
+                #4b5563 75%,
+                #374151 90%,
+                #1f2937 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 
+                1px 1px 0px #374151,
+                2px 2px 0px #1f2937,
+                3px 3px 0px #111827,
+                4px 4px 8px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .secondary-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mini-stat {
+            text-align: center;
+        }
+        
+        .mini-stat-value {
+            color: #7FB8E5;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        
+        .mini-stat-label {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .status-badge {
+            background: rgba(16,185,129,0.2);
+            border: 1px solid #10b981;
+            color: #10b981;
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 16px;
+        }
+        
+        /* Calendar Component */
+        .calendar-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .calendar-title {
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .calendar-nav-btn {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: #7FB8E5;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        
+        .calendar-nav-btn:hover {
+            background: rgba(127,184,229,0.2);
+            transform: scale(1.1);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+        
+        .day-header {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            padding: 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .day-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #94a3b8;
+        }
+        
+        .day-item.today {
+            background: #7FB8E5;
+            color: #000000;
+            font-weight: 800;
+            box-shadow: 0 0 20px rgba(127,184,229,0.6);
+        }
+        
+        .day-item.other-month {
+            opacity: 0.3;
+        }
+        
+        /* Engagement Gradient Levels */
+        .day-item.level-1 { background: rgba(127,184,229,0.2); color: #7FB8E5; }
+        .day-item.level-2 { background: rgba(127,184,229,0.4); color: white; }
+        .day-item.level-3 { background: rgba(127,184,229,0.6); color: white; }
+        .day-item.level-4 { background: rgba(127,184,229,0.8); color: white; }
+        .day-item.level-5 { background: #7FB8E5; color: #000000; font-weight: 800; }
+        
+        .day-item:hover {
+            transform: scale(1.2);
+        }
+        
+        /* AI Coach Section */
+        .coach-section {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .coach-section:hover {
+            transform: translateY(-2px);
+            border-color: rgba(127,184,229,0.4);
+            box-shadow: 0 12px 32px rgba(127,184,229,0.3);
+        }
+        
+        .coach-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .coach-mascot {
+            width: 52px;
+            height: 52px;
+            background: rgba(127,184,229,0.2);
+            border: 2px solid #7FB8E5;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 28px;
+            position: relative;
+        }
+        
+        .coach-mascot::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: #ec4899;
+            border: 2px solid #000000;
+            border-radius: 50%;
+            animation: pinkPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pinkPulse {
+            0%, 100% { background: #ec4899; transform: scale(1); }
+            50% { background: #f472b6; transform: scale(1.1); }
+        }
+        
+        .coach-info h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .coach-info p {
+            color: #7FB8E5;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .coach-preview {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 24px 24px;
+        }
+        
+        .feature-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.15);
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(236,72,153,0.4);
+            box-shadow: 
+                0 0 16px rgba(236,72,153,0.4),
+                0 8px 24px rgba(236,72,153,0.3);
+        }
+        
+        .feature-card:nth-child(2n):hover {
+            border-color: rgba(127,184,229,0.4);
+            box-shadow: 
+                0 0 16px rgba(127,184,229,0.4),
+                0 8px 24px rgba(127,184,229,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 2px 8px rgba(127,184,229,0.3));
+        }
+        
+        .feature-title {
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Chat Interface */
+        .chat-container {
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .mascot-large {
+            width: 80px;
+            height: 80px;
+            background: rgba(127,184,229,0.2);
+            border: 2px solid #7FB8E5;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 40px;
+            position: relative;
+            animation: mascotFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes mascotFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        .mascot-large::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ec4899;
+            border: 3px solid #000000;
+            border-radius: 50%;
+            animation: pinkPulseLarge 2s ease-in-out infinite;
+        }
+        
+        @keyframes pinkPulseLarge {
+            0%, 100% { background: #ec4899; transform: scale(1); box-shadow: 0 0 8px rgba(236,72,153,0.6); }
+            50% { background: #f472b6; transform: scale(1.15); box-shadow: 0 0 16px rgba(244,114,182,0.8); }
+        }
+        
+        .chat-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        
+        .chat-subtitle {
+            color: #7FB8E5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .messages-area {
+            flex: 1;
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            overflow-y: auto;
+            max-height: 350px;
+            min-height: 200px;
+        }
+        
+        .chat-message {
+            margin-bottom: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        
+        .coach-message {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: white;
+        }
+        
+        .user-message {
+            background: rgba(59,130,246,0.2);
+            border: 1px solid rgba(59,130,246,0.4);
+            color: #93c5fd;
+            margin-left: 20px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .quick-reply {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: #7FB8E5;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+            background: rgba(236,72,153,0.2);
+            border-color: rgba(236,72,153,0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(236,72,153,0.2);
+        }
+        
+        .input-container {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.3);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .chat-input::placeholder {
+            color: #64748b;
+        }
+        
+        .send-button {
+            background: #ec4899;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #000000;
+            font-weight: 800;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+        }
+        
+        .send-button:hover {
+            background: #f472b6;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(236,72,153,0.5);
+        }
+        
+        /* Calendar View */
+        .calendar-view {
+            padding: 24px;
+        }
+        
+        .calendar-wrapper {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .month-display {
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+        }
+        
+        .cal-nav-btn {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: #7FB8E5;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        
+        .cal-nav-btn:hover {
+            background: rgba(127,184,229,0.2);
+        }
+        
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .cal-day-header {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            padding: 8px 0;
+            text-transform: uppercase;
+        }
+        
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #94a3b8;
+        }
+        
+        .cal-day.today {
+            background: #7FB8E5;
+            color: #000000;
+            font-weight: 800;
+        }
+        
+        .cal-day.inactive {
+            opacity: 0.3;
+        }
+        
+        /* Progressive Blue Engagement Levels (Clean) */
+        .cal-day.eng-1 { background: rgba(127,184,229,0.25); color: #7FB8E5; }
+        .cal-day.eng-2 { background: rgba(127,184,229,0.45); color: white; }
+        .cal-day.eng-3 { background: rgba(127,184,229,0.65); color: white; }
+        .cal-day.eng-4 { background: rgba(127,184,229,0.85); color: white; }
+        .cal-day.eng-5 { background: #7FB8E5; color: #000000; font-weight: 800; }
+        
+        .cal-day:hover {
+            transform: scale(1.15);
+        }
+        
+        .engagement-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+        
+        .scale-label {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .scale-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .scale-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        
+        /* Journal Section */
+        .journal-view {
+            padding: 24px;
+        }
+        
+        .journal-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .journal-header {
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .journal-textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(127,184,229,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.5;
+            resize: none;
+            height: 120px;
+            outline: none;
+        }
+        
+        .journal-textarea::placeholder {
+            color: #64748b;
+        }
+        
+        .save-btn {
+            background: #7FB8E5;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(127,184,229,0.3);
+        }
+        
+        .save-btn:hover {
+            background: #93c5fd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(127,184,229,0.5);
+        }
+        
+        /* Education Section */
+        .education-view {
+            padding: 24px;
+        }
+        
+        .education-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .education-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(236,72,153,0.4);
+            box-shadow: 
+                0 0 16px rgba(236,72,153,0.4),
+                0 8px 24px rgba(236,72,153,0.2);
+        }
+        
+        .education-card:nth-child(2n):hover {
+            border-color: rgba(127,184,229,0.4);
+            box-shadow: 
+                0 0 16px rgba(127,184,229,0.4),
+                0 8px 24px rgba(127,184,229,0.2);
+        }
+        
+        .edu-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .edu-description {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .edu-duration {
+            color: #7FB8E5;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Breathing Exercise */
+        .breathing-view {
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .breathing-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 40px 24px;
+        }
+        
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #7FB8E5;
+            border-radius: 50%;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); border-color: #7FB8E5; }
+            50% { transform: scale(1.1); border-color: #93c5fd; }
+        }
+        
+        @keyframes breatheIn {
+            0% { transform: scale(1); border-color: #7FB8E5; }
+            100% { transform: scale(1.2); border-color: #10b981; }
+        }
+        
+        @keyframes breatheHold {
+            0%, 100% { transform: scale(1.2); border-color: #10b981; }
+        }
+        
+        @keyframes breatheOut {
+            0% { transform: scale(1.2); border-color: #10b981; }
+            100% { transform: scale(0.9); border-color: #7FB8E5; }
+        }
+        
+        .breathing-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .breathing-instruction {
+            color: #7FB8E5;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .breathing-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .control-btn {
+            background: rgba(127,184,229,0.2);
+            border: 1px solid #7FB8E5;
+            color: #7FB8E5;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(127,184,229,0.3);
+        }
+        
+        .control-btn.active {
+            background: #ec4899;
+            color: #000000;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+        }
+        
+        /* Bottom Tab Bar */
+        .tab-bar {
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(255,255,255,0.1);
+            display: flex;
+            height: 84px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #6b7280;
+            position: relative;
+        }
+        
+        .tab-item.active {
+            color: #ec4899;
+        }
+        
+        .tab-item.active::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 2px;
+            background: #ec4899;
+            border-radius: 1px;
+            box-shadow: 0 0 8px rgba(236,72,153,0.5);
+        }
+        
+        .tab-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 4px;
+            background: currentColor;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        
+        .tab-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Tab Icons */
+        .icon-dashboard { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z'/%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z'/%3E%3C/svg%3E"); }
+        .icon-calendar-tab { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E"); }
+        .icon-chat-tab { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'/%3E%3C/svg%3E"); }
+        .icon-journal { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'/%3E%3C/svg%3E"); }
+        .icon-education { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'/%3E%3C/svg%3E"); }
+        .icon-breathing { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3C/svg%3E"); }
+        
+        /* Progress Rings */
+        .progress-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+        }
+        
+        .progress-ring svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-ring-bg {
+            fill: none;
+            stroke: rgba(127,184,229,0.1);
+            stroke-width: 8;
+        }
+        
+        .progress-ring-fill {
+            fill: none;
+            stroke: #7FB8E5;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dasharray 0.5s ease;
+            filter: drop-shadow(0 0 8px rgba(127,184,229,0.5));
+        }
+        
+        .progress-ring-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .ring-value {
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .ring-label {
+            color: #7FB8E5;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15,23,42,0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.4);
+            border-radius: 16px;
+            padding: 16px 24px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        /* Craving Management */
+        .craving-view {
+            padding: 24px;
+        }
+        
+        .craving-intensity {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .intensity-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(127,184,229,0.2);
+            border-radius: 4px;
+            outline: none;
+            margin: 20px 0;
+            appearance: none;
+        }
+        
+        .intensity-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #7FB8E5;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(127,184,229,0.6);
+        }
+        
+        .coping-strategies {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .strategy-card {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-card:hover {
+            border-color: rgba(236,72,153,0.4);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 16px rgba(236,72,153,0.5),
+                0 8px 24px rgba(236,72,153,0.3);
+        }
+        
+        .strategy-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .strategy-description {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        /* Education Module Detail */
+        .module-detail {
+            display: none;
+            padding: 24px;
+        }
+        
+        .module-detail.active {
+            display: block;
+        }
+        
+        .module-header {
+            margin-bottom: 24px;
+        }
+        
+        .back-btn {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            color: #7FB8E5;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(127,184,229,0.2);
+            border-color: rgba(127,184,229,0.4);
+            box-shadow: 0 4px 12px rgba(127,184,229,0.2);
+        }
+        
+        .module-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .module-content {
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(127,184,229,0.2);
+            border-radius: 20px;
+            padding: 24px;
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .module-content h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 24px 0 12px 0;
+        }
+        
+        .module-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Mood Tracking */
+        .mood-selector {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+        }
+        
+        .mood-item {
+            background: rgba(127,184,229,0.1);
+            border: 1px solid rgba(127,184,229,0.3);
+            border-radius: 16px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            flex: 1;
+            margin: 0 4px;
+        }
+        
+        .mood-item:hover {
+            background: rgba(127,184,229,0.2);
+        }
+        
+        .mood-item.selected {
+            background: #ec4899;
+            color: #000000;
+            box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+        }
+        
+        .mood-emoji {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .mood-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #7FB8E5;
+        }
+        
+        .mood-item.selected .mood-label {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="device-frame">
+        <div class="screen">
+            <!-- iOS Status Bar -->
+            <div class="status-bar">
+                <div class="status-left">9:41</div>
+                <div class="status-right">
+                    <span>●●●●●</span>
+                    <span>100%</span>
+                </div>
+            </div>
+            
+            <!-- iOS Navigation Header -->
+            <div class="nav-header">
+                <h1 class="nav-title">Quit Hero</h1>
+            </div>
+            
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Dashboard View -->
+                <div class="view active" id="dashboard">
+                    <div class="dashboard-section">
+                        <!-- Stats Card -->
+                        <div class="stats-card">
+                            <div class="primary-stat">
+                                <div class="stat-number" id="daysClean">389</div>
+                                <div class="stat-label">Days Clean</div>
+                                <div class="status-badge" id="statusBadge" style="background: rgba(236,72,153,0.2); border-color: #ec4899; color: #ec4899;">Elite Master Status</div>
+                            </div>
+                            <div class="secondary-stats">
+                                <div class="mini-stat">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <defs>
+                                                <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" style="stop-color:#7FB8E5;stop-opacity:1" />
+                                                    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                                                </linearGradient>
+                                            </defs>
+                                            <circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+                                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" 
+                                                    stroke-dasharray="327" stroke-dashoffset="65" id="moneyRing"></circle>
+                                        </svg>
+                                        <div class="progress-ring-text">
+                                            <div class="ring-value" id="moneySaved">$287</div>
+                                            <div class="ring-label">Saved</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mini-stat">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+                                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" 
+                                                    stroke-dasharray="327" stroke-dashoffset="33" id="puffsRing"></circle>
+                                        </svg>
+                                        <div class="progress-ring-text">
+                                            <div class="ring-value" id="puffsAvoided">1,840</div>
+                                            <div class="ring-label">Puffs Avoided</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mini-stat">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+                                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" 
+                                                    stroke-dasharray="327" stroke-dashoffset="7" id="healthRing"></circle>
+                                        </svg>
+                                        <div class="progress-ring-text">
+                                            <div class="ring-value" id="lungRecovery">98%</div>
+                                            <div class="ring-label">Lung Recovery</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Calendar Overview -->
+                        <div class="calendar-card">
+                            <div class="calendar-header">
+                                <div class="calendar-title">September Activity</div>
+                                <div class="calendar-nav-btn" onclick="showView('calendar')">→</div>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="day-header">S</div>
+                                <div class="day-header">M</div>
+                                <div class="day-header">T</div>
+                                <div class="day-header">W</div>
+                                <div class="day-header">T</div>
+                                <div class="day-header">F</div>
+                                <div class="day-header">S</div>
+                                
+                                <div class="day-item level-4">1</div>
+                                <div class="day-item today">2</div>
+                                <div class="day-item">3</div>
+                                <div class="day-item">4</div>
+                                <div class="day-item">5</div>
+                                <div class="day-item">6</div>
+                                <div class="day-item">7</div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Coach Preview -->
+                        <div class="coach-section" onclick="showView('chat')">
+                            <div class="coach-header">
+                                <div class="coach-mascot">🐺</div>
+                                <div class="coach-info">
+                                    <h3>Luna - AI Coach</h3>
+                                    <p>Active • Ready to support</p>
+                                </div>
+                            </div>
+                            <div class="coach-preview">
+                                "Impressive! 23 days shows exceptional willpower. Your respiratory system is rebuilding itself. Ready for today's challenge?"
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Grid -->
+                    <div class="feature-grid">
+                        <div class="feature-card" onclick="showView('journal')">
+                            <div class="feature-icon">📖</div>
+                            <div class="feature-title">Smart Journal</div>
+                        </div>
+                        <div class="feature-card" onclick="showView('education')">
+                            <div class="feature-icon">🧠</div>
+                            <div class="feature-title">Learn</div>
+                        </div>
+                        <div class="feature-card" onclick="showView('breathing')">
+                            <div class="feature-icon">🫁</div>
+                            <div class="feature-title">Breathe</div>
+                        </div>
+                        <div class="feature-card" onclick="showView('cravings')">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-title">Cravings</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Calendar View -->
+                <div class="view" id="calendar">
+                    <div class="calendar-view">
+                        <div class="calendar-wrapper">
+                            <div class="calendar-nav">
+                                <button class="cal-nav-btn">‹</button>
+                                <div class="month-display">September 2025</div>
+                                <button class="cal-nav-btn">›</button>
+                            </div>
+                            
+                            <div class="cal-grid">
+                                <div class="cal-day-header">Sun</div>
+                                <div class="cal-day-header">Mon</div>
+                                <div class="cal-day-header">Tue</div>
+                                <div class="cal-day-header">Wed</div>
+                                <div class="cal-day-header">Thu</div>
+                                <div class="cal-day-header">Fri</div>
+                                <div class="cal-day-header">Sat</div>
+                                
+                                <div class="cal-day inactive">31</div>
+                                <div class="cal-day eng-4">1</div>
+                                <div class="cal-day today">2</div>
+                                <div class="cal-day">3</div>
+                                <div class="cal-day">4</div>
+                                <div class="cal-day">5</div>
+                                <div class="cal-day">6</div>
+                                
+                                <div class="cal-day">7</div>
+                                <div class="cal-day">8</div>
+                                <div class="cal-day">9</div>
+                                <div class="cal-day">10</div>
+                                <div class="cal-day eng-1">11</div>
+                                <div class="cal-day eng-2">12</div>
+                                <div class="cal-day eng-3">13</div>
+                                
+                                <div class="cal-day eng-4">14</div>
+                                <div class="cal-day eng-5">15</div>
+                                <div class="cal-day eng-3">16</div>
+                                <div class="cal-day eng-4">17</div>
+                                <div class="cal-day eng-5">18</div>
+                                <div class="cal-day eng-2">19</div>
+                                <div class="cal-day eng-4">20</div>
+                                
+                                <div class="cal-day eng-5">21</div>
+                                <div class="cal-day eng-3">22</div>
+                                <div class="cal-day eng-4">23</div>
+                                <div class="cal-day eng-5">24</div>
+                                <div class="cal-day eng-4">25</div>
+                                <div class="cal-day eng-5">26</div>
+                                <div class="cal-day eng-3">27</div>
+                                
+                                <div class="cal-day eng-5">28</div>
+                                <div class="cal-day eng-4">29</div>
+                                <div class="cal-day eng-5">30</div>
+                                <div class="cal-day inactive">1</div>
+                                <div class="cal-day inactive">2</div>
+                                <div class="cal-day inactive">3</div>
+                                <div class="cal-day inactive">4</div>
+                            </div>
+                            
+                            <div class="engagement-scale">
+                                <span class="scale-label">Less Active</span>
+                                <div class="scale-dots">
+                                    <div class="scale-dot" style="background: rgba(127,184,229,0.25);"></div>
+                                    <div class="scale-dot" style="background: rgba(127,184,229,0.45);"></div>
+                                    <div class="scale-dot" style="background: rgba(127,184,229,0.65);"></div>
+                                    <div class="scale-dot" style="background: rgba(127,184,229,0.85);"></div>
+                                    <div class="scale-dot" style="background: #7FB8E5;"></div>
+                                </div>
+                                <span class="scale-label">Peak Activity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat View -->
+                <div class="view" id="chat">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="mascot-large">🐺</div>
+                            <h2 class="chat-title">Luna</h2>
+                            <p class="chat-subtitle">Your AI Performance Coach</p>
+                        </div>
+                        
+                        <div class="messages-area" id="messages">
+                            <div class="chat-message coach-message">
+                                <strong>Luna:</strong> Outstanding! 23 days is elite-level commitment. Your neural pathways are rebuilding stronger than ever. What's driving your success today?
+                            </div>
+                            
+                            <div class="quick-replies">
+                                <button class="quick-reply">Feeling unstoppable</button>
+                                <button class="quick-reply">Minor cravings</button>
+                                <button class="quick-reply">Need strategy</button>
+                                <button class="quick-reply">Stress management</button>
+                            </div>
+                        </div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="chat-input" placeholder="Share your thoughts...">
+                            <button class="send-button">→</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Journal View -->
+                <div class="view" id="journal">
+                    <div class="journal-view">
+                        <div class="journal-card">
+                            <h2 class="journal-header">Performance Journal</h2>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <div style="color: white; font-size: 14px; font-weight: 600; margin-bottom: 12px;">How are you feeling today?</div>
+                                <div class="mood-selector">
+                                    <div class="mood-item" data-mood="excellent">
+                                        <span class="mood-emoji">🚀</span>
+                                        <div class="mood-label">Excellent</div>
+                                    </div>
+                                    <div class="mood-item" data-mood="good">
+                                        <span class="mood-emoji">😊</span>
+                                        <div class="mood-label">Good</div>
+                                    </div>
+                                    <div class="mood-item" data-mood="neutral">
+                                        <span class="mood-emoji">😐</span>
+                                        <div class="mood-label">Neutral</div>
+                                    </div>
+                                    <div class="mood-item" data-mood="challenging">
+                                        <span class="mood-emoji">😤</span>
+                                        <div class="mood-label">Challenging</div>
+                                    </div>
+                                    <div class="mood-item" data-mood="difficult">
+                                        <span class="mood-emoji">😰</span>
+                                        <div class="mood-label">Difficult</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <textarea class="journal-textarea" id="journalTextarea" placeholder="Track your mindset, challenges, victories, and insights. What patterns are you noticing in your quit journey?"></textarea>
+                            <button class="save-btn" onclick="saveJournalEntry()">Save Entry</button>
+                        </div>
+                        
+                        <div class="journal-card">
+                            <h3 style="color: white; font-size: 16px; margin-bottom: 12px;">Recent Entries</h3>
+                            <div id="journalEntries">
+                                <div style="color: #94a3b8; font-size: 14px; padding: 12px; background: rgba(0,0,0,0.4); border-radius: 8px; margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong style="color: #7FB8E5;">Day 22</strong>
+                                        <span style="font-size: 18px;">😊</span>
+                                    </div>
+                                    Craving hit during coffee break but used breathing technique instead. Mental clarity is incredible now.
+                                </div>
+                                <div style="color: #94a3b8; font-size: 14px; padding: 12px; background: rgba(0,0,0,0.4); border-radius: 8px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong style="color: #7FB8E5;">Day 21</strong>
+                                        <span style="font-size: 18px;">🚀</span>
+                                    </div>
+                                    Three weeks! Taste buds are fully back. Food tastes amazing again.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Craving Management View -->
+                <div class="view" id="cravings">
+                    <div class="craving-view">
+                        <div class="journal-card">
+                            <h2 class="journal-header">Craving Management</h2>
+                            <div class="craving-intensity">
+                                <div style="color: white; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Current Intensity Level</div>
+                                <input type="range" class="intensity-slider" min="1" max="10" value="3" id="intensitySlider">
+                                <div style="color: #7FB8E5; font-size: 16px; font-weight: 600;" id="intensityLabel">Mild (3/10)</div>
+                            </div>
+                            
+                            <div class="coping-strategies">
+                                <div class="strategy-card" onclick="executeStrategy('breathing')">
+                                    <div class="strategy-title">🫁 Immediate Breathing</div>
+                                    <div class="strategy-description">4-7-8 technique to reset your nervous system in 60 seconds</div>
+                                </div>
+                                
+                                <div class="strategy-card" onclick="executeStrategy('cold')">
+                                    <div class="strategy-title">🧊 Cold Exposure</div>
+                                    <div class="strategy-description">Splash cold water on face or hold ice cubes to interrupt craving cycle</div>
+                                </div>
+                                
+                                <div class="strategy-card" onclick="executeStrategy('movement')">
+                                    <div class="strategy-title">🏃 Micro-Movement</div>
+                                    <div class="strategy-description">20 jumping jacks or push-ups to redirect neural energy</div>
+                                </div>
+                                
+                                <div class="strategy-card" onclick="executeStrategy('visualization')">
+                                    <div class="strategy-title">🎯 Future Self Visualization</div>
+                                    <div class="strategy-description">See yourself at 100 days clean - how does it feel?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Education View -->
+                <div class="view" id="education">
+                    <div class="education-view">
+                        <div class="education-card" onclick="showEducationModule('neuroplasticity')">
+                            <div class="edu-title">🧬 Neuroplasticity & Recovery</div>
+                            <div class="edu-description">Understanding how your brain rewires itself during addiction recovery</div>
+                            <div class="edu-duration">8 min read</div>
+                        </div>
+                        
+                        <div class="education-card" onclick="showEducationModule('respiratory')">
+                            <div class="edu-title">🫁 Respiratory System Healing</div>
+                            <div class="edu-description">Timeline of lung recovery and breathing improvements</div>
+                            <div class="edu-duration">5 min read</div>
+                        </div>
+                        
+                        <div class="education-card" onclick="showEducationModule('financial')">
+                            <div class="edu-title">💰 Financial Impact Calculator</div>
+                            <div class="edu-description">Visualize your long-term savings and investment potential</div>
+                            <div class="edu-duration">Interactive</div>
+                        </div>
+                        
+                        <div class="education-card" onclick="showEducationModule('cognitive')">
+                            <div class="edu-title">🧠 Cognitive Enhancement</div>
+                            <div class="edu-description">How quitting improves focus, memory, and mental performance</div>
+                            <div class="edu-duration">6 min read</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Education Module Details -->
+                    <div class="module-detail" id="neuroplasticity-module">
+                        <div class="module-header">
+                            <button class="back-btn" onclick="hideEducationModule()">← Back to Learn</button>
+                            <h2 class="module-title">🧬 Neuroplasticity & Recovery</h2>
+                        </div>
+                        <div class="module-content">
+                            <h3>The Science of Neural Rewiring</h3>
+                            <p>Your brain possesses an extraordinary ability called neuroplasticity - the capacity to reorganize and form new neural connections. When you quit vaping, you're literally rewiring your brain's reward pathways.</p>
+                            
+                            <h3>The 90-Day Transformation</h3>
+                            <p><strong>Days 1-30:</strong> Acute withdrawal as dopamine receptors begin to normalize. Mental fog and irritability are temporary as your brain recalibrates.</p>
+                            <p><strong>Days 31-60:</strong> New neural pathways strengthen. You'll notice improved focus and emotional regulation as your prefrontal cortex regains control.</p>
+                            <p><strong>Days 61-90:</strong> Full neurochemical rebalancing. Your brain has essentially rebuilt itself with stronger, healthier reward circuits.</p>
+                            
+                            <h3>Performance Enhancement</h3>
+                            <p>Elite athletes understand that addiction recovery isn't just about stopping - it's about optimizing your neural architecture for peak performance. Every day clean is building a more resilient, focused mind.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="module-detail" id="respiratory-module">
+                        <div class="module-header">
+                            <button class="back-btn" onclick="hideEducationModule()">← Back to Learn</button>
+                            <h2 class="module-title">🫁 Respiratory System Healing</h2>
+                        </div>
+                        <div class="module-content">
+                            <h3>Your Lungs Are Regenerating</h3>
+                            <p>The human respiratory system has remarkable healing capacity. Here's your recovery timeline:</p>
+                            
+                            <h3>20 Minutes: Circulation Improves</h3>
+                            <p>Heart rate and blood pressure drop to normal levels. Circulation to hands and feet improves.</p>
+                            
+                            <h3>12 Hours: Carbon Monoxide Clears</h3>
+                            <p>Carbon monoxide levels normalize. Oxygen levels increase throughout your body.</p>
+                            
+                            <h3>2 Weeks: Lung Function Increases 30%</h3>
+                            <p>Cilia (tiny hairs) in lungs regrow, improving their ability to clean and reduce infection risk.</p>
+                            
+                            <h3>1-9 Months: Complete Respiratory Recovery</h3>
+                            <p>Lung capacity can increase by up to 10%. Coughing and shortness of breath decrease dramatically.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="module-detail" id="financial-module">
+                        <div class="module-header">
+                            <button class="back-btn" onclick="hideEducationModule()">← Back to Learn</button>
+                            <h2 class="module-title">💰 Financial Impact Calculator</h2>
+                        </div>
+                        <div class="module-content">
+                            <h3>Your Investment in Freedom</h3>
+                            <p><strong>Daily Savings:</strong> $12.50 (based on 1 pod/day)</p>
+                            <p><strong>Monthly Savings:</strong> $375</p>
+                            <p><strong>Annual Savings:</strong> $4,562</p>
+                            
+                            <h3>5-Year Projection</h3>
+                            <p><strong>Total Saved:</strong> $22,810</p>
+                            <p><strong>If Invested (7% return):</strong> $26,234</p>
+                            
+                            <h3>What You Could Buy Instead</h3>
+                            <p>• High-end laptop: 3 months of savings</p>
+                            <p>• Luxury vacation: 6 months of savings</p>
+                            <p>• Down payment assistance: 1 year of savings</p>
+                            
+                            <h3>Health Cost Avoidance</h3>
+                            <p>Average lifetime healthcare costs for vapers: $42,000+. You're not just saving money - you're avoiding massive future expenses.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="module-detail" id="cognitive-module">
+                        <div class="module-header">
+                            <button class="back-btn" onclick="hideEducationModule()">← Back to Learn</button>
+                            <h2 class="module-title">🧠 Cognitive Enhancement</h2>
+                        </div>
+                        <div class="module-content">
+                            <h3>Mental Performance Optimization</h3>
+                            <p>Nicotine addiction creates a false sense of cognitive enhancement while actually impairing your brain's natural capabilities.</p>
+                            
+                            <h3>Focus & Attention</h3>
+                            <p>After 30 days clean, sustained attention improves by 40%. Your ability to enter flow states increases dramatically as dopamine sensitivity normalizes.</p>
+                            
+                            <h3>Memory Consolidation</h3>
+                            <p>Sleep quality improves within 2 weeks, enhancing memory formation. REM sleep increases, boosting creative problem-solving abilities.</p>
+                            
+                            <h3>Executive Function</h3>
+                            <p>The prefrontal cortex regains full control over impulse decisions. You'll notice improved planning, decision-making, and emotional regulation.</p>
+                            
+                            <h3>Peak Performance State</h3>
+                            <p>Elite performers know that true cognitive enhancement comes from optimizing your brain's natural chemistry, not from external substances.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Breathing Exercise View -->
+                <div class="view" id="breathing">
+                    <div class="breathing-view">
+                        <div class="breathing-card">
+                            <div class="breathing-instruction">4-7-8 Technique</div>
+                            <div class="breathing-circle">
+                                <div class="breathing-text">Inhale</div>
+                            </div>
+                            <div class="breathing-controls">
+                                <button class="control-btn active">Start</button>
+                                <button class="control-btn">Pause</button>
+                                <button class="control-btn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- iOS Tab Bar -->
+            <div class="tab-bar">
+                <div class="tab-item active" onclick="showView('dashboard')">
+                    <div class="tab-icon icon-dashboard"></div>
+                    <span class="tab-label">Dashboard</span>
+                </div>
+                <div class="tab-item" onclick="showView('calendar')">
+                    <div class="tab-icon icon-calendar-tab"></div>
+                    <span class="tab-label">Calendar</span>
+                </div>
+                <div class="tab-item" onclick="showView('chat')">
+                    <div class="tab-icon icon-chat-tab"></div>
+                    <span class="tab-label">Coach</span>
+                </div>
+                <div class="tab-item" onclick="showView('journal')">
+                    <div class="tab-icon icon-journal"></div>
+                    <span class="tab-label">Journal</span>
+                </div>
+                <div class="tab-item" onclick="showView('education')">
+                    <div class="tab-icon icon-education"></div>
+                    <span class="tab-label">Learn</span>
+                </div>
+                <div class="tab-item" onclick="showView('breathing')">
+                    <div class="tab-icon icon-breathing"></div>
+                    <span class="tab-label">Breathe</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // App State Management
+        class QuitHeroApp {
+            constructor() {
+                this.data = this.loadData();
+                this.init();
+            }
+            
+            loadData() {
+                const defaultData = {
+                    quitDate: new Date('2024-08-11'),
+                    dailyCost: 12.50,
+                    puffsPerDay: 80,
+                    journalEntries: [],
+                    calendarData: {},
+                    breathingSessions: 0,
+                    currentStreak: 23
+                };
+                
+                const saved = localStorage.getItem('quitHeroData');
+                return saved ? {...defaultData, ...JSON.parse(saved)} : defaultData;
+            }
+            
+            saveData() {
+                localStorage.setItem('quitHeroData', JSON.stringify(this.data));
+            }
+            
+            init() {
+                this.updateDashboard();
+                this.updateCalendar();
+                this.initEventListeners();
+                this.updateTime();
+            }
+            
+            updateDashboard() {
+                const now = new Date();
+                const quitDate = new Date(this.data.quitDate);
+                const daysDiff = Math.floor((now - quitDate) / (1000 * 60 * 60 * 24));
+                
+                // Update primary stats
+                document.getElementById('daysClean').textContent = daysDiff;
+                
+                // Calculate savings
+                const moneySaved = Math.floor(daysDiff * this.data.dailyCost);
+                document.getElementById('moneySaved').textContent = `$${moneySaved}`;
+                
+                // Calculate puffs avoided
+                const puffsAvoided = daysDiff * this.data.puffsPerDay;
+                document.getElementById('puffsAvoided').textContent = puffsAvoided.toLocaleString();
+                
+                // Calculate lung recovery (progressive over 90 days)
+                const lungRecovery = Math.min(98, Math.floor((daysDiff / 90) * 98));
+                document.getElementById('lungRecovery').textContent = `${lungRecovery}%`;
+                
+                // Update status badge
+                const phases = [
+                    { days: 0, name: "Initial Phase", color: "#fbbf24" },
+                    { days: 7, name: "Stabilization", color: "#f59e0b" },
+                    { days: 14, name: "Breakthrough Phase", color: "#10b981" },
+                    { days: 30, name: "Neural Rewiring", color: "#7FB8E5" },
+                    { days: 60, name: "Peak Performance", color: "#8b5cf6" },
+                    { days: 90, name: "Elite Status", color: "#ec4899" }
+                ];
+                
+                const currentPhase = phases.reverse().find(phase => daysDiff >= phase.days);
+                const badge = document.getElementById('statusBadge');
+                badge.textContent = currentPhase.name;
+                badge.style.borderColor = currentPhase.color;
+                badge.style.color = currentPhase.color;
+                
+                // Update progress rings
+                this.updateProgressRing('moneyRing', (moneySaved % 1000) / 1000);
+                this.updateProgressRing('puffsRing', (puffsAvoided % 2000) / 2000);
+                this.updateProgressRing('healthRing', lungRecovery / 100);
+            }
+            
+            updateProgressRing(ringId, progress) {
+                const ring = document.getElementById(ringId);
+                const circumference = 2 * Math.PI * 52;
+                const offset = circumference - (progress * circumference);
+                ring.style.strokeDashoffset = offset;
+            }
+            
+            updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: false 
+                });
+                document.querySelector('.status-left').textContent = timeString;
+                
+                setTimeout(() => this.updateTime(), 60000);
+            }
+            
+            updateCalendar() {
+                // Calendar functionality will be enhanced here
+            }
+            
+            initEventListeners() {
+                // Mood selector
+                document.querySelectorAll('.mood-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        document.querySelectorAll('.mood-item').forEach(i => i.classList.remove('selected'));
+                        item.classList.add('selected');
+                    });
+                });
+                
+                // Intensity slider
+                const slider = document.getElementById('intensitySlider');
+                if (slider) {
+                    slider.addEventListener('input', (e) => {
+                        const value = e.target.value;
+                        const labels = ['', 'Minimal', 'Mild', 'Mild', 'Moderate', 'Moderate', 'Strong', 'Strong', 'Intense', 'Severe', 'Critical'];
+                        document.getElementById('intensityLabel').textContent = `${labels[value]} (${value}/10)`;
+                    });
+                }
+            }
+        }
+        
+        // Initialize app
+        let app;
+        document.addEventListener('DOMContentLoaded', () => {
+            app = new QuitHeroApp();
+        });
+        
+        // View Management
+        function showView(viewId) {
+            // Hide all views and module details
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.querySelectorAll('.module-detail').forEach(module => {
+                module.classList.remove('active');
+            });
+            
+            // Show target view
+            document.getElementById(viewId).classList.add('active');
+            
+            // Update tab bar
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Activate corresponding tab
+            const tabMap = {
+                'dashboard': 0,
+                'calendar': 1,
+                'chat': 2,
+                'journal': 3,
+                'education': 4,
+                'breathing': 5,
+                'cravings': 0 // Accessed via dashboard feature card
+            };
+            
+            const tabItems = document.querySelectorAll('.tab-item');
+            if (tabMap[viewId] !== undefined) {
+                tabItems[tabMap[viewId]].classList.add('active');
+            }
+            
+            // Track engagement
+            if (app) {
+                app.trackEngagement(viewId);
+            }
+        }
+        
+        // Education Module Management
+        function showEducationModule(moduleId) {
+            document.querySelector('.education-view').style.display = 'none';
+            document.getElementById(moduleId + '-module').classList.add('active');
+        }
+        
+        function hideEducationModule() {
+            document.querySelectorAll('.module-detail').forEach(module => {
+                module.classList.remove('active');
+            });
+            document.querySelector('.education-view').style.display = 'block';
+        }
+        
+        // Enhanced Chat System
+        function sendMessage(message) {
+            const messagesArea = document.getElementById('messages');
+            const chatInput = document.querySelector('.chat-input');
+            
+            const messageText = message || chatInput.value.trim();
+            if (!messageText) return;
+            
+            if (chatInput) chatInput.value = '';
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user-message';
+            userMsg.innerHTML = `<strong>You:</strong> ${messageText}`;
+            messagesArea.appendChild(userMsg);
+            
+            // Show typing indicator
+            const typingMsg = document.createElement('div');
+            typingMsg.className = 'chat-message coach-message';
+            typingMsg.innerHTML = `<strong>Luna:</strong> <em>typing...</em>`;
+            typingMsg.id = 'typing-indicator';
+            messagesArea.appendChild(typingMsg);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            
+            // Add AI response
+            setTimeout(() => {
+                document.getElementById('typing-indicator').remove();
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'chat-message coach-message';
+                aiMsg.innerHTML = `<strong>Luna:</strong> ${getCoachResponse(messageText)}`;
+                messagesArea.appendChild(aiMsg);
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+                
+                // Update engagement
+                if (app) {
+                    app.trackEngagement('chat');
+                }
+            }, 1500);
+        }
+        
+        function getCoachResponse(input) {
+            const contextualResponses = {
+                'unstoppable': "That's the mindset of a champion! Your confidence is radiating peak performance energy. Channel this momentum into your next challenge.",
+                'cravings': "Cravings are just neural echoes from your old patterns. You're stronger than any temporary signal. What's your go-to reset technique?",
+                'strategy': "Let's optimize your approach. Elite performers have multiple strategies ready. Which situation needs the strongest game plan?",
+                'stress': "Stress is information, not intimidation. Your nervous system is learning new patterns. Try the 4-7-8 breathing technique - it's like a software update for your brain."
+            };
+            
+            // Check for contextual matches
+            const lowerInput = input.toLowerCase();
+            for (const [key, response] of Object.entries(contextualResponses)) {
+                if (lowerInput.includes(key)) {
+                    return response;
+                }
+            }
+            
+            // Default responses
+            const responses = [
+                "Exceptional insight! Your analytical approach to this challenge demonstrates advanced neural development. How can we leverage this momentum?",
+                "I see elite-level self-awareness here. Champions recognize patterns and adapt. What's the next optimization in your performance stack?",
+                "Outstanding! Your brain is operating at peak efficiency now. This kind of mental clarity is what separates high performers from the average.",
+                "Fascinating data point! Your cognitive enhancement is accelerating. How does this improved mental state feel compared to day one?",
+                "You're entering flow state territory. This is where breakthrough performance happens. What's your next level challenge?"
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+        
+        // Journal Management
+        function saveJournalEntry() {
+            const textarea = document.getElementById('journalTextarea');
+            const selectedMood = document.querySelector('.mood-item.selected');
+            
+            if (!textarea.value.trim()) {
+                showNotification('Please write something in your journal first.');
+                return;
+            }
+            
+            if (!selectedMood) {
+                showNotification('Please select your mood first.');
+                return;
+            }
+            
+            const entry = {
+                date: new Date(),
+                day: app.data.currentStreak,
+                mood: selectedMood.dataset.mood,
+                moodEmoji: selectedMood.querySelector('.mood-emoji').textContent,
+                content: textarea.value.trim()
+            };
+            
+            app.data.journalEntries.unshift(entry);
+            app.saveData();
+            
+            // Clear form
+            textarea.value = '';
+            selectedMood.classList.remove('selected');
+            
+            // Update display
+            updateJournalEntries();
+            showNotification('Journal entry saved successfully!');
+            
+            // Track engagement
+            app.trackEngagement('journal');
+        }
+        
+        function updateJournalEntries() {
+            const container = document.getElementById('journalEntries');
+            const entries = app.data.journalEntries.slice(0, 5); // Show last 5 entries
+            
+            container.innerHTML = entries.map(entry => `
+                <div style="color: #94a3b8; font-size: 14px; padding: 12px; background: rgba(0,0,0,0.4); border-radius: 8px; margin-bottom: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <strong style="color: #7FB8E5;">Day ${entry.day}</strong>
+                        <span style="font-size: 18px;">${entry.moodEmoji}</span>
+                    </div>
+                    ${entry.content}
+                </div>
+            `).join('');
+        }
+        
+        // Craving Management
+        function executeStrategy(strategyType) {
+            const strategies = {
+                'breathing': 'Initiating 4-7-8 breathing protocol. Focus on your breath and let your nervous system reset.',
+                'cold': 'Cold exposure activated! This interrupts the craving circuit and builds mental resilience.',
+                'movement': 'Movement protocol engaged. Physical activity redirects neural energy and releases endorphins.',
+                'visualization': 'Visualization sequence starting. See your future self - strong, healthy, and completely free.'
+            };
+            
+            showNotification(strategies[strategyType]);
+            
+            if (strategyType === 'breathing') {
+                showView('breathing');
+                setTimeout(() => startBreathing(), 500);
+            }
+            
+            // Track strategy usage
+            if (app) {
+                app.trackEngagement('cravings');
+                app.data.strategiesUsed = (app.data.strategiesUsed || 0) + 1;
+                app.saveData();
+            }
+        }
+        
+        // Notification System
+        function showNotification(message) {
+            // Remove existing notification
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Event Listeners
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quick-reply')) {
+                sendMessage(e.target.textContent);
+            }
+            
+            if (e.target.classList.contains('send-button')) {
+                sendMessage();
+            }
+        });
+        
+        document.addEventListener('keypress', function(e) {
+            if (e.target.classList.contains('chat-input') && e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Enhanced Breathing Exercise
+        let breathingActive = false;
+        let breathingInterval;
+        let breathingSession = 0;
+        
+        function startBreathing() {
+            const circle = document.querySelector('.breathing-circle');
+            const text = document.querySelector('.breathing-text');
+            const buttons = document.querySelectorAll('.control-btn');
+            const startBtn = buttons[0];
+            
+            if (breathingActive) {
+                breathingActive = false;
+                clearInterval(breathingInterval);
+                startBtn.textContent = 'Start';
+                text.textContent = 'Ready';
+                circle.style.animation = 'breathe 4s ease-in-out infinite';
+                return;
+            }
+            
+            breathingActive = true;
+            breathingSession++;
+            startBtn.textContent = 'Stop';
+            
+            let phase = 0; // 0: inhale, 1: hold, 2: exhale
+            let counter = 0;
+            let cycles = 0;
+            
+            breathingInterval = setInterval(() => {
+                if (phase === 0) {
+                    text.textContent = `Inhale ${4 - counter}`;
+                    circle.style.animation = 'breatheIn 4s ease-in-out infinite';
+                    if (counter >= 3) { phase = 1; counter = 0; }
+                } else if (phase === 1) {
+                    text.textContent = `Hold ${7 - counter}`;
+                    circle.style.animation = 'breatheHold 7s ease-in-out infinite';
+                    if (counter >= 6) { phase = 2; counter = 0; }
+                } else {
+                    text.textContent = `Exhale ${8 - counter}`;
+                    circle.style.animation = 'breatheOut 8s ease-in-out infinite';
+                    if (counter >= 7) { 
+                        phase = 0; 
+                        counter = 0; 
+                        cycles++;
+                        
+                        if (cycles >= 4) {
+                            // Complete session
+                            breathingActive = false;
+                            clearInterval(breathingInterval);
+                            startBtn.textContent = 'Start';
+                            text.textContent = 'Complete!';
+                            circle.style.animation = 'breathe 4s ease-in-out infinite';
+                            
+                            showNotification('Breathing session complete! Neural reset achieved.');
+                            
+                            // Track session
+                            if (app) {
+                                app.data.breathingSessions++;
+                                app.trackEngagement('breathing');
+                                app.saveData();
+                            }
+                            return;
+                        }
+                    }
+                }
+                counter++;
+            }, 1000);
+        }
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('control-btn')) {
+                if (e.target.textContent.includes('Start') || e.target.textContent.includes('Stop')) {
+                    startBreathing();
+                } else if (e.target.textContent.includes('Reset')) {
+                    breathingActive = false;
+                    clearInterval(breathingInterval);
+                    document.querySelector('.control-btn').textContent = 'Start';
+                    document.querySelector('.breathing-text').textContent = 'Ready';
+                    document.querySelector('.breathing-circle').style.animation = 'breathe 4s ease-in-out infinite';
+                }
+            }
+        });
+        
+        // Add engagement tracking to app class
+        QuitHeroApp.prototype.trackEngagement = function(activity) {
+            const today = new Date().toDateString();
+            if (!this.data.calendarData[today]) {
+                this.data.calendarData[today] = { activities: [], level: 0 };
+            }
+            
+            if (!this.data.calendarData[today].activities.includes(activity)) {
+                this.data.calendarData[today].activities.push(activity);
+                this.data.calendarData[today].level = Math.min(5, this.data.calendarData[today].activities.length);
+                this.saveData();
+            }
+        };
+    </script>
+</body>
+</html>
