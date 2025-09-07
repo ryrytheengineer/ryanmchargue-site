@@ -158,6 +158,8 @@ p {
 
 .nav-links a:hover {
   color: var(--carolina-blue);
+  text-shadow: 0 0 8px rgba(75, 159, 225, 0.5);
+  transition: all 0.3s ease;
 }
 
 /* Theme Toggle */
@@ -416,12 +418,56 @@ p {
   height: 2px;
   background: var(--carolina-blue);
   border-radius: 2px;
+  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
+  animation: stealthPulse 3s ease-in-out infinite;
+}
+
+@keyframes stealthPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(75, 159, 225, 0.8), 0 0 30px rgba(75, 159, 225, 0.5);
+  }
 }
 
 /* About Section */
 .about {
   background: var(--background);
   position: relative;
+  overflow: hidden;
+}
+
+/* About Section Stealth Effects */
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.08) 30%,
+    transparent 60%,
+    rgba(75, 159, 225, 0.05) 90%,
+    transparent 100%
+  );
+  background-size: 300% 300%;
+  animation: stealthFlow 15s ease-in-out infinite;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .about::before {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.12) 30%,
+    transparent 60%,
+    rgba(75, 159, 225, 0.08) 90%,
+    transparent 100%
+  );
 }
 
 .about::before {
@@ -480,6 +526,34 @@ p {
   overflow: hidden;
 }
 
+/* Stealth Scanning Effect for Stat Cards */
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.8) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(75, 159, 225, 0.5);
+  animation: stealthCardScan 6s ease-in-out infinite;
+  animation-delay: var(--scan-delay, 0s);
+}
+
+@keyframes stealthCardScan {
+  0%, 70% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
 .stat-card::before {
   content: '';
   position: absolute;
@@ -494,8 +568,13 @@ p {
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  border-color: rgba(75, 159, 225, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 0 20px rgba(75, 159, 225, 0.3);
+  border-color: rgba(75, 159, 225, 0.4);
+  background: rgba(75, 159, 225, 0.02);
+}
+
+[data-theme="dark"] .stat-card:hover {
+  background: rgba(75, 159, 225, 0.05);
 }
 
 .stat-card:hover::before {
@@ -524,6 +603,40 @@ p {
 /* Work Section */
 .work {
   background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Work Section Stealth Effects */
+.work::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    -45deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.06) 25%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.04) 75%,
+    transparent 100%
+  );
+  background-size: 400% 400%;
+  animation: stealthFlow 18s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .work::before {
+  background: linear-gradient(
+    -45deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.1) 25%,
+    transparent 50%,
+    rgba(75, 159, 225, 0.06) 75%,
+    transparent 100%
+  );
 }
 
 .projects-grid {
@@ -541,9 +654,47 @@ p {
   position: relative;
 }
 
+/* Stealth Border Effect for Project Cards */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: stealthBorder 8s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes stealthBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px var(--shadow);
+  box-shadow: 0 10px 20px var(--shadow), 0 0 30px rgba(75, 159, 225, 0.2);
+  border-color: rgba(75, 159, 225, 0.3);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card.featured {
@@ -572,10 +723,12 @@ p {
 
 .status-dot.active {
   background: var(--carolina-blue);
+  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
 }
 
 .status-dot.paused {
   background: var(--carolina-blue);
+  box-shadow: 0 0 10px rgba(75, 159, 225, 0.6), 0 0 20px rgba(75, 159, 225, 0.3);
 }
 
 .status-dot.archived {
@@ -693,6 +846,42 @@ p {
 /* Contact Section */
 .contact {
   background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Contact Section Stealth Effects */
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.08) 20%,
+    transparent 40%,
+    rgba(75, 159, 225, 0.05) 60%,
+    transparent 80%,
+    rgba(75, 159, 225, 0.08) 100%
+  );
+  background-size: 300% 100%;
+  animation: stealthFlow 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .contact::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(75, 159, 225, 0.12) 20%,
+    transparent 40%,
+    rgba(75, 159, 225, 0.08) 60%,
+    transparent 80%,
+    rgba(75, 159, 225, 0.12) 100%
+  );
 }
 
 .contact-content {
@@ -733,8 +922,13 @@ p {
 
 .contact-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--shadow);
+  box-shadow: 0 8px 25px var(--shadow), 0 0 20px rgba(75, 159, 225, 0.3);
   border-color: var(--carolina-blue);
+  background: rgba(75, 159, 225, 0.02);
+}
+
+[data-theme="dark"] .contact-link:hover {
+  background: rgba(75, 159, 225, 0.05);
 }
 
 .contact-label {
