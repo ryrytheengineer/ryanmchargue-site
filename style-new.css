@@ -8,8 +8,8 @@
 /* Base Styles - SF Pro Font Stack */
 html {
   scroll-behavior: smooth;
-  overflow: hidden;
-  height: 100vh;
+  overflow: auto;
+  height: 100%;
 }
 
 body {
@@ -20,8 +20,8 @@ body {
   background: #fbfbfd;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow: auto;
   position: relative;
 }
 
@@ -123,10 +123,10 @@ body::after {
   max-width: 1400px;
   margin: 0 auto;
   padding: 30px 60px 20px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   z-index: 10;
 }
@@ -181,20 +181,12 @@ body::after {
   letter-spacing: 0.3px;
   margin-bottom: 0;
   position: relative;
-  padding-left: 40px;
-  max-width: 90%;
+  padding-left: 0;
+  max-width: 100%;
 }
 
 .currently-statement::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 25px;
-  height: 0.5px;
-  background: linear-gradient(90deg, #1d1d1f, rgba(29, 29, 31, 0.3));
-  opacity: 0.4;
+  display: none;
 }
 
 /* Main */
@@ -203,7 +195,7 @@ main {
   flex-direction: column;
   gap: 18px;
   flex: 0 1 auto;
-  overflow: hidden;
+  overflow: visible;
   justify-content: flex-start;
   position: relative;
 }
@@ -227,19 +219,11 @@ h2 {
   letter-spacing: 0.5px;
   position: relative;
   display: inline-block;
-  padding-left: 30px;
+  padding-left: 0;
 }
 
 h2::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 0.5px;
-  background: linear-gradient(90deg, #1d1d1f, rgba(29, 29, 31, 0.2));
-  opacity: 0.3;
+  display: none;
 }
 
 h2::after {
@@ -269,11 +253,11 @@ p {
   position: relative;
   padding-left: 0;
   padding-right: 0;
-  max-width: 85%;
+  max-width: 100%;
 }
 
 #about p:not(.intro) {
-  max-width: 85%;
+  max-width: 100%;
   font-weight: 400;
   position: relative;
   padding-left: 0;
@@ -675,7 +659,7 @@ footer {
   }
   
   .currently-statement {
-    padding-left: 35px;
+    padding-left: 0;
   }
   
   .ventures-line {
