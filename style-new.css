@@ -365,38 +365,13 @@ a:hover::before {
 }
 
 /* Contact Section with premium styling */
-#contact {
-  margin-top: 0;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 20px;
-  border-radius: 12px;
-  border: 0.5px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  position: relative;
-  box-shadow: none;
-}
-
-#contact h2 {
-  margin-bottom: 12px;
-  padding-left: 0;
-}
-
-#contact h2::before {
-  display: none;
-}
-
-#contact p {
-  margin-bottom: 8px;
-  opacity: 0.8;
-  font-weight: 400;
-}
-
 /* Social Links */
 .social-links {
   display: flex;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
 .social-links a {
@@ -524,93 +499,117 @@ a:hover::before {
 /* Anonymous Message Section */
 #message {
   margin-top: 0;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 20px;
-  border-radius: 12px;
-  border: 0.5px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   position: relative;
   box-shadow: none;
-}
-
-#message h2 {
-  margin-bottom: 15px;
-  padding-left: 0;
-}
-
-#message h2::before {
-  display: none;
 }
 
 .message-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
+}
+
+.message-input-wrapper {
+  position: relative;
 }
 
 #message-input {
   width: 100%;
-  padding: 12px;
+  padding: 0 0 8px 0;
   font-family: inherit;
   font-size: 14px;
   line-height: 1.6;
   color: #1d1d1f;
-  background: rgba(255, 255, 255, 0.3);
-  border: 0.5px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  resize: vertical;
-  min-height: 80px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  resize: none;
+  min-height: auto;
+  max-height: 120px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   font-weight: 400;
   letter-spacing: 0.2px;
+  overflow-y: auto;
 }
 
 #message-input::placeholder {
   color: #999;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 #message-input:focus {
   outline: none;
-  border-color: rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.4);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 12px;
+}
+
+.char-count {
+  font-size: 11px;
+  color: #999;
+  opacity: 0.6;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+}
+
+.char-count.warning {
+  color: #ff9500;
+  opacity: 0.8;
+}
+
+.char-count.limit {
+  color: #d32f2f;
+  opacity: 1;
 }
 
 .message-submit {
-  align-self: flex-start;
-  padding: 10px 24px;
+  padding: 0;
   font-family: inherit;
   font-size: 14px;
   font-weight: 400;
   color: #1d1d1f;
-  background: rgba(255, 255, 255, 0.4);
-  border: 0.5px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(29, 29, 31, 0.2);
+  border-radius: 0;
   cursor: pointer;
   letter-spacing: 0.3px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.2s ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 0.6;
 }
 
 .message-submit:hover {
-  background: rgba(255, 255, 255, 0.5);
-  border-color: rgba(0, 0, 0, 0.15);
-  transform: translateY(-1px);
+  opacity: 1;
+  border-bottom-color: rgba(0, 0, 0, 0.4);
 }
 
-.message-submit:active {
-  transform: translateY(0);
+.message-submit:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .message-status {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #666;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  letter-spacing: 0.2px;
+  font-weight: 400;
 }
 
 .message-status.show {
@@ -619,10 +618,12 @@ a:hover::before {
 
 .message-status.success {
   color: #1d1d1f;
+  opacity: 0.7;
 }
 
 .message-status.error {
   color: #d32f2f;
+  opacity: 0.8;
 }
 
 /* Footer */
@@ -674,17 +675,14 @@ footer {
     padding: 40px 30px;
   }
   
-  #ventures, #contact {
+  #ventures {
     padding: 30px;
   }
   
   .social-links {
     gap: 20px;
     flex-wrap: wrap;
-  }
-  
-  .social-links a {
-    padding: 8px 16px;
+    margin-top: 18px;
   }
   
   footer {

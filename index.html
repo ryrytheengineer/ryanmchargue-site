@@ -61,32 +61,31 @@
     </div>
   </section>
 
-      <section id="contact" class="section">
-        <h2>Get in Touch</h2>
-        <p>Connect with me on <a href="https://x.com/ryanmcharguee" target="_blank" rel="noopener">X</a> or <a href="https://linkedin.com/in/ryanmchargue" target="_blank" rel="noopener">LinkedIn</a>.</p>
-        
-        <div class="social-links">
-          <a href="https://linkedin.com/in/ryanmchargue" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://x.com/ryanmcharguee" target="_blank" rel="noopener">X</a>
-          <a href="https://instagram.com/ryanmchargue" target="_blank" rel="noopener">Instagram</a>
-        </div>
-      </section>
-
       <section id="message" class="section">
-        <h2>Leave a Message</h2>
         <form id="anonymous-message-form" class="message-form">
-          <textarea 
-            id="message-input" 
-            name="message" 
-            placeholder="Leave Ryan an anonymous message..." 
-            rows="3"
-            required
-          ></textarea>
-          <button type="submit" class="message-submit">Send</button>
+          <div class="message-input-wrapper">
+            <textarea 
+              id="message-input" 
+              name="message" 
+              placeholder="Type something interesting..." 
+              rows="2"
+              required
+            ></textarea>
+            <div class="message-meta">
+              <span class="char-count"><span id="char-count">0</span>/280</span>
+              <button type="submit" class="message-submit">Send →</button>
+            </div>
+          </div>
         </form>
         <p class="message-status" id="message-status"></p>
       </section>
     </main>
+
+    <div class="social-links">
+      <a href="https://linkedin.com/in/ryanmchargue" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/ryanmcharguee" target="_blank" rel="noopener">X</a>
+      <a href="https://instagram.com/ryanmchargue" target="_blank" rel="noopener">Instagram</a>
+    </div>
 
     <footer>
       <p>&copy; 2025 Ryan McHargue</p>
@@ -183,13 +182,43 @@
     const messageStatus = document.getElementById('message-status');
     const submitButton = messageForm.querySelector('.message-submit');
 
+    // Character counter with gamification
+    const charCount = document.getElementById('char-count');
+    const charCountContainer = charCount.parentElement;
+    
+    messageInput.addEventListener('input', () => {
+      const length = messageInput.value.length;
+      charCount.textContent = length;
+      
+      // Auto-resize textarea
+      messageInput.style.height = 'auto';
+      messageInput.style.height = Math.min(messageInput.scrollHeight, 120) + 'px';
+      
+      // Visual feedback based on length
+      charCountContainer.classList.remove('warning', 'limit');
+      if (length > 250) {
+        charCountContainer.classList.add('limit');
+      } else if (length > 200) {
+        charCountContainer.classList.add('warning');
+      }
+      
+      // Enable/disable submit
+      submitButton.disabled = length === 0 || length > 280;
+    });
+
     messageForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const message = messageInput.value.trim();
       
       if (!message) {
-        messageStatus.textContent = 'Please enter a message.';
+        messageStatus.textContent = 'Try typing something first...';
+        messageStatus.className = 'message-status show error';
+        return;
+      }
+
+      if (message.length > 280) {
+        messageStatus.textContent = 'Keep it under 280 characters.';
         messageStatus.className = 'message-status show error';
         return;
       }
@@ -215,23 +244,34 @@
         const data = await response.json();
 
         if (data.success) {
-          messageStatus.textContent = 'Message sent! Thank you.';
+          const achievements = [
+            '✨ Message delivered',
+            '✓ Sent',
+            '→ Delivered'
+          ];
+          messageStatus.textContent = achievements[Math.floor(Math.random() * achievements.length)];
           messageStatus.className = 'message-status show success';
           messageInput.value = '';
+          charCount.textContent = '0';
+          charCountContainer.classList.remove('warning', 'limit');
+          messageInput.style.height = 'auto';
           
           setTimeout(() => {
             messageStatus.className = 'message-status';
-          }, 3000);
+          }, 2000);
         } else {
           throw new Error('Failed to send');
         }
       } catch (error) {
-        messageStatus.textContent = 'Failed to send. Please try again.';
+        messageStatus.textContent = 'Try again?';
         messageStatus.className = 'message-status show error';
       } finally {
-        submitButton.disabled = false;
+        submitButton.disabled = messageInput.value.trim().length === 0 || messageInput.value.length > 280;
       }
     });
+    
+    // Initialize submit button state
+    submitButton.disabled = true;
   </script>
 
 </body>
