@@ -90,7 +90,7 @@ body::before {
   object-fit: cover;
   object-position: center bottom;
   opacity: 0.2;
-  filter: blur(0.5px);
+  filter: blur(3px);
   mix-blend-mode: multiply;
   display: block;
   visibility: visible !important;
@@ -135,14 +135,23 @@ body::after {
 .header {
   margin-bottom: 25px;
   padding-bottom: 12px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+  border-bottom: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-shrink: 0;
   position: relative;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  gap: 20px;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex: 1;
 }
 
 .header::after {
@@ -156,6 +165,28 @@ body::after {
   transform-origin: left;
 }
 
+.signature {
+  font-size: 24px;
+  font-weight: 300;
+  color: #1d1d1f;
+  letter-spacing: 8px;
+  font-style: normal;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  opacity: 1;
+  line-height: 1;
+  transform: none;
+  position: relative;
+  margin-right: 32px;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.signature::after {
+  display: none;
+}
+
 .header h1 {
   font-size: 14px;
   font-weight: 400;
@@ -163,14 +194,30 @@ body::after {
   letter-spacing: 0.5px;
   position: relative;
   text-transform: none;
+  margin-bottom: 2px;
+}
+
+.location {
+  font-size: 12px;
+  font-weight: 400;
+  color: #666;
+  letter-spacing: 0.3px;
+  opacity: 0.7;
+  font-style: italic;
 }
 
 /* Currently Section - Premium treatment */
 #currently {
   flex-shrink: 0;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   position: relative;
-  padding: 0;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: none;
 }
 
 .currently-statement {
@@ -179,10 +226,11 @@ body::after {
   color: #1d1d1f;
   font-weight: 400;
   letter-spacing: 0.3px;
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0;
   position: relative;
-  padding-left: 0;
   max-width: 100%;
+  text-align: left;
 }
 
 .currently-statement::before {
@@ -211,6 +259,18 @@ main {
   overflow: visible;
   position: relative;
   z-index: 1;
+}
+
+/* About Section */
+#about {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 /* Typography - All same size */
@@ -652,6 +712,7 @@ footer {
     opacity: 0.18;
     object-position: center bottom;
     transform: translateY(8%);
+    filter: blur(3px);
   }
 }
 
