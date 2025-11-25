@@ -5,6 +5,127 @@
   box-sizing: border-box;
 }
 
+/* Intro Animation */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fbfbfd;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+}
+
+.intro-content {
+  text-align: center;
+  position: relative;
+}
+
+.intro-initials-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: spin 3s linear infinite;
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  color: #1d1d1f;
+  opacity: 0;
+  filter: blur(2px);
+  animation: starAppear 0.6s ease-out forwards, starGlow 2s ease-in-out infinite;
+}
+
+.star-1 { top: 10%; left: 50%; animation-delay: 0.1s; }
+.star-2 { top: 50%; right: 10%; animation-delay: 0.2s; }
+.star-3 { bottom: 10%; left: 50%; animation-delay: 0.3s; }
+.star-4 { top: 50%; left: 10%; animation-delay: 0.4s; }
+.star-5 { top: 20%; right: 25%; animation-delay: 0.5s; }
+.star-6 { bottom: 20%; right: 25%; animation-delay: 0.6s; }
+.star-7 { bottom: 20%; left: 25%; animation-delay: 0.7s; }
+.star-8 { top: 20%; left: 25%; animation-delay: 0.8s; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes starAppear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 0.8;
+    transform: scale(1);
+    filter: blur(2px);
+  }
+}
+
+@keyframes starGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+}
+
+.intro-initials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-letter {
+  font-size: 72px;
+  font-weight: 300;
+  color: #1d1d1f;
+  letter-spacing: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.intro-letter.reveal {
+  opacity: 1;
+}
+
+body:not(.site-visible) .container {
+  opacity: 0;
+}
+
+body.site-visible .container {
+  opacity: 1;
+  transition: opacity 0.6s ease-in 0.3s;
+}
+
 /* Base Styles - SF Pro Font Stack */
 html {
   scroll-behavior: smooth;
