@@ -107,7 +107,7 @@
   font-weight: 300;
   color: #1d1d1f;
   letter-spacing: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
@@ -134,7 +134,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: #1d1d1f;
@@ -146,98 +146,7 @@ body {
   position: relative;
 }
 
-/* Premium Apple-style background with depth layers */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.015) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Blueprint background layer */
-.blueprint-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  background: transparent;
-  display: block;
-}
-
-.blueprint-background picture {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.blueprint-background::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 15%;
-  background: linear-gradient(to bottom, 
-    #fbfbfd 0%, 
-    #fbfbfd 40%,
-    rgba(251, 251, 253, 0.90) 55%,
-    rgba(251, 251, 253, 0.75) 70%,
-    rgba(251, 251, 253, 0.50) 82%,
-    rgba(251, 251, 253, 0.25) 90%,
-    rgba(251, 251, 253, 0.10) 95%,
-    transparent 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.blueprint-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-  opacity: 0.2;
-  filter: blur(3px);
-  mix-blend-mode: multiply;
-  display: block;
-  visibility: visible !important;
-  transform: translateY(10%);
-}
-
-/* Advanced grid system - Blueprint style */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
-  background-size: 60px 60px, 60px 60px, 20px 20px, 20px 20px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 1;
-  mix-blend-mode: multiply;
-}
+/* Background removed - clean white background */
 
 /* Container with glassmorphism and depth */
 .container {
@@ -292,7 +201,7 @@ body::after {
   color: #1d1d1f;
   letter-spacing: 8px;
   font-style: normal;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   opacity: 1;
   line-height: 1;
   transform: none;
@@ -453,6 +362,115 @@ p {
 }
 
 #about p:last-child {
+  margin-bottom: 0;
+}
+
+/* Impact Section */
+#impact {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: none;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.metric {
+  text-align: left;
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: 400;
+  color: #1d1d1f;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #666;
+  opacity: 0.7;
+  letter-spacing: 0.2px;
+}
+
+/* Experience Section */
+#experience {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: none;
+}
+
+#experience p {
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.companies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.company-item {
+  font-size: 13px;
+  color: #1d1d1f;
+  padding: 6px 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.2px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.company-item:hover {
+  opacity: 1;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Testimonials Section */
+#testimonials {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  box-shadow: none;
+}
+
+.testimonial {
+  margin-top: 16px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #1d1d1f;
+  font-style: italic;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.testimonial-author {
+  font-size: 12px;
+  color: #666;
+  opacity: 0.7;
+  text-align: right;
   margin-bottom: 0;
 }
 
@@ -828,14 +846,6 @@ footer {
 }
 
 /* Mobile adjustments */
-@media (orientation: portrait) {
-  .blueprint-image {
-    opacity: 0.18;
-    object-position: center bottom;
-    transform: translateY(8%);
-    filter: blur(3px);
-  }
-}
 
 @media (max-width: 768px) {
   .container {
@@ -880,6 +890,20 @@ footer {
   footer {
     margin-top: 24px;
     padding-top: 15px;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .companies-list {
+    gap: 10px;
+  }
+  
+  .company-item {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
 
