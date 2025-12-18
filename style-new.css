@@ -219,7 +219,7 @@ body {
 
 .header h1 {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   color: #1d1d1f;
   letter-spacing: 0.5px;
   position: relative;
@@ -228,34 +228,32 @@ body {
 }
 
 .location {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 300;
   color: #666;
-  letter-spacing: 0.3px;
-  opacity: 0.7;
+  letter-spacing: 0.2px;
+  opacity: 0.4;
   font-style: italic;
 }
 
-/* Currently Section - Premium treatment */
+/* Currently Section - Editorial artifact */
 #currently {
   flex-shrink: 0;
   margin-bottom: 18px;
   position: relative;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 20px;
-  border-radius: 12px;
-  border: 0.5px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  box-shadow: none;
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 
 .currently-statement {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.45;
   color: #1d1d1f;
   font-weight: 400;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.003em;
   margin: 0;
   padding: 0;
   position: relative;
@@ -271,7 +269,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   flex: 0 1 auto;
   overflow: visible;
   justify-content: flex-start;
@@ -280,7 +278,7 @@ main {
 
 @media (max-width: 768px) {
   main {
-    gap: 20px;
+    gap: 22px;
   }
 }
 
@@ -293,13 +291,11 @@ main {
 
 /* About Section */
 #about {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 20px;
-  border-radius: 12px;
-  border: 0.5px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  box-shadow: none;
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
   margin-bottom: 0;
 }
 
@@ -343,13 +339,16 @@ p {
 
 .intro {
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: #1d1d1f;
   font-weight: 400;
   position: relative;
   padding-left: 0;
   padding-right: 0;
   max-width: 100%;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  opacity: 0.65;
 }
 
 #about p:not(.intro) {
@@ -358,7 +357,9 @@ p {
   position: relative;
   padding-left: 0;
   color: #1d1d1f;
-  opacity: 0.8;
+  opacity: 0.65;
+  font-size: 13px;
+  letter-spacing: -0.01em;
 }
 
 #about p:last-child {
@@ -479,24 +480,14 @@ a {
   color: #1d1d1f;
   text-decoration: none;
   font-weight: 400;
-  border-bottom: 0.5px solid rgba(29, 29, 31, 0.2);
+  border-bottom: 1px solid rgba(29, 29, 31, 0.15);
   position: relative;
   display: inline-block;
+  transition: border-bottom-color 0.2s ease;
 }
 
-a::before {
-  content: '';
-  position: absolute;
-  bottom: -0.5px;
-  left: 0;
-  width: 100%;
-  height: 0.5px;
-  background: #1d1d1f;
-  opacity: 0;
-}
-
-a:hover::before {
-  opacity: 1;
+a:hover {
+  border-bottom-color: rgba(29, 29, 31, 0.3);
 }
 
 /* Venture Items with glassmorphism */
@@ -573,7 +564,7 @@ a:hover::before {
 /* Social Links */
 .social-links {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   margin-top: 18px;
   margin-bottom: 10px;
   flex-shrink: 0;
@@ -584,25 +575,24 @@ a:hover::before {
   padding: 0;
   border-radius: 0;
   border: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
   box-shadow: none;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.01em;
   font-weight: 400;
   position: relative;
   overflow: visible;
-  border-bottom: 0.5px solid rgba(29, 29, 31, 0.2);
+  text-transform: lowercase;
+  border-bottom: 1px solid rgba(29, 29, 31, 0.15);
+  opacity: 0.7;
+  transition: opacity 0.2s ease, border-bottom-color 0.2s ease;
 }
 
 .social-links a::after {
-  content: ' →';
-  opacity: 0;
-  margin-left: 0;
+  display: none;
 }
 
-.social-links a:hover::after {
+.social-links a:hover {
   opacity: 1;
-  margin-left: 8px;
+  border-bottom-color: rgba(29, 29, 31, 0.3);
 }
 
 /* Modal */
@@ -701,17 +691,15 @@ a:hover::before {
   font-weight: 400;
 }
 
-/* Anonymous Message Section */
+/* Anonymous Message Section - Notebook/Note feel */
 #message {
   margin-top: 0;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 0.5px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  padding: 24px;
+  background: #ffffff;
+  border: none;
+  border-radius: 14px;
   position: relative;
-  box-shadow: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 
 .message-form {
@@ -726,33 +714,32 @@ a:hover::before {
 
 #message-input {
   width: 100%;
-  padding: 0 0 8px 0;
-  font-family: inherit;
-  font-size: 14px;
+  padding: 0;
+  font-family: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  font-size: 13px;
   line-height: 1.6;
   color: #1d1d1f;
   background: transparent;
   border: none;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0;
   resize: none;
-  min-height: auto;
+  min-height: 60px;
   max-height: 120px;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
   font-weight: 400;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.01em;
   overflow-y: auto;
 }
 
 #message-input::placeholder {
   color: #999;
-  opacity: 0.5;
+  opacity: 0.4;
+  font-style: italic;
 }
 
 #message-input:focus {
   outline: none;
-  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
 }
 
 .message-meta {
@@ -764,10 +751,10 @@ a:hover::before {
 }
 
 .char-count {
-  font-size: 11px;
+  font-size: 10px;
   color: #999;
-  opacity: 0.6;
-  letter-spacing: 0.2px;
+  opacity: 0.5;
+  letter-spacing: -0.01em;
   font-weight: 400;
 }
 
@@ -784,23 +771,22 @@ a:hover::before {
 .message-submit {
   padding: 0;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   color: #1d1d1f;
   background: transparent;
   border: none;
-  border-bottom: 0.5px solid rgba(29, 29, 31, 0.2);
+  border-bottom: 1px solid rgba(29, 29, 31, 0.15);
   border-radius: 0;
   cursor: pointer;
-  letter-spacing: 0.3px;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  letter-spacing: -0.01em;
   opacity: 0.6;
+  transition: opacity 0.2s ease, border-bottom-color 0.2s ease;
 }
 
 .message-submit:hover {
   opacity: 1;
-  border-bottom-color: rgba(0, 0, 0, 0.4);
+  border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .message-submit:disabled {
@@ -809,11 +795,11 @@ a:hover::before {
 }
 
 .message-status {
-  margin-top: 8px;
-  font-size: 12px;
+  margin-top: 10px;
+  font-size: 11px;
   color: #999;
   opacity: 0;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.01em;
   font-weight: 400;
 }
 
@@ -823,12 +809,12 @@ a:hover::before {
 
 .message-status.success {
   color: #1d1d1f;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .message-status.error {
-  color: #d32f2f;
-  opacity: 0.8;
+  color: #666;
+  opacity: 0.7;
 }
 
 /* Footer */
@@ -878,7 +864,7 @@ footer {
   }
   
   #message {
-    padding: 18px;
+    padding: 20px;
   }
   
   .social-links {
@@ -921,6 +907,6 @@ footer {
   }
   
   #message {
-    padding: 16px;
+    padding: 18px;
   }
 }
