@@ -176,36 +176,49 @@
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / animationDuration, 1);
         
-        // More aggressive easing for faster flicker
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        // Buttery smooth easing curve
+        const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
         
-        currentPosition = targetPosition * easeOutQuart;
+        currentPosition = targetPosition * easeOutExpo;
         timelineTrack.style.transform = `translateX(${currentPosition}px)`;
         
-        // Faster flickering age display with random jumps
+        // Sophisticated age display logic
         let displayAge;
-        if (progress < 0.8) {
-          // Fast flickering through ages with some randomness
-          displayAge = Math.floor(24 * progress) + Math.floor(Math.random() * 3);
-          displayAge = Math.min(displayAge, 24);
+        
+        if (progress < 0.15) {
+          // Initial fast count-up (0-5)
+          displayAge = Math.floor(progress * 33.33);
+        } else if (progress < 0.7) {
+          // Smooth progression with occasional skips
+          const baseAge = Math.floor(24 * ((progress - 0.15) / 0.55));
+          const skipChance = Math.sin(progress * 20) > 0.8 ? 1 : 0;
+          displayAge = Math.min(baseAge + skipChance, 24);
+        } else if (progress < 0.9) {
+          // Slow down and hover around 22-24
+          const nearEnd = [22, 23, 24, 23, 24];
+          const index = Math.floor((progress - 0.7) * 25) % nearEnd.length;
+          displayAge = nearEnd[index];
         } else {
-          // Settle on 24 in final 20%
+          // Final settle on 24
           displayAge = 24;
+        }
+        
+        // Smooth opacity transitions instead of jarring flickers
+        if (progress < 0.85) {
+          const flickerIntensity = 0.3 + 0.7 * Math.sin(progress * 15);
+          currentAgeDisplay.style.opacity = flickerIntensity.toString();
+        } else {
+          // Smooth fade to full opacity
+          const fadeProgress = (progress - 0.85) / 0.15;
+          currentAgeDisplay.style.opacity = (0.3 + 0.7 * fadeProgress).toString();
         }
         
         currentAgeDisplay.textContent = displayAge;
         
-        // Add flicker effect to the display
-        if (progress < 0.9 && Math.random() > 0.7) {
-          currentAgeDisplay.style.opacity = '0.5';
-          setTimeout(() => {
-            currentAgeDisplay.style.opacity = '1';
-          }, 50);
-        }
-        
         if (progress < 1) {
           requestAnimationFrame(animateTimeline);
         } else {
+          // Final clean state
           currentAgeDisplay.textContent = '24';
           currentAgeDisplay.style.opacity = '1';
         }
