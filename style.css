@@ -44,7 +44,8 @@ body {
   gap: 0.75rem;
   margin-top: 1rem;
   font-size: 14px;
-  opacity: 0.8;
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 .pulse-dot {
