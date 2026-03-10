@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Loading Animation -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+      <div class="initials">RM</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content" id="mainContent">
   <div class="container">
     <div class="main-section">
       <div class="name-block">
@@ -95,5 +106,27 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <script>
+    // Buttery smooth loading animation
+    window.addEventListener('load', function() {
+      const loadingScreen = document.getElementById('loadingScreen');
+      const mainContent = document.getElementById('mainContent');
+      
+      // Start fade out after a brief delay
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.transform = 'scale(1.1)';
+        
+        // Show main content
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          mainContent.style.opacity = '1';
+          mainContent.style.transform = 'translateY(0)';
+        }, 800);
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
