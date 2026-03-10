@@ -169,27 +169,45 @@
       // Animate timeline rolling to age 24
       let currentPosition = 0;
       const targetPosition = -24 * 60; // 60px per age marker
-      const animationDuration = 3000; // 3 seconds
+      const animationDuration = 1500; // 1.5 seconds (faster)
       const startTime = Date.now();
       
       function animateTimeline() {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / animationDuration, 1);
         
-        // Smooth easing function
-        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        // More aggressive easing for faster flicker
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         
-        currentPosition = targetPosition * easeOutCubic;
+        currentPosition = targetPosition * easeOutQuart;
         timelineTrack.style.transform = `translateX(${currentPosition}px)`;
         
-        // Update age display during animation
-        const displayAge = Math.floor(24 * progress);
+        // Faster flickering age display with random jumps
+        let displayAge;
+        if (progress < 0.8) {
+          // Fast flickering through ages with some randomness
+          displayAge = Math.floor(24 * progress) + Math.floor(Math.random() * 3);
+          displayAge = Math.min(displayAge, 24);
+        } else {
+          // Settle on 24 in final 20%
+          displayAge = 24;
+        }
+        
         currentAgeDisplay.textContent = displayAge;
+        
+        // Add flicker effect to the display
+        if (progress < 0.9 && Math.random() > 0.7) {
+          currentAgeDisplay.style.opacity = '0.5';
+          setTimeout(() => {
+            currentAgeDisplay.style.opacity = '1';
+          }, 50);
+        }
         
         if (progress < 1) {
           requestAnimationFrame(animateTimeline);
         } else {
           currentAgeDisplay.textContent = '24';
+          currentAgeDisplay.style.opacity = '1';
         }
       }
       
