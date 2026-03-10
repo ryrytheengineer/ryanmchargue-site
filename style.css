@@ -18,12 +18,12 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 900px;
   width: 100%;
   padding: 4rem 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 6rem;
   align-items: start;
 }
 
@@ -35,7 +35,29 @@ body {
 
 .name-block {
   border-bottom: 1px solid #000;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff00;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
 }
 
 .title-block {
@@ -44,54 +66,195 @@ body {
   gap: 0.25rem;
 }
 
-.interests-block {
-  font-style: italic;
-  opacity: 0.7;
+.thesis-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.thesis-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.metrics-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-number {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  font-size: 12px;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .projects-section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #000;
+  gap: 0;
 }
 
-h1, p, .project-item {
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.year {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.project-item:hover {
+  background: #000;
+  color: #fff;
+  margin: 0 -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.project-item.archived {
+  opacity: 0.5;
+}
+
+.project-item.active::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  background: #00ff00;
+  border-radius: 50%;
+}
+
+.project-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.project-name {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.project-descriptor {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  text-align: right;
+}
+
+.stage-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.category {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.contact-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.contact-info {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+h1, p {
   font-size: 16px;
   font-weight: 400;
   margin: 0;
   color: #000;
 }
 
-.project-item {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.project-item:hover {
-  background: #000;
-  color: #fff;
-  margin: 0 -1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.project-item:last-child {
-  border-bottom: none;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 4rem;
     padding: 3rem 1.5rem;
+    max-width: 600px;
   }
   
   .main-section {
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+  
+  .metrics-block {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .project-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .project-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
 }
