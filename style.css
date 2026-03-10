@@ -153,17 +153,6 @@ body {
   opacity: 0.5;
 }
 
-.project-item.active::before {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 3px;
-  background: #00ff00;
-  border-radius: 50%;
-}
 
 .project-main {
   display: flex;
