@@ -98,7 +98,7 @@ body {
 /* Top Timeline */
 .top-timeline-container {
   position: absolute;
-  top: 2rem;
+  top: 3rem;
   left: 50%;
   transform: translateX(-50%);
   width: 400px;
@@ -109,10 +109,10 @@ body {
 .container {
   max-width: 900px;
   width: 100%;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem 4rem;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 6rem;
+  gap: 8rem;
   align-items: start;
   position: relative;
   z-index: 2;
@@ -121,16 +121,16 @@ body {
 .main-section {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 3.5rem;
 }
 
 .name-block {
   border-bottom: 1px solid #000;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 .status-indicator {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   font-size: 14px;
   opacity: 0.9;
   font-weight: 500;
@@ -140,13 +140,13 @@ body {
 .title-block {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .thesis-block {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .thesis-label {
@@ -160,15 +160,15 @@ body {
 .metrics-block {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  padding-top: 2rem;
+  gap: 2rem;
+  padding-top: 2.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .metric {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .metric-number {
@@ -188,14 +188,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-top: 1rem;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid #000;
   font-size: 14px;
   font-weight: 500;
@@ -207,7 +208,7 @@ body {
 }
 
 .project-item {
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   cursor: pointer;
@@ -226,7 +227,7 @@ body {
 .project-main {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .project-name {
@@ -242,12 +243,12 @@ body {
 
 /* Contact Section */
 .contact-section {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .contact-label {
@@ -328,7 +329,8 @@ body {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 #currentAge {
@@ -357,16 +359,36 @@ h1, p {
   .container {
     grid-template-columns: 1fr;
     gap: 4rem;
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem 3rem;
     max-width: 600px;
   }
   
   .main-section {
-    gap: 2.5rem;
+    gap: 3rem;
   }
   
   .metrics-block {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+  
+  .contact-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+  
+  .top-timeline-container {
+    top: 2rem;
+    width: 300px;
+  }
+  
+  .section-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-item {
+    padding: 1.25rem 0;
   }
 }
