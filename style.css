@@ -89,8 +89,59 @@ body {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+/* San Francisco Skyline */
+.skyline-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sf-skyline {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #000;
+  animation: skylineFade 3s ease-in-out infinite alternate;
+}
+
+.sf-skyline path {
+  filter: blur(0.5px);
+}
+
+@keyframes skylineFade {
+  0% { 
+    opacity: 0.05;
+    transform: translateY(-10px);
+  }
+  100% { 
+    opacity: 0.15;
+    transform: translateY(0px);
+  }
+}
+
+/* Fade gradient overlay */
+.skyline-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent 0%, #fff 100%);
+  pointer-events: none;
 }
 
 .container {
@@ -101,6 +152,8 @@ body {
   grid-template-columns: 1.2fr 1fr;
   gap: 6rem;
   align-items: start;
+  position: relative;
+  z-index: 2;
 }
 
 .main-section {
