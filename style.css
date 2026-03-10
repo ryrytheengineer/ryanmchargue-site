@@ -39,27 +39,12 @@ body {
 }
 
 .status-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   margin-top: 1rem;
   font-size: 14px;
   opacity: 0.9;
   font-weight: 500;
 }
 
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: #00ff00;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.1); }
-}
 
 .title-block {
   display: flex;
