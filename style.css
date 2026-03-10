@@ -5,29 +5,63 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #000;
-  background: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.main-info {
+  text-align: center;
+}
+
+.projects {
+  text-align: left;
 }
 
 h1, p {
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 1rem;
-}
-
-.projects {
-  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .projects p {
   margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .glass-card {
+    padding: 1.5rem;
+  }
 }
