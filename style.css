@@ -7,61 +7,91 @@
 body {
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.4;
   color: #000;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: -0.01em;
 }
 
 .container {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
-  padding: 2rem;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.main-section {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+.name-block {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
 }
 
-.main-info {
-  text-align: center;
+.title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.projects {
-  text-align: left;
+.interests-block {
+  font-style: italic;
+  opacity: 0.7;
 }
 
-h1, p {
+.projects-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #000;
+}
+
+h1, p, .project-item {
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  color: #000;
 }
 
-.projects p {
-  margin-bottom: 0.5rem;
+.project-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.project-item:hover {
+  background: #000;
+  color: #fff;
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.project-item:last-child {
+  border-bottom: none;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
   }
   
-  .glass-card {
-    padding: 1.5rem;
+  .main-section {
+    gap: 2rem;
   }
 }
