@@ -40,17 +40,6 @@ body {
   z-index: 2;
 }
 
-.hero-image-block {
-  margin-top: 1.5rem;
-}
-
-.hero-image-block img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
 .main-section {
   display: flex;
   flex-direction: column;
@@ -223,10 +212,6 @@ h1, p {
     padding-top: 2rem;
   }
   
-  .hero-image-block {
-    margin-top: 1.25rem;
-  }
-
   .contact-section {
     margin-top: 3rem;
     padding-top: 2rem;
