@@ -3,115 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ryan McHargue — founder in San Francisco." />
+  <meta name="description" content="Ryan McHargue — San Francisco." />
   <title>Ryan McHargue</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=13" />
 </head>
 <body>
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="head" id="head">
-    <a class="head-name" href="#hero">Ryan McHargue</a>
+  <header class="head">
+    <h1 class="head-name">Ryan McHargue</h1>
     <div class="head-meta">
       <span class="head-loc" id="clock">San Francisco</span>
-      <a class="head-link" href="#contact">Email</a>
+      <a class="head-link" href="mailto:ryan@me.com">Email</a>
     </div>
   </header>
 
-  <nav class="rail" id="rail" aria-label="Sections">
-    <a class="rail-link is-active" href="#hero" data-theme="dark">Intro</a>
-    <a class="rail-link" href="#now" data-theme="dark">Now</a>
-    <a class="rail-link" href="#fragile" data-theme="warm">Fragile</a>
-    <a class="rail-link" href="#halo" data-theme="cool">Halo</a>
-    <a class="rail-link" href="#amarna" data-theme="gold">Amarna</a>
-    <a class="rail-link" href="#neutrals" data-theme="neutral">Neutrals</a>
-    <a class="rail-link" href="#lucky" data-theme="violet">Lucky Eight</a>
-    <a class="rail-link" href="#revyval" data-theme="green">Revyval</a>
-    <a class="rail-link" href="#contact" data-theme="dark">Contact</a>
-  </nav>
-
-  <main class="snap-root">
-    <section class="panel panel-hero" id="hero" data-theme="dark">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="panel-inner hero-inner">
-        <p class="hero-eyebrow">Founder · San Francisco</p>
-        <h1 class="hero-title">
-          <span class="hero-line">Ryan</span>
-          <span class="hero-line">McHargue</span>
-        </h1>
-      </div>
-      <div class="scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <span class="scroll-line"></span>
-      </div>
-    </section>
-
-    <section class="panel panel-now" id="now" data-theme="dark">
-      <div class="panel-inner">
-        <p class="panel-label">Now</p>
-        <h2 class="now-title">Working on<br /><em>health and wellness.</em></h2>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="fragile" data-theme="warm">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">01</span>
-        <h2 class="venture-name">Fragile</h2>
-        <p class="venture-desc">New media, motion, and launch films at a stealth Series B startup.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="halo" data-theme="cool">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">02</span>
-        <h2 class="venture-name">Halo</h2>
-        <p class="venture-desc">Hardware for quitting smoking.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="amarna" data-theme="gold">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">03</span>
-        <h2 class="venture-name">Amarna Gallery</h2>
-        <p class="venture-desc">Cultural institution and events.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="neutrals" data-theme="neutral">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">04</span>
-        <h2 class="venture-name">Neutrals</h2>
-        <p class="venture-desc">Agentic AI news platform.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="lucky" data-theme="violet">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">05</span>
-        <h2 class="venture-name">Lucky Eight Media</h2>
-        <p class="venture-desc">B2B lead generation.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-venture" id="revyval" data-theme="green">
-      <div class="panel-inner venture-inner">
-        <span class="venture-num">06</span>
-        <h2 class="venture-name">Revyval</h2>
-        <p class="venture-desc">Health science and human performance.</p>
-      </div>
-    </section>
-
-    <section class="panel panel-contact" id="contact" data-theme="dark">
-      <div class="panel-inner contact-inner">
-        <p class="panel-label">Contact</p>
-        <a class="contact-email" href="mailto:ryan@me.com">ryan@me.com</a>
-      </div>
-    </section>
+  <main>
+    <details class="ventures">
+      <summary class="ventures-toggle">Ventures</summary>
+      <ul class="work-list">
+        <li class="work-item">
+          <span class="work-name">Fragile</span>
+          <span class="work-desc">New media, motion, and launch films at a stealth Series B startup.</span>
+        </li>
+        <li class="work-item">
+          <span class="work-name">Halo</span>
+          <span class="work-desc">Hardware for quitting smoking.</span>
+        </li>
+        <li class="work-item">
+          <span class="work-name">Amarna Gallery</span>
+          <span class="work-desc">Cultural institution and events.</span>
+        </li>
+        <li class="work-item">
+          <span class="work-name">Neutrals</span>
+          <span class="work-desc">Agentic AI news platform.</span>
+        </li>
+        <li class="work-item">
+          <span class="work-name">Lucky Eight Media</span>
+          <span class="work-desc">B2B lead generation.</span>
+        </li>
+        <li class="work-item">
+          <span class="work-name">Revyval</span>
+          <span class="work-desc">Health science and human performance.</span>
+        </li>
+      </ul>
+    </details>
   </main>
 
   <script>
@@ -127,70 +64,6 @@
     }
     tick();
     setInterval(tick, 30000);
-
-    const progress = document.getElementById('progress');
-    const head = document.getElementById('head');
-    const rail = document.getElementById('rail');
-    const railLinks = rail.querySelectorAll('.rail-link');
-    const panels = document.querySelectorAll('.panel');
-    const spotlight = document.getElementById('spotlight');
-    const hero = document.getElementById('hero');
-
-    function onScroll() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.transform = 'scaleX(' + (docHeight > 0 ? scrollTop / docHeight : 0) + ')';
-
-      if (hero) {
-        const heroH = hero.offsetHeight;
-        const p = Math.min(scrollTop / heroH, 1);
-        hero.style.setProperty('--hero-shift', p);
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const id = entry.target.id;
-          const theme = entry.target.dataset.theme || 'dark';
-          head.dataset.theme = theme;
-          document.body.dataset.theme = theme;
-          railLinks.forEach((link) => {
-            link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
-          });
-        });
-      },
-      { threshold: 0.45, rootMargin: '-10% 0px -10% 0px' }
-    );
-    panels.forEach((panel) => sectionObserver.observe(panel));
-
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('is-in');
-        });
-      },
-      { threshold: 0.2 }
-    );
-    document.querySelectorAll('.panel-inner').forEach((el) => revealObserver.observe(el));
-
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      document.addEventListener('mousemove', (e) => {
-        spotlight.style.setProperty('--x', e.clientX + 'px');
-        spotlight.style.setProperty('--y', e.clientY + 'px');
-      });
-    }
-
-    railLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
   </script>
 </body>
 </html>
