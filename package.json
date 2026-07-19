@@ -1,0 +1,12 @@
+{
+  "name": "ryanmchargue-site",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --outfile=dist/ink.js --format=iife --target=es2020",
+    "watch": "esbuild src/main.ts --bundle --outfile=dist/ink.js --format=iife --target=es2020 --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}

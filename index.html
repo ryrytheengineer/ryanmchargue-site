@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=13" />
+  <link rel="stylesheet" href="style.css?v=16" />
 </head>
 <body>
+  <canvas id="ink-canvas" aria-hidden="true"></canvas>
+
+  <div class="content">
   <header class="head">
     <h1 class="head-name">Ryan McHargue</h1>
     <div class="head-meta">
@@ -23,6 +26,10 @@
     <details class="ventures">
       <summary class="ventures-toggle">Ventures</summary>
       <ul class="work-list">
+        <li class="work-item">
+          <span class="work-name"><a href="https://instaclaw.io" target="_blank" rel="noopener noreferrer">Instaclaw</a></span>
+          <span class="work-desc">Cofounder. Personal AI agents that take action.</span>
+        </li>
         <li class="work-item">
           <span class="work-name">Fragile</span>
           <span class="work-desc">New media, motion, and launch films at a stealth Series B startup.</span>
@@ -50,7 +57,9 @@
       </ul>
     </details>
   </main>
+  </div>
 
+  <script src="dist/ink.js" defer></script>
   <script>
     const clock = document.getElementById('clock');
     const fmt = new Intl.DateTimeFormat('en-US', {
