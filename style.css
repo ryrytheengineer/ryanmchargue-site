@@ -1,11 +1,11 @@
 :root {
-  color-scheme: light;
-
-  --paper: #f0ebe3;
-  --ink: #1c1916;
-  --ink-muted: #6b6560;
-  --line: #d4cdc4;
-  --accent: #c04d2f;
+  --navy: #163247;
+  --ink: #f7f1e8;
+  --ink-soft: rgba(247, 241, 232, 0.68);
+  --line: rgba(247, 241, 232, 0.14);
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-edge: rgba(255, 255, 255, 0.2);
+  --glass-hi: rgba(255, 255, 255, 0.14);
 }
 
 *,
@@ -22,163 +22,365 @@ html {
 }
 
 body {
-  background: var(--paper);
+  min-height: 100dvh;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
+  background: #0f2433;
+  overflow-x: hidden;
 }
 
-.head {
+/* ——— Full-bleed city world (desktop) ——— */
+
+.world {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 20%, rgba(142, 184, 216, 0.35), transparent 55%),
+    linear-gradient(165deg, #2a5070 0%, #1a3a55 45%, #0f2433 100%);
+}
+
+.world-art {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  object-position: 42% 45%;
+  filter: saturate(1.05) contrast(1.02);
+  transform: scale(1.02);
+}
+
+.world-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 24, 36, 0.35) 0%, rgba(10, 24, 36, 0.08) 38%, rgba(10, 24, 36, 0.55) 100%),
+    radial-gradient(ellipse 80% 55% at 50% 30%, transparent 20%, rgba(8, 20, 32, 0.35) 100%);
+  pointer-events: none;
+}
+
+/* Mobile: art as a contained card, not edge-to-edge fill */
+@media (max-width: 767px) {
+  .world {
+    background:
+      radial-gradient(ellipse 100% 55% at 50% 0%, #8eb8d8 0%, #4a7fa3 42%, #1a3a55 78%, #0f2433 100%);
+  }
+
+  .world-art {
+    inset: auto;
+    top: max(4.75rem, calc(env(safe-area-inset-top, 0px) + 4.25rem));
+    left: 50%;
+    width: min(86vw, 22rem);
+    height: auto;
+    max-height: 48dvh;
+    transform: translateX(-50%);
+    object-fit: contain;
+    object-position: center;
+    border-radius: 1.15rem;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+    filter: saturate(1.04) contrast(1.01);
+  }
+
+  .world-wash {
+    background:
+      linear-gradient(180deg, rgba(15, 36, 51, 0.15) 0%, transparent 35%, rgba(15, 36, 51, 0.55) 72%, rgba(15, 36, 51, 0.82) 100%);
+  }
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  z-index: 50;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--navy);
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ——— Top chrome: one glass strip ——— */
+
+.top {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: clamp(0.85rem, 2.5vw, 1.25rem) clamp(0.85rem, 3vw, 1.5rem) 0 auto;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.meta {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.5rem, 5vw, 3rem);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  gap: 1rem;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.head-meta {
-  text-transform: uppercase;
-}
-
-.head-name,
-.head-link {
-  color: inherit;
+.meta a {
+  color: var(--ink);
   text-decoration: none;
-}
-
-.head-name {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 1.125rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  text-transform: none;
-}
-
-.head-meta {
-  display: flex;
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: baseline;
-}
-
-.head-loc {
-  color: var(--ink-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.head-link {
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(247, 241, 232, 0.45);
   padding-bottom: 1px;
 }
 
-.head-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+.meta a:hover {
+  border-bottom-color: var(--ink);
 }
 
-main {
-  max-width: 720px;
-  padding: clamp(1rem, 3vh, 2rem) clamp(1.5rem, 5vw, 3rem) clamp(4rem, 10vh, 6rem);
+/* ——— Stage: brand plate sits in the world ——— */
+
+.stage {
+  position: relative;
+  z-index: 5;
+  min-height: calc(100dvh - 5.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  padding:
+    clamp(1.5rem, 6vh, 3rem)
+    clamp(0.85rem, 3vw, 1.5rem)
+    calc(1.25rem + env(safe-area-inset-bottom, 0));
+  max-width: 40rem;
 }
+
+.plate {
+  padding: clamp(1.35rem, 4vw, 1.85rem) clamp(1.25rem, 4vw, 1.75rem);
+  border-radius: 1.35rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.name {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2.6rem, 10vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.lede {
+  margin-top: 0.85rem;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.mail {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(247, 241, 232, 0.4);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.mail:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* ——— Ventures: second glass only ——— */
 
 .ventures {
-  margin-bottom: 0;
-  border-top: 1px solid var(--line);
+  border-radius: 1.15rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  overflow: hidden;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
 }
 
-.ventures-toggle {
+.ventures summary {
   list-style: none;
   cursor: pointer;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: clamp(1.1rem, 2.5vh, 1.4rem) 0;
-  border-bottom: 1px solid var(--line);
+  gap: 0.75rem;
+  padding: 1.05rem 1.25rem;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
   letter-spacing: -0.02em;
   user-select: none;
 }
 
-.ventures-toggle::-webkit-details-marker {
+.ventures summary::-webkit-details-marker {
   display: none;
 }
 
-.ventures-toggle::after {
+.ventures summary::after {
   content: "+";
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 1.25rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1.2rem;
   font-weight: 300;
-  color: var(--ink-muted);
-  transition: transform 0.2s ease, color 0.2s ease;
+  color: var(--ink-soft);
 }
 
-.ventures[open] .ventures-toggle::after {
+.ventures[open] summary::after {
   content: "−";
-  color: var(--accent);
 }
 
-.ventures[open] .ventures-toggle {
-  color: var(--accent);
-}
-
-.work-list {
+.ventures ul {
   list-style: none;
+  border-top: 1px solid var(--line);
+  padding: 0.35rem 0 0.65rem;
 }
 
-.work-item {
+.ventures li {
+  padding: 0.85rem 1.25rem;
+}
+
+.ventures li + li {
+  border-top: 1px solid rgba(247, 241, 232, 0.08);
+}
+
+.ventures a {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.35rem;
-  padding: clamp(1.1rem, 2.5vh, 1.5rem) 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.work-item:last-child {
-  border-bottom: 0;
-}
-
-@media (min-width: 640px) {
-  .work-item {
-    grid-template-columns: 9rem 1fr;
-    align-items: baseline;
-    gap: 2rem;
-  }
-}
-
-.work-name {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
-  letter-spacing: -0.02em;
-}
-
-.work-name a {
+  gap: 0.25rem;
   color: inherit;
   text-decoration: none;
 }
 
-.work-name a:hover {
-  color: var(--accent);
+.ventures a:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.work-desc {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-muted);
+.ventures .row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-::selection {
-  background: var(--accent);
-  color: var(--paper);
+.ventures strong {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.ventures .when {
+  flex-shrink: 0;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.ventures li > span:not(.when),
+.ventures a > span:not(.when) {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.ventures summary .range {
+  display: inline;
+  margin-right: auto;
+  margin-left: 0.65rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .ventures {
+    animation: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .stage {
+    max-width: 28rem;
+    margin-left: clamp(1.5rem, 6vw, 4rem);
+    justify-content: center;
+    padding-bottom: 4rem;
+  }
+
+  .world-art {
+    object-position: 55% 42%;
+  }
 }
 
 @media (max-width: 480px) {
-  .head-meta {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.25rem;
+  .meta {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.85rem;
   }
+
+  .top {
+    margin-left: clamp(0.85rem, 3vw, 1.5rem);
+    margin-right: clamp(0.85rem, 3vw, 1.5rem);
+    width: auto;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .top,
+  .plate,
+  .ventures {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(40, 68, 88, 0.72);
+  }
+}
+
+::selection {
+  background: rgba(142, 184, 216, 0.55);
+  color: #fff;
 }
