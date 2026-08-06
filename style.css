@@ -49,7 +49,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 50% 42%;
   filter: saturate(1.05) contrast(1.02);
 }
 
@@ -57,19 +57,19 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 24, 36, 0.35) 0%, rgba(10, 24, 36, 0.08) 38%, rgba(10, 24, 36, 0.55) 100%),
+    linear-gradient(180deg, rgba(10, 24, 36, 0.45) 0%, rgba(10, 24, 36, 0.08) 28%, rgba(10, 24, 36, 0.55) 100%),
     radial-gradient(ellipse 80% 55% at 50% 30%, transparent 20%, rgba(8, 20, 32, 0.35) 100%);
   pointer-events: none;
 }
 
 @media (max-width: 767px) {
   .world-art {
-    object-position: 50% 35%;
+    object-position: 50% 38%;
   }
 
   .world-wash {
     background:
-      linear-gradient(180deg, rgba(10, 24, 36, 0.25) 0%, rgba(10, 24, 36, 0.1) 40%, rgba(10, 24, 36, 0.62) 100%),
+      linear-gradient(180deg, rgba(10, 24, 36, 0.4) 0%, rgba(10, 24, 36, 0.1) 32%, rgba(10, 24, 36, 0.62) 100%),
       radial-gradient(ellipse 90% 55% at 50% 25%, transparent 15%, rgba(8, 20, 32, 0.4) 100%);
   }
 }
@@ -245,6 +245,31 @@ body {
   padding: 0.35rem 0 0.65rem;
 }
 
+.ventures-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ventures.is-open .ventures-panel {
+  grid-template-rows: 1fr;
+}
+
+.ventures-panel > ul {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.35s ease 0.05s,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ventures.is-open .ventures-panel > ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ventures li {
   padding: 0.85rem 1.25rem;
 }
@@ -322,6 +347,11 @@ body {
   .plate,
   .ventures {
     animation: none;
+  }
+
+  .ventures-panel,
+  .ventures-panel > ul {
+    transition: none;
   }
 }
 
