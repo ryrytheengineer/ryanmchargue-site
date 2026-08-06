@@ -45,11 +45,11 @@ body {
 
 .world-art {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
   object-fit: cover;
-  object-position: 50% 42%;
+  object-position: 50% 45%;
   filter: saturate(1.05) contrast(1.02);
 }
 
