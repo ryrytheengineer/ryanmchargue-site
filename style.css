@@ -147,9 +147,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   cursor: default;
-  padding: 4px;
+  padding: 6px 4px 4px;
   border-radius: 8px;
 }
 
@@ -160,62 +160,12 @@ body {
   outline: none;
 }
 
-.desk-glyph {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
-}
-
-.desk-glyph.folder {
-  background:
-    linear-gradient(180deg, #7ec8ff 0%, #3b9dff 45%, #1a7ff0 100%);
-  border-radius: 8px 8px 6px 6px;
-  position: relative;
-}
-
-.desk-glyph.folder::before {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 6px;
-  width: 22px;
-  height: 10px;
-  border-radius: 4px 6px 0 0;
-  background: linear-gradient(180deg, #9ad6ff, #5eb0ff);
-}
-
-.desk-glyph.about {
-  background: linear-gradient(160deg, #5ac8fa, #007aff 55%, #5856d6);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 18px;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.desk-glyph.about::after {
-  content: "RM";
-}
-
-.desk-glyph.mail {
-  background: linear-gradient(180deg, #6ec1ff, #1a7ff0);
-  position: relative;
-}
-
-.desk-glyph.mail::after {
-  content: "";
-  position: absolute;
-  inset: 14px 10px;
-  border: 2.5px solid rgba(255, 255, 255, 0.95);
-  border-radius: 3px;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
-}
-
-.desk-glyph.app {
-  background: linear-gradient(145deg, #34c759, #30d158 40%, #248a3d);
-  border-radius: 14px;
+.desk-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+  pointer-events: none;
 }
 
 .desk-label {
@@ -342,18 +292,12 @@ body {
   text-align: center;
 }
 
-.avatar {
+.avatar-img {
   width: 84px;
   height: 84px;
   margin: 0 auto 16px;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(160deg, #5ac8fa, #007aff 55%, #5856d6);
-  box-shadow: 0 10px 24px rgba(0, 122, 255, 0.35);
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(0, 122, 255, 0.3));
 }
 
 .about-body h1 {
@@ -411,20 +355,12 @@ body {
   background: rgba(10, 132, 255, 0.12);
 }
 
-.fi {
+.fi-img {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
   flex-shrink: 0;
-}
-
-.fi.folder {
-  background: linear-gradient(180deg, #7ec8ff, #1a7ff0);
-}
-
-.fi.app {
-  background: linear-gradient(145deg, #34c759, #248a3d);
-  border-radius: 9px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
 }
 
 .fi-text {
@@ -512,9 +448,10 @@ body {
 .dock-icon {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
   transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.3, 1);
+  pointer-events: none;
 }
 
 .dock-item:hover .dock-icon,
@@ -567,30 +504,6 @@ body {
   align-self: center;
 }
 
-.dock-icon.about {
-  background: linear-gradient(160deg, #5ac8fa, #007aff 55%, #5856d6);
-}
-
-.dock-icon.folder {
-  background: linear-gradient(180deg, #7ec8ff, #1a7ff0);
-  border-radius: 8px;
-}
-
-.dock-icon.mail {
-  background: linear-gradient(180deg, #6ec1ff, #1a7ff0);
-}
-
-.dock-icon.safari {
-  background:
-    radial-gradient(circle at 50% 50%, #fff 0 18%, transparent 19%),
-    conic-gradient(from 0deg, #ff3b30, #ffcc00, #34c759, #007aff, #5856d6, #ff3b30);
-  border-radius: 50%;
-}
-
-.dock-icon.trash {
-  background: linear-gradient(180deg, #f2f2f7, #c7c7cc);
-}
-
 @keyframes win-in {
   from {
     opacity: 0;
@@ -621,9 +534,9 @@ body {
     gap: 14px;
   }
 
-  .desk-glyph {
-    width: 48px;
-    height: 48px;
+  .desk-img {
+    width: 52px;
+    height: 52px;
   }
 
   .window {
