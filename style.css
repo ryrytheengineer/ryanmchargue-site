@@ -112,6 +112,25 @@ body {
   letter-spacing: -0.015em;
 }
 
+.venture-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.venture-link strong {
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+
+.venture-link:hover strong {
+  border-bottom-width: 2px;
+}
+
+.venture-link:hover .desc {
+  color: var(--ink);
+}
+
 .when {
   flex-shrink: 0;
   font-size: 12px;
