@@ -48,6 +48,12 @@ h1 {
   font-size: 0.95rem;
 }
 
+.bio {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  max-width: 22rem;
+}
+
 .work {
   margin-top: 2.5rem;
 }
