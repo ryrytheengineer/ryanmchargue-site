@@ -3,7 +3,6 @@
 (() => {
   const html = document.documentElement;
   const hero = document.getElementById("film-stage");
-  const shell = document.getElementById("hero-shell");
 
   // Scroll cue: steps aside once the page has moved about 72px.
   if (hero && "IntersectionObserver" in window) {
@@ -30,9 +29,7 @@
       span = Math.max(1, hero.offsetHeight * (narrow.matches ? 0.72 : 0.5));
     };
     const write = (v) => {
-      const s = v.toFixed(4);
-      hero.style.setProperty("--settle", s);
-      if (shell) shell.style.setProperty("--settle", s);
+      hero.style.setProperty("--settle", v.toFixed(4));
     };
     const tick = () => {
       raf = 0;

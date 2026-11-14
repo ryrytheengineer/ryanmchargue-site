@@ -162,35 +162,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
 .nav-button{border-color:#dfdcd5}
 .nav-button:hover{background:#eae7e1;border-color:#a9a49b}
 .event-photo{border-radius:8px}
-/* Full-bleed launch hero + peeking device behind the settle */
-.hero-shell{
-  position:relative;
-  --settle:0;
-}
-.settle-phone{
-  /* A short window under the film that opens with --settle, revealing the
-     camera-face (top of the device) as if it slid out from behind. */
-  position:absolute;
-  z-index:0;
-  left:50%;
-  top:100%;
-  width:clamp(56px, 9vw, 84px);
-  height:calc(var(--settle) * clamp(40px, 6.5vw, 56px));
-  overflow:hidden;
-  transform:translate3d(-50%, 0, 0);
-  pointer-events:none;
-  will-change:height;
-}
-.settle-phone img{
-  display:block;
-  width:100%;
-  height:auto;
-  transform:translate3d(0, calc((1 - var(--settle)) * -14px), 0);
-  filter:drop-shadow(0 10px 18px rgba(24,22,18,.12));
-}
-@media (prefers-reduced-motion:reduce){
-  .settle-phone{height:clamp(36px, 5.5vw, 48px);opacity:.8}
-}
 .hero-film{
   /* The film fills exactly one screen and ends on a clean edge. As the page scrolls, its
      window closes in from the sides and top and its corners round, so it leaves as a
@@ -553,12 +524,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
     border-radius:calc(var(--settle) * var(--frame-radius));
     will-change:transform;
   }
-  .settle-phone{
-    /* Track the scaled film's visual bottom (origin is top center). */
-    top:calc(100% * (1 - var(--settle) * 0.055));
-    width:clamp(48px, 16vw, 68px);
-    height:calc(var(--settle) * clamp(34px, 11vw, 48px));
-  }
   .hero-copy{translate:none}
   .hero-nav{height:max(58px, env(safe-area-inset-top) + 44px);padding:0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left))}
   .hero-stage video{
@@ -613,10 +578,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
 
 </style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261113z"/><link rel="stylesheet" href="motion.css?v=20261113z"/></head><body>
 
-<div class="hero-shell" id="hero-shell">
-<div class="settle-phone" aria-hidden="true">
-  <img src="assets/settle-phone.png?v=20261113z" alt="" width="439" height="900" decoding="async"/>
-</div>
 <header class="hero-film is-muted" id="film-stage">
   <nav class="hero-nav">
     <a class="brand" href="/">Ryan McHargue</a>
@@ -648,7 +609,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
   <a class="hero-cue" href="#work" aria-label="Scroll to selected work"><span class="hero-cue-label" aria-hidden="true">Scroll</span><span class="hero-cue-line" aria-hidden="true"></span></a>
   <div class="hero-fade" aria-hidden="true"></div>
 </header>
-</div>
 
 <div class="site">
 <main>
@@ -996,4 +956,4 @@ function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sou
 <script src="studio.js"></script>
 <script src="video-lightbox.js"></script>
 <script src="case-study-preview.js"></script>
-<script src="motion.js?v=20261113z"></script></body></html>
+<script src="motion.js?v=20261114a"></script></body></html>
