@@ -1,10 +1,12 @@
+.local-media/
 .vercel
-node_modules
-assets/seq
-assets/frames
+.cursor/
+.codex/
 assets/deep-01.png
 assets/deep-02.png
+assets/enter.mp4.bak
+assets/frames
 assets/hero-cropped.png
 assets/hero-fly.png
-assets/enter.mp4.bak
-
+assets/seq
+node_modules

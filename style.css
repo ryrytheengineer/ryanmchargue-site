@@ -1,9 +1,16 @@
 :root {
+  --paper: #fff;
   --ink: #111;
-  --muted: #666;
+  --muted: #6e6e73;
   --line: #e5e5e5;
+  --night: #0c0c0b; /* Motion & Matter's opening frame */
   --sans: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
     "Segoe UI", system-ui, sans-serif;
+  --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --spectrum: #ff5a7a, #ffb020, #38d39f, #4aa3ff, #b57bff;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 *,
@@ -16,156 +23,595 @@
 
 html {
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100dvh;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.5;
-  background: #fff;
+  background: var(--paper);
+  transition: background-color 0.45s ease;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+/* ---------- Page frame ---------- */
 
 .page {
-  max-width: 28rem;
-  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  min-height: 100dvh;
   padding:
-    max(2.5rem, env(safe-area-inset-top, 0px) + 2rem)
-    1.25rem
-    max(2.5rem, env(safe-area-inset-bottom, 0px) + 2rem);
+    max(clamp(2rem, 6vh, 3.5rem), env(safe-area-inset-top, 0px) + 2rem)
+    max(1.25rem, env(safe-area-inset-right, 0px))
+    max(clamp(2rem, 6vh, 3.5rem), env(safe-area-inset-bottom, 0px) + 2rem)
+    max(1.25rem, env(safe-area-inset-left, 0px));
 }
 
-h1 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.place {
-  margin-top: 0.25rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.bio {
-  margin-top: 0.85rem;
-  font-size: 0.95rem;
-  max-width: 22rem;
+/* Single column by default, in reading order: statement, index, photograph with the
+   portfolio link as its caption, contact. */
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
 }
 
 .work {
   margin-top: 2.5rem;
 }
 
-.work h2 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
+.portrait {
+  margin-top: 2.75rem;
 }
 
-.work ul {
-  list-style: none;
-  border-top: 1px solid var(--line);
-}
-
-.work li {
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.work strong {
-  font-weight: 600;
-}
-
-.work a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.work a strong {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.work a:hover {
-  opacity: 0.7;
-}
-
-.when {
-  flex-shrink: 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.desc {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.cd {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  margin-top: 2.25rem;
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.22);
-  padding-bottom: 1px;
-  transition:
-    opacity 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.cd:hover,
-.cd:focus-visible {
-  opacity: 0.55;
-  border-bottom-color: rgba(17, 17, 17, 0.45);
-  outline: none;
-}
-
-.cd-arrow {
-  display: inline-block;
-  font-size: 0.85em;
-  line-height: 1;
-  color: var(--muted);
-  transition: transform 0.25s ease, color 0.2s ease;
-}
-
-.cd:hover .cd-arrow,
-.cd:focus-visible .cd-arrow {
-  color: var(--ink);
-  transform: translate(1.5px, -1.5px);
+.portfolio {
+  margin-top: 1.5rem;
 }
 
 .contact {
-  margin-top: 2rem;
-  font-size: 0.95rem;
+  margin-top: 2.5rem;
 }
 
-.contact a {
+/* ---------- Name and statement: one display line in two tones ---------- */
+
+.intro h1,
+.bio {
+  font-family: var(--display);
+  /* Scales with narrow screens so the statement always sets in the same two lines. */
+  font-size: clamp(1.5rem, 7.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+/* The measure sits between the two possible first lines, so the break always falls after "help". */
+.bio {
+  max-width: 12.2em;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+/* ---------- Portrait ---------- */
+
+.portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 900 / 945;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #1b1b1a;
+}
+
+.portrait picture {
+  display: contents;
+}
+
+.portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  /* Leans toward the edit monitor when the portfolio link is engaged. */
+  transform-origin: 34% 32%;
+  transition: transform 1.4s var(--ease);
+}
+
+/* ---------- Small labels ---------- */
+
+.label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Work index ---------- */
+
+.work {
+  container-type: inline-size;
+}
+
+.index {
+  margin-top: 0.85rem;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.index li {
+  border-top: 1px solid var(--line);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name when"
+    "desc desc";
+  column-gap: 1.5rem;
+  row-gap: 0.15rem;
+  align-items: baseline;
+  padding: 0.95rem 0;
+  transition: opacity 0.35s ease;
+}
+
+.entry-name {
+  grid-area: name;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.entry-desc {
+  grid-area: desc;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.entry-when {
+  grid-area: when;
+  justify-self: end;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* The one current entry carries a marker; the rest stay quiet. */
+.entry-when.is-present {
   color: var(--ink);
 }
 
+.entry-when.is-present::before {
+  content: "";
+  display: inline-block;
+  width: 0.34rem;
+  height: 0.34rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 0.12em;
+}
+
+.entry-arrow {
+  width: 0.56rem;
+  height: 0.56rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #b4b4b8;
+  transition: transform 0.45s var(--ease), color 0.3s ease;
+}
+
+/* On one line once the index is wide enough: company, role, status. */
+@container (min-width: 32.5rem) {
+  .entry {
+    grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+    grid-template-areas: "name desc when";
+    row-gap: 0;
+  }
+}
+
+.entry:focus-visible {
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Linked entries answer quietly: the arrow steps out and the description comes up to ink.
+   Nothing in the columns moves. */
+.entry[href]:focus-visible .entry-arrow {
+  color: var(--ink);
+  transform: translate(0.12rem, -0.12rem);
+}
+
+.entry[href]:focus-visible .entry-desc {
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .entry[href]:hover .entry-arrow {
+    color: var(--ink);
+    transform: translate(0.12rem, -0.12rem);
+  }
+
+  .entry[href]:hover .entry-desc {
+    color: var(--ink);
+  }
+
+  /* Reading one entry lets the others recede; the rules between them hold still. */
+  .index:has(.entry[href]:hover) .entry:not(:hover) {
+    opacity: 0.45;
+  }
+}
+
+/* Touch has no hover, so a press is acknowledged instead. */
+.entry[href]:active {
+  opacity: 0.55;
+  transition-duration: 0.1s;
+}
+
+/* ---------- Motion & Matter ---------- */
+
+.gate {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  align-self: flex-start;
+  margin-top: 0.55rem;
+  color: var(--ink);
+}
+
+/* The portfolio's own lockup at small scale: serif italic "Motion &", sans "Matter". */
+.gate-mark {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.45rem;
+  line-height: 1;
+  white-space: nowrap;
+  /* A band of the five accent colours rests off to one side and crosses the letters on demand. */
+  background-image: linear-gradient(
+    100deg,
+    var(--ink) 0%,
+    var(--ink) 37%,
+    var(--spectrum),
+    var(--ink) 63%,
+    var(--ink) 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* Both resting positions are solid ink, so the band resets unseen instead of replaying backwards. */
+  transition: background-position 0s;
+}
+
+.gate-motion,
+.gate-amp {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.gate-motion {
+  font-size: 2.375rem;
+  letter-spacing: -0.035em;
+}
+
+.gate-amp {
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.gate-matter {
+  font-family: var(--display);
+  font-size: 1.6875rem;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+/* Multicolour hairline: a short dash at rest, drawn across the name on approach. */
+.gate-mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--spectrum));
+  transform: scaleX(0.3);
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease);
+}
+
+.gate-arrow {
+  width: 1rem;
+  height: 0.625rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--muted);
+  transition: transform 0.5s var(--ease), color 0.3s ease;
+}
+
+.gate:hover .gate-mark,
+.gate:focus-visible .gate-mark {
+  background-position: 0% 50%;
+  transition: background-position 1.15s cubic-bezier(0.3, 0.1, 0.2, 1) 0.08s;
+}
+
+.gate:hover .gate-mark::after,
+.gate:focus-visible .gate-mark::after {
+  transform: scaleX(1);
+}
+
+.gate:hover .gate-arrow,
+.gate:focus-visible .gate-arrow {
+  color: var(--ink);
+  transform: translateX(0.3rem);
+}
+
+.gate:active .gate-arrow {
+  transform: translateX(0.5rem);
+  transition-duration: 0.15s;
+}
+
+.sheet:has(.gate:hover) .portrait img,
+.sheet:has(.gate:focus-visible) .portrait img {
+  transform: scale(1.045);
+}
+
+/* Without hover there is no approach, so the hairline is simply complete. */
+@media (hover: none) {
+  .gate-mark::after {
+    transform: none;
+  }
+}
+
+/* ---------- Contact ---------- */
+
+.contact-link {
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 0.55rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px
+    no-repeat;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+/* A comfortable touch target without changing the line's size. */
+.contact-link::after {
+  content: "";
+  position: absolute;
+  inset: -0.75rem 0;
+}
+
+.contact-link:active {
+  opacity: 0.55;
+}
+
+.contact,
+.portfolio {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (hover: hover) {
+  .contact-link {
+    background-image: linear-gradient(var(--line), var(--line)),
+      linear-gradient(var(--ink), var(--ink));
+    background-size: 100% 1px, 0% 1px;
+    background-position: 0 100%, 0 100%;
+    transition: background-size 0.5s var(--ease);
+  }
+
+  .contact-link:hover {
+    background-size: 100% 1px, 100% 1px;
+  }
+}
+
+/* ---------- Two columns: the builder on the left, the maker on the right ---------- */
+
+@media (min-width: 62.5rem) {
+  .page {
+    padding-inline: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .sheet {
+    --portrait-w: clamp(17rem, 30vw, 26rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--portrait-w);
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+      "intro   portrait"
+      "work    portrait"
+      "c-label p-label"
+      "c-link  p-link";
+    column-gap: clamp(3rem, 7vw, 7rem);
+    max-width: 72rem;
+  }
+
+  .intro {
+    grid-area: intro;
+  }
+
+  .intro h1,
+  .bio {
+    font-size: clamp(2rem, 3.2vw, 2.875rem);
+  }
+
+  /* Trim the heading to its cap height so the type and the photograph share a top edge. */
+  .intro h1 {
+    margin-top: -0.2em;
+  }
+
+  @supports (text-box-trim: trim-start) {
+    .intro h1 {
+      margin-top: 0;
+      text-box-trim: trim-start;
+      text-box-edge: cap alphabetic;
+    }
+  }
+
+  /* The index is set from the bottom up, so its last rule meets the photograph's lower edge. */
+  .work {
+    grid-area: work;
+    align-self: end;
+    margin-top: 3rem;
+  }
+
+  .portrait {
+    grid-area: portrait;
+    width: auto;
+    aspect-ratio: auto;
+    min-height: calc(var(--portrait-w) * 945 / 900);
+    margin-top: 0;
+  }
+
+  /* Bottom row: labels share a line, values share a baseline. */
+  .contact,
+  .portfolio {
+    display: contents;
+  }
+
+  .contact .label,
+  .portfolio .label {
+    margin-top: 3.25rem;
+  }
+
+  .contact .label {
+    grid-area: c-label;
+  }
+
+  .portfolio .label {
+    grid-area: p-label;
+  }
+
+  .contact-link,
+  .gate {
+    align-self: baseline;
+    justify-self: start;
+    margin-top: 0.6rem;
+  }
+
+  .contact-link {
+    grid-area: c-link;
+  }
+
+  .gate {
+    grid-area: p-link;
+  }
+}
+
+/* On tall screens the composition sits slightly above true centre, where it reads as centred. */
+@media (min-width: 62.5rem) and (min-height: 50rem) {
+  .sheet {
+    margin-bottom: 4vh;
+  }
+}
+
+/* ---------- Entrance: one quiet stagger, then a single pass of colour ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes spectrum-pass {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro,
+  .label,
+  .index li,
+  .gate,
+  .contact-link {
+    animation: rise 0.9s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .portrait {
+    animation: settle 1.2s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .gate-mark {
+    animation: spectrum-pass 1.6s cubic-bezier(0.3, 0.1, 0.2, 1) 1.25s backwards;
+  }
+}
+
+/* ---------- Leaving for Motion & Matter: the lights go down ---------- */
+
+html.is-leaving body {
+  background-color: var(--night);
+}
+
+html.is-leaving .sheet {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cd,
-  .cd-arrow {
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .gate-mark::after {
+    transform: none;
+  }
+
+  /* Without a transition the photograph would jump, so it stays still. */
+  .portrait img {
+    transform: none !important;
   }
 }

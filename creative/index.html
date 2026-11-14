@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#0c0c0b" name="theme-color"/><meta content="Motion and matter — selected work developed and produced for Hardware Nation." name="description"/><title>Ryan McHargue — Motion & Matter</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"/>
+<link rel="canonical" href="https://ryanmchargue.com/creative/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Ryan McHargue"/>
+<meta property="og:url" content="https://ryanmchargue.com/creative/"/>
+<meta property="og:title" content="Ryan McHargue — Motion & Matter"/>
+<meta property="og:description" content="Motion and matter — selected work developed and produced for Hardware Nation, spanning robotics, emerging technology, founder storytelling, and community."/>
+<meta property="og:image" content="https://ryanmchargue.com/creative/assets/og-creative.jpg?v=20261111o"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Ryan McHargue — Motion & Matter"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Ryan McHargue — Motion & Matter"/>
+<meta name="twitter:description" content="Motion and matter — selected work developed and produced for Hardware Nation."/>
+<meta name="twitter:image" content="https://ryanmchargue.com/creative/assets/og-creative.jpg?v=20261111o"/>
+<meta name="twitter:image:alt" content="Ryan McHargue — Motion & Matter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<script>
+/* Scroll reveals only hide content when they can also show it again. */
+(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;d.classList.add('js-motion');setTimeout(function(){if(window.__motionReady)return;d.classList.remove('js-motion');document.dispatchEvent(new Event('motion:off'))},4000)})();
+</script>
+<style>
+:root{--paper:#fafaf8;--ink:#1b1d1e;--muted:#848781;--line:#e4e5e1}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;overscroll-behavior-x:none}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:2px solid #282b2b;outline-offset:5px}
+.site{max-width:1330px;width:calc(100% - 100px);margin:auto}.nav{height:82px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:600;font-size:14px;letter-spacing:-.035em}.nav-link{font-size:12px;color:#606460}.nav-link:hover{color:#111}
+.intro{padding:84px 0 34px}.eyebrow{font-size:11px;color:#6b706b;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px}.intro h1{font-size:clamp(56px,7vw,97px);font-weight:500;line-height:.97;letter-spacing:-.075em;margin:0}.intro-text{display:flex;justify-content:space-between;align-items:center;gap:20px;color:#858781;font-size:12px;margin-top:27px}
+.deck-section{padding:25px 0 72px}.deck-wrap{position:relative;height:min(570px, 52vw);min-height:450px;max-width:1030px;margin:0 auto;display:flex;align-items:center;justify-content:center;isolation:isolate;touch-action:pan-y}.deck{position:relative;width:min(720px,77%);height:calc(100% - 12px);perspective:1400px;touch-action:pan-y;user-select:none;-webkit-user-select:none}.project-card{position:absolute;inset:0;min-width:0;background:#fff;box-shadow:0 13px 35px rgba(30,33,31,.09),0 2px 6px rgba(30,33,31,.055);overflow:hidden;display:flex;flex-direction:column;will-change:transform,opacity;transition:transform .54s cubic-bezier(.16,.79,.22,1),opacity .35s ease,filter .4s;transform-origin:center 60%;border:1px solid #eeefec;visibility:hidden;opacity:0}.project-card.is-visible{visibility:visible;opacity:1}.project-card[data-depth="0"]{cursor:grab;touch-action:pan-y}.project-card[data-depth="0"]:active{cursor:grabbing}.project-card.dragging{transition:none!important}.project-card .photo{position:relative;display:block;overflow:hidden;flex:1;min-height:0;background:#edeeeb}.project-card .photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--focus,center);pointer-events:none}.project-card .photo .photo-action{position:absolute;top:17px;right:18px;background:rgba(250,250,248,.92);padding:10px 12px;font-size:11px;letter-spacing:.01em;opacity:0;transition:opacity .2s}.project-card[data-depth="0"]:hover .photo-action,.project-card:focus-within .photo-action{opacity:1}.card-bottom{padding:20px 26px 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:15px;min-height:84px}.card-type{font-size:11px;color:#8b8d89;margin-bottom:7px}.card-bottom h2{font-size:26px;line-height:1;letter-spacing:-.047em;font-weight:500;margin:0}.card-index{color:#9a9b98;font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap}.fallback-image{background:#e9eae7;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#747773;height:100%;width:100%}.event-photo{height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:31px 33px 35px;background:#272d30;color:#f3f3ed}.event-photo span{font-size:12px}.event-photo strong{font-size:clamp(65px,11vw,126px);font-weight:500;line-height:.82;letter-spacing:-.085em}.event-photo em{font-style:normal;color:#b8bebc;font-size:12px}
+.deck-controls{display:flex;justify-content:space-between;align-items:center;gap:30px;max-width:720px;margin:32px auto 0;padding:0 4px}.counter{display:flex;align-items:center;gap:13px;color:#545955;font-size:12px;font-variant-numeric:tabular-nums}.track{height:1px;width:92px;background:#dfe1dc;position:relative;overflow:hidden}.track-inner{background:#222;width:0;height:100%;transition:width .3s}.directions{display:flex;align-items:center;gap:10px}.directions .hint{font-size:11px;color:#989b96;margin-right:14px}.nav-button{width:41px;height:41px;border:1px solid #d7d9d3;background:transparent;cursor:pointer;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:300;transition:background .2s,border .2s}.nav-button:hover{background:#e8eae5;border-color:#aeb0aa}.nav-button:active{transform:scale(.96)}
+.credits{border-top:1px solid var(--line);padding:28px 0 58px;display:flex;gap:25px;align-items:flex-start;justify-content:space-between;color:#828780;font-size:11px;line-height:1.7}.credits p{margin:0}.credits a:hover{color:#202320}
+@media(max-width:900px){.site{width:calc(100% - 50px)}.intro{padding:66px 0 24px}.deck{width:min(710px,79%)}.deck-wrap{height:480px;min-height:400px}.project-card .card-bottom{min-height:78px;padding:17px 21px}.card-bottom h2{font-size:24px}}
+@media(max-width:600px){.site{width:calc(100% - 32px)}.nav{height:69px}.intro{padding:65px 0 30px}.intro h1{font-size:clamp(51px,12vw,74px)}.intro-text{flex-direction:column;align-items:flex-start;gap:5px;margin-top:17px}.deck-section{padding:8px 0 70px}.deck-wrap{min-height:0;height:min(470px,107vw);max-height:470px}.deck{width:87%;height:calc(100% - 12px)}.project-card .card-bottom{min-height:71px;padding:15px 16px 18px}.card-bottom h2{font-size:21px}.card-type{font-size:10px;margin-bottom:6px}.card-index{font-size:10px}.deck-controls{margin-top:20px}.directions .hint{display:none}.track{width:65px}.credits{flex-direction:column;gap:15px}.event-photo{padding:20px}.event-photo strong{font-size:75px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Physical card edition: restrained, tactile, deliberately unaligned. */
+:root{
+  --paper:#faf9f6;
+  --ink:#292a28;
+  --line:#e6e3dd;
+  --muted:#8a8882;
+  --muted-strong:#6f6e69;
+  --muted-role:#5c5b56;
+  --font-sans:Arial,Helvetica,sans-serif;
+  --font-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --type-kicker-size:11px;
+  --type-kicker-track:.1em;
+  --type-kicker-gap:14px;
+  --type-meta-size:11px;
+  --type-meta-track:.1em;
+  --type-body-size:14px;
+  --type-body-leading:1.55;
+  --type-body-track:-.01em;
+  --type-role-size:12px;
+  --type-role-leading:1.4;
+  --type-cta-size:12px;
+  --type-feature-size:clamp(32px,4.2vw,48px);
+  --type-feature-track:-.03em;
+  --type-feature-leading:.96;
+  --type-chapter-size:clamp(42px,7vw,72px);
+  --type-chapter-track:-.03em;
+  --type-chapter-leading:.92;
+  --type-card-title-size:22px;
+  --type-card-title-track:-.038em;
+  --type-stack-title:7px;
+  --type-stack-meta:7px;
+  --type-stack-body:10px;
+  --type-stack-cta:13px;
+  /* Motion: one curve for anything that travels, one for anything that crosses. */
+  --ease:cubic-bezier(.16,.79,.22,1);
+  --ease-inout:cubic-bezier(.6,0,.2,1);
+  --dur-quick:.2s;
+  --dur-move:.45s;
+  --dur-reveal:.85s;
+  --rise:16px;
+  --stagger:80ms;
+  /* Rhythm: every major section is separated by the same interval. */
+  --space-section:clamp(56px,8vw,112px);
+}
+body{background:var(--paper);font-family:var(--font-sans)}
+.nav{border-color:#e6e3df}
+.deck-section{padding:8px 0 56px}
+.deck-wrap{
+  height:720px;
+  min-height:0;
+  max-width:980px;
+  /* Visible so soft deck glow isn't squared off; page shift stays clipped on section/html. */
+  overflow:visible;
+  isolation:isolate;
+}
+.deck-section{overflow-x:clip}
+.deck{height:auto;width:min(420px,58vw);aspect-ratio:5 / 7.55;max-height:none;perspective:1500px;position:relative}
+.project-card{
+  background-color:#f7f5f0;
+  background-image:linear-gradient(132deg,rgba(255,255,255,.5) 0%,rgba(250,247,240,0) 49%,rgba(228,218,205,.16) 100%);
+  border:1px solid rgba(108,105,95,.18);
+  border-radius:18px;
+  /* No stacked/ambient plate shadows — those read as a hard rectangle behind the fan. */
+  box-shadow:none;
+  overflow:hidden;
+  transform-origin:center 55%;
+  filter:none;
+}
+.project-card[data-depth="0"]{
+  /* Negative spread keeps elevation under the card instead of a readable rectangular halo. */
+  box-shadow:0 28px 50px -20px rgba(44,39,32,.22),0 10px 18px -12px rgba(38,33,24,.1);
+}
+.project-card::after{
+  content:'';position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.34),inset 0 0 24px rgba(180,157,125,.04);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.45' filter='url(%23paper)'/%3E%3C/svg%3E");
+  opacity:.073;mix-blend-mode:multiply;
+}
+.project-card .photo{margin:11px 11px 0;border-radius:9px;flex:1;overflow:hidden;background:#e9e7e2;display:block;position:relative}
+.project-card .photo img{object-fit:cover;object-position:var(--focus,center);width:100%;height:100%;display:block}
+.card-bottom{
+  display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;
+  gap:0;min-height:148px;padding:16px 22px 18px;
+}
+.card-toprow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-bottom h2{
+  margin:0;
+  font-size:var(--type-card-title-size);
+  font-weight:500;
+  letter-spacing:var(--type-card-title-track);
+  line-height:1.05;
+}
+.card-sector{display:none}
+.card-index{font-size:var(--type-meta-size);color:#a5a19a;flex-shrink:0;padding-top:2px}
+.card-role{
+  margin:10px 0 0;
+  font-size:var(--type-role-size);
+  line-height:var(--type-role-leading);
+  color:var(--muted-role);
+  max-width:18rem;
+}
+.card-link{
+  display:inline-flex;align-items:center;gap:0.35em;margin-top:11px;
+  font-size:var(--type-cta-size);font-weight:500;
+  color:var(--ink);border-bottom:1px solid rgba(41,42,40,.28);padding-bottom:1px;width:fit-content;
+  position:relative;z-index:5;text-decoration:none;
+}
+.card-link:hover{border-bottom-color:var(--ink)}
+.diag-arrow{
+  display:inline-block;
+  width:0.55em;height:0.55em;
+  border-top:1.5px solid currentColor;
+  border-right:1.5px solid currentColor;
+  transform:rotate(45deg);
+  translate:0 -0.05em;
+  flex-shrink:0;
+}
+.card-result{display:none;margin-top:8px;font-size:var(--type-meta-size);color:var(--muted)}
+.card-result.is-set{display:block}
+.deck-controls{max-width:420px;margin-top:0;padding:0}
+.nav-button{border-color:#dfdcd5}
+.nav-button:hover{background:#eae7e1;border-color:#a9a49b}
+.event-photo{border-radius:8px}
+/* Full-bleed launch hero + peeking device behind the settle */
+.hero-shell{
+  position:relative;
+  --settle:0;
+}
+.settle-phone{
+  /* A short window under the film that opens with --settle, revealing the
+     camera-face (top of the device) as if it slid out from behind. */
+  position:absolute;
+  z-index:0;
+  left:50%;
+  top:100%;
+  width:clamp(56px, 9vw, 84px);
+  height:calc(var(--settle) * clamp(40px, 6.5vw, 56px));
+  overflow:hidden;
+  transform:translate3d(-50%, 0, 0);
+  pointer-events:none;
+  will-change:height;
+}
+.settle-phone img{
+  display:block;
+  width:100%;
+  height:auto;
+  transform:translate3d(0, calc((1 - var(--settle)) * -14px), 0);
+  filter:drop-shadow(0 10px 18px rgba(24,22,18,.12));
+}
+@media (prefers-reduced-motion:reduce){
+  .settle-phone{height:clamp(36px, 5.5vw, 48px);opacity:.8}
+}
+.hero-film{
+  /* The film fills exactly one screen and ends on a clean edge. As the page scrolls, its
+     window closes in from the sides and top and its corners round, so it leaves as a
+     framed player (--settle runs 0 to 1, set in motion.js). Only the window changes:
+     the footage is never scaled or moved. */
+  --hero-gutter:clamp(20px,4vw,48px);
+  --hero-inset:clamp(40px,6.5svh,64px);
+  --settle:0;
+  --frame-inset:clamp(10px,3.2vw,44px);
+  --frame-radius:18px;
+  --frame-now:calc(var(--settle) * var(--frame-inset));
+  position:relative;
+  z-index:1;
+  width:100%;
+  min-height:100svh;
+  background:transparent;
+  color:#f4f2ec;
+  overflow:hidden;
+  clip-path:inset(var(--frame-now) var(--frame-now) 0 var(--frame-now) round calc(var(--settle) * var(--frame-radius)));
+}
+.hero-nav{
+  position:absolute;top:0;left:0;right:0;z-index:6;
+  height:82px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--hero-gutter);
+  background:linear-gradient(to bottom,rgba(8,8,7,.55),transparent);
+}
+.hero-nav .brand{color:#f7f5f0;font-weight:600;font-size:14px;letter-spacing:-.035em}
+.hero-nav .nav-link{font-size:12px;color:rgba(247,245,240,.72)}
+.hero-nav .nav-link:hover{color:#fff}
+.hero-stage{
+  position:absolute;inset:0;
+  background:#0c0c0b;
+}
+.hero-stage video{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center 40%;
+  background:#0c0c0b;
+  transform:scale(1.02);
+  animation:hero-drift 28s ease-in-out infinite alternate;
+}
+@keyframes hero-drift{
+  from{transform:scale(1.02) translate3d(0,0,0)}
+  to{transform:scale(1.06) translate3d(0,-1.2%,0)}
+}
+.hero-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  /* Static contrast only: a little weight behind the navigation at the top and behind
+     the wordmark at the bottom, now that the film runs at full strength to its edge. */
+  background:
+    linear-gradient(180deg,rgba(8,8,7,.45) 0%,rgba(8,8,7,.12) 28%,transparent 55%),
+    linear-gradient(0deg,rgba(8,8,7,.42) 0%,rgba(8,8,7,.16) 24%,transparent 48%);
+}
+.hero-copy{
+  position:absolute;left:0;right:0;z-index:4;
+  bottom:var(--hero-inset);
+  padding:0 var(--hero-gutter);
+  max-width:min(920px, 92vw);
+  /* Keeps its margin from the frame's left edge as the frame closes in. */
+  translate:var(--frame-now) 0;
+}
+.hero-copy h1{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0.02em;
+  /* One fluid size from phone to desktop; "Matter" is set relative to "Motion". */
+  font-size:clamp(2.75rem,1.6rem + 7.53vw,7.25rem);
+  color:#f7f5f0;
+  text-shadow:0 1px 2px rgba(0,0,0,.16),0 12px 36px rgba(0,0,0,.38);
+}
+.hero-word{
+  display:block;
+  margin:0;
+  line-height:0.88;
+}
+.hero-word-motion{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:1em;
+  letter-spacing:-0.045em;
+  padding-right:0.06em;
+}
+.hero-word-matter{
+  font-family:var(--font-sans);
+  font-style:normal;
+  font-weight:500;
+  font-size:.745em;
+  letter-spacing:-0.055em;
+  text-transform:none;
+  margin-top:0.02em;
+}
+.hero-amp{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:0.72em;
+  letter-spacing:-0.02em;
+  margin-right:0.12em;
+  opacity:0.72;
+  vertical-align:0.02em;
+}
+.hero-meta{
+  margin:1.35rem 0 0;
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
+}
+.hero-role{
+  margin:0;
+  font-size:13px;font-weight:600;letter-spacing:-.01em;
+  color:rgba(247,245,240,.88);
+}
+.hero-film-label{
+  margin:0;
+  font-size:var(--type-meta-size);
+  letter-spacing:var(--type-meta-track);
+  text-transform:uppercase;
+  color:rgba(247,245,240,.88);
+  text-shadow:0 1px 10px rgba(0,0,0,.5);
+}
+.hero-actions{display:flex;align-items:center;gap:14px;margin-top:18px}
+.hero-actions button{
+  border:0;cursor:pointer;
+  background:transparent;color:#f7f5f0;
+  width:auto;height:auto;padding:4px;
+  border-radius:0;
+  display:grid;place-items:center;
+  opacity:.88;
+  filter:drop-shadow(0 1px 8px rgba(0,0,0,.45));
+  transition:opacity .2s ease;
+}
+.hero-actions button:hover{opacity:1;background:transparent}
+.hero-actions button svg{width:20px;height:20px;display:block}
+.hero-actions .icon-play{display:none}
+.hero-actions .icon-pause{display:block}
+.hero-actions .icon-mute{display:none}
+.hero-actions .icon-unmute{display:block}
+.hero-film:not(.is-playing) #film-toggle .icon-play{display:block}
+.hero-film:not(.is-playing) #film-toggle .icon-pause{display:none}
+.hero-film.is-muted #film-mute .icon-mute{display:block}
+.hero-film.is-muted #film-mute .icon-unmute{display:none}
+.hero-actions .film-mute-pulse{animation:film-mute-pulse 1.6s ease infinite}
+@keyframes film-mute-pulse{0%,100%{opacity:.72}50%{opacity:1}}
+.hero-overlay{
+  position:absolute;inset:0;z-index:3;
+  display:flex;align-items:center;justify-content:center;
+  border:0;padding:0;cursor:pointer;background:transparent;
+}
+.hero-overlay[hidden]{display:none}
+.hero-play{
+  width:74px;height:74px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(250,249,246,.94);color:#161614;
+  box-shadow:0 14px 40px rgba(0,0,0,.3);
+}
+.hero-play svg{width:22px;height:22px;margin-left:3px}
+.hero-fade{display:none}
+.site{
+  position:relative;z-index:2;
+  background:transparent;
+  margin-top:0;
+  padding-top:0;
+}
+.section-copy{margin-bottom:18px}
+.section-kicker,
+.shorts-kicker,
+.case-study-category,
+.case-study-place,
+.case-study-credits{
+  margin:0;
+  font-size:var(--type-kicker-size);
+  letter-spacing:var(--type-kicker-track);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.section-kicker,
+.shorts-kicker{margin:0 0 var(--type-kicker-gap)}
+/* Numbered chapters (01, 02, 03) share one heading: serif, one fluid scale. */
+.section-copy h2,
+.deck-section > .section-copy h2,
+.shorts-entry h2{
+  margin:0;
+  font-family:var(--font-serif);
+  font-size:var(--type-chapter-size);
+  font-weight:400;
+  letter-spacing:var(--type-chapter-track);
+  line-height:var(--type-chapter-leading);
+}
+/* Chapter marker: a hairline, then "01 / Selected work". */
+.section-rule{
+  display:block;
+  height:1px;
+  margin:0 0 16px;
+  background:var(--line);
+}
+.marker-num{color:var(--ink);font-variant-numeric:tabular-nums}
+.marker-sep{display:inline-block;margin:0 .75em;opacity:.6}
+.section-lede,
+.ownership-intro p,
+.case-study-desc{
+  margin:0;
+  font-size:var(--type-body-size);
+  line-height:var(--type-body-leading);
+  letter-spacing:var(--type-body-track);
+  color:var(--muted-strong);
+}
+.section-lede{margin:14px 0 0;max-width:34rem}
+.deck-section > .section-copy{max-width:980px;margin:0 auto 22px}
+.deck-section{padding:clamp(44px,5vw,64px) 0 0}
+@media(prefers-reduced-motion:reduce){
+  .hero-stage video{animation:none}
+  .hero-actions .film-mute-pulse{animation:none}
+}
+/* Sits on the same 980px column as every section below it. */
+.ownership-intro{
+  max-width:980px;
+  margin:0 auto;
+  padding:clamp(44px,6vw,80px) 0 0;
+  scroll-margin-top:0;
+}
+.case-study{
+  /* Twelve columns shared by the header and the stills, so the annotation column
+     (credits, description, CTA) and the detail photograph share a left edge. */
+  --case-gap:12px;
+  max-width:980px;
+  margin:var(--space-section) auto 0;
+  padding:0;
+}
+.case-study-intro,
+.case-study-stills{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:var(--case-gap);
+}
+/* Header: two columns read as three shared rows —
+   category | credits, headline | description, location | CTA.
+   The description's last line sits on the headline's baseline. */
+.case-study-intro{
+  align-items:baseline;
+  margin:0 0 32px;
+}
+.case-study-title,
+.case-study-summary{display:contents}
+.case-study-category{grid-area:1 / 1 / auto / span 8}
+.case-study-credits{grid-area:1 / 9 / auto / span 4}
+.case-study-title h2{
+  grid-area:2 / 1 / auto / span 8;
+  align-self:end;
+  align-self:last baseline;
+  margin:14px 0 0;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:var(--type-feature-size);
+  line-height:var(--type-feature-leading);
+  letter-spacing:var(--type-feature-track);
+}
+.case-study-desc{
+  grid-area:2 / 9 / auto / span 4;
+  align-self:end;
+  align-self:last baseline;
+  margin:14px 0 0;
+  text-wrap:pretty;
+}
+.case-study-place{grid-area:3 / 1 / auto / span 8;margin:16px 0 0}
+.case-study-summary .card-link{grid-area:3 / 9 / auto / span 4;justify-self:start;margin-top:16px}
+/* Film: native 16:9, full column width, nothing layered on top of the footage. */
+.case-study-media{
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:#e9e7e2;
+  box-shadow:0 0 0 1px rgba(41,42,40,.12);
+  cursor:pointer;
+}
+.case-study-preview{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:#e9e7e2;
+  pointer-events:none;
+}
+.case-study-media:focus-visible{
+  outline:2px solid #282b2b;
+  outline-offset:5px;
+}
+/* Stills: two equal frames under the film, same width as the film column. */
+.case-study-stills{
+  /* Two equal frames, same height, flush with the film above. */
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  margin:32px 0 0;
+}
+.case-study-stills figure{
+  margin:0;
+  grid-column:auto;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:#e9e7e2;
+}
+.case-study-stills img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.case-study-still-detail img{object-position:68% 50%}
+@media(max-width:900px){
+  .case-study{--case-gap:10px}
+  .case-study-intro{display:block;margin-bottom:28px}
+  .case-study-title,
+  .case-study-summary{display:block}
+  .case-study-summary{margin-top:20px}
+  .case-study-desc{max-width:34rem}
+  .case-study-stills{margin-top:28px}
+}
+@media(max-width:600px){
+  .case-study-intro{margin-bottom:24px}
+  .case-study-stills{margin-top:24px;gap:var(--case-gap)}
+}
+.ownership-intro p{max-width:36rem}
+.site-foot{
+  border-top:1px solid var(--line);
+  padding:22px 0 56px;
+  display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
+  font-size:var(--type-meta-size);line-height:1.65;color:var(--muted);
+}
+.site-foot p{margin:0;max-width:36rem}
+.site-foot-links{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.site-foot a{
+  color:var(--ink);
+  border-bottom:1px solid rgba(41,42,40,.25);
+  font-weight:500;
+}
+.site-foot a:hover{border-bottom-color:var(--ink)}
+@media(max-width:900px){
+  .deck-wrap{height:680px}
+  .deck{width:min(400px,64vw)}
+  .project-card .card-bottom{padding:15px 18px 16px;min-height:140px}
+  .deck-controls{max-width:400px}
+}
+@media(max-width:900px){
+  .hero-copy{max-width:100%}
+  .hero-stage video{object-position:center 42%}
+}
+@media(max-width:600px){
+  /* svh, not dvh: the film must not change height when the browser bar hides mid-scroll.
+     clip-path is too expensive to update every scroll frame on phones — scale + radius
+     stay on the compositor and keep the settle smooth. */
+  .hero-film{
+    --hero-inset:clamp(28px,5svh,48px);
+    --frame-radius:13px;
+    min-height:100svh;
+    overflow:hidden;
+    clip-path:none;
+    transform:scale(calc(1 - var(--settle) * 0.055)) translateZ(0);
+    transform-origin:top center;
+    border-radius:calc(var(--settle) * var(--frame-radius));
+    will-change:transform;
+  }
+  .settle-phone{
+    /* Track the scaled film's visual bottom (origin is top center). */
+    top:calc(100% * (1 - var(--settle) * 0.055));
+    width:clamp(48px, 16vw, 68px);
+    height:calc(var(--settle) * clamp(34px, 11vw, 48px));
+  }
+  .hero-copy{translate:none}
+  .hero-nav{height:max(58px, env(safe-area-inset-top) + 44px);padding:0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left))}
+  .hero-stage video{
+    object-fit:cover;
+    object-position:center 38%;
+    transform:none;
+    animation:none;
+  }
+  .hero-veil{
+    background:
+      linear-gradient(180deg,rgba(8,8,7,.55) 0%,rgba(8,8,7,.18) 28%,transparent 55%),
+      linear-gradient(0deg,rgba(8,8,7,.46) 0%,rgba(8,8,7,.18) 26%,transparent 50%);
+  }
+  .hero-copy{
+    left:0;right:0;
+    width:100%;
+    max-width:100%;
+    bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
+    padding:
+      0
+      max(16px, env(safe-area-inset-right))
+      0
+      max(16px, env(safe-area-inset-left));
+  }
+  .hero-copy h1{
+    width:100%;
+    max-width:100%;
+  }
+  .hero-word-motion{letter-spacing:-0.04em}
+  .hero-word-matter{letter-spacing:-0.05em}
+  .hero-meta{margin-top:1rem;gap:8px 12px}
+  .hero-film-label{font-size:11px;line-height:1.35;max-width:16rem}
+  .hero-actions{margin-top:12px;gap:8px;flex-wrap:wrap}
+  .hero-actions button{padding:2px}
+  .hero-actions button svg{width:18px;height:18px}
+  .hero-play{width:64px;height:64px}
+  .hero-role{font-size:12px}
+  .deck-section{padding:28px 0 36px}
+  .deck-wrap{height:calc(min(330px,78vw)*1.55 + 96px);max-height:none}
+  .deck{width:min(330px,78vw);height:auto;aspect-ratio:5 / 7.55}
+  .project-card{border-radius:13px}
+  .project-card .photo{margin:8px 8px 0;border-radius:6px}
+  .project-card .card-bottom{min-height:132px;padding:12px 14px 14px}
+  .card-bottom h2{font-size:18px}
+  .card-role{font-size:11px;margin-top:8px}
+  .card-link{font-size:11px;margin-top:9px}
+  .card-index{font-size:10px}
+  .deck-controls{margin-top:0;max-width:min(330px,78vw)}
+  .site-foot{flex-direction:column;gap:14px;padding-bottom:42px}
+}
+
+
+</style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261113z"/><link rel="stylesheet" href="motion.css?v=20261113z"/></head><body>
+
+<div class="hero-shell" id="hero-shell">
+<div class="settle-phone" aria-hidden="true">
+  <img src="assets/settle-phone.png?v=20261113z" alt="" width="439" height="900" decoding="async"/>
+</div>
+<header class="hero-film is-muted" id="film-stage">
+  <nav class="hero-nav">
+    <a class="brand" href="/">Ryan McHargue</a>
+    <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow" aria-hidden="true">↗</span></a>
+  </nav>
+  <div class="hero-stage" aria-hidden="true">
+    <video id="film-video" playsinline muted autoplay preload="auto" poster="assets/hwn-launch-poster.jpg" src="assets/hwn-launch.mp4?v=20261111p"></video>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <button type="button" class="hero-overlay" id="film-play" hidden aria-label="Play Hardware Nation launch film">
+    <span class="hero-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+  </button>
+  <div class="hero-copy">
+    <h1 id="top" aria-label="Motion & Matter"><span class="hero-word hero-word-motion">Motion</span><span class="hero-word hero-word-matter"><span class="hero-amp" aria-hidden="true">&</span>Matter</span></h1>
+    <div class="hero-meta">
+      <p class="hero-film-label">Hardware Nation launch film</p>
+    </div>
+    <div class="hero-actions">
+      <button type="button" id="film-toggle" aria-label="Pause">
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <button type="button" class="film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
+        <svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+      </button>
+    </div>
+  </div>
+  <a class="hero-cue" href="#work" aria-label="Scroll to selected work"><span class="hero-cue-label" aria-hidden="true">Scroll</span><span class="hero-cue-line" aria-hidden="true"></span></a>
+  <div class="hero-fade" aria-hidden="true"></div>
+</header>
+</div>
+
+<div class="site">
+<main>
+<section class="ownership-intro" id="work" aria-label="Selected work">
+  <p data-reveal>A selection of creative work I led from concept to final cut at Hardware Nation. From developing ideas and working with founders to directing, filming, editing, and building our production studio, I helped bring stories about robotics, hardware, and emerging technology to life.</p>
+</section>
+<section class="deck-section" aria-labelledby="deck-heading">
+<div class="section-copy">
+  <span class="section-rule" data-reveal="rule" aria-hidden="true"></span>
+  <p class="section-kicker" data-reveal style="--d:1"><span class="marker-num">01</span><span class="marker-sep" aria-hidden="true">/</span>Selected work</p>
+  <h2 id="deck-heading" data-reveal style="--d:2">Projects</h2>
+  <p class="section-lede" data-reveal style="--d:3">Swipe to browse.</p>
+</div>
+<div class="deck-wrap"><div aria-label="Swipe or use arrow keys to browse selected projects" class="deck" id="deck" tabindex="0" data-reveal><article aria-label="Sunday Robotics" class="project-card" data-index="0" style="--focus:center 28%;">
+<div class="photo"><img alt="Sunday Robotics - project imagery" data-sources='["assets/sunday.webp", "https://ui44.com/images/robots/sunday-memo.webp", "https://img.generation-nt.com/sunday-memo-robot-domestique_04B002A301714916.webp"]' draggable="false" loading="eager" onerror="tryNext(this)" src="https://img.generation-nt.com/sunday-memo-robot-domestique_04B002A301714916.webp"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Home robotics</p><h2>Sunday Robotics</h2></div><span class="card-index">01 / 09</span></div><p class="card-role">Founder storytelling / Robotics</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_sunday-robotics-just-raised-165m-to-deploy-activity-7454928336818139136-QiEH" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Even Realities" class="project-card" data-index="1" style="--focus:center 42%;">
+<div class="photo"><img alt="Even Realities - heads-up display" decoding="async" loading="eager" src="assets/even-realities.webp"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Heads-up display</p><h2>Even Realities</h2></div><span class="card-index">02 / 09</span></div><p class="card-role">Event film / Heads-up display</p><a class="card-link" href="assets/even-realities.mp4?v=20261113a" data-open-video="assets/even-realities.mp4?v=20261113a" data-video-title="Even Realities" data-video-poster="assets/even-realities.webp?v=20261113a">Watch film <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Zipline" class="project-card" data-index="2" style="--focus:center 49%;">
+<div class="photo"><img alt="Zipline - project imagery" draggable="false" loading="eager" decoding="async" width="1600" height="1057" src="assets/zipline.jpg"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Autonomous delivery</p><h2>Zipline</h2></div><span class="card-index">03 / 09</span></div><p class="card-role">Founder interview / Rapid Fire series</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_i-toured-ziplines-hq-last-week-and-saw-the-activity-7425256192236519424-O4MA" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Andromeda" class="project-card" data-index="3" style="--focus:center 49%;">
+<div class="photo"><img alt="Andromeda - project imagery" data-sources='["https://diginomica.com/sites/default/files/images/2026-02/Screenshot%202026-02-23%20at%2021.03.12.png", "https://img.originofbots.com/db8jz0ojq/image/upload/v1773763560/robots/abi-by-andromeda-robotics/yrleudiz23k5wck9tqwj.webp"]' draggable="false" loading="lazy" onerror="tryNext(this)" src="assets/andromeda.png"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Social robotics</p><h2>Andromeda</h2></div><span class="card-index">04 / 09</span></div><p class="card-role">Founder storytelling / Social robotics</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_andromeda-recently-raised-17m-to-deploy-activity-7455665418599444480-pWEM" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Infinite Machine" class="project-card" data-index="4" style="--focus:center 49%;">
+<div class="photo"><img alt="Infinite Machine - project imagery" data-sources='["https://cdn.prod.website-files.com/66ea2a84659b76f5d91d481b/66f2dbbf27bef631120b5e15_P1---Side-View-Silver-p-800.jpg", "https://shop.uncrate.com/cdn/shop/files/infinite-machine-p1-scooter-black-34.jpg?v=1721943453"]' draggable="false" loading="lazy" onerror="tryNext(this)" src="assets/infinite.jpg"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Electric mobility</p><h2>Infinite Machine</h2></div><span class="card-index">05 / 09</span></div><p class="card-role">Founder interview / Rapid Fire series</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_i-did-a-rapid-fire-with-joseph-cohen-co-founder-activity-7424930340533633024-48Im" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Bondu" class="project-card" data-index="5" style="--focus:center 49%;">
+<div class="photo"><img alt="Bondu - project imagery" data-sources='["https://bondu.com/cdn/shop/files/Aqua_Kid.jpg?v=1763011797&amp;width=2000"]' draggable="false" loading="lazy" onerror="tryNext(this)" src="assets/bondu.jpg"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Consumer AI</p><h2>Bondu</h2></div><span class="card-index">06 / 09</span></div><p class="card-role">Founder storytelling / Consumer AI</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_bondu-recently-raised-53m-to-scale-ai-companions-activity-7457125395872641024-crgk" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="Fort" class="project-card" data-index="6" style="--focus:center 49%;">
+<div class="photo"><img alt="Fort - project imagery" data-sources='["https://fort.cx/images/wlu-lift.jpg"]' draggable="false" loading="lazy" onerror="tryNext(this)" src="data:image/webp;base64,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"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Wearables</p><h2>Fort</h2></div><span class="card-index">07 / 09</span></div><p class="card-role">Founder storytelling / Wearables</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_fort-yc-w26-is-the-first-wearable-built-activity-7430344472175218688-_cRG" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="CES Founder Dinner" class="project-card" data-index="7" style="--focus:center 49%;">
+<div class="photo"><div class="event-photo"><span>Fragile / Hardware Nation</span><strong>CES<br/>2026</strong><em>Founders’ dinner</em></div></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Founder community</p><h2>CES Founder Dinner</h2></div><span class="card-index">08 / 09</span></div><p class="card-role">Founder community / Event production</p><a class="card-link" href="https://www.linkedin.com/posts/ritwikpavan_a-few-weeks-ago-at-ces-i-hosted-a-private-activity-7422994278668423168-zf53" rel="noreferrer noopener" target="_blank">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article>
+<article aria-label="HWN Studio" class="project-card" data-index="8" style="--focus:center 48%;">
+<div class="photo"><img alt="HWN Studio — finished production set" decoding="async" loading="lazy" src="assets/studio/after-desk.webp" onerror="this.onerror=null;this.src='assets/studio/after-desk.jpg'"/></div>
+<div class="card-bottom"><div class="card-toprow"><div><p class="card-sector">Production studio</p><h2>HWN Studio</h2></div><span class="card-index">09 / 09</span></div><p class="card-role">Studio buildout / Production infrastructure</p><a class="card-link" href="#hwn-studio">View project <span class="diag-arrow" aria-hidden="true"></span></a></div>
+</article></div></div>
+<div class="deck-controls" data-reveal><div class="counter"><span id="count"><span class="count-now" id="count-now">01</span> / 09</span><span class="track"><span class="track-inner" id="progress"></span></span></div><div class="directions"><span class="hint">Drag to browse</span><button aria-label="Previous project" class="nav-button" id="prev"><span class="nav-arrow" aria-hidden="true">←</span></button><button aria-label="Next project" class="nav-button" id="next"><span class="nav-arrow" aria-hidden="true">→</span></button></div></div></section>
+
+<section class="case-study" id="terra-kaffe-whim" aria-labelledby="terra-heading">
+  <header class="case-study-intro">
+    <div class="case-study-title">
+      <p class="case-study-category" data-reveal>Brand Testimonial</p>
+      <h2 id="terra-heading" data-reveal style="--d:1">Terra Kaffe × Whim</h2>
+      <p class="case-study-place" data-reveal style="--d:2">New York City · 2026</p>
+    </div>
+    <div class="case-study-summary">
+      <p class="case-study-credits" data-reveal>Script / Cinematography / Edit</p>
+      <p class="case-study-desc" data-reveal style="--d:2">A customer story featuring Terra Kaffe’s CEO and CFO on their partnership with Whim.</p>
+      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-terra-kaffe.mp4" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-case-wide.jpg?v=20261113d">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+    </div>
+  </header>
+
+  <div
+    class="case-study-media"
+    role="button"
+    tabindex="0"
+    data-open-video="assets/case-study-terra-kaffe.mp4"
+    data-video-title="Terra Kaffe × Whim"
+    data-video-poster="assets/terra-kaffe-case-wide.jpg?v=20261113d"
+    aria-label="Watch Terra Kaffe × Whim with sound"
+  >
+    <video
+      id="terra-preview"
+      class="case-study-preview"
+      muted
+      playsinline
+      webkit-playsinline
+      loop
+      preload="none"
+      poster="assets/terra-kaffe-case-wide.jpg?v=20261113d"
+      data-src="assets/case-study-terra-kaffe.mp4"
+      aria-hidden="true"
+    ></video>
+  </div>
+
+  <div class="case-study-stills" aria-label="Production stills">
+    <figure class="case-study-still-wide" data-reveal="photo">
+      <img src="assets/terra-kaffe-still-01.webp?v=20261113e" alt="Parts inventory shelf beside the production bench" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-01.jpg?v=20261113e'"/>
+    </figure>
+    <figure class="case-study-still-detail" data-reveal="photo" style="--d:2">
+      <img src="assets/terra-kaffe-still-02.webp?v=20261113e" alt="Workbench detail — machine internals during assembly" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-02.jpg?v=20261113e'"/>
+    </figure>
+  </div>
+</section>
+
+<section class="studio-break" id="hwn-studio" aria-labelledby="studio-heading" data-reveal="scene">
+  <div class="studio-inner">
+    <div class="studio-intro">
+    <div class="studio-head">
+      <div>
+        <p class="studio-kicker" data-reveal style="--d:1"><span class="marker-num">02</span><span class="marker-sep" aria-hidden="true">/</span>Infrastructure</p>
+        <h2 id="studio-heading" data-reveal style="--d:2">HWN Studio</h2>
+        <p class="studio-role" data-reveal style="--d:3">Studio buildout / Production infrastructure</p>
+      </div>
+      <p class="studio-desc" data-reveal style="--d:3">Built Hardware Nation’s original production studio from scratch, creating a dedicated space for founder interviews and emerging-technology content.</p>
+    </div>
+    </div>
+
+    <div
+      class="studio-compare"
+      style="--split:52%"
+      data-studio-compare
+      data-reveal
+      role="slider"
+      tabindex="0"
+      aria-label="Before and after comparison"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="52"
+      aria-valuetext="Drag to compare before and after"
+    >
+      <div class="studio-layer studio-layer-before">
+        <picture>
+            <source type="image/webp" srcset="assets/studio/before-build.webp"/>
+            <img src="assets/studio/before-build.jpg" alt="HWN Studio before buildout" width="1920" height="2560" decoding="async" loading="eager" fetchpriority="low"/>
+          </picture>
+      </div>
+      <div class="studio-layer studio-layer-after" style="--split:52%">
+        <picture>
+            <source type="image/webp" srcset="assets/studio/after-set.webp"/>
+            <img src="assets/studio/after-set.jpg" alt="HWN Studio after buildout" width="2560" height="1705" decoding="async" loading="eager" fetchpriority="low"/>
+          </picture>
+      </div>
+      <div class="studio-handle" aria-hidden="true">
+        <div class="studio-handle-knob">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6L3 12l5 6M16 6l5 6-5 6"/></svg>
+        </div>
+      </div>
+      <span class="studio-badge studio-badge-before">Before</span>
+      <span class="studio-badge studio-badge-after">After</span>
+      <button type="button" class="studio-expand" data-studio-expand>Expand</button>
+    </div>
+    <p class="studio-hint" data-reveal>Drag to compare · Arrow keys · Expand for full resolution</p>
+
+    <div class="studio-rail-wrap">
+      <p class="studio-rail-label" data-reveal>Selected frames</p>
+      <div class="studio-rail">
+        <figure class="studio-tile" data-reveal style="--d:0">
+          <button type="button" data-studio-open="assets/studio/before-setup.jpg" aria-label="Expand early setup photo">
+            <picture>
+              <source type="image/webp" srcset="assets/studio/before-setup.webp"/>
+              <img src="assets/studio/before-setup.jpg" alt="HWN Studio during early setup" width="1292" height="2304" loading="lazy" decoding="async"/>
+            </picture>
+          </button>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure class="studio-tile" data-reveal style="--d:1">
+          <button type="button" data-studio-open="assets/studio/after-desk.jpg" aria-label="Expand desk photo">
+            <picture>
+              <source type="image/webp" srcset="assets/studio/after-desk.webp"/>
+              <img src="assets/studio/after-desk.jpg" alt="HWN Studio desk detail" width="2560" height="1705" loading="lazy" decoding="async"/>
+            </picture>
+          </button>
+          <figcaption>After</figcaption>
+        </figure>
+        <figure class="studio-tile" data-reveal style="--d:2">
+          <button type="button" data-studio-open="assets/studio/after-angle.jpg" aria-label="Expand low-angle photo">
+            <picture>
+              <source type="image/webp" srcset="assets/studio/after-angle.webp"/>
+              <img src="assets/studio/after-angle.jpg" alt="HWN Studio low angle" width="2560" height="1705" loading="lazy" decoding="async"/>
+            </picture>
+          </button>
+          <figcaption>After</figcaption>
+        </figure>
+        <figure class="studio-tile" data-reveal style="--d:3">
+          <button type="button" data-studio-open="assets/studio/after-wide.jpg" aria-label="Expand wide set photo">
+            <picture>
+              <source type="image/webp" srcset="assets/studio/after-wide.webp"/>
+              <img src="assets/studio/after-wide.jpg" alt="HWN Studio wide set" width="2560" height="1705" loading="lazy" decoding="async"/>
+            </picture>
+          </button>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="shorts-entry" aria-labelledby="shorts-heading">
+  <div class="shorts-entry-copy">
+    <span class="section-rule" data-reveal="rule" aria-hidden="true"></span>
+    <p class="shorts-kicker" data-reveal style="--d:1"><span class="marker-num">03</span><span class="marker-sep" aria-hidden="true">/</span>Short-form</p>
+    <h2 id="shorts-heading" data-reveal style="--d:2">Short-Form</h2>
+  </div>
+  <div class="sv-picker" id="sv-picker" role="tablist" aria-label="Choose a short-form video" data-reveal style="--d:3"></div>
+  <div id="shorts-viewer" class="shorts-viewer-inline" aria-label="Short-form video collection">
+    <div class="sv-stage" tabindex="0">
+      <video class="sv-video" playsinline webkit-playsinline muted autoplay preload="metadata"></video>
+      <video class="sv-preload" playsinline muted preload="auto" aria-hidden="true"></video>
+      <div class="sv-top"><div class="sv-segments" aria-hidden="true"></div></div>
+      <div class="sv-chrome">
+        <div class="sv-meta">
+          <p class="sv-company"></p>
+          <p class="sv-role"></p>
+          <p class="sv-desc" hidden></p>
+          <a class="sv-link" hidden target="_blank" rel="noopener noreferrer">View project ↗</a>
+        </div>
+        <div class="sv-actions">
+          <button type="button" class="sv-mute" aria-pressed="true" aria-label="Unmute">
+            <svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+          </button>
+          <button type="button" class="sv-close" aria-label="Close short-form player">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="sv-hits" aria-hidden="true">
+        <button type="button" class="sv-hit sv-hit-left" aria-label="Previous video"></button>
+        <button type="button" class="sv-hit sv-hit-center" aria-label="Pause or resume"></button>
+        <button type="button" class="sv-hit sv-hit-right" aria-label="Next video"></button>
+      </div>
+      <div class="sv-pause-hint" hidden aria-hidden="true">❚❚</div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot"><p>Hardware Nation / Fragile (now Whim)</p><div class="site-foot-links"><a href="/">ryanmchargue.com</a><a href="mailto:ryan@takeanoon.com">ryan@takeanoon.com</a></div></footer>
+</div>
+<div class="studio-lightbox" id="studio-lightbox" role="dialog" aria-modal="true" aria-label="Studio photo" hidden>
+  <button type="button" class="studio-lightbox-close" id="studio-lightbox-close" aria-label="Close">×</button>
+  <button type="button" class="studio-lightbox-nav studio-lightbox-prev" id="studio-lightbox-prev" aria-label="Previous photo">←</button>
+  <button type="button" class="studio-lightbox-nav studio-lightbox-next" id="studio-lightbox-next" aria-label="Next photo">→</button>
+  <div class="studio-lightbox-frame">
+    <img id="studio-lightbox-img" alt=""/>
+    <div class="studio-lightbox-meta">
+      <span id="studio-lightbox-label"></span>
+      <span id="studio-lightbox-index"></span>
+    </div>
+  </div>
+</div>
+<div class="video-lightbox" id="video-lightbox" role="dialog" aria-modal="true" aria-label="Project film" hidden>
+  <button type="button" class="video-lightbox-close" id="video-lightbox-close" aria-label="Close">×</button>
+  <div class="video-lightbox-frame">
+    <video id="video-lightbox-player" controls playsinline webkit-playsinline preload="metadata" poster="assets/even-realities.webp?v=20261113a" data-poster="assets/even-realities.webp?v=20261113a"></video>
+    <p class="video-lightbox-label" id="video-lightbox-label">Even Realities</p>
+  </div>
+</div>
+<script>
+function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
+(()=>{
+  const stage=document.getElementById('film-stage');
+  const video=document.getElementById('film-video');
+  const playBtn=document.getElementById('film-play');
+  const toggle=document.getElementById('film-toggle');
+  const mute=document.getElementById('film-mute');
+  if(!stage||!video||!playBtn||!toggle||!mute)return;
+  function syncMute(){
+    const muted=video.muted;
+    stage.classList.toggle('is-muted',muted);
+    mute.setAttribute('aria-pressed',muted?'true':'false');
+    mute.setAttribute('aria-label',muted?'Unmute':'Mute');
+    mute.classList.toggle('film-mute-pulse',muted&&!video.paused);
+  }
+  function setPlaying(on){
+    stage.classList.toggle('is-playing',on);
+    playBtn.hidden=on;
+    toggle.setAttribute('aria-label',on?'Pause':'Play');
+    syncMute();
+  }
+  const START_AT=11.3; // "Before feeds..."
+  let introSeeked=false;
+  function canSeekIntro(){
+    try{
+      if(!video.seekable||!video.seekable.length)return video.readyState>=1;
+      return video.seekable.end(video.seekable.length-1)>=START_AT;
+    }catch(_){return video.readyState>=2}
+  }
+  function seekIntro(){
+    if(!canSeekIntro())return false;
+    try{
+      if(Math.abs((video.currentTime||0)-START_AT)>0.2)video.currentTime=START_AT;
+      introSeeked=true;
+      return true;
+    }catch(_){return false}
+  }
+  function start(opts){
+    const withSound=!(opts&&opts.muted);
+    video.muted=!withSound;
+    if(video.ended||video.currentTime<START_AT-0.05)seekIntro();
+    const p=video.play();
+    if(p&&p.catch)p.catch(()=>{
+      video.muted=true;
+      seekIntro();
+      video.play().catch(()=>{});
+      setPlaying(true);
+    });
+    setPlaying(true);
+  }
+  playBtn.addEventListener('click',()=>start({muted:false}));
+  toggle.addEventListener('click',()=>{
+    if(video.paused)start({muted:video.muted});
+    else{video.pause();setPlaying(false)}
+  });
+  mute.addEventListener('click',()=>{
+    video.muted=!video.muted;
+    if(!video.muted&&video.paused)video.play().catch(()=>{});
+    syncMute();
+  });
+  video.addEventListener('ended',()=>{setPlaying(false);seekIntro()});
+  video.addEventListener('pause',()=>{if(!video.ended)setPlaying(false)});
+  video.addEventListener('play',()=>setPlaying(true));
+  // Seek only once the intro timestamp is actually available (avoids stalled start on large files).
+  const onReady=()=>{if(!introSeeked)seekIntro()};
+  video.addEventListener('loadedmetadata',onReady);
+  video.addEventListener('canplay',onReady);
+  video.addEventListener('progress',onReady);
+  // Pause when scrolled off-hero so shorts aren't fighting audio/CPU.
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(([entry])=>{
+      if(!entry)return;
+      if(entry.isIntersecting){
+        if(video.paused&&!video.ended){
+          if(video.currentTime<START_AT-0.05)seekIntro();
+          video.play().catch(()=>{});
+        }
+      }else if(!video.paused){
+        video.pause();
+      }
+    },{threshold:0.35});
+    io.observe(stage);
+  }
+  video.muted=true;
+  seekIntro();
+  const auto=video.play();
+  if(auto&&auto.catch)auto.catch(()=>setPlaying(false));
+  else setPlaying(true);
+})();
+</script><script src="deck.js?v=20261113z"></script>
+<script src="shorts.js"></script>
+<script src="studio.js"></script>
+<script src="video-lightbox.js"></script>
+<script src="case-study-preview.js"></script>
+<script src="motion.js?v=20261113z"></script></body></html>

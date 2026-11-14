@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Ryan McHargue — San Francisco. Building hardware to help people change hard habits." />
+  <meta name="description" content="Ryan McHargue — Building hardware to help people change hard habits." />
   <meta name="theme-color" content="#ffffff" />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ryanmchargue.com/" />
@@ -12,77 +12,98 @@
   <meta property="og:site_name" content="Ryan McHargue" />
   <meta property="og:url" content="https://ryanmchargue.com/" />
   <meta property="og:title" content="Ryan McHargue" />
-  <meta property="og:description" content="Ryan McHargue — San Francisco. Building hardware to help people change hard habits." />
-  <meta property="og:image" content="https://ryanmchargue.com/assets/og-card.jpg?v=20261110a" />
+  <meta property="og:description" content="Ryan McHargue — Building hardware to help people change hard habits." />
+  <meta property="og:image" content="https://ryanmchargue.com/assets/og-card.jpg?v=20261111m" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Ryan McHargue" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:updated_time" content="2026-11-10T21:25:00-05:00" />
+  <meta property="og:updated_time" content="2026-11-11T14:47:00-05:00" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ryan McHargue" />
-  <meta name="twitter:description" content="Ryan McHargue — San Francisco. Building hardware to help people change hard habits." />
-  <meta name="twitter:image" content="https://ryanmchargue.com/assets/og-card.jpg?v=20261110a" />
+  <meta name="twitter:description" content="Ryan McHargue — Building hardware to help people change hard habits." />
+  <meta name="twitter:image" content="https://ryanmchargue.com/assets/og-card.jpg?v=20261111m" />
   <meta name="twitter:image:alt" content="Ryan McHargue" />
   <meta name="twitter:url" content="https://ryanmchargue.com/" />
 
   <title>Ryan McHargue</title>
-  <link rel="stylesheet" href="style.css?v=20261110b" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <!-- Instrument Serif italic is Motion & Matter's typeface; only the glyphs for "Motion &" are requested. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;display=swap&amp;text=Motion%26" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css?v=20261113b" />
+  <script src="script.js?v=20261113b" defer></script>
 </head>
 <body>
   <main class="page">
-    <header>
-      <h1>Ryan McHargue</h1>
-      <p class="place">San Francisco</p>
-      <p class="bio">Building hardware to help people change hard habits</p>
-    </header>
+    <div class="sheet">
+      <header class="intro" style="--i:0">
+        <h1>Ryan McHargue</h1>
+        <p class="bio">Building hardware to help people change hard habits</p>
+      </header>
 
-    <section class="work" aria-labelledby="work-heading">
-      <h2 id="work-heading">Work</h2>
-      <ul>
-        <li>
-          <a href="https://takeanoon.com" target="_blank" rel="noopener noreferrer">
-            <div class="row">
-              <strong>Noon</strong>
-              <span class="when">Present</span>
+      <section class="work" aria-labelledby="work-heading">
+        <h2 class="label" id="work-heading" style="--i:2">Work</h2>
+        <ul class="index">
+          <li style="--i:3">
+            <a class="entry" href="https://takeanoon.com" target="_blank" rel="noopener">
+              <strong class="entry-name">Noon<svg class="entry-arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 8 2M3.4 2H8v4.6" /></svg></strong>
+              <span class="entry-desc">Co-Founder · Health Tech</span>
+              <span class="entry-when is-present">Present</span>
+            </a>
+          </li>
+          <li style="--i:4">
+            <a class="entry" href="https://whim.com" target="_blank" rel="noopener noreferrer">
+              <strong class="entry-name">Whim<svg class="entry-arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 8 2M3.4 2H8v4.6" /></svg></strong>
+              <span class="entry-desc">Creative Director · Series B Stealth · Hardware</span>
+              <span class="entry-when">Previous</span>
+            </a>
+          </li>
+          <li style="--i:5">
+            <div class="entry">
+              <strong class="entry-name">Melody</strong>
+              <span class="entry-desc">Co-Founder · Hardware for quitting smoking</span>
+              <span class="entry-when">Previous</span>
             </div>
-            <span class="desc">Co-Founder · Health Tech</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://whim.com" target="_blank" rel="noopener noreferrer">
-            <div class="row">
-              <strong>Whim</strong>
-              <span class="when">Previous</span>
-            </div>
-            <span class="desc">Creative Director · Series B Stealth · Hardware</span>
-          </a>
-        </li>
-        <li>
-          <div class="row">
-            <strong>Melody</strong>
-            <span class="when">Previous</span>
-          </div>
-          <span class="desc">Co-Founder · Hardware for quitting smoking</span>
-        </li>
-      </ul>
-    </section>
+          </li>
+        </ul>
+      </section>
 
-    <a
-      class="cd"
-      href="https://ryan-mchargue-hwn-portfolio.vercel.app"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="cd-title">Creative Direction</span>
-      <span class="cd-arrow" aria-hidden="true">↗</span>
-    </a>
+      <div class="portrait" style="--i:1">
+        <picture>
+          <source type="image/webp" srcset="assets/portrait.webp" />
+          <img
+            src="assets/portrait.jpg"
+            alt="Ryan McHargue at his desk"
+            width="900"
+            height="945"
+            decoding="async"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
+      </div>
 
-    <p class="contact">
-      <a href="mailto:ryan@me.com">ryan@me.com</a>
-    </p>
+      <section class="portfolio" aria-labelledby="portfolio-heading">
+        <h2 class="label" id="portfolio-heading" style="--i:6">Creative portfolio</h2>
+        <a class="gate" href="/creative/" data-gate style="--i:7">
+          <span class="gate-mark"><span class="gate-motion">Motion</span> <span class="gate-amp">&amp;</span> <span class="gate-matter">Matter</span></span>
+          <svg class="gate-arrow" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h13M10 1l4 4-4 4" /></svg>
+        </a>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-heading">
+        <h2 class="label" id="contact-heading" style="--i:6">Contact</h2>
+        <a class="contact-link" href="mailto:ryan@takeanoon.com" style="--i:7">ryan@takeanoon.com</a>
+      </section>
+    </div>
   </main>
 </body>
 </html>
