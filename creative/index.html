@@ -392,128 +392,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
   padding:clamp(44px,6vw,80px) 0 0;
   scroll-margin-top:0;
 }
-.case-study{
-  /* Twelve columns shared by the header and the stills, so the annotation column
-     (credits, description, CTA) and the detail photograph share a left edge. */
-  --case-gap:12px;
-  max-width:980px;
-  margin:var(--space-section) auto 0;
-  padding:0;
-}
-.case-study-intro,
-.case-study-stills{
-  display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
-  column-gap:var(--case-gap);
-}
-/* Header: two columns read as three shared rows —
-   category | credits, headline | description, location | CTA.
-   The description's last line sits on the headline's baseline. */
-.case-study-intro{
-  align-items:baseline;
-  margin:0 0 32px;
-}
-.case-study-title,
-.case-study-summary{display:contents}
-.case-study-category{grid-area:1 / 1 / auto / span 8}
-.case-study-credits{grid-area:1 / 9 / auto / span 4}
-.case-study-title h2{
-  grid-area:2 / 1 / auto / span 8;
-  align-self:end;
-  align-self:last baseline;
-  margin:14px 0 0;
-  font-family:var(--font-serif);
-  font-weight:400;
-  font-size:var(--type-feature-size);
-  line-height:var(--type-feature-leading);
-  letter-spacing:var(--type-feature-track);
-}
-.case-study-desc{
-  grid-area:2 / 9 / auto / span 4;
-  align-self:end;
-  align-self:last baseline;
-  margin:14px 0 0;
-  text-wrap:pretty;
-}
-.case-study-place{grid-area:3 / 1 / auto / span 8;margin:16px 0 0}
-.case-study-summary .card-link{grid-area:3 / 9 / auto / span 4;justify-self:start;margin-top:16px}
-/* Film: native 16:9, full column width, nothing layered on top of the footage. */
-.case-study-media{
-  display:block;
-  width:100%;
-  aspect-ratio:16 / 9;
-  overflow:hidden;
-  background:#e9e7e2;
-  box-shadow:0 0 0 1px rgba(41,42,40,.12);
-  cursor:pointer;
-}
-.case-study-preview{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  background:#e9e7e2;
-  pointer-events:none;
-}
-.case-study-media:focus-visible{
-  outline:2px solid #282b2b;
-  outline-offset:5px;
-}
-/* Stills: two equal frames under the film, same width as the film column. */
-.case-study-stills{
-  /* Two equal frames, same height, flush with the film above. */
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  align-items:stretch;
-  margin:32px 0 0;
-}
-.case-study-stills figure{
-  margin:0;
-  grid-column:auto;
-  aspect-ratio:16 / 9;
-  overflow:hidden;
-  background:#e9e7e2;
-}
-.case-study-stills img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.case-study-still-detail img{object-position:68% 50%}
-@media(max-width:900px){
-  .case-study{--case-gap:10px}
-  .case-study-intro{display:block;margin-bottom:28px}
-  .case-study-title,
-  .case-study-summary{display:block}
-  .case-study-summary{margin-top:20px}
-  .case-study-desc{max-width:34rem}
-  .case-study-stills{margin-top:28px}
-}
-@media(max-width:600px){
-  .case-study-intro{margin-bottom:24px}
-  .case-study-stills{margin-top:24px;gap:var(--case-gap)}
-}
-/* Note: one quiet line under the film; figures in ink, labels muted, like the chapter markers. */
-.case-study-note{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px 28px;
-  margin:14px 0 0;
-  font-size:var(--type-kicker-size);
-  letter-spacing:var(--type-kicker-track);
-  text-transform:uppercase;
-  color:var(--muted);
-}
-.case-study-note b{font-weight:400;color:var(--ink);font-variant-numeric:tabular-nums}
-.case-study-note a{
-  color:inherit;
-  text-decoration:underline;
-  text-decoration-color:var(--line);
-  text-underline-offset:4px;
-  transition:color .2s ease,text-decoration-color .2s ease;
-}
-.case-study-note a:hover,
-.case-study-note a:focus-visible{color:var(--ink);text-decoration-color:currentColor}
 .ownership-intro p{max-width:36rem}
 .site-foot{
   border-top:1px solid var(--line);
@@ -607,7 +485,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261113z"/><link rel="stylesheet" href="motion.css?v=20261113z"/></head><body>
+</style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261113z"/><link rel="stylesheet" href="motion.css?v=20261115e"/><link rel="stylesheet" href="reel.css?v=20261115e"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}</style></noscript></head><body>
 
 <header class="hero-film is-muted" id="film-stage">
   <nav class="hero-nav">
@@ -695,17 +573,18 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </article></div></div>
 <div class="deck-controls" data-reveal><div class="counter"><span id="count"><span class="count-now" id="count-now">01</span> / 10</span><span class="track"><span class="track-inner" id="progress"></span></span></div><div class="directions"><span class="hint">Drag to browse</span><button aria-label="Previous project" class="nav-button" id="prev"><span class="nav-arrow" aria-hidden="true">←</span></button><button aria-label="Next project" class="nav-button" id="next"><span class="nav-arrow" aria-hidden="true">→</span></button></div></div></section>
 
-<section class="case-study" id="terra-kaffe-whim" aria-labelledby="terra-heading">
-  <header class="case-study-intro">
-    <div class="case-study-title">
-      <p class="case-study-category" data-reveal>Brand Testimonial</p>
-      <h2 id="terra-heading" data-reveal style="--d:1">Terra Kaffe × Whim</h2>
-      <p class="case-study-place" data-reveal style="--d:2">New York City · 2026</p>
-    </div>
-    <div class="case-study-summary">
-      <p class="case-study-credits" data-reveal>Script / Cinematography / Edit</p>
-      <p class="case-study-desc" data-reveal style="--d:2">A customer story featuring Terra Kaffe’s CEO and CFO on their partnership with Whim.</p>
-      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-terra-kaffe.mp4" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-case-wide.jpg?v=20261113d">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+<section class="case-study reel reel--matter" id="terra-kaffe-whim" aria-labelledby="terra-heading" data-reel data-duration="328.862">
+  <header class="reel-head">
+    <h2 class="reel-title reel-title--matter" id="terra-heading" aria-label="Terra Kaffe × Whim" data-reveal><span class="reel-title-part">Terra Kaffe</span> <span class="reel-title-part"><span class="reel-title-join" aria-hidden="true">×</span>Whim</span></h2>
+    <dl class="titleblock" data-reveal style="--d:1">
+      <div><dt>Film</dt><dd>Brand testimonial</dd></div>
+      <div><dt>Place</dt><dd>New York City</dd></div>
+      <div><dt>Year</dt><dd class="tc">2026</dd></div>
+      <div><dt>Role</dt><dd>Script / Cinematography / Edit</dd></div>
+    </dl>
+    <div class="reel-lede" data-reveal style="--d:2">
+      <p class="case-study-desc">A customer story featuring Terra Kaffe’s CEO and CFO on their partnership with Whim.</p>
+      <a class="card-link" href="assets/case-study-terra-kaffe.mp4" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-case-wide.jpg?v=20261113d">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
     </div>
   </header>
 
@@ -732,62 +611,164 @@ body{background:var(--paper);font-family:var(--font-sans)}
     ></video>
   </div>
 
-  <div class="case-study-stills" aria-label="Production stills">
-    <figure class="case-study-still-wide" data-reveal="photo">
-      <img src="assets/terra-kaffe-still-01.webp?v=20261113e" alt="Parts inventory shelf beside the production bench" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-01.jpg?v=20261113e'"/>
+  <p class="reel-caption"><span class="tc reel-now" data-reel-clock>0:00</span><span class="reel-hint">Drag<span class="reel-hint-more">, or pick a plate,</span> to move through the film</span><span class="tc reel-total">5:29</span></p>
+  <div class="strip" data-strip data-step="5" data-loupe="assets/strips/terra-kaffe-loupe.webp?v=20261115e" data-loupe-step="2" data-loupe-cols="15" style="--dur:328.862" data-reveal="strip">
+    <svg class="strip-ticks" viewBox="0 0 328.862 9" preserveAspectRatio="none" aria-hidden="true"><path d="M10 5V9M20 5V9M30 5V9M40 5V9M50 5V9M70 5V9M80 5V9M90 5V9M100 5V9M110 5V9M130 5V9M140 5V9M150 5V9M160 5V9M170 5V9M190 5V9M200 5V9M210 5V9M220 5V9M230 5V9M250 5V9M260 5V9M270 5V9M280 5V9M290 5V9M310 5V9M320 5V9"/><path class="is-major" d="M0 0V9M60 0V9M120 0V9M180 0V9M240 0V9M300 0V9"/></svg>
+    <div class="strip-band">
+      <img src="assets/strips/terra-kaffe.webp?v=20261115e" alt="" width="1960" height="72" decoding="async" draggable="false"/>
+      <span class="strip-veil" aria-hidden="true"></span>
+      <span class="strip-pins" aria-hidden="true"><i style="--t:17.87"></i><i style="--t:61.31"></i><i style="--t:79.93"></i><i style="--t:180.05"></i><i style="--t:184.7"></i><i style="--t:314.23"></i></span>
+    </div>
+    <span class="strip-run" aria-hidden="true"></span>
+    <span class="strip-ghost" aria-hidden="true"></span>
+    <span class="strip-head" aria-hidden="true"></span>
+    <span class="strip-loupe" aria-hidden="true"><span class="strip-loupe-frame"></span><span class="strip-loupe-time tc">0:00</span></span>
+  </div>
+
+  <div class="plates" style="--dur:328.862">
+    <figure class="plate plate--touch" style="--t:17.87;--d:0" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=17.87" data-cue="17.87" data-live="17.82-18.59" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-plate-touch.jpg?v=20261115e" data-video-at="17.87" aria-label="Watch from 0:17: a finger on the display">
+        <img src="assets/terra-kaffe-plate-touch.webp?v=20261115e" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-plate-touch.jpg?v=20261115e'"/>
+      </a>
+      <figcaption><span class="tc">0:17</span>A finger on the display</figcaption>
     </figure>
-    <figure class="case-study-still-detail" data-reveal="photo" style="--d:2">
-      <img src="assets/terra-kaffe-still-02.webp?v=20261113e" alt="Workbench detail — machine internals during assembly" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-02.jpg?v=20261113e'"/>
+    <figure class="plate plate--parts" style="--t:61.31;--d:1" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=61.31" data-cue="61.31" data-live="61.26-63.23" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-still-01.jpg?v=20261113e" data-video-at="61.31" aria-label="Watch from 1:01: parts inventory beside the production bench">
+        <img src="assets/terra-kaffe-still-01.webp?v=20261113e" alt="" width="1600" height="900" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-01.jpg?v=20261113e'"/>
+      </a>
+      <figcaption><span class="tc">1:01</span>Parts inventory, beside the production bench</figcaption>
+    </figure>
+    <figure class="plate plate--pour" style="--t:79.93;--d:2" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=79.93" data-cue="79.93" data-live="79.88-83.92" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-plate-pour.jpg?v=20261115e" data-video-at="79.93" aria-label="Watch from 1:19: espresso being poured">
+        <img src="assets/terra-kaffe-plate-pour.webp?v=20261115e" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-plate-pour.jpg?v=20261115e'"/>
+      </a>
+      <figcaption><span class="tc">1:19</span>Espresso, poured</figcaption>
+    </figure>
+    <figure class="plate plate--part" style="--t:180.05;--d:3" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=180.05" data-cue="180.05" data-live="179.98-181.78" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-plate-part.jpg?v=20261115e" data-video-at="180.05" aria-label="Watch from 3:00: a part being cleaned by hand">
+        <img src="assets/terra-kaffe-plate-part.webp?v=20261115e" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-plate-part.jpg?v=20261115e'"/>
+      </a>
+      <figcaption><span class="tc">3:00</span>A part, cleaned by hand</figcaption>
+    </figure>
+    <figure class="plate plate--internals" style="--t:184.7;--d:4" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=184.7" data-cue="184.7" data-live="184.65-190.76" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-still-02.jpg?v=20261113e" data-video-at="184.7" aria-label="Watch from 3:04: machine internals during assembly">
+        <img src="assets/terra-kaffe-still-02.webp?v=20261113e" alt="" width="1600" height="900" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-still-02.jpg?v=20261113e'"/>
+      </a>
+      <figcaption><span class="tc">3:04</span>Machine internals, during assembly</figcaption>
+    </figure>
+    <figure class="plate plate--hand" style="--t:314.23;--d:5" data-reveal="photo">
+      <a href="assets/case-study-terra-kaffe.mp4#t=314.23" data-cue="314.23" data-live="314.18-316.12" data-open-video="assets/case-study-terra-kaffe.mp4" data-video-title="Terra Kaffe × Whim" data-video-poster="assets/terra-kaffe-plate-hand.jpg?v=20261115e" data-video-at="314.23" aria-label="Watch from 5:14: a hand on the machine">
+        <img src="assets/terra-kaffe-plate-hand.webp?v=20261115e" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false" onerror="this.onerror=null;this.src='assets/terra-kaffe-plate-hand.jpg?v=20261115e'"/>
+      </a>
+      <figcaption><span class="tc">5:14</span>A hand on the machine</figcaption>
     </figure>
   </div>
 </section>
 
-<section class="case-study" id="ces-founder-dinner" aria-labelledby="ces-heading">
-  <header class="case-study-intro">
-    <div class="case-study-title">
-      <p class="case-study-category" data-reveal>Event Film</p>
-      <h2 id="ces-heading" data-reveal style="--d:1">CES Founder Dinner</h2>
-      <p class="case-study-place" data-reveal style="--d:2">Las Vegas · 2026</p>
-    </div>
-    <div class="case-study-summary">
-      <p class="case-study-credits" data-reveal>Creative Direction / Videography</p>
-      <p class="case-study-desc" data-reveal style="--d:2">A recap of a private founders’ dinner during CES, hosted by Hardware Nation.</p>
-      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-ces-founder-dinner.mp4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115c">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
-    </div>
-  </header>
+<section class="case-study reel reel--motion" id="ces-founder-dinner" aria-labelledby="ces-heading" data-reel data-duration="63.716">
+  <div class="night" data-reveal="scene">
+    <header class="reel-head">
+      <p class="night-slate" data-reveal><span class="case-study-category">Event Film</span><span class="case-study-credits">Creative Direction / Videography</span><span class="case-study-place">Las Vegas · 2026</span></p>
+      <h2 class="reel-title reel-title--motion" id="ces-heading" data-reveal style="--d:1">CES Founder Dinner</h2>
+      <div class="reel-lede" data-reveal style="--d:2">
+        <p class="case-study-desc">A recap of a private founders’ dinner during CES, hosted by Hardware Nation.</p>
+        <a class="card-link" href="assets/case-study-ces-founder-dinner.mp4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115c">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+      </div>
+    </header>
 
-  <div
-    class="case-study-media"
-    role="button"
-    tabindex="0"
-    data-open-video="assets/case-study-ces-founder-dinner.mp4"
-    data-video-title="CES Founder Dinner"
-    data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115c"
-    aria-label="Watch CES Founder Dinner with sound"
-  >
-    <video
-      id="ces-preview"
-      class="case-study-preview"
-      muted
-      playsinline
-      webkit-playsinline
-      loop
-      preload="none"
-      poster="assets/ces-founder-dinner-case.jpg?v=20261115c"
-      data-src="assets/case-study-ces-founder-dinner.mp4"
-      data-preview-start="42"
-      aria-hidden="true"
-    ></video>
+    <div class="reel-spread">
+      <div
+        class="case-study-media"
+        role="button"
+        tabindex="0"
+        data-open-video="assets/case-study-ces-founder-dinner.mp4"
+        data-video-title="CES Founder Dinner"
+        data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115c"
+        aria-label="Watch CES Founder Dinner with sound"
+      >
+        <video
+          id="ces-preview"
+          class="case-study-preview"
+          muted
+          playsinline
+          webkit-playsinline
+          loop
+          preload="none"
+          poster="assets/ces-founder-dinner-case.jpg?v=20261115c"
+          data-src="assets/case-study-ces-founder-dinner.mp4"
+          data-preview-start="42"
+          aria-hidden="true"
+        ></video>
+      </div>
+
+      <div class="cuesheet">
+        <ol class="voices" aria-label="Who speaks, in order" data-reveal style="--d:1">
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=5.95" data-cue="5.95" data-live="5.9-7.17,16.43-18.48,20.35-22.23,56.35-60.48" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="5.95" aria-label="Watch from 0:05: Ritwik Pavan, Host, Hardware Nation"><span class="tc">0:05</span><span class="voice-name">Ritwik Pavan</span><span class="voice-role">Host, Hardware Nation</span></a></li>
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=37.42" data-cue="37.42" data-live="37.37-39.41" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="37.42" aria-label="Watch from 0:37: Kevin Michaluk, Founder, Clicks"><span class="tc">0:37</span><span class="voice-name">Kevin Michaluk</span><span class="voice-role">Founder, Clicks</span></a></li>
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=39.46" data-cue="39.46" data-live="39.41-41.58" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="39.46" aria-label="Watch from 0:39: Reni Cao, CEO and Founder, Dex camera"><span class="tc">0:39</span><span class="voice-name">Reni Cao</span><span class="voice-role">CEO &amp; Founder, Dex camera</span></a></li>
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=41.63" data-cue="41.63" data-live="41.58-44.55" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="41.63" aria-label="Watch from 0:41: Max Richter, Co-founder, Insta360"><span class="tc">0:41</span><span class="voice-name">Max Richter</span><span class="voice-role">Co-founder, Insta360</span></a></li>
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=45.22" data-cue="45.22" data-live="45.17-47.21" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="45.22" aria-label="Watch from 0:45: Anushka Salinas, CEO, Nanit"><span class="tc">0:45</span><span class="voice-name">Anushka Salinas</span><span class="voice-role">CEO, Nanit</span></a></li>
+          <li><a href="assets/case-study-ces-founder-dinner.mp4#t=47.26" data-cue="47.26" data-live="47.21-49.47" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="47.26" aria-label="Watch from 0:47: Aviv Gilboa, President, Skylight"><span class="tc">0:47</span><span class="voice-name">Aviv Gilboa</span><span class="voice-role">President, Skylight</span></a></li>
+        </ol>
+        <p class="case-study-note" data-reveal style="--d:2"><span><b>45</b> founders</span><a href="https://x.com/ritwikpavan/status/2010752805141954952" target="_blank" rel="noopener noreferrer"><b>30K</b> views on X <span class="diag-arrow" aria-hidden="true"></span></a></p>
+      </div>
+    </div>
+
+    <div class="reel-run">
+      <p class="reel-caption"><span class="tc reel-now" data-reel-clock>0:00</span><span class="reel-hint">Drag<span class="reel-hint-more">, or pick a frame,</span> to move through the film</span><span class="tc reel-total">1:04</span></p>
+      <div class="strip" data-strip data-step="1" data-loupe="assets/strips/ces-founder-dinner-loupe.webp?v=20261115e" data-loupe-step="0.5" data-loupe-cols="16" style="--dur:63.716" data-reveal="strip">
+    <svg class="strip-ticks" viewBox="0 0 63.716 9" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5V9M2 5V9M3 5V9M4 5V9M5 5V9M6 5V9M7 5V9M8 5V9M9 5V9M11 5V9M12 5V9M13 5V9M14 5V9M15 5V9M16 5V9M17 5V9M18 5V9M19 5V9M21 5V9M22 5V9M23 5V9M24 5V9M25 5V9M26 5V9M27 5V9M28 5V9M29 5V9M31 5V9M32 5V9M33 5V9M34 5V9M35 5V9M36 5V9M37 5V9M38 5V9M39 5V9M41 5V9M42 5V9M43 5V9M44 5V9M45 5V9M46 5V9M47 5V9M48 5V9M49 5V9M51 5V9M52 5V9M53 5V9M54 5V9M55 5V9M56 5V9M57 5V9M58 5V9M59 5V9M61 5V9M62 5V9M63 5V9"/><path class="is-major" d="M0 0V9M10 0V9M20 0V9M30 0V9M40 0V9M50 0V9M60 0V9"/></svg>
+    <div class="strip-band">
+      <img src="assets/strips/ces-founder-dinner.webp?v=20261115e" alt="" width="2460" height="72" decoding="async" draggable="false"/>
+      <span class="strip-veil" aria-hidden="true"></span>
+      <span class="strip-pins" aria-hidden="true"><i style="--t:5.95"></i><i style="--t:37.42"></i><i style="--t:39.46"></i><i style="--t:41.63"></i><i style="--t:45.22"></i><i style="--t:47.26"></i></span>
+    </div>
+    <span class="strip-run" aria-hidden="true"></span>
+    <span class="strip-ghost" aria-hidden="true"></span>
+    <span class="strip-head" aria-hidden="true"></span>
+    <span class="strip-loupe" aria-hidden="true"><span class="strip-loupe-frame"></span><span class="strip-loupe-time tc">0:00</span></span>
   </div>
-  <p class="case-study-note" data-reveal><span><b>45</b> founders</span><a href="https://x.com/ritwikpavan/status/2010752805141954952" target="_blank" rel="noopener noreferrer"><b>30K</b> views on X <span class="diag-arrow" aria-hidden="true"></span></a><span><b>1:04</b></span></p>
 
-  <div class="case-study-stills" aria-label="Stills from the film">
-    <figure data-reveal="photo">
-      <img src="assets/ces-founder-dinner-still-01.webp?v=20261115c" alt="Founders seated around a dinner table" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-still-01.jpg?v=20261115c'"/>
-    </figure>
-    <figure data-reveal="photo" style="--d:2">
-      <img src="assets/ces-founder-dinner-still-02.webp?v=20261115c" alt="The host speaking to the room with a microphone" width="1600" height="900" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-still-02.jpg?v=20261115c'"/>
-    </figure>
+      <div class="sheet" data-sheet data-reveal="sheet" role="group" aria-label="The film in 36 frames, in order. Choose a frame to watch from that moment.">
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=0.5" data-cue="0.5" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="0.5" style="--i:0;--c:0;--r:0" aria-label="Frame 1 of 36, 0:00. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>01</span><span class="tc">0:00</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=2.13" data-cue="2.13" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="2.13" style="--i:1;--c:1;--r:0" aria-label="Frame 2 of 36, 0:02. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>02</span><span class="tc">0:02</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=3.96" data-cue="3.96" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="3.96" style="--i:2;--c:2;--r:0" aria-label="Frame 3 of 36, 0:03. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>03</span><span class="tc">0:03</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=6.17" data-cue="6.17" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="6.17" style="--i:3;--c:3;--r:0" aria-label="Frame 4 of 36, 0:06. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>04</span><span class="tc">0:06</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=7.59" data-cue="7.59" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="7.59" style="--i:4;--c:4;--r:0" aria-label="Frame 5 of 36, 0:07. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>05</span><span class="tc">0:07</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=10.3" data-cue="10.3" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="10.3" style="--i:5;--c:5;--r:0" aria-label="Frame 6 of 36, 0:10. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>06</span><span class="tc">0:10</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=11.51" data-cue="11.51" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="11.51" style="--i:6;--c:6;--r:0" aria-label="Frame 7 of 36, 0:11. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>07</span><span class="tc">0:11</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=13.22" data-cue="13.22" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="13.22" style="--i:7;--c:7;--r:0" aria-label="Frame 8 of 36, 0:13. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>08</span><span class="tc">0:13</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=14.4" data-cue="14.4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="14.4" style="--i:8;--c:8;--r:0" aria-label="Frame 9 of 36, 0:14. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>09</span><span class="tc">0:14</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=16.3" data-cue="16.3" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="16.3" style="--i:9;--c:0;--r:1" aria-label="Frame 10 of 36, 0:16. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>10</span><span class="tc">0:16</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=17.5" data-cue="17.5" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="17.5" style="--i:10;--c:1;--r:1" aria-label="Frame 11 of 36, 0:17. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>11</span><span class="tc">0:17</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=19.95" data-cue="19.95" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="19.95" style="--i:11;--c:2;--r:1" aria-label="Frame 12 of 36, 0:19. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>12</span><span class="tc">0:19</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=22.5" data-cue="22.5" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="22.5" style="--i:12;--c:3;--r:1" aria-label="Frame 13 of 36, 0:22. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>13</span><span class="tc">0:22</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=24.0" data-cue="24.0" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="24.0" style="--i:13;--c:4;--r:1" aria-label="Frame 14 of 36, 0:24. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>14</span><span class="tc">0:24</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=26.4" data-cue="26.4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="26.4" style="--i:14;--c:5;--r:1" aria-label="Frame 15 of 36, 0:26. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>15</span><span class="tc">0:26</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=27.6" data-cue="27.6" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="27.6" style="--i:15;--c:6;--r:1" aria-label="Frame 16 of 36, 0:27. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>16</span><span class="tc">0:27</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=29.2" data-cue="29.2" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="29.2" style="--i:16;--c:7;--r:1" aria-label="Frame 17 of 36, 0:29. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>17</span><span class="tc">0:29</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=30.6" data-cue="30.6" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="30.6" style="--i:17;--c:8;--r:1" aria-label="Frame 18 of 36, 0:30. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>18</span><span class="tc">0:30</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=33.1" data-cue="33.1" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="33.1" style="--i:18;--c:0;--r:2" aria-label="Frame 19 of 36, 0:33. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>19</span><span class="tc">0:33</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=35.0" data-cue="35.0" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="35.0" style="--i:19;--c:1;--r:2" aria-label="Frame 20 of 36, 0:35. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>20</span><span class="tc">0:35</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=35.7" data-cue="35.7" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="35.7" style="--i:20;--c:2;--r:2" aria-label="Frame 21 of 36, 0:35. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>21</span><span class="tc">0:35</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=38.04" data-cue="38.04" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="38.04" style="--i:21;--c:3;--r:2" aria-label="Frame 22 of 36, 0:38. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>22</span><span class="tc">0:38</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=39.9" data-cue="39.9" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="39.9" style="--i:22;--c:4;--r:2" aria-label="Frame 23 of 36, 0:39. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>23</span><span class="tc">0:39</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=42.0" data-cue="42.0" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="42.0" style="--i:23;--c:5;--r:2" aria-label="Frame 24 of 36, 0:42. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>24</span><span class="tc">0:42</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=43.6" data-cue="43.6" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="43.6" style="--i:24;--c:6;--r:2" aria-label="Frame 25 of 36, 0:43. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>25</span><span class="tc">0:43</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=44.8" data-cue="44.8" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="44.8" style="--i:25;--c:7;--r:2" aria-label="Frame 26 of 36, 0:44. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>26</span><span class="tc">0:44</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=46.4" data-cue="46.4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="46.4" style="--i:26;--c:8;--r:2" aria-label="Frame 27 of 36, 0:46. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>27</span><span class="tc">0:46</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=48.4" data-cue="48.4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="48.4" style="--i:27;--c:0;--r:3" aria-label="Frame 28 of 36, 0:48. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>28</span><span class="tc">0:48</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=49.8" data-cue="49.8" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="49.8" style="--i:28;--c:1;--r:3" aria-label="Frame 29 of 36, 0:49. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>29</span><span class="tc">0:49</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=52.35" data-cue="52.35" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="52.35" style="--i:29;--c:2;--r:3" aria-label="Frame 30 of 36, 0:52. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>30</span><span class="tc">0:52</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=54.9" data-cue="54.9" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="54.9" style="--i:30;--c:3;--r:3" aria-label="Frame 31 of 36, 0:54. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>31</span><span class="tc">0:54</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=55.8" data-cue="55.8" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="55.8" style="--i:31;--c:4;--r:3" aria-label="Frame 32 of 36, 0:55. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>32</span><span class="tc">0:55</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=57.5" data-cue="57.5" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="57.5" style="--i:32;--c:5;--r:3" aria-label="Frame 33 of 36, 0:57. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>33</span><span class="tc">0:57</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=59.3" data-cue="59.3" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="59.3" style="--i:33;--c:6;--r:3" aria-label="Frame 34 of 36, 0:59. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>34</span><span class="tc">0:59</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=60.75" data-cue="60.75" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="60.75" style="--i:34;--c:7;--r:3" aria-label="Frame 35 of 36, 1:00. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>35</span><span class="tc">1:00</span></span></a>
+      <a class="frame" href="assets/case-study-ces-founder-dinner.mp4#t=62.3" data-cue="62.3" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-video-at="62.3" style="--i:35;--c:8;--r:3" aria-label="Frame 36 of 36, 1:02. Watch from here"><span class="frame-img"></span><span class="frame-meta" aria-hidden="true"><span>36</span><span class="tc">1:02</span></span></a>
+        <span class="sheet-head" aria-hidden="true"></span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1038,6 +1019,6 @@ function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sou
 </script><script src="deck.js?v=20261113z"></script>
 <script src="shorts.js"></script>
 <script src="studio.js"></script>
-<script src="video-lightbox.js"></script>
-<script src="case-study-preview.js?v=20261115c"></script>
+<script src="video-lightbox.js?v=20261115e"></script>
+<script src="reel.js?v=20261115e"></script>
 <script src="motion.js?v=20261114a"></script></body></html>

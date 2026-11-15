@@ -7,9 +7,13 @@
 
   let open = false;
   let lastFocus = null;
+  let session = 0; // which opening the pending "start playing" belongs to
 
-  function openVideo(src, title, poster) {
+  // `at` (seconds) starts the film part-way in: plates, voices and contact-sheet frames
+  // open it at the moment they show.
+  function openVideo(src, title, poster, at) {
     if (!src) return;
+    const startAt = Number.isFinite(at) && at > 0 ? at : 0;
     lastFocus = document.activeElement;
     if (label) label.textContent = title || "Film";
     player.pause();
@@ -28,9 +32,14 @@
     open = true;
     closeBtn.focus();
     lightbox.dispatchEvent(new CustomEvent("videolightbox:open", { bubbles: false }));
+    const mine = ++session;
+    let started = false;
     const play = () => {
+      // Once per opening, and never for a film that has since been closed or replaced.
+      if (started || mine !== session) return;
+      started = true;
       try {
-        player.currentTime = 0;
+        player.currentTime = startAt;
       } catch (_) {}
       const p = player.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
@@ -44,6 +53,7 @@
 
   function closeVideo() {
     if (!open) return;
+    session++;
     player.pause();
     player.removeAttribute("src");
     player.load();
@@ -63,7 +73,8 @@
     openVideo(
       trigger.getAttribute("data-open-video"),
       trigger.getAttribute("data-video-title") || trigger.textContent.trim(),
-      trigger.getAttribute("data-video-poster") || ""
+      trigger.getAttribute("data-video-poster") || "",
+      parseFloat(trigger.getAttribute("data-video-at"))
     );
   });
 
