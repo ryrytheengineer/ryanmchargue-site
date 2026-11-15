@@ -21,6 +21,17 @@
       if (!src) return;
       video.src = src;
       srcLoaded = true;
+      // The muted preview can open on a chosen moment (matching its poster); it then loops as normal.
+      const start = parseFloat(video.getAttribute("data-preview-start"));
+      if (start > 0) {
+        video.addEventListener(
+          "loadedmetadata",
+          () => {
+            if (start < video.duration) video.currentTime = start;
+          },
+          { once: true }
+        );
+      }
     }
 
     function play() {
