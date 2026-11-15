@@ -505,6 +505,15 @@ body{background:var(--paper);font-family:var(--font-sans)}
   color:var(--muted);
 }
 .case-study-note b{font-weight:400;color:var(--ink);font-variant-numeric:tabular-nums}
+.case-study-note a{
+  color:inherit;
+  text-decoration:underline;
+  text-decoration-color:var(--line);
+  text-underline-offset:4px;
+  transition:color .2s ease,text-decoration-color .2s ease;
+}
+.case-study-note a:hover,
+.case-study-note a:focus-visible{color:var(--ink);text-decoration-color:currentColor}
 .ownership-intro p{max-width:36rem}
 .site-foot{
   border-top:1px solid var(--line);
@@ -770,7 +779,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
       aria-hidden="true"
     ></video>
   </div>
-  <p class="case-study-note" data-reveal><span><b>45</b> founders</span><span><b>30K</b> views</span><span><b>1:04</b></span></p>
+  <p class="case-study-note" data-reveal><span><b>45</b> founders</span><a href="https://x.com/ritwikpavan/status/2010752805141954952" target="_blank" rel="noopener noreferrer"><b>30K</b> views on X <span class="diag-arrow" aria-hidden="true"></span></a><span><b>1:04</b></span></p>
 
   <div class="case-study-stills" aria-label="Stills from the film">
     <figure data-reveal="photo">
