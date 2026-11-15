@@ -493,6 +493,53 @@ body{background:var(--paper);font-family:var(--font-sans)}
   .case-study-intro{margin-bottom:24px}
   .case-study-stills{margin-top:24px;gap:var(--case-gap)}
 }
+/* Facts: a ruled strip under the film, on the same twelve columns, so the numbers carry the result. */
+.case-study-facts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  column-gap:var(--case-gap);
+  margin:0;
+  border-bottom:1px solid var(--line);
+}
+.case-study-facts div{
+  display:flex;
+  flex-direction:column-reverse;
+  gap:10px;
+  padding:22px 0 20px;
+}
+.case-study-facts dt{
+  font-size:var(--type-kicker-size);
+  letter-spacing:var(--type-kicker-track);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.case-study-facts dd{
+  margin:0;
+  font-family:var(--font-serif);
+  font-size:var(--type-feature-size);
+  line-height:var(--type-feature-leading);
+  letter-spacing:var(--type-feature-track);
+  font-variant-numeric:lining-nums tabular-nums;
+}
+/* Frames: four equal stills pulled from the film, flush with the film column. */
+.case-study-frames-label{
+  margin:32px 0 14px;
+  font-size:var(--type-kicker-size);
+  letter-spacing:var(--type-kicker-track);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.case-study-stills.case-study-frames{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  margin-top:0;
+}
+@media(max-width:900px){
+  .case-study-stills.case-study-frames{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--case-gap);margin-top:0}
+}
+@media(max-width:600px){
+  .case-study-facts div{padding:18px 0 16px;gap:8px}
+  .case-study-frames-label{margin-top:24px}
+}
 .ownership-intro p{max-width:36rem}
 .site-foot{
   border-top:1px solid var(--line);
@@ -726,12 +773,12 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <div class="case-study-title">
       <p class="case-study-category" data-reveal>Event Film</p>
       <h2 id="ces-heading" data-reveal style="--d:1">CES Founder Dinner</h2>
-      <p class="case-study-place" data-reveal style="--d:2">Las Vegas · 2026 · 30K views</p>
+      <p class="case-study-place" data-reveal style="--d:2">Las Vegas · 2026</p>
     </div>
     <div class="case-study-summary">
       <p class="case-study-credits" data-reveal>Creative Direction / Videography</p>
-      <p class="case-study-desc" data-reveal style="--d:2">A recap of a private dinner for 45 founders during CES, hosted by Hardware Nation.</p>
-      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-ces-founder-dinner.mp4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115a">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+      <p class="case-study-desc" data-reveal style="--d:2">A recap of a private founders’ dinner during CES, hosted by Hardware Nation.</p>
+      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-ces-founder-dinner.mp4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115b">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
     </div>
   </header>
 
@@ -741,7 +788,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
     tabindex="0"
     data-open-video="assets/case-study-ces-founder-dinner.mp4"
     data-video-title="CES Founder Dinner"
-    data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115a"
+    data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115b"
     aria-label="Watch CES Founder Dinner with sound"
   >
     <video
@@ -752,10 +799,31 @@ body{background:var(--paper);font-family:var(--font-sans)}
       webkit-playsinline
       loop
       preload="none"
-      poster="assets/ces-founder-dinner-case.jpg?v=20261115a"
+      poster="assets/ces-founder-dinner-case.jpg?v=20261115b"
       data-src="assets/case-study-ces-founder-dinner.mp4"
       aria-hidden="true"
     ></video>
+  </div>
+  <dl class="case-study-facts">
+    <div data-reveal><dt>Founders</dt><dd>45</dd></div>
+    <div data-reveal style="--d:1"><dt>Views</dt><dd>30K</dd></div>
+    <div data-reveal style="--d:2"><dt>Runtime</dt><dd>1:04</dd></div>
+  </dl>
+
+  <p class="case-study-frames-label" data-reveal>Frames from the film</p>
+  <div class="case-study-stills case-study-frames" aria-label="Frames from the film">
+    <figure data-reveal="photo">
+      <img src="assets/ces-founder-dinner-frame-01.webp?v=20261115b" alt="Neon sign over the restaurant entrance" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-frame-01.jpg?v=20261115b'"/>
+    </figure>
+    <figure data-reveal="photo" style="--d:1">
+      <img src="assets/ces-founder-dinner-frame-02.webp?v=20261115b" alt="Place setting at the dinner table" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-frame-02.jpg?v=20261115b'"/>
+    </figure>
+    <figure data-reveal="photo" style="--d:2">
+      <img src="assets/ces-founder-dinner-frame-03.webp?v=20261115b" alt="The host speaking to the room with a microphone" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-frame-03.jpg?v=20261115b'"/>
+    </figure>
+    <figure data-reveal="photo" style="--d:3">
+      <img src="assets/ces-founder-dinner-frame-04.webp?v=20261115b" alt="Founders talking over dinner" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/ces-founder-dinner-frame-04.jpg?v=20261115b'"/>
+    </figure>
   </div>
 </section>
 
