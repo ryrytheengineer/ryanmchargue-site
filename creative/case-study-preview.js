@@ -1,76 +1,83 @@
+/* Each case study's film plays as a muted preview while it is on screen; clicking opens it with sound. */
 (() => {
-  const media = document.querySelector(".case-study-media");
-  const video = document.getElementById("terra-preview");
   const lightbox = document.getElementById("video-lightbox");
-  if (!media || !video) return;
-
   const reduced =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let srcLoaded = false;
-  let inView = false;
   let lightboxOpen = false;
+  const previews = [];
 
-  function ensureSrc() {
-    if (srcLoaded) return;
-    const src = video.getAttribute("data-src");
-    if (!src) return;
-    video.src = src;
-    srcLoaded = true;
-  }
+  document.querySelectorAll(".case-study-media").forEach((media) => {
+    const video = media.querySelector(".case-study-preview");
+    if (!video) return;
 
-  function playPreview() {
-    if (reduced || lightboxOpen || !inView) return;
-    ensureSrc();
-    video.muted = true;
-    const play = video.play();
-    if (play && typeof play.catch === "function") play.catch(() => {});
-  }
+    let srcLoaded = false;
+    let inView = false;
 
-  function pausePreview() {
-    if (!video.paused) video.pause();
-  }
+    function ensureSrc() {
+      if (srcLoaded) return;
+      const src = video.getAttribute("data-src");
+      if (!src) return;
+      video.src = src;
+      srcLoaded = true;
+    }
 
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        inView = !!(entry && entry.isIntersecting);
-        if (inView) {
-          ensureSrc();
-          playPreview();
-        } else {
-          pausePreview();
-        }
-      },
-      { threshold: 0.28, rootMargin: "160px 0px" }
-    );
-    io.observe(media);
-  } else if (!reduced) {
-    ensureSrc();
-    inView = true;
-    playPreview();
-  }
+    function play() {
+      if (reduced || lightboxOpen || !inView) return;
+      ensureSrc();
+      video.muted = true;
+      const started = video.play();
+      if (started && typeof started.catch === "function") started.catch(() => {});
+    }
+
+    function pause() {
+      if (!video.paused) video.pause();
+    }
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          inView = !!(entry && entry.isIntersecting);
+          if (inView) {
+            ensureSrc();
+            play();
+          } else {
+            pause();
+          }
+        },
+        { threshold: 0.28, rootMargin: "160px 0px" }
+      );
+      io.observe(media);
+    } else if (!reduced) {
+      ensureSrc();
+      inView = true;
+      play();
+    }
+
+    media.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      media.click();
+    });
+
+    previews.push({ play, pause });
+  });
+
+  if (!previews.length) return;
 
   if (lightbox) {
     lightbox.addEventListener("videolightbox:open", () => {
       lightboxOpen = true;
-      pausePreview();
+      previews.forEach((p) => p.pause());
     });
     lightbox.addEventListener("videolightbox:close", () => {
       lightboxOpen = false;
-      playPreview();
+      previews.forEach((p) => p.play());
     });
   }
 
-  media.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    media.click();
-  });
-
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) pausePreview();
-    else playPreview();
+    previews.forEach((p) => (document.hidden ? p.pause() : p.play()));
   });
 })();

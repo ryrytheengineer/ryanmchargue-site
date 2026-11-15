@@ -721,6 +721,44 @@ body{background:var(--paper);font-family:var(--font-sans)}
   </div>
 </section>
 
+<section class="case-study" id="ces-founder-dinner" aria-labelledby="ces-heading">
+  <header class="case-study-intro">
+    <div class="case-study-title">
+      <p class="case-study-category" data-reveal>Event Film</p>
+      <h2 id="ces-heading" data-reveal style="--d:1">CES Founder Dinner</h2>
+      <p class="case-study-place" data-reveal style="--d:2">Las Vegas · 2026 · 30K views</p>
+    </div>
+    <div class="case-study-summary">
+      <p class="case-study-credits" data-reveal>Creative Direction / Videography</p>
+      <p class="case-study-desc" data-reveal style="--d:2">A recap of a private dinner for 45 founders during CES, hosted by Hardware Nation.</p>
+      <a class="card-link" data-reveal style="--d:3" href="assets/case-study-ces-founder-dinner.mp4" data-open-video="assets/case-study-ces-founder-dinner.mp4" data-video-title="CES Founder Dinner" data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115a">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+    </div>
+  </header>
+
+  <div
+    class="case-study-media"
+    role="button"
+    tabindex="0"
+    data-open-video="assets/case-study-ces-founder-dinner.mp4"
+    data-video-title="CES Founder Dinner"
+    data-video-poster="assets/ces-founder-dinner-case.jpg?v=20261115a"
+    aria-label="Watch CES Founder Dinner with sound"
+  >
+    <video
+      id="ces-preview"
+      class="case-study-preview"
+      muted
+      playsinline
+      webkit-playsinline
+      loop
+      preload="none"
+      poster="assets/ces-founder-dinner-case.jpg?v=20261115a"
+      data-src="assets/case-study-ces-founder-dinner.mp4"
+      aria-hidden="true"
+    ></video>
+  </div>
+</section>
+
 <section class="studio-break" id="hwn-studio" aria-labelledby="studio-heading" data-reveal="scene">
   <div class="studio-inner">
     <div class="studio-intro">
@@ -969,5 +1007,5 @@ function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sou
 <script src="shorts.js"></script>
 <script src="studio.js"></script>
 <script src="video-lightbox.js"></script>
-<script src="case-study-preview.js"></script>
+<script src="case-study-preview.js?v=20261115a"></script>
 <script src="motion.js?v=20261114a"></script></body></html>
