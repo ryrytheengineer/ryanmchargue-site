@@ -36,7 +36,7 @@
     { x: 26, y: 24, rot: 5.2, scale: 0.953 },
   ];
   // Where seen cards come to rest. On a phone the pile is off the edge of the table.
-  const PILE_WIDE = { scale: 0.86, rot: -6.5, y: 24 };
+  const PILE_WIDE = { scale: 0.86, rot: -5.5, y: 24 };
   const PILE_NARROW = { scale: 0.92, rot: -7, y: 14 };
 
   // Each card lands a little differently, and the same way every time.
@@ -44,7 +44,7 @@
     const v = Math.sin(n * 12.9898) * 43758.5453;
     return v - Math.floor(v) - 0.5;
   };
-  const lay = cards.map((_, i) => ({ rot: noise(i + 1) * 12, x: noise(i + 7.3) * 26, y: noise(i + 3.1) * 16 }));
+  const lay = cards.map((_, i) => ({ rot: noise(i + 1) * 8, x: noise(i + 7.3) * 26, y: noise(i + 3.1) * 16 }));
 
   // Springs (unit mass). SETTLE carries a trace of overshoot; SWING is a card on a
   // fingertip and is meant to overshoot; the others do not.
@@ -126,8 +126,8 @@
         ry: -9 * Math.sin(Math.PI * t), // turns away slightly as it goes
         rot: (pile.rot + l.rot) * e,
         scale: 1 + (pile.scale - 1) * e - 0.01 * Math.min(under, 4),
-        // Only the top few of the pile are ever seen.
-        o: under <= 3 ? 1 : Math.max(0, 1 - (under - 3)),
+        // Only the top three of the pile are ever seen.
+        o: under <= 2 ? 1 : Math.max(0, 1 - (under - 2)),
       };
     }
     if (depth >= 3) {

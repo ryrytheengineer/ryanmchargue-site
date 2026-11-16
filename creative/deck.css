@@ -12,8 +12,10 @@
 .project-card.is-held{
   box-shadow:var(--edge),0 46px 70px -26px rgba(44,39,32,.32),0 16px 26px -16px rgba(38,33,24,.14);
 }
-/* Put down on the pile: close to the table again. */
-.project-card.in-pile{
+/* Put down on the pile: close to the table again. Only the top card casts a shadow
+   worth drawing; the ones under it are covered. */
+.project-card.in-pile{box-shadow:var(--edge)}
+.project-card.pile-top{
   box-shadow:var(--edge),0 14px 22px -16px rgba(44,39,32,.34);
 }
 .deck .project-card[data-depth="0"]{cursor:grab}
