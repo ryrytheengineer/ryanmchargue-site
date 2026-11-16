@@ -116,7 +116,7 @@
   gap:6px 18px;
   margin:10px 0 0;
 }
-.credit-role{font-size:12px;line-height:1.4;color:var(--muted)}
+.credit-role{font-size:12px;line-height:1.4;color:var(--muted-strong)}
 .side-credit + .side-copy{margin-top:clamp(18px,2cqw,24px)}
 
 .credit-link{
@@ -173,18 +173,31 @@
   .side-hn{font-size:clamp(1.75rem,4.2cqw,2.5rem)}
   .opening > .deck-section{grid-column:1 / -1;grid-row:4;padding-top:clamp(40px,5.6cqw,64px);overflow-x:clip}
 }
-/* ---------- One column ---------- */
+/* ---------- One column ----------
+   On a phone the sentence has to read as a sentence first. The connecting words are set
+   larger, each of the three parts gets air above it, and the outlined phrase is drawn with
+   a heavier line so it holds at this size. The copy under it is a size up as well. */
 @media(max-width:700px){
-  .opening{display:block;padding-top:60px}
-  .say-name{font-size:clamp(2.9rem,14.4cqw,4.4rem)}
-  .say-stanza--matter{margin-top:26px}
-  .say-matter{font-size:calc(100cqw / 4.5);line-height:.86;margin-top:.1em;-webkit-text-stroke-width:1px}
+  .opening{display:block;padding-top:64px}
+  .say-quiet{font-size:clamp(24px,6.6cqw,30px);line-height:1.15}
+  .say-name{font-size:clamp(3rem,15cqw,4.6rem);margin-top:.04em}
+  .say-stanza--matter{margin-top:40px}
+  .say-matter{
+    font-size:calc(100cqw / 4.5);
+    line-height:.88;
+    margin-top:.13em;
+    -webkit-text-stroke-width:max(1.6px,.021em);
+  }
   .say-matter .w{display:block}
-  .say-stanza--motion{width:auto;margin-top:22px}
-  .say-motion{font-size:calc(100cqw / 4.75);margin-top:.08em}
-  .opening-side{margin-top:30px}
-  .side-hn{white-space:normal}
-  .opening > .deck-section{padding-top:30px}
+  .say-stanza--motion{width:auto;margin-top:38px}
+  .say-motion{font-size:calc(100cqw / 4.75);margin-top:.1em;margin-bottom:.12em}
+  .opening-side{margin-top:44px}
+  .side-copy{font-size:16.5px;line-height:1.55}
+  .side-hn{white-space:normal;font-size:clamp(2rem,9.4cqw,2.5rem);margin-top:.22em}
+  .side-credit{margin-top:12px;gap:8px 18px}
+  .credit-role{font-size:13px}
+  .credit-link{font-size:15px}
+  .opening > .deck-section{padding-top:34px}
 }
 @media(prefers-reduced-motion:reduce){
   .credit-arrow{transition:none}
