@@ -234,3 +234,63 @@
   .ownership-intro .intro-lead{font-size:1.5rem;line-height:1.2}
 }
 
+
+/* ---------- The credit ----------
+   Under the introduction, where the work was made and the role: a credit line, the way a
+   film carries one. The name is a thing, so it is upright grotesk; the rest is the page's
+   small type. The link leaves the page, so its arrow leans out on approach. */
+.intro-credit{
+  max-width:34rem;
+  margin-top:clamp(30px,3.6vw,44px);
+  padding-top:clamp(14px,1.5vw,18px);
+  border-top:1px solid var(--ink);
+}
+.intro-credit p{margin:0;max-width:none}
+.intro-credit .credit-role{
+  font-size:12px;
+  line-height:1.4;
+  color:var(--muted);
+}
+.intro-credit .credit-name{
+  margin-top:8px;
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:clamp(1.75rem,1.2rem + 1.4vw,2.5rem);
+  line-height:1;
+  letter-spacing:-.045em;
+  color:var(--ink);
+}
+.intro-credit .credit-desc{
+  margin-top:12px;
+  font-size:clamp(14px,.82rem + .2vw,15px);
+  line-height:1.55;
+  color:var(--muted-strong);
+  text-wrap:pretty;
+}
+.credit-link{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.35em;
+  margin-top:16px;
+  padding-bottom:3px;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(41,42,40,.26),rgba(41,42,40,.26));
+  background-repeat:no-repeat;
+  background-position:100% 100%,0 100%;
+  background-size:0 1px,100% 1px;
+  transition:background-size var(--dur-move) var(--ease);
+}
+.credit-arrow{display:inline-block;transition:transform var(--dur-move) var(--ease)}
+.credit-link:hover,
+.credit-link:focus-visible{background-position:0 100%,0 100%;background-size:100% 1px,100% 1px}
+.credit-link:hover .credit-arrow,
+.credit-link:focus-visible .credit-arrow{transform:translate(2px,-2px)}
+.credit-link:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.credit-link .credit-note{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){
+  .credit-arrow{transition:none}
+}
