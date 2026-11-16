@@ -1,0 +1,81 @@
+/* ---------- The last frame ----------
+   After the work, the page ends the way a film does: a line, the name, and the way in.
+   The name is set like the wordmark, as an outline: not yet made. Reaching for the way in
+   makes it, letter by letter, the same way the studio wall turns the outline solid.
+   --made (0 to 1) is eased in closing.js. Without that script (or with reduced motion)
+   the name is simply solid. */
+.closing{
+  --made:0;
+  max-width:980px;
+  margin:0 auto;
+  padding:clamp(80px,10vw,140px) 0 clamp(72px,9vw,120px);
+  container-type:inline-size;
+}
+.closing-q{
+  max-width:17em;
+  margin:0;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(1.75rem,1.1rem + 2.4vw,3rem);
+  line-height:1.08;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.closing-name{
+  position:relative;
+  margin:clamp(30px,4.4vw,58px) 0 0 -.055em;
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:calc(100cqw / 6.46);
+  line-height:.86;
+  letter-spacing:-.055em;
+  white-space:nowrap;
+}
+.closing-name-line{
+  display:block;
+  padding-bottom:.06em;
+  color:transparent;
+  -webkit-text-stroke:max(1px,.006em) var(--ink);
+}
+.closing-name-made{
+  position:absolute;
+  inset:0;
+  padding-bottom:.06em;
+  color:var(--ink);
+  -webkit-text-stroke:max(1px,.006em) var(--ink);
+  clip-path:inset(-.1em calc((1 - var(--made)) * 100%) -.1em -.1em);
+  pointer-events:none;
+}
+html:not(.js-motion) .closing-name-made{clip-path:none}
+
+.closing-cta{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.5em;
+  margin-top:clamp(30px,3.8vw,50px);
+  padding-bottom:4px;
+  font-size:clamp(18px,1rem + .6vw,24px);
+  font-weight:500;
+  letter-spacing:-.025em;
+  color:var(--ink);
+  text-decoration:none;
+  /* The page's one underline: quiet at rest, drawn in ink on approach. */
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(41,42,40,.28),rgba(41,42,40,.28));
+  background-repeat:no-repeat;
+  background-position:100% 100%,0 100%;
+  background-size:0 1.5px,100% 1px;
+  transition:background-size var(--dur-move) var(--ease);
+}
+.closing-cta .diag-arrow{width:.42em;height:.42em;border-width:2px}
+.closing-cta:hover,
+.closing-cta:focus-visible{background-position:0 100%,0 100%;background-size:100% 1.5px,100% 1px}
+.closing-cta:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
+
+@media(max-width:600px){
+  .closing{padding:96px 0 64px}
+  .closing-q{font-size:1.75rem;line-height:1.12}
+  .closing-name{margin-top:30px;margin-left:-.05em}
+  .closing-name-line,
+  .closing-name-made{-webkit-text-stroke-width:.9px}
+}
