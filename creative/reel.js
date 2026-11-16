@@ -56,6 +56,8 @@
       ? Array.from(strip.querySelectorAll(".strip-pins i")).map((i) => parseFloat(i.style.getPropertyValue("--t")) || 0)
       : [];
 
+    const soundBtn = section.querySelector("[data-reel-sound]");
+    let muted = true; // the preview starts silent; the visitor can turn its sound on
     let srcLoaded = false;
     let onScreen = false;
     let held = false; // dragging the strip
@@ -111,16 +113,46 @@
     });
     video.addEventListener("playing", () => kick());
 
-    function play() {
-      if (reduced.matches || lightboxOpen || !onScreen || held || document.hidden) return;
-      ensureSrc();
-      video.muted = true;
+    function setMuted(on) {
+      muted = on;
+      video.muted = on;
+      if (!soundBtn) return;
+      soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      soundBtn.setAttribute("aria-label", on ? "Unmute" : "Mute");
+      soundBtn.classList.toggle("is-on", !on);
+    }
+    // `asked` is true when the visitor did something that asks for the film to run (turned
+    // the sound on, chose a moment), which starts it even where it would not start by itself.
+    function play(asked) {
+      if (lightboxOpen || held || document.hidden) return;
+      if (!asked && (reduced.matches || !onScreen)) return;
+      ensureSrc(asked);
+      video.muted = muted;
       const started = video.play();
-      if (started && typeof started.catch === "function") started.catch(() => {});
+      if (started && typeof started.catch === "function") {
+        started.catch(() => {
+          // A browser may refuse to start sound it was not just asked for: carry on silent.
+          if (muted) return;
+          setMuted(true);
+          const again = video.play();
+          if (again && typeof again.catch === "function") again.catch(() => {});
+        });
+      }
       kick();
     }
     function pause() {
       if (!video.paused) video.pause();
+    }
+    // Choosing a moment moves this preview there. If the film is mostly off screen it is
+    // brought back into view, so the moment that was asked for can be seen.
+    function cue(t) {
+      seek(t);
+      if (!reduced.matches) play(true);
+      const box = media.getBoundingClientRect();
+      const seen = Math.min(box.bottom, window.innerHeight) - Math.max(box.top, 0);
+      if (seen < box.height * 0.6) {
+        media.scrollIntoView({ block: "center", behavior: reduced.matches ? "auto" : "smooth" });
+      }
     }
 
     // Where the film is, as far as the interface is concerned.
@@ -431,13 +463,19 @@
       c.el.addEventListener("focus", () => {
         if (c.el.matches(":focus-visible")) go();
       });
+      // Clicking or tapping a still or a name moves the preview to it.
+      c.el.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearTimeout(timer);
+        cue(c.t);
+      });
     });
 
     // ---------- the contact sheet ----------
     if (sheet && frames.length) {
       let timer = 0;
       let hoverT = 0;
-      const base = (f) => f.getAttribute("data-cue");
+      let hoverFrame = null;
       sheet.addEventListener("pointermove", (e) => {
         if (e.pointerType !== "mouse") return;
         const f = e.target.closest ? e.target.closest(".frame") : null;
@@ -447,8 +485,7 @@
         const part = clamp((e.clientX - r.left) / r.width, 0, 0.999);
         const to = i + 1 < frameTimes.length ? frameTimes[i + 1] : dur;
         hoverT = frameTimes[i] + part * (to - frameTimes[i]);
-        // Choosing a frame opens the film at exactly this point in it.
-        f.setAttribute("data-video-at", hoverT.toFixed(2));
+        hoverFrame = f;
         sheet.classList.add("is-held");
         if (!timer) {
           timer = setTimeout(() => {
@@ -461,8 +498,16 @@
       sheet.addEventListener("pointerleave", () => {
         clearTimeout(timer);
         timer = 0;
+        hoverFrame = null;
         sheet.classList.remove("is-held");
-        frames.forEach((f) => f.setAttribute("data-video-at", base(f)));
+      });
+      // Clicking or tapping a frame moves the preview to it: to the exact point under the
+      // pointer if it is being examined, otherwise to the frame itself.
+      frames.forEach((f, i) => {
+        f.addEventListener("click", (e) => {
+          e.preventDefault();
+          cue(hoverFrame === f ? hoverT : frameTimes[i]);
+        });
       });
 
       // One stop in the tab order; arrow keys move between frames.
@@ -525,6 +570,18 @@
       media.click();
     });
 
+    // ---------- sound ----------
+    if (soundBtn) {
+      soundBtn.addEventListener("click", () => {
+        if (muted) {
+          // One preview speaks at a time.
+          reels.forEach((r) => r.mute());
+          setMuted(false);
+          play(true);
+        } else setMuted(true);
+      });
+    }
+
     // ---------- on and off screen ----------
     if ("IntersectionObserver" in window) {
       // Fetch the film a little before it is needed.
@@ -565,7 +622,7 @@
     window.addEventListener("load", measure);
     measure();
 
-    reels.push({ play, pause });
+    reels.push({ play: () => play(false), pause, mute: () => setMuted(true) });
   }
 
   document.querySelectorAll("[data-reel]").forEach(setup);

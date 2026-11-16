@@ -41,7 +41,29 @@
   margin:var(--space-section) auto 0;
   padding:0;
 }
-/* Film: native 16:9, nothing layered on top of the footage. */
+/* Film: native 16:9. The only thing set over the footage is its sound button, in a corner. */
+.reel-screen{position:relative}
+.reel-sound{
+  appearance:none;
+  position:absolute;right:12px;bottom:12px;z-index:2;
+  width:40px;height:40px;
+  display:grid;place-items:center;
+  padding:0;margin:0;cursor:pointer;
+  border:1px solid rgba(247,245,240,.34);
+  border-radius:50%;
+  background:rgba(12,12,11,.52);
+  color:#f7f5f0;
+  transition:background-color var(--dur-quick) ease,border-color var(--dur-quick) ease;
+}
+.reel-sound:hover,
+.reel-sound.is-on{background:rgba(12,12,11,.78);border-color:rgba(247,245,240,.7)}
+.reel-sound:focus-visible{outline:2px solid #f7f5f0;outline-offset:3px}
+.reel-sound svg{width:19px;height:19px;display:block}
+.reel-sound .icon-mute{display:none}
+.reel-sound[aria-pressed="true"] .icon-mute{display:block}
+.reel-sound[aria-pressed="true"] .icon-unmute{display:none}
+/* Only offered where it can do something. */
+.reel:not(.is-ready) .reel-sound{display:none}
 .case-study-media{
   display:block;
   width:100%;
@@ -467,7 +489,7 @@
   align-items:stretch;
   margin-top:clamp(20px,2.4vw,30px);
 }
-.reel-spread .case-study-media{align-self:start}
+.reel-spread .reel-screen{align-self:start}
 
 /* Cue sheet: who speaks, and when. Each line is a cue into the film. */
 .cuesheet{
@@ -668,6 +690,10 @@
   .plate::after{left:-2px}
   .js-motion .plate[data-reveal]::before{transform:none}
   .sheet{--cols:6;gap:13px 3px}
+}
+@media(max-width:600px){
+  .reel-sound{right:8px;bottom:8px;width:36px;height:36px}
+  .reel-sound svg{width:17px;height:17px}
 }
 @media(max-width:600px){
   :root{--strip-h:30px}

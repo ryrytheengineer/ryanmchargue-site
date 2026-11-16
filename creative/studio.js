@@ -153,8 +153,9 @@
     wall.addEventListener("pointerdown", (e) => {
       if (e.target.closest("[data-studio-expand]")) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
-      const onHandle = !!e.target.closest(".studio-handle");
-      // Mouse or direct handle grab scrub immediately; other touch waits so page can still scroll.
+      const onHandle = !!e.target.closest(".studio-handle-knob");
+      // A mouse, or a finger on the pull, slides at once; any other touch waits to see
+      // which way it is going, so the page can still be scrolled past the wall.
       gesture = {
         id: e.pointerId,
         startX: e.clientX,
