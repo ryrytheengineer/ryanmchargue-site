@@ -677,7 +677,12 @@
     padding-left:25px;
     padding-right:25px;
     clip-path:none;
+    /* Sideways only: the row itself never scrolls up or down (its stills' pins poke a few
+       pixels above it, which used to make it scrollable both ways). A vertical swipe
+       goes straight to the page. */
     overflow-x:auto;
+    overflow-y:hidden;
+    touch-action:pan-x pan-y;
     overscroll-behavior-x:contain;
     scroll-snap-type:x mandatory;
     scroll-padding:0 25px;
