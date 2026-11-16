@@ -55,13 +55,31 @@
   letter-spacing:-.01em;
   color:var(--ink);
   text-decoration:none;
-  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(41,42,40,.26),rgba(41,42,40,.26));
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(41,42,40,.7),rgba(41,42,40,.7));
   background-repeat:no-repeat;
   background-position:100% 100%,0 100%;
   background-size:0 1px,100% 1px;
   transition:background-size var(--dur-move) var(--ease);
 }
-.credit-arrow{display:inline-block;transition:transform var(--dur-move) var(--ease)}
+.credit-arrow{display:inline-block;font-weight:700;transition:transform var(--dur-move) var(--ease)}
+/* The place, named in the paragraph, is a way there: in ink, underlined, in the paragraph's own type. */
+.side-hn{
+  color:var(--ink);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:.2em;
+  text-decoration-color:rgba(41,42,40,.55);
+  transition:text-decoration-color var(--dur-quick) ease;
+}
+.side-hn:hover,
+.side-hn:focus-visible{text-decoration-color:var(--ink)}
+.side-hn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.side-hn .credit-note{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+/* After the work: one quiet line on where more of it lives. Sits under the deck's controls. */
+.deck-more{max-width:420px;margin:22px auto 0;font-size:14px}
+@media(max-width:900px){.deck-more{max-width:400px}}
+@media(max-width:600px){.deck-more{max-width:min(330px,78vw);margin-top:18px}}
+.deck-more .credit-link{font-weight:500}
 .credit-link:hover,
 .credit-link:focus-visible{background-position:0 100%,0 100%;background-size:100% 1px,100% 1px}
 .credit-link:hover .credit-arrow,
@@ -96,10 +114,11 @@
     line-height:1.07;
   }
   .say-name{display:block}                        /* his name has a line to itself */
-  .opening-side{grid-row:2;align-self:end;margin:28px 0 91px}    /* its last line level with the card's foot */
+  .opening-side{grid-row:2;align-self:end;margin:28px 0 126px}   /* its last line level with the card's foot (under it: the controls and the line under them) */
   .opening > .deck-section{grid-column:1 / -1;grid-row:1 / 3;padding-top:0}
   .opening .deck-wrap{max-width:none;margin:0;justify-content:flex-end;padding-right:88px}
   .opening .deck-controls{margin-left:auto;margin-right:88px}
+  .opening .deck-more{max-width:420px;margin-left:auto;margin-right:88px;padding:0}
   /* The place on the table where seen cards are put down, drawn as a hairline until the
      first one lands on it (same place and tilt as deck.js gives the pile). */
   .js-motion .opening .deck::before{

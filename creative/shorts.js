@@ -134,7 +134,7 @@
     if (item.url) {
       linkEl.hidden = false;
       linkEl.href = item.url;
-      linkEl.textContent = "View project ↗";
+      linkEl.textContent = "View on LinkedIn ↗";
     } else {
       linkEl.hidden = true;
       linkEl.removeAttribute("href");
