@@ -3,6 +3,10 @@
   if (!root) return;
 
   const compare = root.querySelector("[data-studio-compare]");
+  // The wall is the comparison plus the title above it: one object, slid as one.
+  const wall = root.querySelector("[data-studio-wall]") || compare;
+  const title = root.querySelector(".studio-title");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const afterLayer = root.querySelector(".studio-layer-after");
   const handle = root.querySelector(".studio-handle");
   const expandBtn = root.querySelector("[data-studio-expand]");
@@ -51,6 +55,11 @@
   let split = 52;
   let dragging = false;
   let gesture = null;
+  // The wall has weight: let go while it is moving and it carries on a little.
+  let glide = 0; // percent per second
+  let glideRaf = 0;
+  let glideLast = 0;
+  let samples = [];
   let lbOpen = false;
   let lbIndexNum = 0;
   let lastFocus = null;
@@ -62,6 +71,7 @@
       compare.style.setProperty("--split", value);
       compare.setAttribute("aria-valuenow", String(Math.round(split)));
     }
+    if (wall && wall !== compare) wall.style.setProperty("--split", value);
     if (afterLayer) afterLayer.style.setProperty("--split", value);
     if (handle) handle.style.left = value;
   }
@@ -73,14 +83,54 @@
     const clientX = e.clientX != null ? e.clientX : (e.touches && e.touches[0] && e.touches[0].clientX);
     if (clientX == null) return;
     setSplit(((clientX - rect.left) / rect.width) * 100);
+    samples.push({ t: e.timeStamp, v: split });
+    if (samples.length > 6) samples.shift();
+  }
+
+  function stopGlide() {
+    glide = 0;
+    if (glideRaf) cancelAnimationFrame(glideRaf);
+    glideRaf = 0;
+  }
+  function glideStep(now) {
+    const dt = Math.min(0.034, Math.max(0.001, (now - glideLast) / 1000));
+    glideLast = now;
+    const before = split;
+    setSplit(split + glide * dt);
+    glide *= Math.exp(-5.2 * dt);
+    // Stops at either end of the rail, or when it has run out of push.
+    if (Math.abs(glide) < 1.2 || split === before) {
+      stopGlide();
+      return;
+    }
+    glideRaf = requestAnimationFrame(glideStep);
+  }
+  function release(e) {
+    if (reduce.matches || samples.length < 2) return;
+    const newest = samples[samples.length - 1];
+    if (e && e.timeStamp - newest.t > 90) return; // it had already come to rest in the hand
+    let oldest = newest;
+    for (let i = samples.length - 2; i >= 0; i--) {
+      if (newest.t - samples[i].t > 110) break;
+      oldest = samples[i];
+    }
+    const span = newest.t - oldest.t;
+    if (span <= 0) return;
+    glide = Math.max(-160, Math.min(160, ((newest.v - oldest.v) / span) * 1000));
+    if (Math.abs(glide) < 8) return;
+    glideLast = performance.now();
+    glideRaf = requestAnimationFrame(glideStep);
   }
 
   if (compare) {
     const startDrag = (e) => {
       dragging = true;
+      stopGlide();
+      samples = [];
       compare.classList.add("is-dragging");
+      wall.classList.add("is-dragging");
       try {
-        compare.setPointerCapture(e.pointerId);
+        wall.setPointerCapture(e.pointerId);
       } catch (_) {}
       splitFromEvent(e);
     };
@@ -91,14 +141,16 @@
       gesture = null;
       dragging = false;
       compare.classList.remove("is-dragging");
+      wall.classList.remove("is-dragging");
       if (wasDragging) {
         try {
-          compare.releasePointerCapture(e.pointerId);
+          wall.releasePointerCapture(e.pointerId);
         } catch (_) {}
+        if (e && e.type === "pointerup") release(e);
       }
     };
 
-    compare.addEventListener("pointerdown", (e) => {
+    wall.addEventListener("pointerdown", (e) => {
       if (e.target.closest("[data-studio-expand]")) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       const onHandle = !!e.target.closest(".studio-handle");
@@ -115,7 +167,7 @@
       }
     });
 
-    compare.addEventListener("pointermove", (e) => {
+    wall.addEventListener("pointermove", (e) => {
       if (!gesture || e.pointerId !== gesture.id) return;
       if (gesture.mode === "pending") {
         const dx = e.clientX - gesture.startX;
@@ -136,13 +188,17 @@
       }
     });
 
-    compare.addEventListener("pointerup", endDrag);
-    compare.addEventListener("pointercancel", endDrag);
-    compare.addEventListener("lostpointercapture", (e) => {
-      if (gesture && e.pointerId === gesture.id) endDrag(e);
+    wall.addEventListener("pointerup", endDrag);
+    wall.addEventListener("pointercancel", endDrag);
+    wall.addEventListener("lostpointercapture", (e) => {
+      // Only the wall losing the pointer ends the drag. A touch that began on something
+      // inside it reports losing its own capture when the wall takes over; that is the
+      // drag starting, not ending.
+      if (gesture && e.pointerId === gesture.id && e.target === wall) endDrag(e);
     });
 
     compare.addEventListener("keydown", (e) => {
+      if (e.key.startsWith("Arrow") || e.key === "Home" || e.key === "End") stopGlide();
       if (e.key === "ArrowLeft") {
         setSplit(split - 4);
         e.preventDefault();
@@ -168,6 +224,30 @@
   }
 
   setSplit(52);
+
+  // The title is one line from one end of the wall to the other. The CSS size assumes
+  // the site's grotesk; this trims it so the letters' ink meets both ends exactly.
+  function fitTitle() {
+    if (!title || !wall) return;
+    title.style.fontSize = "";
+    const text = title.firstChild;
+    if (!text || text.nodeType !== 3) return;
+    const range = document.createRange();
+    range.selectNodeContents(text);
+    for (let pass = 0; pass < 2; pass++) {
+      const size = parseFloat(getComputedStyle(title).fontSize);
+      // Ink, not advance: less the H's side-bearing, plus the last letter's overhang.
+      const ink = range.getBoundingClientRect().width - size * 0.064;
+      const want = wall.clientWidth;
+      if (!ink || !want || Math.abs(ink - want) / want < 0.004) break;
+      title.style.fontSize = ((size * want) / ink).toFixed(2) + "px";
+    }
+  }
+  fitTitle();
+  window.addEventListener("resize", fitTitle);
+  window.addEventListener("load", fitTitle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+  if ("ResizeObserver" in window && wall) new ResizeObserver(fitTitle).observe(wall);
 
   function openLightbox(index) {
     if (!lightbox || !lbImg) return;

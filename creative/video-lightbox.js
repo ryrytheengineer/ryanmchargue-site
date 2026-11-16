@@ -8,11 +8,45 @@
   let open = false;
   let lastFocus = null;
   let session = 0; // which opening the pending "start playing" belongs to
+  let origin = null; // the still this film was opened from, if it has one
+  let leaving = 0;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // A film opened from a still grows out of that still, and goes back into it.
+  function originFor(trigger) {
+    const card = trigger.closest(".project-card");
+    if (card) return card.querySelector(".photo");
+    if (trigger.matches(".case-study-media")) return trigger;
+    return trigger.querySelector("img, .frame-img");
+  }
+  function offset(el) {
+    if (!el || !el.isConnected) return null;
+    const from = el.getBoundingClientRect();
+    const to = player.getBoundingClientRect();
+    if (!from.width || !to.width || from.bottom < 0 || from.top > window.innerHeight) return null;
+    const scale = Math.max(from.width / to.width, from.height / to.height);
+    const x = from.left + from.width / 2 - (to.left + to.width / 2);
+    const y = from.top + from.height / 2 - (to.top + to.height / 2);
+    return "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0) scale(" + scale.toFixed(4) + ")";
+  }
+  function arrive() {
+    player.style.transition = "none";
+    player.style.transform = "";
+    const start = reduce.matches ? null : offset(origin);
+    if (!start) return;
+    player.style.transform = start;
+    void player.offsetWidth;
+    player.style.transition = "transform .58s var(--ease, cubic-bezier(.16,.79,.22,1))";
+    player.style.transform = "";
+  }
 
   // `at` (seconds) starts the film part-way in: plates, voices and contact-sheet frames
   // open it at the moment they show.
-  function openVideo(src, title, poster, at) {
+  function openVideo(src, title, poster, at, from) {
     if (!src) return;
+    clearTimeout(leaving);
+    lightbox.classList.remove("is-leaving");
+    origin = from || null;
     const startAt = Number.isFinite(at) && at > 0 ? at : 0;
     lastFocus = document.activeElement;
     if (label) label.textContent = title || "Film";
@@ -30,6 +64,7 @@
     lightbox.classList.add("is-open");
     document.documentElement.style.overflow = "hidden";
     open = true;
+    arrive();
     closeBtn.focus();
     lightbox.dispatchEvent(new CustomEvent("videolightbox:open", { bubbles: false }));
     const mine = ++session;
@@ -55,12 +90,25 @@
     if (!open) return;
     session++;
     player.pause();
-    player.removeAttribute("src");
-    player.load();
-    lightbox.classList.remove("is-open");
-    lightbox.hidden = true;
-    document.documentElement.style.overflow = "";
     open = false;
+    document.documentElement.style.overflow = "";
+    const finish = () => {
+      player.removeAttribute("src");
+      player.load();
+      player.style.transition = "none";
+      player.style.transform = "";
+      lightbox.classList.remove("is-open", "is-leaving");
+      lightbox.hidden = true;
+    };
+    // Back into the still it came from, when that still is there to go back into.
+    const back = reduce.matches ? null : offset(origin);
+    if (back) {
+      lightbox.classList.add("is-leaving");
+      player.style.transition = "transform .3s var(--ease-inout, cubic-bezier(.6,0,.2,1))";
+      player.style.transform = back;
+      leaving = setTimeout(finish, 300);
+    } else finish();
+    origin = null;
     lightbox.dispatchEvent(new CustomEvent("videolightbox:close", { bubbles: false }));
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
@@ -74,7 +122,8 @@
       trigger.getAttribute("data-open-video"),
       trigger.getAttribute("data-video-title") || trigger.textContent.trim(),
       trigger.getAttribute("data-video-poster") || "",
-      parseFloat(trigger.getAttribute("data-video-at"))
+      parseFloat(trigger.getAttribute("data-video-at")),
+      originFor(trigger)
     );
   });
 

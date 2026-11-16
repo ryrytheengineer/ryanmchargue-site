@@ -1,0 +1,228 @@
+/* Motion & Matter — the hero.
+
+   The wordmark is the film's control. "Motion" runs the film; "Matter" holds the frame.
+   One rule, shared with the studio chapter further down: type that is only drawn (an
+   outline) is something not yet made; solid type is something made. So whichever word is
+   true right now is solid, and the other is an outline waiting.
+
+   Holding the film sets the frame down as a print: a paper border closes round it and it
+   keeps its time. The footage itself is never altered; only its window and the type move. */
+
+.hero-film{
+  --hold:0;                                   /* 0 running, 1 held (eased in hero.js) */
+  --print:clamp(10px,1.5vw,22px);             /* paper border of a held print */
+  --mark:247,245,240;
+  --frame-now:max(calc(var(--settle) * var(--frame-inset)),calc(var(--hold) * var(--print)));
+  clip-path:inset(
+    var(--frame-now) var(--frame-now) calc(var(--hold) * var(--print)) var(--frame-now)
+    round max(calc(var(--settle) * var(--frame-radius)),calc(var(--hold) * 8px))
+  );
+}
+/* A held print has no further to go. */
+.hero-film.is-held .hero-cue{opacity:0;pointer-events:none}
+/* A held frame is still: the slow drift stops with it. */
+.hero-film:not(.is-playing) .hero-stage video{animation-play-state:paused}
+/* The centre play button is only for a film that could not start by itself. */
+.hero-film.is-held .hero-overlay{display:none}
+.hero-veil{
+  background:
+    linear-gradient(180deg,rgba(8,8,7,.45) 0%,rgba(8,8,7,.12) 28%,transparent 55%),
+    linear-gradient(0deg,rgba(8,8,7,.56) 0%,rgba(8,8,7,.3) 24%,rgba(8,8,7,.08) 44%,transparent 58%);
+}
+
+.hero-copy{
+  position:absolute;left:0;right:0;z-index:4;
+  bottom:var(--hero-inset);
+  /* Keeps its margins from the frame's edges as the frame closes in. */
+  padding:0 calc(var(--hero-gutter) + var(--frame-now));
+  color:rgb(var(--mark));
+}
+
+/* ---------- Credit row: what is playing, and its sound ---------- */
+.hero-credit{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin:0 0 clamp(8px,1.1vw,16px);
+}
+.hero-film-label{
+  margin:0;
+  font-size:var(--type-meta-size);
+  letter-spacing:var(--type-meta-track);
+  text-transform:uppercase;
+  color:rgba(var(--mark),.88);
+  text-shadow:0 1px 10px rgba(0,0,0,.5);
+}
+.hero-sound{
+  appearance:none;border:0;background:transparent;color:inherit;cursor:pointer;
+  padding:6px;margin:-6px;
+  display:grid;place-items:center;
+  opacity:.88;
+  filter:drop-shadow(0 1px 8px rgba(0,0,0,.45));
+  transition:opacity var(--dur-quick) ease;
+}
+.hero-sound:hover{opacity:1}
+.hero-sound:focus-visible,
+.hero-word:focus-visible{outline:2px solid rgb(var(--mark));outline-offset:6px}
+.hero-sound svg{width:20px;height:20px;display:block}
+.hero-sound .icon-mute{display:none}
+.hero-film.is-muted .hero-sound .icon-mute{display:block}
+.hero-film.is-muted .hero-sound .icon-unmute{display:none}
+.hero-sound.film-mute-pulse{animation:film-mute-pulse 1.6s ease infinite}
+
+/* ---------- The wordmark ---------- */
+.hero-mark{
+  margin:0;
+  display:grid;
+  grid-template-columns:auto auto;
+  justify-content:space-between;
+  align-items:baseline;
+  column-gap:.12em;
+  row-gap:clamp(8px,.9vw,14px);
+  white-space:nowrap;
+  /* One line from edge to edge at every width. hero.js trims this if a fallback font
+     sets wider; the cap keeps short, wide windows from losing the film to the type. */
+  font-size:min(calc((100vw - 2 * var(--hero-gutter)) / 5.02),40svh);
+  font-weight:400;
+  line-height:.84;
+}
+.hero-word{
+  appearance:none;border:0;background:none;padding:0;margin:0;
+  font:inherit;color:inherit;text-align:left;line-height:inherit;
+  cursor:pointer;
+  display:block;
+  -webkit-tap-highlight-color:transparent;
+}
+.hero-word-text{
+  display:block;
+  /* Drawn: an outline. Made: the same outline, filled. */
+  color:rgba(var(--mark),0);
+  -webkit-text-stroke:max(1px,.006em) rgb(var(--mark));
+  /* A hairline of shade keeps the drawn line legible when the film runs bright. */
+  filter:drop-shadow(0 0 .7px rgba(0,0,0,.5)) drop-shadow(0 8px 26px rgba(0,0,0,.24));
+  transition:color .5s var(--ease);
+}
+.hero-word[aria-pressed="true"] .hero-word-text{color:rgb(var(--mark))}
+.hero-word[aria-pressed="true"]{cursor:default}
+@media (hover:hover){
+  /* The word you could switch to shows a trace of what it would become. */
+  .hero-word[aria-pressed="false"]:hover .hero-word-text{color:rgba(var(--mark),.22)}
+}
+.hero-word-motion .hero-word-text{
+  font-family:var(--font-serif);
+  font-style:italic;
+  letter-spacing:-.045em;
+  margin-left:-.035em;
+  padding-right:.05em;
+}
+.hero-word-matter .hero-word-text{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:.745em;
+  letter-spacing:-.055em;
+  margin-right:-.02em;
+}
+.hero-amp{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:.72em;
+  letter-spacing:-.02em;
+  margin-right:.14em;
+}
+
+/* ---------- What each word is doing, or would do ---------- */
+.hero-state{
+  display:flex;align-items:baseline;gap:.5em;
+  font-family:var(--font-sans);
+  font-size:12px;
+  line-height:18px;
+  letter-spacing:.01em;
+  color:rgba(var(--mark),.9);
+  text-shadow:0 1px 10px rgba(0,0,0,.55);
+  cursor:pointer;
+  /* Only shown once the switch works (hero.js). */
+  visibility:hidden;
+}
+.hero-film.is-live .hero-state{visibility:visible}
+.hero-state .tc{font-size:19px;line-height:18px;color:rgb(var(--mark))}
+.hero-state.is-now{cursor:default}
+.hero-state:not(.is-now){color:rgba(var(--mark),.72)}
+.hero-state-hold{padding-right:5.5em} /* room for the scroll cue at the row's far end */
+
+/* ---------- Scroll cue: the far end of the same row ---------- */
+.hero-film .hero-cue{
+  right:calc(var(--hero-gutter) + var(--frame-now));
+  bottom:var(--hero-inset);
+  translate:none;
+  flex-direction:row;
+  align-items:center;
+  gap:9px;
+  height:18px;
+  font-size:var(--type-meta-size);
+}
+.hero-film .hero-cue-line{width:1px;height:16px}
+
+/* ---------- Entrance: credit, the two words, then what they do ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .hero-credit,
+  .hero-word,
+  .hero-state{
+    animation:hero-rise .62s var(--ease) backwards;
+    animation-delay:calc(var(--i,0) * 80ms);
+  }
+  .hero-word-motion{--i:1}
+  .hero-word-matter{--i:2}
+  .hero-state{--i:4}
+}
+
+@media(max-width:900px){
+  .hero-mark{row-gap:8px}
+}
+@media(max-width:600px){
+  .hero-film{
+    --print:9px;
+    /* Phones settle with a transform, not clip-path (cheaper per scroll frame); a held
+       print is the same move, centred so the paper shows on every side. */
+    clip-path:none;
+    transform:translate3d(0,calc(var(--hold) * (1 - var(--settle)) * 2.25svh),0) scale(calc(1 - max(var(--settle) * .055,var(--hold) * .045)));
+    border-radius:max(calc(var(--settle) * var(--frame-radius)),calc(var(--hold) * 8px));
+  }
+  .hero-copy{
+    bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
+    padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));
+  }
+  .hero-mark{
+    font-size:min(calc((100vw - 32px) / 4.86),40svh);
+    row-gap:7px;
+  }
+  .hero-word-text{-webkit-text-stroke-width:.9px}
+  .hero-state{font-size:11px;gap:.4em}
+  .hero-state .tc{font-size:17px}
+  .hero-state-hold{padding-right:0}
+  .hero-sound svg{width:18px;height:18px}
+  .hero-film .hero-cue{
+    right:max(16px,env(safe-area-inset-right));
+    bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
+    gap:7px;
+  }
+  .hero-film .hero-cue-line{height:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-sound.film-mute-pulse{animation:none}
+}
+
+/* ---------- The statement ----------
+   After the film, one paragraph with room round it, set to be read rather than skimmed. */
+.ownership-intro{padding:clamp(72px,10vw,144px) 0 clamp(28px,4vw,56px)}
+.ownership-intro p{
+  max-width:23.5em;
+  font-family:var(--font-serif);
+  font-size:clamp(1.5rem,1.02rem + 1.9vw,2.375rem);
+  line-height:1.17;
+  letter-spacing:-.012em;
+  color:var(--ink);
+  text-wrap:pretty;
+}
+@media(max-width:600px){
+  .ownership-intro{padding:64px 0 20px}
+  .ownership-intro p{font-size:1.5rem;line-height:1.2}
+}

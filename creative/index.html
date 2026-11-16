@@ -224,96 +224,28 @@ body{background:var(--paper);font-family:var(--font-sans)}
     linear-gradient(180deg,rgba(8,8,7,.45) 0%,rgba(8,8,7,.12) 28%,transparent 55%),
     linear-gradient(0deg,rgba(8,8,7,.42) 0%,rgba(8,8,7,.16) 24%,transparent 48%);
 }
-.hero-copy{
-  position:absolute;left:0;right:0;z-index:4;
-  bottom:var(--hero-inset);
-  padding:0 var(--hero-gutter);
-  max-width:min(920px, 92vw);
-  /* Keeps its margin from the frame's left edge as the frame closes in. */
-  translate:var(--frame-now) 0;
-}
-.hero-copy h1{
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:0.02em;
-  /* One fluid size from phone to desktop; "Matter" is set relative to "Motion". */
-  font-size:clamp(2.75rem,1.6rem + 7.53vw,7.25rem);
-  color:#f7f5f0;
-  text-shadow:0 1px 2px rgba(0,0,0,.16),0 12px 36px rgba(0,0,0,.38);
-}
-.hero-word{
-  display:block;
-  margin:0;
-  line-height:0.88;
-}
-.hero-word-motion{
-  font-family:var(--font-serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:1em;
-  letter-spacing:-0.045em;
-  padding-right:0.06em;
-}
-.hero-word-matter{
-  font-family:var(--font-sans);
-  font-style:normal;
-  font-weight:500;
-  font-size:.745em;
-  letter-spacing:-0.055em;
-  text-transform:none;
-  margin-top:0.02em;
-}
-.hero-amp{
-  font-family:var(--font-serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:0.72em;
-  letter-spacing:-0.02em;
-  margin-right:0.12em;
-  opacity:0.72;
-  vertical-align:0.02em;
-}
-.hero-meta{
-  margin:1.35rem 0 0;
-  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
-}
-.hero-role{
-  margin:0;
-  font-size:13px;font-weight:600;letter-spacing:-.01em;
-  color:rgba(247,245,240,.88);
-}
-.hero-film-label{
-  margin:0;
-  font-size:var(--type-meta-size);
-  letter-spacing:var(--type-meta-track);
-  text-transform:uppercase;
-  color:rgba(247,245,240,.88);
-  text-shadow:0 1px 10px rgba(0,0,0,.5);
-}
-.hero-actions{display:flex;align-items:center;gap:14px;margin-top:18px}
-.hero-actions button{
-  border:0;cursor:pointer;
-  background:transparent;color:#f7f5f0;
-  width:auto;height:auto;padding:4px;
-  border-radius:0;
-  display:grid;place-items:center;
-  opacity:.88;
-  filter:drop-shadow(0 1px 8px rgba(0,0,0,.45));
-  transition:opacity .2s ease;
-}
-.hero-actions button:hover{opacity:1;background:transparent}
-.hero-actions button svg{width:20px;height:20px;display:block}
-.hero-actions .icon-play{display:none}
-.hero-actions .icon-pause{display:block}
-.hero-actions .icon-mute{display:none}
-.hero-actions .icon-unmute{display:block}
-.hero-film:not(.is-playing) #film-toggle .icon-play{display:block}
-.hero-film:not(.is-playing) #film-toggle .icon-pause{display:none}
-.hero-film.is-muted #film-mute .icon-mute{display:block}
-.hero-film.is-muted #film-mute .icon-unmute{display:none}
-.hero-actions .film-mute-pulse{animation:film-mute-pulse 1.6s ease infinite}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @keyframes film-mute-pulse{0%,100%{opacity:.72}50%{opacity:1}}
 .hero-overlay{
   position:absolute;inset:0;z-index:3;
@@ -383,7 +315,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 .deck-section{padding:clamp(44px,5vw,64px) 0 0}
 @media(prefers-reduced-motion:reduce){
   .hero-stage video{animation:none}
-  .hero-actions .film-mute-pulse{animation:none}
+
 }
 /* Sits on the same 980px column as every section below it. */
 .ownership-intro{
@@ -414,7 +346,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
   .deck-controls{max-width:400px}
 }
 @media(max-width:900px){
-  .hero-copy{max-width:100%}
+
   .hero-stage video{object-position:center 42%}
 }
 @media(max-width:600px){
@@ -432,7 +364,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
     border-radius:calc(var(--settle) * var(--frame-radius));
     will-change:transform;
   }
-  .hero-copy{translate:none}
+
   .hero-nav{height:max(58px, env(safe-area-inset-top) + 44px);padding:0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left))}
   .hero-stage video{
     object-fit:cover;
@@ -445,30 +377,17 @@ body{background:var(--paper);font-family:var(--font-sans)}
       linear-gradient(180deg,rgba(8,8,7,.55) 0%,rgba(8,8,7,.18) 28%,transparent 55%),
       linear-gradient(0deg,rgba(8,8,7,.46) 0%,rgba(8,8,7,.18) 26%,transparent 50%);
   }
-  .hero-copy{
-    left:0;right:0;
-    width:100%;
-    max-width:100%;
-    bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
-    padding:
-      0
-      max(16px, env(safe-area-inset-right))
-      0
-      max(16px, env(safe-area-inset-left));
-  }
-  .hero-copy h1{
-    width:100%;
-    max-width:100%;
-  }
-  .hero-word-motion{letter-spacing:-0.04em}
-  .hero-word-matter{letter-spacing:-0.05em}
-  .hero-meta{margin-top:1rem;gap:8px 12px}
-  .hero-film-label{font-size:11px;line-height:1.35;max-width:16rem}
-  .hero-actions{margin-top:12px;gap:8px;flex-wrap:wrap}
-  .hero-actions button{padding:2px}
-  .hero-actions button svg{width:18px;height:18px}
+
+
+
+
+
+
+
+
+
   .hero-play{width:64px;height:64px}
-  .hero-role{font-size:12px}
+
   .deck-section{padding:28px 0 36px}
   .deck-wrap{height:calc(min(330px,78vw)*1.55 + 96px);max-height:none}
   .deck{width:min(330px,78vw);height:auto;aspect-ratio:5 / 7.55}
@@ -485,9 +404,11 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261113z"/><link rel="stylesheet" href="motion.css?v=20261115e"/><link rel="stylesheet" href="reel.css?v=20261115e"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}</style></noscript></head><body>
+</style><link rel="stylesheet" href="shorts.css?v=20261113z"/><link rel="stylesheet" href="studio.css?v=20261116a"/><link rel="stylesheet" href="motion.css?v=20261116a"/><link rel="stylesheet" href="hero.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261115e"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
+/* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
+.deck-wrap{height:auto;display:block}.deck{aspect-ratio:auto;height:auto;margin:0 auto;display:grid;gap:22px}.project-card{position:relative;inset:auto;visibility:visible;opacity:1;aspect-ratio:5 / 7.55}.deck-controls{display:none}</style></noscript></head><body>
 
-<header class="hero-film is-muted" id="film-stage">
+<header class="hero-film is-muted is-playing" id="film-stage">
   <nav class="hero-nav">
     <a class="brand" href="/">Ryan McHargue</a>
     <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow" aria-hidden="true">↗</span></a>
@@ -500,20 +421,20 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <span class="hero-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
   </button>
   <div class="hero-copy">
-    <h1 id="top" aria-label="Motion & Matter"><span class="hero-word hero-word-motion">Motion</span><span class="hero-word hero-word-matter"><span class="hero-amp" aria-hidden="true">&</span>Matter</span></h1>
-    <div class="hero-meta">
+    <div class="hero-credit">
       <p class="hero-film-label">Hardware Nation launch film</p>
-    </div>
-    <div class="hero-actions">
-      <button type="button" id="film-toggle" aria-label="Pause">
-        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-      <button type="button" class="film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
+      <button type="button" class="hero-sound film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
         <svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
         <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
       </button>
     </div>
+    <!-- The wordmark is the film's control: Motion runs it, Matter holds the frame. -->
+    <h1 class="hero-mark" id="top" aria-label="Motion & Matter">
+      <button type="button" class="hero-word hero-word-motion" id="film-run" aria-pressed="true" aria-label="Motion: run the film"><span class="hero-word-text">Motion</span></button>
+      <button type="button" class="hero-word hero-word-matter" id="film-hold" aria-pressed="false" aria-label="Matter: hold the frame"><span class="hero-word-text"><span class="hero-amp" aria-hidden="true">&</span>Matter</span></button>
+      <span class="hero-state hero-state-run" id="film-run-state" data-film-set="run" aria-hidden="true">Running</span>
+      <span class="hero-state hero-state-hold" id="film-hold-state" data-film-set="hold" aria-hidden="true">Hold the frame</span>
+    </h1>
   </div>
   <a class="hero-cue" href="#work" aria-label="Scroll to selected work"><span class="hero-cue-label" aria-hidden="true">Scroll</span><span class="hero-cue-line" aria-hidden="true"></span></a>
   <div class="hero-fade" aria-hidden="true"></div>
@@ -777,25 +698,27 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <div class="studio-head">
       <div>
         <p class="studio-kicker" data-reveal style="--d:1"><span class="marker-num">02</span><span class="marker-sep" aria-hidden="true">/</span>Infrastructure</p>
-        <h2 id="studio-heading" data-reveal style="--d:2">HWN Studio</h2>
-        <p class="studio-role" data-reveal style="--d:3">Studio buildout / Production infrastructure</p>
+        <p class="studio-role" data-reveal style="--d:2">Studio buildout / Production infrastructure</p>
       </div>
-      <p class="studio-desc" data-reveal style="--d:3">Built Hardware Nation’s original production studio from scratch, creating a dedicated space for founder interviews and emerging-technology content.</p>
+      <p class="studio-desc" data-reveal style="--d:2">Built Hardware Nation’s original production studio from scratch, creating a dedicated space for founder interviews and emerging-technology content.</p>
     </div>
     </div>
 
+    <!-- The wall: the title is drawn over the empty room and solid over the finished studio. -->
+    <div class="studio-wall" data-studio-wall style="--split:52%" data-reveal>
+    <h2 class="studio-title" id="studio-heading">HWN Studio<span class="studio-title-made" aria-hidden="true">HWN Studio</span></h2>
+    <span class="studio-edge" aria-hidden="true"></span>
     <div
       class="studio-compare"
       style="--split:52%"
       data-studio-compare
-      data-reveal
       role="slider"
       tabindex="0"
       aria-label="Before and after comparison"
       aria-valuemin="0"
       aria-valuemax="100"
       aria-valuenow="52"
-      aria-valuetext="Drag to compare before and after"
+      aria-valuetext="Slide to compare the empty room with the finished studio"
     >
       <div class="studio-layer studio-layer-before">
         <picture>
@@ -818,12 +741,13 @@ body{background:var(--paper);font-family:var(--font-sans)}
       <span class="studio-badge studio-badge-after">After</span>
       <button type="button" class="studio-expand" data-studio-expand>Expand</button>
     </div>
-    <p class="studio-hint" data-reveal>Drag to compare · Arrow keys · Expand for full resolution</p>
+    </div>
+    <p class="studio-hint" data-reveal>Slide the wall, or use the arrow keys. Expand opens the full photograph.</p>
 
     <div class="studio-rail-wrap">
       <p class="studio-rail-label" data-reveal>Selected frames</p>
       <div class="studio-rail">
-        <figure class="studio-tile" data-reveal style="--d:0">
+        <figure class="studio-tile" data-reveal style="--d:0;--ar:0.5608">
           <button type="button" data-studio-open="assets/studio/before-setup.jpg" aria-label="Expand early setup photo">
             <picture>
               <source type="image/webp" srcset="assets/studio/before-setup.webp"/>
@@ -832,7 +756,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
           </button>
           <figcaption>Before</figcaption>
         </figure>
-        <figure class="studio-tile" data-reveal style="--d:1">
+        <figure class="studio-tile" data-reveal style="--d:1;--ar:1.5015">
           <button type="button" data-studio-open="assets/studio/after-desk.jpg" aria-label="Expand desk photo">
             <picture>
               <source type="image/webp" srcset="assets/studio/after-desk.webp"/>
@@ -841,7 +765,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
           </button>
           <figcaption>After</figcaption>
         </figure>
-        <figure class="studio-tile" data-reveal style="--d:2">
+        <figure class="studio-tile" data-reveal style="--d:2;--ar:1.5015">
           <button type="button" data-studio-open="assets/studio/after-angle.jpg" aria-label="Expand low-angle photo">
             <picture>
               <source type="image/webp" srcset="assets/studio/after-angle.webp"/>
@@ -850,7 +774,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
           </button>
           <figcaption>After</figcaption>
         </figure>
-        <figure class="studio-tile" data-reveal style="--d:3">
+        <figure class="studio-tile" data-reveal style="--d:3;--ar:1.5015">
           <button type="button" data-studio-open="assets/studio/after-wide.jpg" aria-label="Expand wide set photo">
             <picture>
               <source type="image/webp" srcset="assets/studio/after-wide.webp"/>
@@ -927,97 +851,9 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </div>
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
-(()=>{
-  const stage=document.getElementById('film-stage');
-  const video=document.getElementById('film-video');
-  const playBtn=document.getElementById('film-play');
-  const toggle=document.getElementById('film-toggle');
-  const mute=document.getElementById('film-mute');
-  if(!stage||!video||!playBtn||!toggle||!mute)return;
-  function syncMute(){
-    const muted=video.muted;
-    stage.classList.toggle('is-muted',muted);
-    mute.setAttribute('aria-pressed',muted?'true':'false');
-    mute.setAttribute('aria-label',muted?'Unmute':'Mute');
-    mute.classList.toggle('film-mute-pulse',muted&&!video.paused);
-  }
-  function setPlaying(on){
-    stage.classList.toggle('is-playing',on);
-    playBtn.hidden=on;
-    toggle.setAttribute('aria-label',on?'Pause':'Play');
-    syncMute();
-  }
-  const START_AT=11.3; // "Before feeds..."
-  let introSeeked=false;
-  function canSeekIntro(){
-    try{
-      if(!video.seekable||!video.seekable.length)return video.readyState>=1;
-      return video.seekable.end(video.seekable.length-1)>=START_AT;
-    }catch(_){return video.readyState>=2}
-  }
-  function seekIntro(){
-    if(!canSeekIntro())return false;
-    try{
-      if(Math.abs((video.currentTime||0)-START_AT)>0.2)video.currentTime=START_AT;
-      introSeeked=true;
-      return true;
-    }catch(_){return false}
-  }
-  function start(opts){
-    const withSound=!(opts&&opts.muted);
-    video.muted=!withSound;
-    if(video.ended||video.currentTime<START_AT-0.05)seekIntro();
-    const p=video.play();
-    if(p&&p.catch)p.catch(()=>{
-      video.muted=true;
-      seekIntro();
-      video.play().catch(()=>{});
-      setPlaying(true);
-    });
-    setPlaying(true);
-  }
-  playBtn.addEventListener('click',()=>start({muted:false}));
-  toggle.addEventListener('click',()=>{
-    if(video.paused)start({muted:video.muted});
-    else{video.pause();setPlaying(false)}
-  });
-  mute.addEventListener('click',()=>{
-    video.muted=!video.muted;
-    if(!video.muted&&video.paused)video.play().catch(()=>{});
-    syncMute();
-  });
-  video.addEventListener('ended',()=>{setPlaying(false);seekIntro()});
-  video.addEventListener('pause',()=>{if(!video.ended)setPlaying(false)});
-  video.addEventListener('play',()=>setPlaying(true));
-  // Seek only once the intro timestamp is actually available (avoids stalled start on large files).
-  const onReady=()=>{if(!introSeeked)seekIntro()};
-  video.addEventListener('loadedmetadata',onReady);
-  video.addEventListener('canplay',onReady);
-  video.addEventListener('progress',onReady);
-  // Pause when scrolled off-hero so shorts aren't fighting audio/CPU.
-  if('IntersectionObserver' in window){
-    const io=new IntersectionObserver(([entry])=>{
-      if(!entry)return;
-      if(entry.isIntersecting){
-        if(video.paused&&!video.ended){
-          if(video.currentTime<START_AT-0.05)seekIntro();
-          video.play().catch(()=>{});
-        }
-      }else if(!video.paused){
-        video.pause();
-      }
-    },{threshold:0.35});
-    io.observe(stage);
-  }
-  video.muted=true;
-  seekIntro();
-  const auto=video.play();
-  if(auto&&auto.catch)auto.catch(()=>setPlaying(false));
-  else setPlaying(true);
-})();
-</script><script src="deck.js?v=20261113z"></script>
+</script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261116a"></script>
 <script src="shorts.js"></script>
-<script src="studio.js"></script>
-<script src="video-lightbox.js?v=20261115e"></script>
+<script src="studio.js?v=20261116a"></script>
+<script src="video-lightbox.js?v=20261116a"></script>
 <script src="reel.js?v=20261115e"></script>
 <script src="motion.js?v=20261114a"></script></body></html>

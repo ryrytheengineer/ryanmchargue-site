@@ -1,4 +1,10 @@
-/* HWN Studio — immersive buildout chapter */
+/* HWN Studio — the sliding wall.
+
+   A room that changed state. The comparison is a wall you slide across it: the empty
+   room on one side, the working studio on the other. The title spans the wall and obeys
+   the rule set in the hero: type that is only drawn is not yet made, solid type is made.
+   So the name is an outline over the empty room and solid over the studio, and sliding
+   the wall builds it. The photographs are never altered; only the window over them moves. */
 
 .studio-break{
   --studio-ink:#f3f1ea;
@@ -32,64 +38,114 @@
 .studio-inner{
   position:relative;
   z-index:1;
-  width:min(1120px, calc(100% - 48px));
+  /* As wide as a 3:2 window can be while still fitting the screen's height. */
+  width:min(1330px, calc(100% - 96px), calc(84svh * 1.5));
   margin:0 auto;
 }
+
+/* ---------- What this is: one quiet row above the wall ---------- */
 .studio-head{
   display:grid;
-  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
-  gap:28px 48px;
-  align-items:end;
-  margin-bottom:36px;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:16px 48px;
+  align-items:start;
+  margin-bottom:clamp(28px,4vw,52px);
 }
 .studio-kicker{
-  margin:0 0 14px;
+  margin:0 0 10px;
   font-size:var(--type-kicker-size, 11px);
   letter-spacing:var(--type-kicker-track, .1em);
   text-transform:uppercase;
   color:var(--studio-muted);
 }
-.studio-head h2{
-  margin:0;
-  font-family:var(--font-serif, "Instrument Serif", Georgia, serif);
-  font-weight:400;
-  font-size:var(--type-chapter-size, clamp(42px, 7vw, 72px));
-  line-height:var(--type-chapter-leading, .92);
-  letter-spacing:var(--type-chapter-track, -.03em);
-}
 .studio-role{
-  margin:14px 0 0;
+  margin:0;
   font-size:var(--type-role-size, 12px);
   line-height:var(--type-role-leading, 1.4);
   color:rgba(243,241,234,.72);
 }
 .studio-desc{
   margin:0;
-  max-width:28rem;
+  max-width:30rem;
+  justify-self:end;
   font-size:var(--type-body-size, 14px);
   line-height:var(--type-body-leading, 1.55);
   letter-spacing:var(--type-body-track, -.01em);
   color:rgba(243,241,234,.68);
-  padding-bottom:4px;
 }
 
-/* Interactive compare */
+/* ---------- The wall: title, then the room ---------- */
+.studio-wall{
+  --split:52%;
+  --edge:10px;                 /* thickness of the wall's leading edge */
+  position:relative;
+  container-type:inline-size;
+  border-top:1px solid rgba(243,241,234,.3);   /* the rail the wall hangs from */
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:pan-y;
+  cursor:ew-resize;
+}
+.studio-wall.is-dragging{touch-action:none;cursor:grabbing}
+.studio-title{
+  position:relative;
+  margin:0;
+  padding:.1em 0 .13em;
+  /* The H's own side-bearing is taken back so its stem meets the wall's end. */
+  margin-left:-.078em;
+  font-family:var(--font-sans, Arial, Helvetica, sans-serif);
+  font-weight:500;
+  letter-spacing:-.055em;
+  line-height:.82;
+  white-space:nowrap;
+  /* One line from wall to wall; studio.js trims it to the exact width. */
+  font-size:19.6vw;
+  font-size:calc(100cqw / 4.92);
+  /* Drawn. */
+  color:transparent;
+  -webkit-text-stroke:max(1px,.005em) rgba(243,241,234,.78);
+}
+.studio-title-made{
+  /* Made: the same letters, solid, on the finished side of the wall. */
+  position:absolute;
+  inset:0;
+  padding:inherit;
+  color:var(--studio-ink);
+  -webkit-text-stroke:max(1px,.005em) var(--studio-ink);
+  clip-path:inset(0 0 0 var(--split));
+  pointer-events:none;
+}
+
+/* The wall's edge above the room, hung from the rail. */
+.studio-edge{
+  position:absolute;
+  z-index:3;
+  top:0;
+  left:var(--split);
+  width:var(--edge);
+  height:100%;
+  transform:translateX(-50%);
+  pointer-events:none;
+  background:linear-gradient(90deg,#070706 0%,#2c2a26 34%,#6b675f 50%,#35332e 62%,#11110f 100%);
+  box-shadow:-16px 0 26px -8px rgba(0,0,0,.6),1px 0 0 rgba(243,241,234,.16);
+}
+.studio-edge::before{
+  /* Hanger on the rail. */
+  content:"";
+  position:absolute;
+  left:50%;top:-4px;
+  width:26px;height:7px;
+  transform:translateX(-50%);
+  background:#3b3934;
+  box-shadow:inset 0 1px 0 rgba(243,241,234,.22);
+}
+
 .studio-compare{
   position:relative;
   width:100%;
-  aspect-ratio:16 / 10;
-  max-height:min(72vh, 680px);
+  aspect-ratio:3 / 2;
   background:#151514;
-  border:1px solid var(--studio-line);
   overflow:hidden;
-  touch-action:pan-y;
-  user-select:none;
-  -webkit-user-select:none;
-  cursor:ew-resize;
-}
-.studio-compare.is-dragging{
-  touch-action:none;
-  cursor:grabbing;
 }
 .studio-compare:focus-visible{
   outline:2px solid rgba(243,241,234,.55);
@@ -129,37 +185,42 @@
   cursor:ew-resize;
   touch-action:none;
 }
+.studio-wall.is-dragging .studio-handle{cursor:grabbing}
 .studio-handle::before{
+  /* The same edge, continuing down through the room. It throws its shadow on the side
+     it has not reached yet. */
   content:"";
   position:absolute;
   top:0;bottom:0;left:50%;
-  width:2px;
+  width:var(--edge);
   transform:translateX(-50%);
-  background:rgba(255,255,255,.88);
-  box-shadow:0 0 18px rgba(0,0,0,.35);
+  background:linear-gradient(90deg,#070706 0%,#2c2a26 34%,#6b675f 50%,#35332e 62%,#11110f 100%);
+  box-shadow:-18px 0 30px -8px rgba(0,0,0,.62),1px 0 0 rgba(243,241,234,.16);
 }
 .studio-handle-knob{
+  /* A pull, set into the edge. */
   position:absolute;
   top:50%;left:50%;
-  width:44px;height:44px;
+  width:30px;height:68px;
   transform:translate(-50%,-50%);
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.55);
-  background:rgba(12,12,11,.55);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  border-radius:3px;
+  border:1px solid rgba(243,241,234,.34);
+  background:linear-gradient(90deg,#141412,#2f2d29 50%,#161614);
   display:grid;
   place-items:center;
-  box-shadow:0 8px 28px rgba(0,0,0,.35);
+  box-shadow:0 10px 26px rgba(0,0,0,.5),inset 0 1px 0 rgba(243,241,234,.14);
+  transition:border-color var(--dur-quick,.2s) ease;
 }
+.studio-wall:hover .studio-handle-knob,
+.studio-wall.is-dragging .studio-handle-knob{border-color:rgba(243,241,234,.7)}
 .studio-handle-knob svg{
-  width:18px;height:18px;
+  width:16px;height:16px;
   fill:none;stroke:#f3f1ea;stroke-width:1.6;
 }
 .studio-badge{
   position:absolute;
   z-index:4;
-  top:18px;
+  top:16px;
   font-size:10px;
   letter-spacing:.12em;
   text-transform:uppercase;
@@ -170,8 +231,8 @@
   padding:7px 10px;
   pointer-events:none;
 }
-.studio-badge-before{left:18px}
-.studio-badge-after{right:18px}
+.studio-badge-before{left:16px}
+.studio-badge-after{right:16px}
 .studio-expand{
   position:absolute;
   z-index:5;
@@ -194,13 +255,14 @@
 .studio-hint{
   margin:12px 0 0;
   font-size:11px;
-  color:rgba(243,241,234,.42);
+  color:rgba(243,241,234,.5);
   letter-spacing:.02em;
 }
 
-/* Asymmetric photo rail */
+/* ---------- Frames, at their own proportions ----------
+   One row, one height: each photograph keeps its shape instead of being cropped to a tile. */
 .studio-rail-wrap{
-  margin-top:42px;
+  margin-top:clamp(40px,5vw,64px);
 }
 .studio-rail-label{
   margin:0 0 14px;
@@ -210,26 +272,22 @@
   color:var(--studio-muted);
 }
 .studio-rail{
-  /* Same column width as the comparison above: four equal frames, one shared top edge. */
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  display:flex;
   gap:12px;
-  align-items:stretch;
+  align-items:flex-start;
 }
 .studio-tile{
   margin:0;
-  position:relative;
-  aspect-ratio:4 / 5;
-  background:#161615;
-  border:1px solid var(--studio-line);
-  overflow:hidden;
-  min-height:0;
+  flex:var(--ar,1.5) 1 0%;
+  min-width:0;
 }
 .studio-tile button{
-  display:block;width:100%;height:100%;
-  padding:0;border:0;background:transparent;
-  cursor:zoom-in;position:relative;
+  display:block;width:100%;
+  aspect-ratio:var(--ar,1.5);
+  padding:0;border:0;background:#161615;
+  cursor:zoom-in;position:relative;overflow:hidden;
 }
+.studio-tile button:focus-visible{outline:2px solid rgba(243,241,234,.55);outline-offset:3px}
 .studio-tile img{
   display:block;width:100%;height:100%;
   object-fit:cover;
@@ -242,18 +300,10 @@
   filter:saturate(1) brightness(1);
 }
 .studio-tile figcaption{
-  position:absolute;
-  left:12px;bottom:12px;
-  z-index:2;
-  font-size:10px;
-  letter-spacing:var(--type-meta-track, .1em);
-  text-transform:uppercase;
-  color:rgba(243,241,234,.85);
-  background:rgba(0,0,0,.4);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  padding:6px 9px;
-  pointer-events:none;
+  margin-top:9px;
+  font-size:11px;
+  letter-spacing:.01em;
+  color:var(--studio-muted);
 }
 
 /* Lightbox */
@@ -398,25 +448,35 @@
 }
 
 @media(max-width:900px){
-  .studio-head{grid-template-columns:1fr;gap:16px}
-  .studio-desc{max-width:none}
-  .studio-compare{aspect-ratio:4/3;max-height:none}
+  .studio-inner{width:min(calc(100% - 66px), calc(84svh * 1.5))}
+  .studio-head{grid-template-columns:1fr;gap:14px}
+  .studio-desc{max-width:34rem;justify-self:start}
+}
+@media(max-width:700px){
+  /* The frames become one run you can push along, still at one height. */
   .studio-rail{
-    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    margin:0 -16px;
+    padding:0 16px 6px;
+    scrollbar-width:none;
   }
+  .studio-rail::-webkit-scrollbar{display:none}
+  .studio-tile{flex:none;scroll-snap-align:start}
+  .studio-tile button{width:auto;height:min(52vw,230px)}
 }
 @media(max-width:600px){
   .studio-inner{width:calc(100% - 32px)}
-  .studio-head h2{font-size:clamp(36px,11vw,48px)}
-  .studio-compare{aspect-ratio:3/4;max-height:78vh}
+  .studio-wall{--edge:8px}
+  /* A taller window on a phone: the room is seen in portrait. */
+  .studio-compare{aspect-ratio:3/4;max-height:78svh}
   .studio-badge{top:12px;padding:6px 8px}
   .studio-badge-before{left:12px}
   .studio-badge-after{right:12px}
   .studio-expand{right:12px;bottom:12px;padding:8px 10px}
-  .studio-handle-knob{width:40px;height:40px}
+  .studio-handle-knob{width:28px;height:60px}
   .studio-lightbox-nav{display:none}
-  .studio-hint{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){
   .studio-tile img{transition:none}

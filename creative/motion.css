@@ -57,22 +57,12 @@
 .studio-intro{--base:380ms}
 
 /* ---------- Hero entrance ----------
-   Navigation, wordmark, film label, controls: 70ms apart, finished inside 900ms. */
+   Navigation first; the wordmark and what it does follow in hero.css. */
 @media (prefers-reduced-motion:no-preference){
   @keyframes hero-rise{from{opacity:0;transform:translate3d(0,14px,0)}}
   @keyframes hero-fade{from{opacity:0}}
-  .hero-nav > a,
-  .hero-word,
-  .hero-meta,
-  .hero-actions{
-    animation:hero-rise .56s var(--ease) backwards;
-    animation-delay:calc(var(--i,0) * 70ms);
-  }
-  .hero-word-motion{--i:1}
-  .hero-word-matter{--i:2}
-  .hero-meta{--i:3}
-  .hero-actions{--i:4}
-  .hero-cue{animation:hero-fade .5s ease .4s backwards}
+  .hero-nav > a{animation:hero-rise .56s var(--ease) backwards}
+  .hero-cue{animation:hero-fade .5s ease .5s backwards}
 }
 
 /* ---------- Scroll cue ----------
@@ -174,10 +164,6 @@ a:focus-visible .link-arrow{transform:translateX(.2em)}
 /* ---------- Deck ---------- */
 /* Position and opacity are driven per frame by deck.js; only the shadow is left to CSS. */
 .project-card{transition:box-shadow var(--dur-move) var(--ease)}
-.project-card.is-held{
-  box-shadow:0 40px 64px -24px rgba(44,39,32,.3),0 14px 24px -14px rgba(38,33,24,.14);
-}
-.deck.is-dragging .project-card[data-depth="0"]{cursor:grabbing}
 
 .count-now{display:inline-block}
 @keyframes tick-up{from{opacity:0;transform:translateY(.5em)}}
