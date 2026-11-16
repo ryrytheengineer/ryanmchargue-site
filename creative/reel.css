@@ -13,7 +13,7 @@
    visitor does. */
 
 :root{
-  --night:#070b16;
+  --night:#0e0e0d;
   --night-ink:#f2ede5;
   --night-soft:rgba(242,237,229,.76);
   --night-muted:rgba(242,237,229,.58);
@@ -139,7 +139,9 @@
   font-style:italic;
   letter-spacing:-.035em;
   line-height:.86;
-  font-size:clamp(3.4rem,11.2vw,10rem);
+  font-size:clamp(3.4rem,10.4vw,9.4rem);
+  font-size:clamp(3.4rem,calc(100cqw / 6.72),9.4rem);
+  white-space:nowrap;
   margin-left:-.03em;
   padding-bottom:.06em;
 }
@@ -433,39 +435,46 @@
 .plate--parts{--s:0;--w:34;grid-column:1 / span 34;grid-row:2}
 .plate--internals{--s:44;--w:48;grid-column:45 / span 48;grid-row:2}
 
-/* ---------- Night sheet (Motion) ----------
-   The dinner happens after dark, so its case study is a sheet of night laid on the
-   paper: a contact sheet, with the film at the top of it. */
+/* ---------- The prints (Motion) ----------
+   The dinner's case study is two photographic prints lying on the page. The first is the
+   film: on the black of it, the film and its strip; in the margin beneath, like a caption,
+   who speaks. The second is the roll's contact sheet. The heading stands on the page above,
+   in the same column as every other chapter's, and the film is exactly as wide as it. */
 .case-study.reel--motion{max-width:none}
+.reel--motion > .reel-head{max-width:980px;margin:0 auto clamp(22px,3vw,36px)}
+.print{
+  --print-margin:clamp(9px,1.3vw,18px);       /* the paper showing round the black */
+  --field-pad:clamp(12px,3vw,40px);           /* the black showing round the film */
+  max-width:calc(980px + 2 * (var(--print-margin) + var(--field-pad)));
+  margin:0 auto;
+  padding:var(--print-margin);
+  background:#fff;
+  border-radius:2px;
+  /* A sheet with an edge, lying on the page. */
+  box-shadow:0 0 0 1px rgba(41,42,40,.07),0 1px 0 rgba(41,42,40,.12),0 36px 56px -36px rgba(41,42,40,.45);
+}
+.print + .print{margin-top:clamp(12px,1.8vw,24px)}
+.print--sheet .sheet{margin-top:0}
+/* A print comes up where it lies: the film on it does not travel. */
+.js-motion .print[data-reveal]{transform:none}
 .night{
   position:relative;
   background:var(--night);
   color:var(--night-ink);
-  padding:clamp(28px,4.2vw,56px) clamp(18px,3.8vw,50px) clamp(32px,4.4vw,60px);
-  transition:background-color 1s ease;
+  padding:var(--field-pad);
 }
-.night .case-study-category,
-.night .case-study-place,
-.night .case-study-credits{color:var(--night-muted)}
-.night .case-study-desc{color:var(--night-soft)}
-.night .card-link{color:var(--night-ink);--underline-rest:rgba(242,237,229,.34)}
 .night a:focus-visible,
 .night [tabindex]:focus-visible{outline:2px solid rgba(242,237,229,.8);outline-offset:4px}
 .night .case-study-media,
-.night .case-study-preview{background:#0c111f}
+.night .case-study-preview{background:#171716}
 .night .case-study-media{box-shadow:0 0 0 1px var(--night-line)}
-.night .case-study-note{color:var(--night-muted)}
-.night .case-study-note b{color:var(--night-ink)}
-.night .case-study-note a{text-decoration-color:var(--night-faint)}
-.night .case-study-note a:hover,
-.night .case-study-note a:focus-visible{color:var(--night-ink)}
 .night .reel-caption{color:var(--night-muted)}
 .night .reel-caption .tc{color:var(--night-ink)}
 .night .reel-caption .reel-total{color:var(--night-muted)}
 .night .strip-ticks{color:rgba(242,237,229,.3)}
 .night .strip-ticks .is-major{color:rgba(242,237,229,.62)}
-.night .strip-band{background:#101523}
-.night .strip-veil{background:rgba(7,11,22,.62)}
+.night .strip-band{background:#1a1a19}
+.night .strip-veil{background:rgba(14,14,13,.64)}
 .reel.is-ready .night .strip-veil{display:block}
 .night .strip-run{display:none}
 .night .strip-pins i{background:rgba(242,237,229,.7)}
@@ -481,79 +490,64 @@
   gap:6px 24px;
   margin:0 0 clamp(14px,1.8vw,22px);
 }
-.night .reel-lede{margin:clamp(12px,1.5vw,18px) 0 0}
-.reel-spread{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(250px,300px);
-  column-gap:clamp(28px,3.4vw,46px);
-  align-items:stretch;
-  margin-top:clamp(20px,2.4vw,30px);
-}
-.reel-spread .reel-screen{align-self:start}
-
-/* Cue sheet: who speaks, and when. Each line is a cue into the film. */
+.reel--motion .reel-lede{margin:clamp(12px,1.5vw,18px) 0 0}
+/* In the margin: who speaks, in the order they speak. Each name is still a cue into the
+   film; the one on screen now is underlined, the way the page underlines a link. The names
+   run on like a caption, and the two facts about the night close its last line. */
 .cuesheet{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  gap:18px;
+  --note-w:250px;
+  position:relative;
+  padding:clamp(13px,1.5vw,18px) var(--field-pad) clamp(5px,.7vw,9px);
 }
 .voices{
   list-style:none;
   margin:0;
-  padding:1px 0 0;
-}
-/* Each line is ruled above and below; neighbours share a rule, in one column or two. */
-.voices li{
-  margin-top:-1px;
-  border-top:1px solid var(--night-line);
-  border-bottom:1px solid var(--night-line);
-}
-.voices a{
-  position:relative;
-  display:grid;
-  grid-template-columns:2.9em minmax(0,1fr);
-  column-gap:8px;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
   align-items:baseline;
-  padding:8px 0 9px;
-  color:var(--night-muted);
+  gap:7px clamp(18px,2.4vw,30px);
 }
-.voices .tc{font-size:15px;transition:color var(--dur-quick) ease}
+/* Room kept at the end of the last line for the facts; if there is none, a line of its own. */
+.voices::after{content:"";flex:0 0 var(--note-w);height:20px}
+.voices a{
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+  white-space:nowrap;
+  color:var(--muted-strong);
+}
 .voice-name{
   font-family:var(--font-serif);
   font-style:italic;
-  font-size:25px;
-  line-height:1;
+  font-size:21px;
+  line-height:1.15;
   letter-spacing:-.012em;
-  color:var(--night-ink);
+  color:var(--ink);
+  padding-bottom:1px;
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;
+  background-position:100% 100%;
+  background-size:0 1px;
+  transition:background-size var(--dur-move) var(--ease);
+}
+.voices a:focus-visible .voice-name,
+.voices a.is-live .voice-name{background-position:0 100%;background-size:100% 1px}
+@media(hover:hover){
+  .voices a:hover .voice-name{background-position:0 100%;background-size:100% 1px}
 }
 .voice-role{
-  grid-column:2;
-  margin-top:4px;
   font-size:12px;
   line-height:1.3;
   letter-spacing:-.005em;
 }
-/* On screen now (or under the pointer): a mark steps in from the margin. */
-.voices a::before{
-  content:"";
+.cuesheet .case-study-note{
   position:absolute;
-  left:-14px;
-  top:1.22em;
-  width:8px;
-  height:1px;
-  background:var(--night-ink);
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition:transform var(--dur-move) var(--ease);
+  right:var(--field-pad);
+  bottom:calc(clamp(5px,.7vw,9px) + 6px);
+  justify-content:flex-end;
+  white-space:nowrap;
 }
-.voices a:hover::before,
-.voices a:focus-visible::before,
-.voices a.is-live::before{transform:none}
-.voices a:hover .tc,
-.voices a:focus-visible .tc,
-.voices a.is-live .tc{color:var(--night-ink)}
-.cuesheet .case-study-note{justify-content:space-between}
 
 /* ---------- Contact sheet ----------
    The roll cut into lengths and laid side by side: 36 frames, in order. Frames the film
@@ -661,11 +655,14 @@
 .js-motion [data-reveal="sheet"] .sheet-head{opacity:0}
 
 /* ---------- Narrower ---------- */
-@media(max-width:1100px){
-  .reel-spread{grid-template-columns:minmax(0,1fr);row-gap:24px}
-  /* The cue sheet runs across, two voices to a line. */
-  .voices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,40px)}
-  .cuesheet .case-study-note{justify-content:flex-start}
+@media(max-width:700px){
+  /* The margin caption becomes a short column of credits: name on the left, part on the right. */
+  .cuesheet{padding-top:12px;padding-bottom:6px}
+  .voices{display:grid;gap:6px}
+  .voices::after{display:none}
+  .voices a{display:flex;justify-content:space-between;gap:14px}
+  .voice-role{text-align:right;white-space:normal}
+  .cuesheet .case-study-note{position:static;justify-content:space-between;margin-top:14px}
 }
 @media(max-width:900px){
   /* Plates become a run you swipe through, still in the film's order. */
@@ -710,22 +707,20 @@
   .titleblock > div:nth-child(odd){padding-left:0;border-left:0}
   .titleblock > div:nth-child(n+3){border-top:1px solid var(--line)}
   .reel-lede{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:22px}
-  .voices{grid-template-columns:minmax(0,1fr)}
   .plates{margin:0 -16px;padding-left:16px;padding-right:16px;scroll-padding:0 16px}
   .plate{flex-basis:72%}
   .titleblock > div{padding:9px 12px 11px}
   .reel-caption .reel-hint{font-size:10.5px}
   .reel-hint-more{display:none}
-  .night{padding:24px 14px 28px}
+  /* The sheet runs a little past the column so the film keeps its width. */
+  .print{margin:0 -6px}
   /* Slate: what and where on one line, who did what on the next. */
   .night-slate .case-study-place{margin-left:auto}
   .night-slate .case-study-credits{order:3;flex-basis:100%}
-  .reel-title--motion{font-size:clamp(3.4rem,17.4vw,5rem)}
+  .reel-title--motion{font-size:clamp(3.4rem,17.4vw,5rem);white-space:normal}
   .sheet{--cols:4;gap:12px 3px;margin-top:22px}
   .frame-meta{font-size:9px}
   .frame-meta .tc{font-size:12px}
-  .voice-name{font-size:24px}
-  .voices a::before{display:none}
   .strip-loupe{width:132px}
 }
 @media (prefers-reduced-motion:reduce){
