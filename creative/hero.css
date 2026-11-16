@@ -211,7 +211,7 @@
 /* ---------- The statement ----------
    After the film, who made it: one sentence set to be read rather than skimmed, then a
    quieter paragraph on what the work was. */
-.ownership-intro{padding:clamp(72px,10vw,144px) 0 clamp(28px,4vw,56px)}
+.ownership-intro{padding:clamp(72px,10vw,144px) 0 clamp(16px,2.4vw,36px)}
 .ownership-intro .intro-lead{
   max-width:23.5em;
   font-family:var(--font-serif);
@@ -260,18 +260,11 @@
   letter-spacing:-.045em;
   color:var(--ink);
 }
-.intro-credit .credit-desc{
-  margin-top:12px;
-  font-size:clamp(14px,.82rem + .2vw,15px);
-  line-height:1.55;
-  color:var(--muted-strong);
-  text-wrap:pretty;
-}
 .credit-link{
   display:inline-flex;
   align-items:baseline;
   gap:.35em;
-  margin-top:16px;
+  margin-top:14px;
   padding-bottom:3px;
   font-size:14px;
   font-weight:500;
