@@ -1,13 +1,9 @@
-/* Short-Form — lean.
+/* Short-Form.
 
-   Elsewhere on this page upright grotesk is matter and italic is motion. Here the type
-   crosses between them: the name of whatever is playing leans forward as hard as its
-   picture is moving at that moment, and stands back up when the picture is still
-   (shorts.js reads the pace from values measured off each film). Beside it the running
-   time is set at the same scale, in the italic used for every time on the site: this is a
-   medium counted in seconds.
-
-   The tall film is the pivot of the composition and is always shown whole, at 9:16. */
+   The tall film is the pivot of the composition and is always shown whole, at 9:16. On
+   one side stands the name of whatever is playing, in the upright grotesk the site uses
+   for things; on the other its running time, at the same scale, in the italic the site
+   uses for every time. This is a medium counted in seconds. */
 
 .shorts-entry{
   max-width:none;
@@ -32,7 +28,6 @@
 .sf{
   --film-h:min(78svh,760px);
   --film-w:calc(var(--film-h) * 9 / 16);
-  --lean:0;                         /* degrees; written every frame while a film plays */
   --dir:1;                          /* 1 going on to the next film, -1 going back */
   display:grid;
   grid-template-columns:minmax(0,1.3fr) var(--film-w) minmax(0,.7fr);
@@ -59,20 +54,15 @@
   margin-left:-.06em;
 }
 .sf-line{
-  /* Each line is a slot the word rolls through; the padding is room for it to lean into. */
+  /* Each line is a slot the word rolls through when the film changes. */
   display:block;
   overflow:hidden;
-  padding:.04em .26em .13em .06em;
+  padding:.04em .08em .13em .06em;
   margin:-.04em 0 -.13em;
   white-space:nowrap;
 }
 .sf-roll{display:block}
-.sf-word{
-  display:inline-block;
-  transform-origin:0 86%;
-  transform:skewX(calc(var(--lean) * -1deg));
-  will-change:transform;
-}
+.sf-word{display:inline-block}
 .sf-name-set.is-leaving{position:absolute;left:0;top:0;right:0;pointer-events:none}
 
 /* ---------- The film ---------- */
@@ -134,7 +124,7 @@
   margin:0 -.03em -.085em 0;
 }
 
-/* ---------- Sound, link, and what the name is doing ---------- */
+/* ---------- Sound and link ---------- */
 .sf-side{
   grid-column:3;grid-row:1;
   display:flex;flex-direction:column;align-items:flex-start;gap:14px;
@@ -156,12 +146,6 @@
   display:inline-block;
 }
 .sf .sv-link[hidden]{display:none}
-.sf-note{
-  margin:4px 0 0;
-  max-width:15.5rem;
-  font-size:12px;line-height:1.5;
-  color:var(--muted-strong);
-}
 
 /* ---------- The four, in the order they play ---------- */
 .sf-index{
@@ -212,11 +196,6 @@
     animation-delay:calc(var(--i,0) * 40ms);
   }
 }
-@media (prefers-reduced-motion:reduce){
-  /* Nothing leans, so there is nothing to explain. */
-  .sf-note{display:none}
-}
-
 /* ---------- Two columns: the film on the right, everything else beside it ---------- */
 @media(max-width:1000px){
   .sf{
@@ -240,7 +219,7 @@
     --film-w:min(calc(100vw - 32px - 62px),calc(74svh * 9 / 16));
     --film-h:calc(var(--film-w) * 16 / 9);
     grid-template-columns:var(--film-w) minmax(0,1fr);
-    grid-template-rows:auto auto auto auto auto;
+    grid-template-rows:auto auto auto auto;
     column-gap:12px;
     row-gap:16px;
   }
@@ -262,6 +241,5 @@
   .sf-time .tc{font-size:clamp(3rem,13.5vw,3.6rem);margin:0}
   .sf .sv-link{grid-column:1 / 3;grid-row:3;justify-self:start}
   .sf-index{grid-column:1 / 3;grid-row:4}
-  .sf-note{grid-column:1 / 3;grid-row:5;margin:0;max-width:none}
   .sv-pick{padding:13px 0 14px;font-size:16px}
 }

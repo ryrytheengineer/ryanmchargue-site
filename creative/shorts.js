@@ -1,10 +1,6 @@
-/* Short-Form — lean.
-   Four vertical films, played in order. The name of the one that is playing leans as hard
-   as its picture is moving; the running time counts beside it.
-
-   `pace` is measured from each film, not chosen: for every fifteenth of a second, how much
-   the picture changed from one frame to the next, on one scale shared by all four (0 is a
-   still picture, 9 is a hard cut or a whip of the camera). */
+/* Short-Form.
+   Four vertical films, played in order. The name of the one that is playing stands beside
+   it, and its running time counts on the other side. */
 (() => {
   const SHORTS = [
     {
@@ -16,7 +12,6 @@
       description: "Rapid Fire short-form",
       url: "https://www.linkedin.com/posts/ritwikpavan_i-toured-ziplines-hq-last-week-and-saw-the-activity-7425256192236519424-O4MA",
       dur: 59.033,
-      pace: "2233423293322222345392222356691122222321189332223334349111111322122119445555555555666666555555555955445555585543946643322422913333333333334439333333922111111111111111119334454223222222222222233444444944444443332222293333222223322323332333944744444444444444444544444444444433344444443333333333433334449553445554445566766554444923233344335643344444334455544933333232222292222223333333333392333333323222222222221112192222211222223565332391011001012221000101193111111345423449921121111111212232233222921111111222334221711111111113222222222291111111311111193333233222244391121234542112222291122122822223732922465222399221225723333554333213283333333343433433349455543444449466567655686592221222223311111111111111221710010010001010011000210984444655767666565565544549011100344313322222221021011110000000965666555666544443454435344444444433433823444444332229444433344483234443234332223393332222",
     },
     {
       company: "Terra Kaffe",
@@ -26,7 +21,6 @@
       role: "Creative Director",
       description: "Coffee hardware",
       dur: 27.7,
-      pace: "11121111111221111101111000111000201008111111111111111111194344344465333233393233233232233222222222229111211110111012022111111111111111111112111111194444444444444445444444555559444322211111110000111000000000000000000000000011000000109111111111110005011111111211110111161112111221111111111111112181111111111111119222111119111110011111111011111111211010001110111111111111111113221111111012000011211111111111111111100000",
     },
     {
       company: "Infinite Machine",
@@ -37,7 +31,6 @@
       description: "Rapid Fire founder cut",
       url: "https://www.linkedin.com/posts/ritwikpavan_i-did-a-rapid-fire-with-joseph-cohen-co-founder-activity-7424930340533633024-48Im",
       dur: 25.2,
-      pace: "578888799985566555567899999888875333223222222211222229222233433464151121121219644443343444444396874333343344789999987787666656778871111911211111954434977677565455968877676654432213356887677655765445788889997665443334445678988678655593333339121112229222344323333322334443234344456656656666668866655577775455553322244569455544564439433333333397766654465559565554444553454334443553",
     },
     {
       company: "Light Phone",
@@ -47,12 +40,8 @@
       role: "Creative Director",
       description: "Minimal phone",
       dur: 24.667,
-      pace: "1232222111111131111222332222311222242222223349333333333332333333333343333333332222229232434333393333333333333223445444332339333333222222234332222292222222112221232222222343293333322122932223333344444322222222333932223912223333439444433343339333333334333333444444324333332333344344444333334343343343333332222223223223433329334444444444444444443332343332222222273332222322",
     },
   ];
-  const PACE_HZ = 15;
-  const MAX_LEAN = 14; // degrees, about the slant of the site's italic
-  const SPRING = { k: 150, c: 17 }; // quick to kick forward, a touch of sway coming back
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const root = document.getElementById("shorts-viewer");
@@ -78,12 +67,9 @@
   let paused = false;
   let muted = true;
   let raf = 0;
-  let last = 0;
   let swipe = null;
   let suppressTapUntil = 0;
   let focused = false;
-  let lean = 0;
-  let leanVel = 0;
   let lastStamp = "";
   let tabs = [];
 
@@ -204,45 +190,22 @@
     if (clock) clock.innerHTML = cells(t);
   }
 
-  // How hard the picture is moving right now: the strongest change over the last fifth of a second.
-  function paceNow() {
-    const s = SHORTS[index].pace;
-    const i = Math.min(s.length - 1, Math.max(0, Math.floor((video.currentTime || 0) * PACE_HZ)));
-    let v = 0;
-    for (let k = Math.max(0, i - 2); k <= i; k++) v = Math.max(v, s.charCodeAt(k) - 48);
-    // 1 is the grain of a picture that is not moving; the name stands upright for it.
-    return Math.max(0, v - 1) / 8;
-  }
-
-  function tick(now) {
-    const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
-    last = now;
+  // While a film plays: its running time, and how far through it is on its row of the index.
+  function tick() {
     const playing = active && !closed && !paused && !video.paused;
-    if (playing && video.duration) {
+    if (!playing) {
+      raf = 0;
+      return;
+    }
+    if (video.duration) {
       paintClock(false);
       const tab = tabs[index];
       if (tab) tab.style.setProperty("--p", Math.min(1, video.currentTime / video.duration).toFixed(4));
-    }
-    const target = playing && !reduce.matches ? paceNow() : 0;
-    const steps = Math.ceil(dt / 0.008);
-    const h = dt / steps;
-    for (let s = 0; s < steps; s++) {
-      leanVel += (-SPRING.k * (lean - target) - SPRING.c * leanVel) * h;
-      lean += leanVel * h;
-    }
-    root.style.setProperty("--lean", (Math.max(-0.08, lean) * MAX_LEAN).toFixed(2));
-    const settled = !playing && Math.abs(lean) < 0.002 && Math.abs(leanVel) < 0.02;
-    if (settled) {
-      lean = leanVel = 0;
-      root.style.setProperty("--lean", "0");
-      raf = 0;
-      return;
     }
     raf = requestAnimationFrame(tick);
   }
   function wake() {
     if (raf) return;
-    last = performance.now();
     raf = requestAnimationFrame(tick);
   }
 

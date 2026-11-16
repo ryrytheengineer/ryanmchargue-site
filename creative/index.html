@@ -404,7 +404,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261116b"/><link rel="stylesheet" href="studio.css?v=20261116a"/><link rel="stylesheet" href="motion.css?v=20261116a"/><link rel="stylesheet" href="hero.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261115e"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
+</style><link rel="stylesheet" href="shorts.css?v=20261116c"/><link rel="stylesheet" href="studio.css?v=20261116a"/><link rel="stylesheet" href="motion.css?v=20261116a"/><link rel="stylesheet" href="hero.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261115e"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
 /* Without scripts Short-Form is a list of its four films. */
 .sf{display:block}.sf-name,.sf-film,.sf-time,.sf-side{display:none}.sf-index{max-width:27rem}
 /* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
@@ -797,8 +797,8 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <p class="shorts-kicker" data-reveal style="--d:1"><span class="marker-num">03</span><span class="marker-sep" aria-hidden="true">/</span>Short-form</p>
     <h2 id="shorts-heading" class="sf-heading">Short-Form</h2>
   </div>
-  <!-- The tall film is the pivot. The name of whatever is playing leans as hard as its picture
-       is moving; the running time beside it is set at the same scale. -->
+  <!-- The tall film is the pivot. The name of whatever is playing stands on one side of it and
+       its running time, at the same scale, on the other. -->
   <div id="shorts-viewer" class="sf" aria-label="Short-form video collection">
     <p class="sf-name" aria-hidden="true" data-reveal><span class="sf-name-set"></span></p>
     <div class="sf-film" data-reveal style="--d:1">
@@ -828,7 +828,6 @@ body{background:var(--paper);font-family:var(--font-sans)}
         <span class="sv-mute-label" aria-hidden="true">Sound off</span>
       </button>
       <a class="sv-link" hidden target="_blank" rel="noopener noreferrer">View project ↗</a>
-      <p class="sf-note">The name leans as hard as the picture is moving.</p>
     </div>
   </div>
 </section>
@@ -857,7 +856,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
 </script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261116a"></script>
-<script src="shorts.js?v=20261116b"></script>
+<script src="shorts.js?v=20261116c"></script>
 <script src="studio.js?v=20261116a"></script>
 <script src="video-lightbox.js?v=20261116a"></script>
 <script src="reel.js?v=20261115e"></script>
