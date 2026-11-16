@@ -14,9 +14,7 @@
 .shorts-entry-copy .section-rule{margin-bottom:16px}
 .shorts-kicker{
   margin:0;
-  font-size:var(--type-kicker-size, 11px);
-  letter-spacing:var(--type-kicker-track, .1em);
-  text-transform:uppercase;
+  font-size:12px;
   color:var(--muted, #8a8882);
 }
 /* The chapter is named by its kicker; the large type belongs to whichever film is playing. */
@@ -158,7 +156,7 @@
 .sv-pick{
   appearance:none;border:0;background:none;margin:0;cursor:pointer;
   position:relative;
-  display:grid;grid-template-columns:1.9em minmax(0,1fr) auto;align-items:baseline;column-gap:8px;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;column-gap:8px;
   padding:11px 0 12px;
   border-top:1px solid var(--line);
   font:inherit;font-size:15px;letter-spacing:-.01em;line-height:1.2;text-align:left;
@@ -169,8 +167,6 @@
 .sv-pick:hover,
 .sv-pick[aria-selected="true"]{color:var(--ink)}
 .sv-pick:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.sf-num{font-size:11px;font-variant-numeric:tabular-nums;color:var(--muted)}
-.sv-pick[aria-selected="true"] .sf-num{color:var(--ink)}
 .sv-pick .tc{font-size:18px;line-height:1}
 /* How far through the playing film is, drawn on its own rule. */
 .sv-pick::after{

@@ -90,9 +90,8 @@
   flex-wrap:wrap;
   gap:6px 28px;
   margin:0;
-  font-size:var(--type-kicker-size);
-  letter-spacing:var(--type-kicker-track);
-  text-transform:uppercase;
+  font-size:12px;
+  letter-spacing:-.005em;
   color:var(--muted);
 }
 .case-study-note b{font-weight:400;color:var(--ink);font-variant-numeric:tabular-nums}
@@ -455,9 +454,10 @@
 }
 /* It comes up where it lies: the film on it does not travel. */
 .js-motion .night[data-reveal]{transform:none}
-.night .case-study-category,
-.night .case-study-place,
-.night .case-study-credits{color:var(--night-muted)}
+.night .titleblock{border-top-color:var(--night-ink);border-bottom-color:var(--night-line)}
+.night .titleblock > div{border-color:var(--night-line)}
+.night .titleblock dt{color:var(--night-muted)}
+.night .titleblock dd{color:var(--night-ink)}
 .night .case-study-desc{color:var(--night-soft)}
 .night .card-link{color:var(--night-ink);--underline-rest:rgba(242,237,229,.34)}
 .night a:focus-visible,
@@ -484,14 +484,6 @@
 .night .strip-loupe-frame{box-shadow:0 0 0 1px rgba(242,237,229,.9),0 18px 30px -12px rgba(0,0,0,.8)}
 .night .strip-loupe-time{color:var(--night);background:var(--night-ink)}
 
-.night-slate{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:6px 24px;
-  margin:0 0 clamp(14px,1.8vw,22px);
-}
 .night .reel-lede{margin:clamp(12px,1.5vw,18px) 0 0}
 .night .reel-screen{margin-top:clamp(20px,2.4vw,30px)}
 /* Two facts about the night, set to the edges of the film. */
@@ -654,8 +646,6 @@
   .reel-hint-more{display:none}
   .night{padding:24px 14px 28px;margin:0 -6px}
   /* Slate: what and where on one line, who did what on the next. */
-  .night-slate .case-study-place{margin-left:auto}
-  .night-slate .case-study-credits{order:3;flex-basis:100%}
   .reel-title--motion{font-size:clamp(3.4rem,17.4vw,5rem)}
   .sheet{--cols:4;gap:12px 3px;margin-top:22px}
   .frame-meta{font-size:9px}

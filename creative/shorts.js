@@ -92,7 +92,6 @@
       btn.setAttribute("aria-selected", i === index ? "true" : "false");
       btn.setAttribute("aria-label", item.company + ", " + stamp(item.dur));
       btn.innerHTML =
-        '<span class="sf-num" aria-hidden="true">' + (i + 1) + "</span>" +
         '<span class="sf-pick-name" aria-hidden="true">' + esc(item.company) + "</span>" +
         '<span class="tc" aria-hidden="true">' + stamp(item.dur) + "</span>";
       btn.addEventListener("click", () => {

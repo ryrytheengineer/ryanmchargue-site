@@ -46,8 +46,6 @@
 .hero-film-label{
   margin:0;
   font-size:var(--type-meta-size);
-  letter-spacing:var(--type-meta-track);
-  text-transform:uppercase;
   color:rgba(var(--mark),.88);
   text-shadow:0 1px 10px rgba(0,0,0,.5);
 }

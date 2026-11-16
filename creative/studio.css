@@ -224,9 +224,7 @@
   position:absolute;
   z-index:4;
   top:16px;
-  font-size:10px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+  font-size:11px;
   color:rgba(243,241,234,.9);
   background:rgba(0,0,0,.42);
   backdrop-filter:blur(8px);
