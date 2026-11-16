@@ -1,0 +1,211 @@
+/* ---------- The opening spread ----------
+   After the film, the person, and then the work, as one spread.
+
+   The first sentence is the page's idea told in the order it happened: matter first, then
+   motion. So it is set in the hero's two voices. What was built is the outlined upright
+   type of "Matter"; what was picked up is the solid italic of "Motion". The connecting
+   words stay small, in the serif the page speaks in.
+
+   The cards sit beside the italic clause, with the rest of the introduction running down
+   the same column, so "who" and "what" are read together. The left of the deck is kept
+   clear: it is where seen cards are put down.
+
+   opening.js sets the two large phrases to the exact width of their lines; the sizes here
+   are what they come to with the page's own fonts, and are used without the script. */
+.opening{
+  --gap:118px;                                  /* the fan leans out about 88px; the rest is air */
+  --side:calc(50% - 210px - var(--gap));        /* from there to the page's edge */
+  container-type:inline-size;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--side);
+  grid-template-rows:auto auto auto 1fr;
+  padding:clamp(72px,8vw,120px) 0 0;
+  scroll-margin-top:0;
+  color:var(--ink);
+}
+.opening-say{display:contents}
+.say-stanza{display:block;min-width:0}
+/* The big type comes up where it stands. */
+.js-motion .opening .say-stanza[data-reveal]{transform:none}
+
+.say-quiet{
+  display:block;
+  font-family:var(--font-serif);
+  font-size:clamp(20px,2.05cqw,27px);
+  line-height:1.2;
+  letter-spacing:-.008em;
+}
+.say-stanza--name{grid-column:1 / -1;grid-row:1}
+.say-name{
+  display:block;
+  margin-top:.02em;
+  font-family:var(--font-serif);
+  font-size:clamp(3.4rem,7.5cqw,6.4rem);
+  line-height:1;
+  letter-spacing:-.024em;
+}
+
+.say-stanza--matter{grid-column:1 / -1;grid-row:2;margin-top:clamp(30px,3.7cqw,52px)}
+.say-matter{
+  display:block;
+  margin:.06em 0 0 -.066em;
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:calc(100cqw / 8.7);
+  line-height:.92;
+  letter-spacing:-.03em;                         /* tight, but no two outlines cross */
+  white-space:nowrap;
+  color:transparent;
+  -webkit-text-stroke:max(1px,.0066em) var(--ink);
+}
+.fit-ink{display:inline-block;vertical-align:top}
+
+.say-stanza--motion{
+  grid-column:2;
+  grid-row:3;
+  position:relative;
+  z-index:2;
+  margin-top:clamp(40px,4.4cqw,60px);
+}
+.say-motion{
+  display:block;
+  margin:.05em 0 .09em -.02em;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:calc((50cqw - 210px - var(--gap)) / 2.95);
+  line-height:.84;
+  letter-spacing:-.022em;
+  white-space:nowrap;
+}
+.say-motion .w{display:block}
+.say-quiet--end{text-align:right}
+
+/* The rest of the introduction, down the same column. The place the work was made is
+   named once, inside the sentence that names it, in the type of a thing; the role and
+   the way there sit under it like a credit. */
+.opening-side{
+  grid-column:2;
+  grid-row:4;
+  position:relative;
+  z-index:2;
+  margin-top:clamp(30px,3.2cqw,46px);
+}
+.side-copy{
+  margin:0;
+  font-size:clamp(15px,.84rem + .22vw,16.5px);
+  line-height:1.58;
+  letter-spacing:var(--type-body-track,0);
+  color:var(--muted-strong);
+  text-wrap:pretty;
+}
+.side-hn{
+  display:block;
+  margin:.2em 0 0 -.03em;
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:min(2.5rem,calc((50cqw - 210px - var(--gap)) / 7.3));   /* one line, whatever the column */
+  white-space:nowrap;
+  line-height:1.04;
+  letter-spacing:-.045em;
+  color:var(--ink);
+}
+.side-credit{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:6px 18px;
+  margin:10px 0 0;
+}
+.credit-role{font-size:12px;line-height:1.4;color:var(--muted)}
+.side-credit + .side-copy{margin-top:clamp(18px,2cqw,24px)}
+
+.credit-link{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.35em;
+  padding-bottom:3px;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(41,42,40,.26),rgba(41,42,40,.26));
+  background-repeat:no-repeat;
+  background-position:100% 100%,0 100%;
+  background-size:0 1px,100% 1px;
+  transition:background-size var(--dur-move) var(--ease);
+}
+.credit-arrow{display:inline-block;transition:transform var(--dur-move) var(--ease)}
+.credit-link:hover,
+.credit-link:focus-visible{background-position:0 100%,0 100%;background-size:100% 1px,100% 1px}
+.credit-link:hover .credit-arrow,
+.credit-link:focus-visible .credit-arrow{transform:translate(2px,-2px)}
+.credit-link:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.credit-link .credit-note,
+.opening-hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+
+/* The work: the deck keeps its place in the middle of the page, beside the column. The
+   pile beside it may lie a little into the page's margin, so nothing here is cut off. */
+.opening > .deck-section{
+  grid-column:1 / -1;
+  grid-row:3 / 5;
+  align-self:start;
+  padding-top:clamp(14px,1.6cqw,22px);
+  overflow-x:visible;
+}
+
+/* ---------- Two columns, then the deck ----------
+   Where there is not room for the pile, the deck and the column side by side, the italic
+   clause and the rest of the introduction share the band under the outlined line, and the
+   deck follows across the page. */
+@media(max-width:1359px){
+  .opening{
+    --col:min(26rem,44%);
+    --band-gap:clamp(30px,6cqw,84px);
+    grid-template-columns:minmax(0,1fr) var(--col);
+    grid-template-rows:auto auto auto auto;
+    column-gap:var(--band-gap);
+  }
+  .say-stanza--motion{grid-column:1;grid-row:3;width:min(100%,34rem)}
+  .say-motion{font-size:calc(min(100cqw - min(26rem,44cqw) - var(--band-gap),34rem) / 4.75)}
+  .say-motion .w{display:inline}
+  .opening-side{grid-column:2;grid-row:3;margin-top:calc(clamp(40px,4.4cqw,60px) + 6px)}
+  .side-hn{font-size:clamp(1.75rem,4.2cqw,2.5rem)}
+  .opening > .deck-section{grid-column:1 / -1;grid-row:4;padding-top:clamp(40px,5.6cqw,64px);overflow-x:clip}
+}
+/* ---------- One column ---------- */
+@media(max-width:700px){
+  .opening{display:block;padding-top:60px}
+  .say-name{font-size:clamp(2.9rem,14.4cqw,4.4rem)}
+  .say-stanza--matter{margin-top:26px}
+  .say-matter{font-size:calc(100cqw / 4.5);line-height:.86;margin-top:.1em;-webkit-text-stroke-width:1px}
+  .say-matter .w{display:block}
+  .say-stanza--motion{width:auto;margin-top:22px}
+  .say-motion{font-size:calc(100cqw / 4.75);margin-top:.08em}
+  .opening-side{margin-top:30px}
+  .side-hn{white-space:normal}
+  .opening > .deck-section{padding-top:30px}
+}
+@media(prefers-reduced-motion:reduce){
+  .credit-arrow{transition:none}
+}
+
+/* The place beside the deck where seen cards are put down, drawn as an outline until
+   the first one lands on it: the page's outline for what has not happened yet. Only
+   where the whole pile fits on the page (same place and tilt as deck.js gives the pile),
+   and only once the deck is live (opening.js), so a page without scripts has no empty mark. */
+@media(min-width:1360px){
+  .opening.is-live .deck::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:1px solid rgba(41,42,40,.2);
+    border-radius:18px;
+    transform-origin:center 60%;
+    transform:translate(calc(-93% - 36px),24px) rotate(-5.5deg) scale(.86);
+    pointer-events:none;
+    transition:opacity var(--dur-move) ease;
+  }
+  /* A card has landed: the place is taken. */
+  .opening.is-live .deck:has(.project-card.in-pile)::before{opacity:0}
+}
