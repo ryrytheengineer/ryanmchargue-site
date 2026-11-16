@@ -1,297 +1,267 @@
-/* Short-form section + inline stories viewer */
-.shorts-entry {
-  max-width: 980px;
-  margin: var(--space-section, 96px) auto;
-  padding: 0;
+/* Short-Form — lean.
+
+   Elsewhere on this page upright grotesk is matter and italic is motion. Here the type
+   crosses between them: the name of whatever is playing leans forward as hard as its
+   picture is moving at that moment, and stands back up when the picture is still
+   (shorts.js reads the pace from values measured off each film). Beside it the running
+   time is set at the same scale, in the italic used for every time on the site: this is a
+   medium counted in seconds.
+
+   The tall film is the pivot of the composition and is always shown whole, at 9:16. */
+
+.shorts-entry{
+  max-width:none;
+  margin:var(--space-section, 96px) auto;
+  padding:0;
 }
-.shorts-entry-copy {
-  margin-bottom: 24px;
+.shorts-entry-copy{margin:0 0 clamp(22px,3vw,36px)}
+.shorts-entry-copy .section-rule{margin-bottom:16px}
+.shorts-kicker{
+  margin:0;
+  font-size:var(--type-kicker-size, 11px);
+  letter-spacing:var(--type-kicker-track, .1em);
+  text-transform:uppercase;
+  color:var(--muted, #8a8882);
 }
-.shorts-kicker {
-  margin: 0 0 var(--type-kicker-gap, 14px);
-  font-size: var(--type-kicker-size, 11px);
-  letter-spacing: var(--type-kicker-track, 0.1em);
-  text-transform: uppercase;
-  color: var(--muted, #8a8882);
-}
-.shorts-entry h2 {
-  margin: 0;
-  font-family: var(--font-serif, "Instrument Serif", Georgia, serif);
-  font-size: var(--type-chapter-size, clamp(40px, 5.4vw, 68px));
-  font-weight: 400;
-  letter-spacing: var(--type-chapter-track, -0.03em);
-  line-height: var(--type-chapter-leading, 0.94);
-}
-.shorts-entry .section-lede {
-  margin: 10px 0 0;
-  max-width: 34rem;
-  font-size: var(--type-body-size, 14px);
-  line-height: var(--type-body-leading, 1.55);
-  letter-spacing: var(--type-body-track, -0.01em);
-  color: var(--muted-strong, #6f6e69);
+/* The chapter is named by its kicker; the large type belongs to whichever film is playing. */
+.sf-heading{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
 }
 
-.sv-picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 18px;
-}
-.sv-pick {
-  appearance: none;
-  border: 1px solid rgba(108, 105, 95, 0.22);
-  background: transparent;
-  color: #5c5b56;
-  font-size: 12px;
-  letter-spacing: -0.01em;
-  padding: 8px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background-color var(--dur-quick, 0.2s) ease, border-color var(--dur-quick, 0.2s) ease, color var(--dur-quick, 0.2s) ease;
-}
-.sv-pick:hover {
-  border-color: rgba(108, 105, 95, 0.4);
-  color: #292a28;
-}
-.sv-pick[aria-selected="true"] {
-  background: #292a28;
-  border-color: #292a28;
-  color: #faf9f6;
+.sf{
+  --film-h:min(78svh,760px);
+  --film-w:calc(var(--film-h) * 9 / 16);
+  --lean:0;                         /* degrees; written every frame while a film plays */
+  --dir:1;                          /* 1 going on to the next film, -1 going back */
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) var(--film-w) minmax(0,.7fr);
+  grid-template-rows:auto minmax(0,1fr) auto;
+  column-gap:clamp(28px,4.2vw,64px);
 }
 
-.shorts-viewer-inline {
-  display: flex;
-  justify-content: center;
+/* ---------- The name ---------- */
+.sf-name{
+  grid-column:1;grid-row:1;
+  position:relative;
+  margin:0;
+  container-type:inline-size;
 }
-.shorts-viewer-inline.is-closed .sv-stage {
-  opacity: 0.55;
+.sf-name-set{
+  display:block;
+  font-family:var(--font-sans);
+  font-weight:500;
+  letter-spacing:-.055em;
+  line-height:.9;
+  color:var(--ink);
+  font-size:clamp(3rem,15vw,10.5rem);
+  font-size:clamp(3rem,calc(100cqw / 3.86),10.5rem);
+  margin-left:-.06em;
+}
+.sf-line{
+  /* Each line is a slot the word rolls through; the padding is room for it to lean into. */
+  display:block;
+  overflow:hidden;
+  padding:.04em .26em .13em .06em;
+  margin:-.04em 0 -.13em;
+  white-space:nowrap;
+}
+.sf-roll{display:block}
+.sf-word{
+  display:inline-block;
+  transform-origin:0 86%;
+  transform:skewX(calc(var(--lean) * -1deg));
+  will-change:transform;
+}
+.sf-name-set.is-leaving{position:absolute;left:0;top:0;right:0;pointer-events:none}
+
+/* ---------- The film ---------- */
+.sf-film{grid-column:2;grid-row:1 / 4}
+.sv-stage{
+  position:relative;
+  width:var(--film-w);
+  height:var(--film-h);
+  background:#0b0c0d;
+  overflow:hidden;
+  border-radius:4px;
+  outline:none;
+  touch-action:pan-y;
+  -webkit-tap-highlight-color:transparent;
+}
+.sv-stage:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.sv-video,
+.sv-ghost{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:block;
+  object-fit:contain;      /* the box is exactly 9:16, so nothing is cropped and nothing is barred */
+  background:#0b0c0d;
+}
+.sv-ghost{z-index:1;pointer-events:none}
+.sv-ghost[hidden]{display:none}
+.sv-preload{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.sv-hits{position:absolute;inset:0;z-index:3;display:grid;grid-template-columns:28% 44% 28%}
+.sv-hit{appearance:none;border:0;background:transparent;padding:0;margin:0;cursor:pointer}
+.sv-hit-left{cursor:w-resize}
+.sv-hit-right{cursor:e-resize}
+.sv-pause-hint{
+  position:absolute;z-index:4;left:50%;top:50%;
+  width:64px;height:64px;margin:-32px 0 0 -32px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:rgba(12,12,11,.5);
+  color:#f7f5f0;font-size:17px;letter-spacing:.08em;
+  pointer-events:none;
+}
+.sv-pause-hint[hidden]{display:none}
+.sf.is-closed .sv-stage{opacity:.6}
+
+/* ---------- The running time ---------- */
+.sf-time{
+  grid-column:3;grid-row:3;
+  align-self:end;
+  margin:0;
+  container-type:inline-size;
+  text-align:right;
+  line-height:.74;
+  color:var(--ink);
+}
+.sf-time .tc{
+  display:inline-block;
+  font-size:clamp(4rem,16vw,13rem);
+  font-size:clamp(4rem,calc(100cqw / 1.72),13rem);
+  letter-spacing:-.02em;
+  margin:0 -.03em -.085em 0;
 }
 
-.sv-stage {
-  position: relative;
-  width: min(380px, 100%);
-  aspect-ratio: 9 / 16;
-  max-height: min(78vh, 720px);
-  background: #0b0c0d;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(30, 28, 24, 0.18);
-  outline: none;
+/* ---------- Sound, link, and what the name is doing ---------- */
+.sf-side{
+  grid-column:3;grid-row:1;
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+  padding-top:4px;
 }
-.sv-stage.sv-enter {
-  animation: sv-fade 0.28s ease;
+.sv-mute{
+  appearance:none;border:0;background:none;padding:0;margin:0;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  font:inherit;font-size:12px;letter-spacing:.01em;color:var(--ink);
 }
-@keyframes sv-fade {
-  from {
-    opacity: 0.55;
-    transform: scale(0.985);
+.sv-mute svg{width:18px;height:18px;display:block;flex:none}
+.sv-mute .icon-mute{display:none}
+.sv-mute[aria-pressed="true"] .icon-mute{display:block}
+.sv-mute[aria-pressed="true"] .icon-unmute{display:none}
+.sv-mute:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.sf .sv-link{
+  --underline-rest:rgba(41,42,40,.28);
+  font-size:12px;font-weight:500;color:var(--ink);
+  display:inline-block;
+}
+.sf .sv-link[hidden]{display:none}
+.sf-note{
+  margin:4px 0 0;
+  max-width:15.5rem;
+  font-size:12px;line-height:1.5;
+  color:var(--muted-strong);
+}
+
+/* ---------- The four, in the order they play ---------- */
+.sf-index{
+  grid-column:1;grid-row:3;
+  align-self:end;
+  display:grid;
+  max-width:27rem;
+  margin:0;
+}
+.sv-pick{
+  appearance:none;border:0;background:none;margin:0;cursor:pointer;
+  position:relative;
+  display:grid;grid-template-columns:1.9em minmax(0,1fr) auto;align-items:baseline;column-gap:8px;
+  padding:11px 0 12px;
+  border-top:1px solid var(--line);
+  font:inherit;font-size:15px;letter-spacing:-.01em;line-height:1.2;text-align:left;
+  color:var(--muted-strong);
+  transition:color var(--dur-quick,.2s) ease;
+}
+.sv-pick:last-child{border-bottom:1px solid var(--line)}
+.sv-pick:hover,
+.sv-pick[aria-selected="true"]{color:var(--ink)}
+.sv-pick:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.sf-num{font-size:11px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.sv-pick[aria-selected="true"] .sf-num{color:var(--ink)}
+.sv-pick .tc{font-size:18px;line-height:1}
+/* How far through the playing film is, drawn on its own rule. */
+.sv-pick::after{
+  content:"";
+  position:absolute;left:0;right:0;top:-1px;
+  height:1px;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:left center;
+}
+.sv-pick[aria-selected="true"]::after{transform:scaleX(var(--p,0))}
+
+/* ---------- Changing film: the type rolls, the film slides (shorts.js) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes sf-roll-in{from{transform:translate3d(0,calc(var(--dir) * 108%),0)}}
+  @keyframes sf-roll-out{to{transform:translate3d(0,calc(var(--dir) * -108%),0)}}
+  .sf-name-set.is-entering .sf-roll{
+    animation:sf-roll-in .52s var(--ease) backwards;
+    animation-delay:calc(var(--i,0) * 55ms + 40ms);
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .sf-name-set.is-leaving .sf-roll{
+    animation:sf-roll-out .3s var(--ease-inout) forwards;
+    animation-delay:calc(var(--i,0) * 40ms);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .sv-stage.sv-enter {
-    animation: none;
+@media (prefers-reduced-motion:reduce){
+  /* Nothing leans, so there is nothing to explain. */
+  .sf-note{display:none}
+}
+
+/* ---------- Two columns: the film on the right, everything else beside it ---------- */
+@media(max-width:1000px){
+  .sf{
+    --film-h:min(74svh,660px);
+    grid-template-columns:minmax(0,1fr) var(--film-w);
+    grid-template-rows:auto auto minmax(0,1fr) auto;
+    column-gap:clamp(24px,4vw,40px);
+    row-gap:18px;
   }
+  .sf-name{grid-column:1;grid-row:1}
+  .sf-film{grid-column:2;grid-row:1 / 5}
+  .sf-side{grid-column:1;grid-row:2}
+  .sf-time{grid-column:1;grid-row:3;align-self:end;text-align:left}
+  .sf-time .tc{font-size:clamp(4rem,calc(100cqw / 2.6),9rem);margin-left:-.04em}
+  .sf-index{grid-column:1;grid-row:4;max-width:none}
 }
 
-.sv-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #000;
-}
-
-.sv-preload {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.sv-top {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 5;
-  padding: 12px 12px 0;
-}
-.sv-segments {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-.sv-seg {
-  flex: 1;
-  height: 2px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.28);
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  appearance: none;
-}
-.sv-seg:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 2px;
-}
-.sv-seg-fill {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  transform: scaleX(0);
-  transform-origin: left center;
-  will-change: transform;
-  pointer-events: none;
-}
-
-.sv-chrome {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 22px;
-  z-index: 6;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 14px;
-  pointer-events: none;
-}
-.sv-chrome button,
-.sv-chrome a {
-  pointer-events: auto;
-}
-
-.sv-meta {
-  min-width: 0;
-  color: #fff;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
-}
-.sv-company {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.sv-role,
-.sv-desc {
-  display: none;
-}
-
-.sv-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-shrink: 0;
-}
-.sv-mute,
-.sv-close {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: #fff;
-  width: auto;
-  height: auto;
-  padding: 4px;
-  border-radius: 0;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  opacity: 0.88;
-  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.45));
-}
-.sv-mute svg,
-.sv-close svg {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
-.sv-mute .icon-mute {
-  display: none;
-}
-.sv-mute .icon-unmute {
-  display: block;
-}
-.sv-mute[aria-pressed="true"] .icon-mute {
-  display: block;
-}
-.sv-mute[aria-pressed="true"] .icon-unmute {
-  display: none;
-}
-.sv-mute:hover,
-.sv-close:hover {
-  opacity: 1;
-  background: transparent;
-}
-.sv-link {
-  display: inline-block;
-  margin-top: 10px;
-  color: #fff;
-  font-size: 11px;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  padding-bottom: 1px;
-  pointer-events: auto;
-}
-.sv-link:hover {
-  border-bottom-color: #fff;
-}
-
-.sv-hits {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr;
-}
-.sv-hit {
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-}
-.sv-hit:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.7);
-  outline-offset: -6px;
-}
-
-.sv-pause-hint {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 5;
-  transform: translate(-50%, -50%);
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
-  pointer-events: none;
-  backdrop-filter: blur(4px);
-}
-
-@media (max-width: 600px) {
-  .sv-stage {
-    width: min(100%, 360px);
-    max-height: min(72vh, 640px);
+/* ---------- Phone: a stack, with the time running down the film's side ---------- */
+@media(max-width:700px){
+  .sf{
+    --film-w:min(calc(100vw - 32px - 62px),calc(74svh * 9 / 16));
+    --film-h:calc(var(--film-w) * 16 / 9);
+    grid-template-columns:var(--film-w) minmax(0,1fr);
+    grid-template-rows:auto auto auto auto auto;
+    column-gap:12px;
+    row-gap:16px;
   }
-  .sv-picker {
-    gap: 6px;
+  .sf-name{grid-column:1 / 3;grid-row:1;min-height:calc(100cqw / 3.86 * 1.8);display:flex;align-items:flex-end}
+  .sf-name-set{width:100%}
+  .sf-film{grid-column:1;grid-row:2}
+  .sf-side{display:contents}
+  .sv-mute{grid-column:2;grid-row:2;align-self:start;justify-self:center;padding:6px}
+  .sv-mute-label{display:none}
+  .sv-mute svg{width:22px;height:22px}
+  .sf-time{
+    grid-column:2;grid-row:2;
+    align-self:end;justify-self:center;
+    writing-mode:vertical-rl;
+    text-align:left;
+    line-height:1;
+    container-type:normal;
   }
-  .sv-pick {
-    font-size: 11px;
-    padding: 7px 10px;
-  }
+  .sf-time .tc{font-size:clamp(3rem,13.5vw,3.6rem);margin:0}
+  .sf .sv-link{grid-column:1 / 3;grid-row:3;justify-self:start}
+  .sf-index{grid-column:1 / 3;grid-row:4}
+  .sf-note{grid-column:1 / 3;grid-row:5;margin:0;max-width:none}
+  .sv-pick{padding:13px 0 14px;font-size:16px}
 }
