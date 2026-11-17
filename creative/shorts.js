@@ -134,7 +134,7 @@
     if (item.url) {
       linkEl.hidden = false;
       linkEl.href = item.url;
-      linkEl.textContent = "View on LinkedIn ↗";
+      linkEl.innerHTML = 'View on LinkedIn <span class="arr arr-ne" aria-hidden="true"></span>';
     } else {
       linkEl.hidden = true;
       linkEl.removeAttribute("href");

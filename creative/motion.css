@@ -194,3 +194,19 @@ a:focus-visible .link-arrow{transform:translateX(.2em)}
 }
 #prev:active .nav-arrow{transform:translateX(-5px)}
 #next:active .nav-arrow{transform:translateX(5px)}
+
+/* ---------- Arrows ----------
+   Drawn, not typed: phones turn the arrow characters into emoji. One line weight, taking the
+   colour of the text around them. */
+.arr{
+  display:inline-block;width:.7em;height:.7em;vertical-align:-.02em;flex-shrink:0;
+  background:currentColor;
+  -webkit-mask:var(--arr) center / contain no-repeat;mask:var(--arr) center / contain no-repeat;
+}
+.arr-ne{--arr:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='square'%3E%3Cpath d='M2.5 9.5l7-7M4 2.5h5.5V8'/%3E%3C/svg%3E")}
+.arr-e{--arr:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='square'%3E%3Cpath d='M1.5 6h9M7 2.5L10.5 6 7 9.5'/%3E%3C/svg%3E")}
+.arr-w{--arr:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='square'%3E%3Cpath d='M10.5 6h-9M5 2.5L1.5 6 5 9.5'/%3E%3C/svg%3E")}
+.credit-arrow.arr{width:.66em;height:.66em;margin-left:.22em}
+.link-arrow.arr{margin-left:.1em}
+.nav-arrow.arr,.studio-lightbox-nav .arr{width:18px;height:18px;vertical-align:middle}
+
