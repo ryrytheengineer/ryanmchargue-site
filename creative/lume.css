@@ -11,11 +11,11 @@
 .light-type{display:block;width:100%;height:auto;overflow:visible}
 .light-edge{fill:none;stroke:var(--ink);stroke-width:1.1px;vector-effect:non-scaling-stroke}
 /* Where the film is now. */
-.light-now{position:absolute;left:calc(var(--p,0) * 100%);top:0;width:1px;height:calc(100cqw * .14463 + 18px);background:var(--ink);opacity:.55;pointer-events:none}
+.light-now{position:absolute;left:calc(var(--p,0) * 100%);top:0;width:1px;height:calc(100cqw * var(--ratio,.14463) + 18px);background:var(--ink);opacity:.55;pointer-events:none}
 .light:not(.is-live) .light-now{display:none}
 
 /* The word is also the film's timeline: press or drag anywhere on it. */
-.light-scrub{position:absolute;left:0;right:0;top:0;aspect-ratio:1000 / 144.63;cursor:pointer;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.light-scrub{position:absolute;left:0;right:0;top:0;aspect-ratio:1 / var(--ratio,.14463);cursor:pointer;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
 .light-scrub:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
 
 .light-rail{position:relative;height:34px;margin-top:9px}
@@ -75,5 +75,24 @@
   .light-rail{height:14px;margin-top:7px}
   .light-pin{padding:0 5px 4px 5px;margin-left:-5px}
   .light-pin .tc{display:none}
-  .light-now{height:calc(100cqw * .14463 + 16px)}
+  .light-now{height:calc(100cqw * var(--ratio,.14463) + 16px)}
 }
+
+/* ---------- The Arsenal ----------
+   A smaller companion under The Light, built the same way: the title is the film, it fills as
+   the film plays, and it is the timeline. Title and film share one column; no notes. */
+.light--small{--ratio:.10696;padding-top:clamp(64px,7vw,104px)}
+.light--small .light-row{margin-top:0;grid-template-columns:minmax(0,.64fr) minmax(0,1fr);align-items:end}
+.light--small .light-main{min-width:0}
+.light--small .light-head{margin-bottom:clamp(14px,1.6cqw,22px);container-type:inline-size}
+.light--small .light-now{height:calc(100cqw * var(--ratio) + 10px)}
+.light--small .light-side{justify-content:flex-end}
+.light--small .light-what{margin:auto 0 12px}
+.light--small .light-credits{margin-top:0;padding-top:0}
+.light--small .light-side{max-width:21rem}
+@media(max-width:1020px){
+  .light--small .light-row{grid-template-columns:minmax(0,1fr)}
+  .light--small .light-side{justify-content:flex-start;max-width:none}
+  .light--small .light-what{margin:0 0 8px}
+}
+

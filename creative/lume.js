@@ -3,8 +3,8 @@
    dragging on it moves the film. The marks under it are the editor's notes: the one the film
    has reached shows beside it. */
 (function () {
-  const root = document.querySelector("[data-light]");
-  if (!root) return;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-light]"), setup);
+  function setup(root) {
   const video = root.querySelector("video");
   const notes = Array.prototype.slice.call(root.querySelectorAll(".light-note"));
   const lit = root.querySelector("[data-light-lit]");
@@ -12,10 +12,10 @@
   const head = root.querySelector(".light-head");
   const now = root.querySelector("[data-light-now]");
   const sound = root.querySelector("[data-light-sound]");
-  if (!video || !lit || !rail || !notes.length) return;
+  if (!video || !lit || !head) return;
   const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const starts = notes.map((n) => +n.dataset.start);
-  let dur = 84.09;
+  let dur = +root.dataset.duration || 84.09;
   // Without motion the film waits to be asked, so the word stays fully lit until then.
   let started = !reduced;
   let shown = -1;
@@ -45,7 +45,7 @@
   scrub.setAttribute("aria-label", "Position in the film");
   scrub.setAttribute("aria-valuemin", "0");
   scrub.setAttribute("aria-valuemax", String(Math.round(dur)));
-  head.insertBefore(scrub, rail);
+  head.insertBefore(scrub, rail || null);
 
   function paint() {
     const t = video.currentTime || 0;
@@ -54,7 +54,7 @@
     if (now) now.style.setProperty("--p", (started ? f : 0).toFixed(4));
     let i = 0;
     for (let n = 0; n < starts.length; n++) if (t >= starts[n] - 0.01) i = n;
-    if (i !== shown) {
+    if (notes.length && i !== shown) {
       shown = i;
       notes.forEach((n, k) => n.parentNode.classList.toggle("is-current", k === i));
       pins.forEach((p, k) => p.classList.toggle("is-current", k === i));
@@ -137,4 +137,5 @@
     }, { threshold: 0.35 }).observe(video);
   }
   paint();
+  }
 })();
