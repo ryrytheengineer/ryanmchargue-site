@@ -818,7 +818,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <p class="sf-name" aria-hidden="true" data-reveal><span class="sf-name-set"></span></p>
     <div class="sf-film" data-reveal style="--d:1">
       <div class="sv-stage" tabindex="0" aria-label="Short-form film. Arrow keys change film, space pauses, M mutes.">
-        <video class="sv-video" playsinline webkit-playsinline muted autoplay preload="metadata"></video>
+        <video class="sv-video" playsinline webkit-playsinline muted preload="metadata"></video>
         <canvas class="sv-ghost" aria-hidden="true" hidden></canvas>
         <video class="sv-preload" playsinline muted preload="metadata" aria-hidden="true"></video>
         <div class="sv-hits" aria-hidden="true">
@@ -878,7 +878,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
 </script><script src="lume.js?v=20261116a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261116a"></script>
-<script src="shorts.js?v=20261116g"></script>
+<script src="shorts.js?v=20261116h"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261116a"></script>
 <script src="reel.js?v=20261116d"></script>

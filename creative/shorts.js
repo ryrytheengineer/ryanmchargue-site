@@ -214,7 +214,7 @@
     stage.classList.toggle("is-paused", on);
   }
 
-  function playCurrent({ restart = true } = {}) {
+  function playCurrent({ restart = true, start = true } = {}) {
     const item = SHORTS[index];
     if (!item) return;
     setMeta(item);
@@ -228,7 +228,7 @@
       if (clock) clock.innerHTML = cells("0:00");
     }
     setMuted(muted);
-    if (closed) return;
+    if (closed || !start) return;
     showPaused(false);
     const p = video.play();
     if (p && typeof p.catch === "function") {
@@ -301,6 +301,7 @@
     }
     if (paused) showPaused(false);
     video.play().catch(() => {});
+    preloadNext();
     wake();
   }
 
@@ -310,9 +311,12 @@
 
   buildPicker();
   setName(SHORTS[index], false);
-  playCurrent({ restart: true });
+  // The first film is loaded but waits until the player is scrolled into view, so it starts
+  // from the beginning when someone gets there.
+  const watched = "IntersectionObserver" in window;
+  playCurrent({ restart: true, start: !watched });
 
-  if ("IntersectionObserver" in window) {
+  if (watched) {
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries.some((e) => e.isIntersecting && e.intersectionRatio > 0.35);
