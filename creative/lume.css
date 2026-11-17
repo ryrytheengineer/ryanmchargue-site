@@ -1,0 +1,79 @@
+/* ---------- The Light ----------
+   A spec edit, on its own ground: paper, not a card. The title is the film itself: every
+   moment of it squeezed to a sliver and laid left to right inside the letters, so the word
+   lights up in the film's own light as the film plays. The marks under it are the editor's
+   notes; one shows at a time, beside the film. */
+.light{padding:var(--space-section,clamp(96px,11vw,150px)) 0 0;container-type:inline-size;color:var(--ink)}
+.light-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.light-head{position:relative}
+.light-title{margin:0;line-height:0}
+.light-type{display:block;width:100%;height:auto;overflow:visible}
+.light-edge{fill:none;stroke:var(--ink);stroke-width:1.1px;vector-effect:non-scaling-stroke}
+/* Where the film is now. */
+.light-now{position:absolute;left:calc(var(--p,0) * 100%);top:0;width:1px;height:calc(100cqw * .14463 + 18px);background:var(--ink);opacity:.55;pointer-events:none}
+.light:not(.is-live) .light-now{display:none}
+
+/* The word is also the film's timeline: press or drag anywhere on it. */
+.light-scrub{position:absolute;left:0;right:0;top:0;aspect-ratio:1000 / 144.63;cursor:pointer;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.light-scrub:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
+
+.light-rail{position:relative;height:34px;margin-top:9px}
+.light-pin{
+  appearance:none;position:absolute;left:calc(var(--at) * 100%);top:0;
+  display:block;padding:0 6px 4px 0;margin:0;border:0;background:none;
+  font:inherit;text-align:left;color:var(--muted);cursor:pointer;
+  transition:color var(--dur-quick,.2s) ease;
+}
+.light-pin i{display:block;width:1px;height:9px;margin-bottom:5px;background:currentColor}
+.light-pin .tc{display:block;font-size:14px;line-height:1}
+.light-pin:hover,.light-pin.is-current{color:var(--ink)}
+.light-pin:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.light-row{
+  display:grid;grid-template-columns:minmax(0,1fr) clamp(250px,26cqw,350px);
+  column-gap:clamp(28px,4cqw,56px);align-items:start;margin-top:clamp(8px,1cqw,14px);
+}
+/* Without scripts there are no marks to show: the film follows the title directly. */
+.light:not(.is-live) .light-rail{display:none}
+.light:not(.is-live) .light-row{margin-top:clamp(18px,2.2cqw,28px)}
+.light-screen{position:relative;aspect-ratio:16 / 9;background:#0c0c0b;overflow:hidden}
+.light-video{display:block;width:100%;height:100%;object-fit:cover}
+.light .reel-sound{display:grid}
+.light:not(.is-live) .reel-sound{display:none}
+.light-sound-on{display:none}
+.reel-sound.is-on .light-sound-on{display:block}
+.reel-sound.is-on .light-sound-off{display:none}
+
+.light-side{display:flex;flex-direction:column;align-self:stretch;min-width:0}
+.light-what{margin:0 0 clamp(18px,2.4cqw,30px);font-size:15px;line-height:1.5;color:var(--muted-strong);max-width:20rem}
+.light-notes{list-style:none;margin:0;padding:0}
+.light-note{
+  appearance:none;display:block;width:100%;padding:0;margin:0;border:0;background:none;
+  font:inherit;text-align:left;color:var(--ink);cursor:pointer;
+}
+.light-note .tc{display:block;margin-bottom:.5em;font-size:17px;line-height:1;color:var(--muted-strong)}
+.light-note-text{display:block;font-size:15px;line-height:1.45;text-wrap:pretty}
+.light-note:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.light-notes li + li{margin-top:14px}
+/* With the film running, the notes share one place and take turns. */
+.light.is-live .light-notes{display:grid}
+.light.is-live .light-notes li{grid-area:1 / 1;margin:0;visibility:hidden}
+.light.is-live .light-notes li.is-current{visibility:visible}
+.light.is-live .light-note-text{
+  font-family:var(--font-serif);font-size:clamp(1.5rem,2.45cqw,2.05rem);line-height:1.14;letter-spacing:-.005em;
+}
+.light-credits{margin:auto 0 0;padding-top:20px;font-size:11.5px;line-height:1.55;color:var(--muted)}
+
+@media(max-width:1020px){
+  .light-row{grid-template-columns:minmax(0,1fr);row-gap:16px;margin-top:6px}
+  .light-what{max-width:none;margin-bottom:16px;font-size:14.5px}
+  .light.is-live .light-note-text{font-size:clamp(1.4rem,6.4cqw,1.75rem)}
+  .light-credits{margin-top:6px}
+}
+@media(max-width:640px){
+  .light-rail{height:14px;margin-top:7px}
+  .light-pin{padding:0 5px 4px 5px;margin-left:-5px}
+  .light-pin .tc{display:none}
+  .light-now{height:calc(100cqw * .14463 + 16px)}
+}
