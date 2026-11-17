@@ -80,19 +80,23 @@
 
 /* ---------- The Arsenal ----------
    A smaller companion under The Light, built the same way: the title is the film, it fills as
-   the film plays, and it is the timeline. Title and film share one column; no notes. */
-.light--small{--ratio:.10696;padding-top:clamp(64px,7vw,104px)}
-.light--small .light-row{margin-top:0;grid-template-columns:minmax(0,.64fr) minmax(0,1fr);align-items:end}
-.light--small .light-main{min-width:0}
-.light--small .light-head{margin-bottom:clamp(14px,1.6cqw,22px);container-type:inline-size}
+   the film plays, and it is the timeline. Here the title sits beside the film, so it stays
+   small and the row has no empty side; on narrow screens it goes back above the film. */
+.light--small{--ratio:.10696;padding-top:clamp(56px,6vw,88px)}
+.light--small .light-row{
+  margin-top:0;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  grid-template-areas:"film head" "film side";grid-template-rows:auto 1fr;row-gap:0;align-items:start;
+}
+.light--small .light-screen{grid-area:film}
+.light--small .light-head{grid-area:head;container-type:inline-size}
+.light--small .light-side{grid-area:side;align-self:end;max-width:24rem}
 .light--small .light-now{height:calc(100cqw * var(--ratio) + 10px)}
-.light--small .light-side{justify-content:flex-end}
-.light--small .light-what{margin:auto 0 12px}
-.light--small .light-credits{margin-top:0;padding-top:0}
-.light--small .light-side{max-width:21rem}
+.light--small .light-what{margin:0 0 10px}
+.light--small .light-credits{margin:0;padding-top:0}
 @media(max-width:1020px){
-  .light--small .light-row{grid-template-columns:minmax(0,1fr)}
-  .light--small .light-side{justify-content:flex-start;max-width:none}
+  .light--small .light-row{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "film" "side";grid-template-rows:auto;row-gap:0}
+  .light--small{padding-top:44px}
+  .light--small .light-head{margin-bottom:clamp(12px,2cqw,18px)}
+  .light--small .light-side{align-self:start;max-width:none;margin-top:16px}
   .light--small .light-what{margin:0 0 8px}
 }
-
