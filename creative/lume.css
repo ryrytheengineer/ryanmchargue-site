@@ -3,7 +3,7 @@
    moment of it squeezed to a sliver and laid left to right inside the letters, so the word
    lights up in the film's own light as the film plays. The marks under it are the editor's
    notes; one shows at a time, beside the film. */
-.light{padding:var(--space-section,clamp(96px,11vw,150px)) 0 0;container-type:inline-size;color:var(--ink)}
+.light{padding:clamp(28px,3.4vw,48px) 0 0;container-type:inline-size;color:var(--ink)}
 .light-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 .light-head{position:relative}
@@ -63,7 +63,7 @@
 .light.is-live .light-note-text{
   font-family:var(--font-serif);font-size:clamp(1.5rem,2.45cqw,2.05rem);line-height:1.14;letter-spacing:-.005em;
 }
-.light-credits{margin:auto 0 0;padding-top:20px;font-size:11.5px;line-height:1.55;color:var(--muted)}
+.light-credits{margin:24px 0 0;font-size:11.5px;line-height:1.55;color:var(--muted)}
 
 @media(max-width:1020px){
   .light-row{grid-template-columns:minmax(0,1fr);row-gap:16px;margin-top:6px}
@@ -89,10 +89,10 @@
 }
 .light--small .light-screen{grid-area:film}
 .light--small .light-head{grid-area:head;container-type:inline-size}
-.light--small .light-side{grid-area:side;align-self:end;max-width:24rem}
+.light--small .light-side{grid-area:side;align-self:start;max-width:24rem;margin-top:clamp(16px,1.8cqw,24px)}
 .light--small .light-now{height:calc(100cqw * var(--ratio) + 10px)}
 .light--small .light-what{margin:0 0 10px}
-.light--small .light-credits{margin:0;padding-top:0}
+.light--small .light-credits{margin:0}
 @media(max-width:1020px){
   .light--small .light-row{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "film" "side";grid-template-rows:auto;row-gap:0}
   .light--small{padding-top:44px}
@@ -100,3 +100,10 @@
   .light--small .light-side{align-self:start;max-width:none;margin-top:16px}
   .light--small .light-what{margin:0 0 8px}
 }
+
+/* ---------- Independent ----------
+   After the Hardware Nation story, set apart by the same rule and small name the short-form
+   chapter uses. */
+.independent{margin-top:var(--space-section,96px)}
+.independent-mark .section-rule{margin-bottom:16px}
+
