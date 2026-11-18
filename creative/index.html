@@ -382,7 +382,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 
 
 </style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261116f"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
-/* Without scripts Short-Form is a list of its five films. */
+/* Without scripts Short-Form is a list of its six films. */
 .sf{display:block}.sf-name,.sf-film,.sf-time,.sf-side{display:none}.sf-index{max-width:27rem}
 /* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
 .deck-wrap{height:auto;display:block}.deck{aspect-ratio:auto;height:auto;margin:0 auto;display:grid;gap:22px}.project-card{position:relative;inset:auto;visibility:visible;opacity:1;aspect-ratio:5 / 7.55}.deck-controls{display:none}</style></noscript></head><body>
@@ -794,6 +794,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
       <a class="sv-pick" href="assets/shorts/terra-kaffe.mp4"><span>Terra Kaffe</span><span class="tc">0:27</span></a>
       <a class="sv-pick" href="assets/shorts/infinite-machine.mp4"><span>Infinite Machine</span><span class="tc">0:25</span></a>
       <a class="sv-pick" href="assets/shorts/board.mp4?v=20261118d"><span>Board</span><span class="tc">0:28</span></a>
+      <a class="sv-pick" href="assets/shorts/throne.mp4?v=20261118e"><span>Throne</span><span class="tc">0:22</span></a>
       <a class="sv-pick" href="assets/shorts/light-phone.mp4"><span>Light Phone</span><span class="tc">0:24</span></a>
     </noscript></div>
     <div class="sf-side" data-reveal style="--d:3">
@@ -913,7 +914,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
 </script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261116a"></script>
-<script src="shorts.js?v=20261118d"></script>
+<script src="shorts.js?v=20261118e"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261118b"></script>
 <script src="reel.js?v=20261116d"></script>

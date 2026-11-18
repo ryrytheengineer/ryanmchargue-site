@@ -1,5 +1,5 @@
 /* Short-Form.
-   Five vertical films, played in order. The name of the one that is playing stands beside
+   Six vertical films, played in order. The name of the one that is playing stands beside
    it, and its running time counts on the other side. */
 (() => {
   const SHORTS = [
@@ -42,6 +42,15 @@
       role: "Creative Director",
       description: "Physical pieces, digital games",
       dur: 28.421,
+    },
+    {
+      company: "Throne",
+      lines: ["Throne"],
+      src: "assets/shorts/throne.mp4?v=20261118e",
+      poster: "assets/shorts/throne-poster.jpg?v=20261118e",
+      role: "Creative Director",
+      description: "Gut health tracker",
+      dur: 22.848,
     },
     {
       company: "Light Phone",
