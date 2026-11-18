@@ -1,0 +1,35 @@
+/* Motion & Matter — the mark.
+   One drawing (the <symbol>-less path #mm-ribbon in the page, used twice per mark), set in
+   whatever ink surrounds it. mark.js moves it where it is a sound control. */
+.mm{
+  display:block;flex:none;
+  width:var(--mm-w,26px);height:auto;
+  overflow:visible;
+  fill:currentColor;
+  pointer-events:none;
+}
+/* As a sound control: full ink when sound is on, a step back when it is off. */
+button .mm{transition:opacity .45s ease}
+button .mm[data-state="muted"]{opacity:.64}
+button:hover .mm[data-state="muted"],
+button:focus-visible .mm[data-state="muted"]{opacity:1}
+.hero-sound .mm{width:30px;height:auto}
+.hero-sound .mm[data-state="muted"]{opacity:.82}
+.reel-sound .mm{width:24px;height:auto}
+.sv-mute .mm{width:28px;height:auto}
+@media(max-width:600px){
+  .hero-sound .mm{width:28px;height:auto}
+  .reel-sound .mm{width:22px;height:auto}
+}
+@media(max-width:700px){.sv-mute .mm{width:30px;height:auto}}
+@media (prefers-reduced-motion:reduce){button .mm{transition:none}}
+
+/* ---------- The signature: the mark above the name in the splash ----------
+   It takes its size from the name's own (so it grows with the scroll and steps up when the
+   film is held, in the same motion), and sits on the same centre line. */
+.hero-emblem{
+  order:-1;align-self:center;
+  width:calc(17px + .52em);height:auto;
+  margin:0 0 calc(7px + .2em);
+  color:rgb(var(--mark));
+}

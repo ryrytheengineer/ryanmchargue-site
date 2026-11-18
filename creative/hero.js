@@ -60,9 +60,9 @@
   function setPlaying(on) {
     if (mark && on !== stage.classList.contains("is-playing")) {
       // Ease the name between its running and resting sizes; scrolling sets it directly.
-      mark.classList.add("is-switching");
+      stage.classList.add("is-switching");
       clearTimeout(switchTimer);
-      switchTimer = setTimeout(() => mark.classList.remove("is-switching"), 760);
+      switchTimer = setTimeout(() => stage.classList.remove("is-switching"), 760);
     }
     stage.classList.toggle("is-playing", on);
     // The centre button only ever appears for a film that did not start by itself.
@@ -270,7 +270,7 @@
     const vw = window.innerWidth;
     const avail = vw <= 600 ? mark.clientWidth
       : stage.clientWidth - 2 * Math.min(48, Math.max(20, vw * 0.04)) - 2 * Math.min(44, Math.max(10, vw * 0.032));
-    if (avail > 0 && em > 0) mark.style.setProperty("--mark-big", Math.min((avail / em) * 0.99, window.innerHeight * 0.3).toFixed(2) + "px");
+    if (avail > 0 && em > 0) stage.style.setProperty("--mark-big", Math.min((avail / em) * 0.99, window.innerHeight * 0.3).toFixed(2) + "px");
   }
   fit();
   window.addEventListener("resize", fit);

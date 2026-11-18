@@ -86,9 +86,11 @@
 .hero-toggle .icon-play{display:none}
 .hero-film:not(.is-playing) .hero-toggle .icon-play{display:block}
 .hero-film:not(.is-playing) .hero-toggle .icon-pause{display:none}
-.hero-mark{
+.hero-film{
   --mark-small:clamp(18px,1.7vw,28px);
   --mark-big:calc((100vw - 2 * var(--hero-gutter)) / 9.25);   /* hero.js measures and refines this */
+}
+.hero-mark{
   margin:0;
   display:flex;align-items:baseline;justify-content:center;gap:.26em;
   white-space:nowrap;
@@ -103,9 +105,13 @@
 }
 /* Running: it starts as the signature and grows with the scroll, reaching full size as the
    frame finishes closing in (--settle, 0 to 1, from motion.js). */
-.hero-film.is-playing .hero-mark{font-size:calc(var(--mark-small) + (var(--mark-big) - var(--mark-small)) * var(--settle))}
+.hero-film.is-playing .hero-mark,
+.hero-film.is-playing .hero-emblem{font-size:calc(var(--mark-small) + (var(--mark-big) - var(--mark-small)) * var(--settle))}
+/* The signature above the name shares its size (mark.css), so the two move as one. */
+.hero-emblem{font-size:var(--mark-big)}
 /* Only a change of state (run, hold, end) eases; the scroll drives the size directly. */
-.hero-mark.is-switching{transition:font-size .7s var(--ease)}
+.hero-film.is-switching .hero-mark,
+.hero-film.is-switching .hero-emblem{transition:font-size .7s var(--ease)}
 /* Tall screens: two lines at every size, like THE / WILL. in the film. */
 .hero-film.is-tall .hero-mark{flex-direction:column;align-items:center;gap:.06em}
 .hero-word{
@@ -125,7 +131,7 @@
 }
 .hero-film:not(.is-playing) .hero-stage::after{opacity:.46}
 @media (prefers-reduced-motion:reduce){
-  .hero-mark.is-switching,.hero-stage::after{transition:none}
+  .hero-film.is-switching .hero-mark,.hero-film.is-switching .hero-emblem,.hero-stage::after{transition:none}
 }
 
 /* ---------- What each word is doing, or would do ---------- */
@@ -186,7 +192,7 @@
     bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
     padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));
   }
-  .hero-mark{--mark-small:16px}
+  .hero-film{--mark-small:16px}
   .hero-state{font-size:11px;gap:.4em}
   .hero-state .tc{font-size:17px}
   .hero-state-hold{padding-right:0}
