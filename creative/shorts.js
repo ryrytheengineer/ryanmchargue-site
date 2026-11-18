@@ -1,8 +1,38 @@
 /* Short-Form.
-   Six vertical films, played in order. The name of the one that is playing stands beside
+   Six vertical films, played in order, sharpest first. The name of the one that is playing stands beside
    it, and its running time counts on the other side. */
 (() => {
   const SHORTS = [
+    {
+      company: "Light Phone",
+      lines: ["Light", "Phone"],
+      src: "assets/shorts/light-phone.mp4",
+      poster: "assets/shorts/light-phone-poster.jpg",
+      role: "Creative Director",
+      description: "Minimal phone",
+      dur: 24.667,
+    },
+    {
+      company: "Bondu",
+      lines: ["Bondu"],
+      src: "assets/shorts/bondu.mp4?v=20261118f",
+      poster: "assets/shorts/bondu-poster.jpg?v=20261118f",
+      role: "Creative Director",
+      description: "Physical pieces, digital games",
+      film: "yt:5ejADgftE98",
+      dur: 28.421,
+    },
+    {
+      company: "Infinite Machine",
+      lines: ["Infinite", "Machine"],
+      src: "assets/shorts/infinite-machine.mp4",
+      poster: "assets/shorts/infinite-machine-poster.jpg",
+      role: "Creative Director",
+      description: "Rapid Fire founder cut",
+      film: "assets/films/infinite.mp4?v=20261118a",
+      filmPoster: "assets/films/infinite-poster.jpg?v=20261118a",
+      dur: 25.2,
+    },
     {
       company: "Zipline",
       lines: ["Zipline"],
@@ -24,26 +54,6 @@
       dur: 27.7,
     },
     {
-      company: "Infinite Machine",
-      lines: ["Infinite", "Machine"],
-      src: "assets/shorts/infinite-machine.mp4",
-      poster: "assets/shorts/infinite-machine-poster.jpg",
-      role: "Creative Director",
-      description: "Rapid Fire founder cut",
-      film: "assets/films/infinite.mp4?v=20261118a",
-      filmPoster: "assets/films/infinite-poster.jpg?v=20261118a",
-      dur: 25.2,
-    },
-    {
-      company: "Board",
-      lines: ["Board"],
-      src: "assets/shorts/board.mp4?v=20261118d",
-      poster: "assets/shorts/board-poster.jpg?v=20261118d",
-      role: "Creative Director",
-      description: "Physical pieces, digital games",
-      dur: 28.421,
-    },
-    {
       company: "Throne",
       lines: ["Throne"],
       src: "assets/shorts/throne.mp4?v=20261118e",
@@ -51,15 +61,6 @@
       role: "Creative Director",
       description: "Gut health tracker",
       dur: 22.848,
-    },
-    {
-      company: "Light Phone",
-      lines: ["Light", "Phone"],
-      src: "assets/shorts/light-phone.mp4",
-      poster: "assets/shorts/light-phone-poster.jpg",
-      role: "Creative Director",
-      description: "Minimal phone",
-      dur: 24.667,
     },
   ];
 
@@ -153,7 +154,7 @@
     stage.setAttribute("aria-label", item.company + ", short-form film. Arrow keys change film, space pauses, M mutes.");
     if (item.film) {
       linkEl.hidden = false;
-      linkEl.href = item.film;
+      linkEl.href = item.film.startsWith("yt:") ? "https://www.youtube.com/watch?v=" + item.film.slice(3) : item.film;
       linkEl.removeAttribute("target");
       linkEl.innerHTML = 'Watch full episode <span class="arr arr-ne" aria-hidden="true"></span>';
     } else {
