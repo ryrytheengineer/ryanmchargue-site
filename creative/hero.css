@@ -76,7 +76,13 @@
   font-weight:900;font-style:normal;font-display:block;
 }
 .hero-copy{display:flex;flex-direction:column}
-.hero-credit{order:1;margin:clamp(9px,1vw,14px) 0 0}
+.hero-credit{
+  order:1;margin:clamp(9px,1vw,14px) 0 0;
+  /* Centred with the name, like the film's own titles; the controls keep the right edge. */
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+}
+.hero-credit .hero-film-label{grid-column:2;text-align:center}
+.hero-credit .hero-controls{grid-column:3;justify-self:end}
 .hero-controls{display:flex;align-items:center;gap:20px}
 .hero-toggle .icon-play{display:none}
 .hero-film:not(.is-playing) .hero-toggle .icon-play{display:block}
@@ -85,7 +91,7 @@
   --mark-small:clamp(18px,1.7vw,28px);
   --mark-big:calc((100vw - 2 * var(--hero-gutter)) / 9.25);   /* hero.js measures and refines this */
   margin:0;
-  display:flex;align-items:baseline;gap:.26em;
+  display:flex;align-items:baseline;justify-content:center;gap:.26em;
   white-space:nowrap;
   font-family:"Inter Display Caps","Inter Display","Inter","Arial Black","Helvetica Neue",Arial,sans-serif;
   font-weight:900;
@@ -102,10 +108,10 @@
 /* Only a change of state (run, hold, end) eases; the scroll drives the size directly. */
 .hero-mark.is-switching{transition:font-size .7s var(--ease)}
 /* Tall screens: two lines at every size, like THE / WILL. in the film. */
-.hero-film.is-tall .hero-mark{flex-direction:column;align-items:flex-start;gap:.06em}
+.hero-film.is-tall .hero-mark{flex-direction:column;align-items:center;gap:.06em}
 .hero-word{
   appearance:none;border:0;background:none;padding:0;margin:0;
-  font:inherit;color:inherit;text-align:left;line-height:inherit;letter-spacing:inherit;text-transform:inherit;
+  font:inherit;color:inherit;text-align:center;line-height:inherit;letter-spacing:inherit;text-transform:inherit;
   cursor:pointer;
   display:block;
   -webkit-tap-highlight-color:transparent;
