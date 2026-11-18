@@ -1,0 +1,140 @@
+/* Motion & Matter — the page in the film's register.
+
+   The splash is a black frame with two voices: Inter Display Black capitals for anything
+   that is a title, and Instrument Serif for anything that is said. This sheet carries that
+   through the rest of the page. It only changes how things look (ground, ink, faces, card
+   stock); nothing here moves, hides or re-orders anything. It loads last, so removing its
+   <link> returns the paper-white edition. */
+
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-400.woff2?v=1") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-500.woff2?v=1") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-600.woff2?v=1") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+
+:root{
+  color-scheme:dark;
+  --paper:#090908;                      /* the ground: a breath above the film's black */
+  --ink:#f4f2ec;
+  --line:rgba(244,242,236,.14);
+  --muted:rgba(244,242,236,.5);
+  --muted-strong:rgba(244,242,236,.68);
+  --muted-role:rgba(244,242,236,.76);
+  --rest:rgba(244,242,236,.3);          /* an underline, a rule, an edge at rest */
+  --card:#121211;
+  --well:#161615;                       /* behind a picture before it loads */
+  --font-sans:"Inter",Arial,Helvetica,sans-serif;
+  --font-title:"Inter Display Caps","Inter Display","Inter","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --type-card-title-size:19px;
+  --type-card-title-track:-.012em;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink)}
+::selection{background:rgba(244,242,236,.9);color:#0a0a09}
+a:focus-visible,button:focus-visible,
+.case-study-media:focus-visible,.strip:focus-visible,.plate a:focus-visible{outline-color:var(--ink)}
+
+/* ---------- Titles: the film's title face ---------- */
+.reel-title,
+.reel-title--matter,
+.reel-title--motion,
+.studio-title,
+.sf-name-set,
+.closing-name,
+.card-bottom h2,
+.event-photo strong{
+  font-family:var(--font-title);
+  font-weight:900;
+  font-style:normal;
+  text-transform:uppercase;
+  letter-spacing:-.022em;
+}
+/* Each of these was cut to fill its measure in the old faces; the capitals set wider, so
+   each gets the divisor that makes the same fit. */
+.reel-title--matter{
+  font-size:clamp(2rem,8.6vw,6.4rem);
+  font-size:clamp(2rem,calc(100cqw / 11.15),6.6rem);
+  line-height:.9;margin-left:-.01em;
+}
+.reel-title-join{font:inherit;font-size:.78em;opacity:.5;margin:0 .2em 0 .18em}
+.reel-title--motion{
+  font-size:clamp(2.2rem,9.6vw,6.6rem);
+  font-size:clamp(2.2rem,calc(100cqw / 9.8),6.6rem);
+  line-height:.9;margin-left:-.01em;padding-bottom:0;
+  text-wrap:balance;
+}
+.studio-title{
+  font-size:15vw;
+  font-size:calc(100cqw / 6.58);
+  line-height:.86;margin-left:-.012em;
+  -webkit-text-stroke:max(1px,.006em) rgba(243,241,234,.8);
+}
+.sf-name-set{
+  font-size:clamp(2.6rem,11.5vw,8.4rem);
+  font-size:clamp(2.6rem,calc(100cqw / 4.9),8.4rem);
+  line-height:.92;margin-left:-.06em;
+}
+.closing-name{
+  font-size:calc(100cqw / 8.78);
+  line-height:.9;margin-left:-.012em;
+}
+.card-bottom h2{line-height:1.02}
+.event-photo strong{font-size:clamp(46px,7.4vw,84px);line-height:.88;letter-spacing:-.03em}
+@media(max-width:700px){
+  .sf-name-set{font-size:clamp(1.9rem,10vw,3.4rem);font-size:clamp(1.9rem,calc(100cqw / 9.6),3.4rem)}
+}
+@media(max-width:600px){
+  .reel-title--matter{font-size:clamp(2.2rem,13.6vw,4.6rem);font-size:clamp(2.2rem,calc(100cqw / 6.95),4.6rem)}
+  .reel-title-join{margin-left:0}
+  .reel-title--motion{font-size:clamp(2.2rem,13.4vw,4.2rem);font-size:clamp(2.2rem,calc(100cqw / 6.95),4.2rem)}
+  .card-bottom h2{font-size:16px}
+  .event-photo strong{font-size:58px}
+}
+
+/* ---------- Links and small furniture ---------- */
+.card-link,.site-foot a,.sv-link,.hero-nav a,.sf .sv-link{--underline-rest:var(--rest)}
+.card-link{border-bottom-color:var(--rest)}
+.site-foot a{border-bottom-color:var(--rest)}
+.credit-link{background-image:linear-gradient(currentColor,currentColor),linear-gradient(rgba(244,242,236,.45),rgba(244,242,236,.45))}
+.closing-cta{background-image:linear-gradient(currentColor,currentColor),linear-gradient(var(--rest),var(--rest))}
+.counter{color:var(--muted-strong)}
+.track{background:var(--line)}
+.track-inner{background:var(--ink)}
+.directions .hint{color:var(--muted)}
+.nav-button{border-color:rgba(244,242,236,.24);color:var(--ink)}
+.nav-button:hover{background:rgba(244,242,236,.09);border-color:rgba(244,242,236,.6)}
+@media (hover:none){.nav-button:hover{background:transparent;border-color:rgba(244,242,236,.24)}}
+
+/* ---------- The deck: black card stock ---------- */
+.project-card{
+  --edge:0 1px 0 #1d1d1b,0 2px 0 #181817,0 3px 0 #141413;
+  background-color:var(--card);
+  background-image:linear-gradient(132deg,rgba(255,255,255,.045) 0%,rgba(255,255,255,0) 46%,rgba(0,0,0,.18) 100%);
+  border:1px solid rgba(244,242,236,.11);
+}
+.project-card::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.035)}
+.project-card[data-depth="0"]{box-shadow:var(--edge),0 34px 60px -22px rgba(0,0,0,.85),0 12px 22px -12px rgba(0,0,0,.6)}
+.project-card.is-held{box-shadow:var(--edge),0 52px 80px -26px rgba(0,0,0,.9),0 18px 30px -16px rgba(0,0,0,.65)}
+.project-card.pile-top{box-shadow:var(--edge),0 16px 26px -16px rgba(0,0,0,.8)}
+.deck-section.is-over-pile .project-card.pile-top{box-shadow:var(--edge),0 24px 34px -18px rgba(0,0,0,.85)}
+.project-card .photo{background:var(--well)}
+.fallback-image{background:var(--well);color:var(--muted)}
+.card-type,.card-index{color:var(--muted)}
+.event-photo{background:#161817;color:var(--ink)}
+.event-photo em{color:var(--muted-strong)}
+@media(min-width:1400px){.js-motion .opening .deck::before{border-color:rgba(244,242,236,.16)}}
+
+/* ---------- Reels on the dark ground ---------- */
+.case-study-media,.case-study-preview{background:var(--well)}
+.case-study-media{box-shadow:0 0 0 1px var(--line)}
+.strip-ticks{color:rgba(244,242,236,.3)}
+.strip-band{background:#181817}
+.strip-loupe-frame{box-shadow:0 0 0 1px rgba(244,242,236,.9),0 18px 30px -12px rgba(0,0,0,.8)}
+.plates{--leader:rgba(244,242,236,.26)}
+.plate a{background:var(--well);box-shadow:0 0 0 1px var(--line)}
+@media (hover:hover){.plate a:hover{box-shadow:0 0 0 1px rgba(244,242,236,.34),0 26px 34px -22px rgba(0,0,0,.8)}}
+.plate.is-live a{box-shadow:0 0 0 1px rgba(244,242,236,.72)}
+/* A night reel was a dark panel on paper. On the dark ground it is the same panel, lit a
+   little from above, with a hairline where the paper edge used to be. */
+.night{
+  --night:#0f0f0e;
+  box-shadow:0 0 0 1px rgba(244,242,236,.09),0 40px 70px -40px rgba(0,0,0,.9);
+}
