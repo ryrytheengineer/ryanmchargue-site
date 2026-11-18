@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible,
    each gets the divisor that makes the same fit. */
 .reel-title--matter{
   font-size:clamp(2rem,8.6vw,6.4rem);
-  font-size:clamp(2rem,calc(100cqw / 11.15),6.6rem);
+  font-size:clamp(2rem,calc(100cqw / 11.45),6.6rem);
   line-height:.9;margin-left:-.01em;
 }
 .reel-title-join{font:inherit;font-size:.78em;opacity:.5;margin:0 .2em 0 .18em}
@@ -63,7 +63,7 @@ a:focus-visible,button:focus-visible,
 }
 .studio-title{
   font-size:15vw;
-  font-size:calc(100cqw / 6.58);
+  font-size:calc(100cqw / 6.78);
   line-height:.86;margin-left:-.012em;
   -webkit-text-stroke:max(1px,.006em) rgba(243,241,234,.8);
 }
