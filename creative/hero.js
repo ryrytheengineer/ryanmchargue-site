@@ -56,7 +56,14 @@
     }
   }
 
+  let switchTimer = 0;
   function setPlaying(on) {
+    if (mark && on !== stage.classList.contains("is-playing")) {
+      // Ease the name between its running and resting sizes; scrolling sets it directly.
+      mark.classList.add("is-switching");
+      clearTimeout(switchTimer);
+      switchTimer = setTimeout(() => mark.classList.remove("is-switching"), 760);
+    }
     stage.classList.toggle("is-playing", on);
     // The centre button only ever appears for a film that did not start by itself.
     playBtn.hidden = on || held;
@@ -258,11 +265,11 @@
     probe.remove();
     // Full size: one line edge to edge, or two lines on a tall screen.
     const em = stage.classList.contains("is-tall") ? widest : line;
-    // Room for it inside a held print: the paper border closes in by --print on each side
-    // (phones scale the whole frame instead, so their margins never change).
+    // Room for it once the frame has closed in on scroll (its window insets by up to 44px a
+    // side; phones scale the whole frame instead, so their margins never change).
     const vw = window.innerWidth;
     const avail = vw <= 600 ? mark.clientWidth
-      : stage.clientWidth - 2 * Math.min(48, Math.max(20, vw * 0.04)) - 2 * Math.min(22, Math.max(10, vw * 0.015));
+      : stage.clientWidth - 2 * Math.min(48, Math.max(20, vw * 0.04)) - 2 * Math.min(44, Math.max(10, vw * 0.032));
     if (avail > 0 && em > 0) mark.style.setProperty("--mark-big", Math.min((avail / em) * 0.99, window.innerHeight * 0.3).toFixed(2) + "px");
   }
   fit();

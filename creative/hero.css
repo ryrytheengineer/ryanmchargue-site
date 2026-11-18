@@ -95,11 +95,14 @@
   text-transform:uppercase;
   color:rgb(var(--mark));
   text-shadow:0 2px 22px rgba(0,0,0,.34);
-  transition:font-size .7s var(--ease);
 }
-.hero-film.is-playing .hero-mark{font-size:var(--mark-small)}
-/* Tall screens: the full-size name takes two lines, like THE / WILL. in the film. */
-.hero-film.is-tall:not(.is-playing) .hero-mark{flex-direction:column;align-items:flex-start;gap:.06em}
+/* Running: it starts as the signature and grows with the scroll, reaching full size as the
+   frame finishes closing in (--settle, 0 to 1, from motion.js). */
+.hero-film.is-playing .hero-mark{font-size:calc(var(--mark-small) + (var(--mark-big) - var(--mark-small)) * var(--settle))}
+/* Only a change of state (run, hold, end) eases; the scroll drives the size directly. */
+.hero-mark.is-switching{transition:font-size .7s var(--ease)}
+/* Tall screens: two lines at every size, like THE / WILL. in the film. */
+.hero-film.is-tall .hero-mark{flex-direction:column;align-items:flex-start;gap:.06em}
 .hero-word{
   appearance:none;border:0;background:none;padding:0;margin:0;
   font:inherit;color:inherit;text-align:left;line-height:inherit;letter-spacing:inherit;text-transform:inherit;
@@ -117,7 +120,7 @@
 }
 .hero-film:not(.is-playing) .hero-stage::after{opacity:.46}
 @media (prefers-reduced-motion:reduce){
-  .hero-mark,.hero-stage::after{transition:none}
+  .hero-mark.is-switching,.hero-stage::after{transition:none}
 }
 
 /* ---------- What each word is doing, or would do ---------- */
