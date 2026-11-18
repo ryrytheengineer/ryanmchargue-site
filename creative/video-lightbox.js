@@ -42,8 +42,45 @@
 
   // `at` (seconds) starts the film part-way in: plates, voices and contact-sheet frames
   // open it at the moment they show.
+  // "yt:<id>" plays the film from YouTube in the same overlay, at full resolution.
+  let frame = null;
+  function clearYouTube() {
+    if (frame) { frame.remove(); frame = null; }
+    player.hidden = false;
+  }
+  function openYouTube(id, title, at) {
+    clearTimeout(leaving);
+    lightbox.classList.remove("is-leaving");
+    origin = null;
+    session++;
+    lastFocus = document.activeElement;
+    if (label) label.textContent = title || "Film";
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+    player.hidden = true;
+    clearYouTube();
+    player.hidden = true;
+    frame = document.createElement("iframe");
+    frame.className = "video-lightbox-yt";
+    frame.title = title || "Film";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
+    frame.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) +
+      "?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white" + (at > 0 ? "&start=" + Math.floor(at) : "");
+    player.insertAdjacentElement("afterend", frame);
+    lightbox.hidden = false;
+    lightbox.classList.add("is-open");
+    document.documentElement.style.overflow = "hidden";
+    open = true;
+    closeBtn.focus();
+    lightbox.dispatchEvent(new CustomEvent("videolightbox:open", { bubbles: false }));
+  }
+
   function openVideo(src, title, poster, at, from) {
     if (!src) return;
+    if (src.indexOf("yt:") === 0) return openYouTube(src.slice(3), title, at);
+    clearYouTube();
     clearTimeout(leaving);
     lightbox.classList.remove("is-leaving");
     origin = from || null;
@@ -93,6 +130,7 @@
     open = false;
     document.documentElement.style.overflow = "";
     const finish = () => {
+      clearYouTube();
       player.removeAttribute("src");
       player.load();
       player.style.transition = "none";

@@ -407,6 +407,12 @@
   border-radius:8px;
   box-shadow:0 28px 80px rgba(0,0,0,.45);
 }
+.video-lightbox video[hidden]{display:none}
+.video-lightbox-yt{
+  display:block;width:100%;aspect-ratio:16/9;max-height:min(72vh,780px);
+  border:0;border-radius:8px;background:#0b0b0a;
+  box-shadow:0 28px 80px rgba(0,0,0,.45);
+}
 .video-lightbox-label{
   margin:0;
   color:rgba(243,241,234,.72);
@@ -444,6 +450,7 @@
   }
   .video-lightbox-frame{width:min(100%,560px)}
   .video-lightbox video{max-height:min(70vh,560px);border-radius:6px}
+  .video-lightbox-yt{border-radius:6px}
   .video-lightbox-label{text-align:center}
   .video-lightbox-close{top:max(12px, env(safe-area-inset-top));right:max(12px, env(safe-area-inset-right));width:40px;height:40px}
 }
