@@ -572,6 +572,8 @@
 
     // ---------- sound ----------
     if (soundBtn) {
+      // The button is offered wherever this script is running, strip or no strip.
+      section.classList.add("is-ready");
       soundBtn.addEventListener("click", () => {
         if (muted) {
           // One preview speaks at a time.
