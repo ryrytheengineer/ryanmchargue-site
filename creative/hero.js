@@ -17,7 +17,7 @@
   const mark = stage.querySelector(".hero-mark");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  const START_AT = 11.3; // "Before feeds..."
+  const START_AT = parseFloat(video.getAttribute("data-start")) || 0; // where the film opens
   let introSeeked = false;
   let held = false; // the visitor asked for this frame; nothing restarts the film for them
   let lastStamp = "";

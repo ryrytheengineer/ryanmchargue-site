@@ -393,15 +393,15 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow arr arr-ne" aria-hidden="true"></span></a>
   </nav>
   <div class="hero-stage" aria-hidden="true">
-    <video id="film-video" playsinline muted autoplay preload="auto" poster="assets/hwn-launch-poster.jpg" src="assets/hwn-launch.mp4?v=20261111p"></video>
+    <video id="film-video" playsinline muted autoplay preload="auto" data-start="0" poster="assets/the-arsenal/hero-poster.jpg?v=20261118j" src="assets/the-arsenal/the-arsenal.mp4?v=20261118j"></video>
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
-  <button type="button" class="hero-overlay" id="film-play" hidden aria-label="Play Hardware Nation launch film">
+  <button type="button" class="hero-overlay" id="film-play" hidden aria-label="Play The Arsenal">
     <span class="hero-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
   </button>
   <div class="hero-copy">
     <div class="hero-credit">
-      <p class="hero-film-label">Hardware Nation launch film</p>
+      <p class="hero-film-label">The Arsenal · Spec edit for Anduril</p>
       <button type="button" class="hero-sound film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
         <svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
         <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
@@ -472,6 +472,55 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </article></div></div>
 <div class="deck-controls" data-reveal><div class="counter"><span id="count"><span class="count-now" id="count-now">01</span> / 10</span><span class="track"><span class="track-inner" id="progress"></span></span></div><div class="directions"><button aria-label="Previous project" class="nav-button" id="prev"><span class="nav-arrow arr arr-w" aria-hidden="true"></span></button><button aria-label="Next project" class="nav-button" id="next"><span class="nav-arrow arr arr-e" aria-hidden="true"></span></button></div></div><p class="deck-more"><a class="credit-link" href="https://hardwarenation.co" target="_blank" rel="noopener noreferrer">More founder films at hardwarenation.co<span class="credit-arrow arr arr-ne" aria-hidden="true"></span><span class="credit-note"> (opens in a new tab)</span></a></p></section>
 </div>
+
+<section class="case-study reel reel--motion" id="hwn-launch" aria-labelledby="launch-heading" data-reel data-duration="84.66">
+  <div class="night" data-reveal>
+    <header class="reel-head">
+      <h2 class="reel-title reel-title--motion" id="launch-heading" data-reveal>Hardware Nation Launch</h2>
+      <dl class="titleblock" data-reveal style="--d:1">
+        <div><dt>Film</dt><dd>Launch film</dd></div>
+        <div><dt>Place</dt><dd>San Francisco</dd></div>
+        <div><dt>Year</dt><dd class="tc">2025</dd></div>
+        <div><dt>Role</dt><dd>Creative Direction</dd></div>
+      </dl>
+      <div class="reel-lede" data-reveal style="--d:2">
+        <p class="case-study-desc">The film that introduced Hardware Nation. A founder alone in the colonnade at the Palace of Fine Arts, cut against a century of launches, from the Macintosh and the first Xbox to Starship, to make one argument: the next great hardware companies are being built right now, and they deserve to be seen.</p>
+        <a class="card-link" href="assets/hwn-launch.mp4" data-open-video="assets/hwn-launch.mp4" data-video-title="Hardware Nation Launch" data-video-poster="assets/hwn-launch-poster.jpg">Watch with sound <span class="diag-arrow" aria-hidden="true"></span></a>
+      </div>
+    </header>
+
+    <div class="reel-screen">
+      <div
+        class="case-study-media"
+        role="button"
+        tabindex="0"
+        data-open-video="assets/hwn-launch.mp4"
+        data-video-title="Hardware Nation Launch"
+        data-video-poster="assets/hwn-launch-poster.jpg"
+        aria-label="Watch the Hardware Nation launch film with sound"
+      >
+        <video
+          id="launch-preview"
+          class="case-study-preview"
+          muted
+          playsinline
+          webkit-playsinline
+          loop
+          preload="none"
+          poster="assets/hwn-launch-poster.jpg"
+          data-src="assets/hwn-launch.mp4"
+          aria-hidden="true"
+        ></video>
+      </div>
+      <button type="button" class="reel-sound" data-reel-sound aria-pressed="true" aria-label="Unmute"><svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg></button>
+    </div>
+
+    <div class="reel-run">
+      <p class="reel-caption"><span class="tc reel-now" data-reel-clock>0:00</span><span class="tc reel-total">1:25</span></p>
+    </div>
+  </div>
+</section>
 
 <section class="case-study reel reel--matter" id="terra-kaffe-whim" aria-labelledby="terra-heading" data-reel data-duration="328.862">
   <header class="reel-head">
@@ -872,7 +921,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
               <i class="light-now" data-light-now aria-hidden="true"></i>
             </div>
             <div class="light-screen" data-reveal style="--d:1">
-              <video id="arsenal-preview" class="light-video" muted playsinline loop preload="metadata" poster="assets/the-arsenal/poster.jpg" aria-label="The Arsenal, preview"><source src="assets/the-arsenal/the-arsenal.mp4" type="video/mp4"/></video>
+              <video id="arsenal-preview" class="light-video" muted playsinline loop preload="metadata" poster="assets/the-arsenal/poster.jpg" aria-label="The Arsenal, preview"><source src="assets/the-arsenal/the-arsenal.mp4?v=20261118j" type="video/mp4"/></video>
               <button class="reel-sound" type="button" data-light-sound aria-pressed="true" aria-label="Unmute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4z"/><g class="light-sound-on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g><g class="light-sound-off"><path d="M16 9.5l5 5"/><path d="M21 9.5l-5 5"/></g></svg></button>
             </div>
           <div class="light-side" data-reveal style="--d:1">
@@ -913,7 +962,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </div>
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
-</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261118g"></script>
+</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261118j"></script><script src="deck.js?v=20261118g"></script>
 <script src="shorts.js?v=20261118e"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261118b"></script>
