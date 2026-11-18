@@ -41,7 +41,6 @@
 /* ---------- Credit row: what is playing, and its sound ---------- */
 .hero-credit{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  margin:0 0 clamp(8px,1.1vw,16px);
 }
 .hero-film-label{
   margin:0;
@@ -66,65 +65,59 @@
 .hero-film.is-muted .hero-sound .icon-unmute{display:none}
 .hero-sound.film-mute-pulse{animation:film-mute-pulse 1.6s ease infinite}
 
-/* ---------- The wordmark ---------- */
-.hero-mark{
-  margin:0;
-  display:grid;
-  grid-template-columns:auto auto;
-  justify-content:space-between;
-  align-items:baseline;
-  column-gap:.12em;
-  row-gap:clamp(8px,.9vw,14px);
-  white-space:nowrap;
-  /* One line from edge to edge at every width. hero.js trims this if a fallback font
-     sets wider; the cap keeps short, wide windows from losing the film to the type. */
-  font-size:min(calc((100vw - 2 * var(--hero-gutter)) / 5.02),40svh);
-  font-weight:400;
-  line-height:.84;
+/* ---------- The wordmark ----------
+   Set in the film's own title face (Inter Display Black, capitals), so the site's name and
+   the film's words are one voice. While the film runs it is a signature in the corner and
+   the picture has the whole frame. When the film is held or has ended, the frame dims and
+   the name comes up full width: the site's title card, in the film's language. */
+@font-face{
+  font-family:"Inter Display Caps";
+  src:url("assets/fonts/inter-display-black-caps.woff2?v=1") format("woff2");
+  font-weight:900;font-style:normal;font-display:block;
 }
+.hero-copy{display:flex;flex-direction:column}
+.hero-credit{order:1;margin:clamp(9px,1vw,14px) 0 0}
+.hero-controls{display:flex;align-items:center;gap:20px}
+.hero-toggle .icon-play{display:none}
+.hero-film:not(.is-playing) .hero-toggle .icon-play{display:block}
+.hero-film:not(.is-playing) .hero-toggle .icon-pause{display:none}
+.hero-mark{
+  --mark-small:clamp(18px,1.7vw,28px);
+  --mark-big:calc((100vw - 2 * var(--hero-gutter)) / 9.25);   /* hero.js measures and refines this */
+  margin:0;
+  display:flex;align-items:baseline;gap:.26em;
+  white-space:nowrap;
+  font-family:"Inter Display Caps","Inter Display","Inter","Arial Black","Helvetica Neue",Arial,sans-serif;
+  font-weight:900;
+  font-size:var(--mark-big);
+  line-height:.86;
+  letter-spacing:-.022em;
+  text-transform:uppercase;
+  color:rgb(var(--mark));
+  text-shadow:0 2px 22px rgba(0,0,0,.34);
+  transition:font-size .7s var(--ease);
+}
+.hero-film.is-playing .hero-mark{font-size:var(--mark-small)}
+/* Tall screens: the full-size name takes two lines, like THE / WILL. in the film. */
+.hero-film.is-tall:not(.is-playing) .hero-mark{flex-direction:column;align-items:flex-start;gap:.06em}
 .hero-word{
   appearance:none;border:0;background:none;padding:0;margin:0;
-  font:inherit;color:inherit;text-align:left;line-height:inherit;
+  font:inherit;color:inherit;text-align:left;line-height:inherit;letter-spacing:inherit;text-transform:inherit;
   cursor:pointer;
   display:block;
   -webkit-tap-highlight-color:transparent;
 }
-.hero-word-text{
-  display:block;
-  /* Drawn: an outline. Made: the same outline, filled. */
-  color:rgba(var(--mark),0);
-  -webkit-text-stroke:max(1px,.006em) rgb(var(--mark));
-  /* A hairline of shade keeps the drawn line legible when the film runs bright. */
-  filter:drop-shadow(0 0 .7px rgba(0,0,0,.5)) drop-shadow(0 8px 26px rgba(0,0,0,.24));
-  transition:color .5s var(--ease);
+.hero-word-text{display:block}
+.hero-amp{margin-right:.2em}
+/* A held or finished film steps back behind the name. */
+.hero-stage::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:#000;opacity:0;
+  transition:opacity .6s ease;
 }
-.hero-word[aria-pressed="true"] .hero-word-text{color:rgb(var(--mark))}
-.hero-word[aria-pressed="true"]{cursor:default}
-@media (hover:hover){
-  /* The word you could switch to shows a trace of what it would become. */
-  .hero-word[aria-pressed="false"]:hover .hero-word-text{color:rgba(var(--mark),.22)}
-}
-.hero-word-motion .hero-word-text{
-  font-family:var(--font-serif);
-  font-style:italic;
-  letter-spacing:-.045em;
-  margin-left:-.035em;
-  padding-right:.05em;
-}
-.hero-word-matter .hero-word-text{
-  font-family:var(--font-sans);
-  font-weight:500;
-  font-size:.745em;
-  letter-spacing:-.055em;
-  margin-right:-.02em;
-}
-.hero-amp{
-  font-family:var(--font-serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:.72em;
-  letter-spacing:-.02em;
-  margin-right:.14em;
+.hero-film:not(.is-playing) .hero-stage::after{opacity:.46}
+@media (prefers-reduced-motion:reduce){
+  .hero-mark,.hero-stage::after{transition:none}
 }
 
 /* ---------- What each word is doing, or would do ---------- */
@@ -172,9 +165,6 @@
   .hero-state{--i:4}
 }
 
-@media(max-width:900px){
-  .hero-mark{row-gap:8px}
-}
 @media(max-width:600px){
   .hero-film{
     --print:9px;
@@ -188,11 +178,7 @@
     bottom:calc(var(--hero-inset) + env(safe-area-inset-bottom));
     padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));
   }
-  .hero-mark{
-    font-size:min(calc((100vw - 32px) / 4.86),40svh);
-    row-gap:7px;
-  }
-  .hero-word-text{-webkit-text-stroke-width:.9px}
+  .hero-mark{--mark-small:16px}
   .hero-state{font-size:11px;gap:.4em}
   .hero-state .tc{font-size:17px}
   .hero-state-hold{padding-right:0}

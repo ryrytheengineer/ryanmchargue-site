@@ -1,8 +1,10 @@
-/* Hero film and its wordmark switch.
-   "Motion" runs the film, "Matter" holds the frame. The word that is true is pressed
-   (solid); the other is only drawn. A frame the visitor chose to hold is set down as a
-   print (--hold eases 0 to 1 and the CSS closes a paper border round it) and stays held
-   until they run the film again. */
+/* Hero film and its name.
+   The film runs by itself. While it runs, "Motion & Matter" is a signature in the corner;
+   when the visitor holds the frame, or the film ends, the frame dims and the name comes up
+   full width (the sizes are CSS; fit() here measures the full one). The two words still
+   work as a switch (Motion runs the film, Matter holds the frame), beside a plain
+   play/pause button. A held frame is set down as a print: --hold eases 0 to 1 and the CSS
+   closes a paper border round it, and it stays held until the film is run again. */
 (() => {
   const stage = document.getElementById("film-stage");
   const video = document.getElementById("film-video");
@@ -10,6 +12,7 @@
   const mute = document.getElementById("film-mute");
   const run = document.getElementById("film-run");
   const hold = document.getElementById("film-hold");
+  const toggle = document.getElementById("film-toggle");
   if (!stage || !video || !playBtn || !mute || !run || !hold) return;
 
   const runState = document.getElementById("film-run-state");
@@ -61,6 +64,7 @@
     hold.setAttribute("aria-pressed", on ? "false" : "true");
     run.setAttribute("aria-label", on ? "Motion: the film is running" : "Motion: run the film");
     hold.setAttribute("aria-label", on ? "Matter: hold the frame" : "Matter: the frame is held");
+    if (toggle) toggle.setAttribute("aria-label", on ? "Pause the film" : "Play the film");
     syncMute();
     paintState(true);
   }
@@ -129,6 +133,7 @@
   hold.addEventListener("click", holdFrame);
   if (runState) runState.addEventListener("click", runFilm);
   if (holdState) holdState.addEventListener("click", holdFrame);
+  if (toggle) toggle.addEventListener("click", () => (stage.classList.contains("is-playing") ? holdFrame() : runFilm()));
   playBtn.addEventListener("click", () => {
     setHeld(false);
     start({ muted: false });
@@ -225,6 +230,7 @@
     video.src = video.getAttribute(tall ? "data-src-tall" : "data-src-wide");
     video.muted = wasMuted;
     sizeAmbient();
+    fit();
     video.addEventListener("loadedmetadata", () => {
       try { video.currentTime = at; } catch (_) {}
       if (!wasPaused) video.play().catch(() => {});
@@ -238,14 +244,26 @@
      The CSS size assumes the site's two faces. If a fallback sets wider, trim to fit. */
   function fit() {
     if (!mark) return;
-    mark.style.fontSize = "";
-    const words = mark.querySelectorAll(".hero-word");
-    if (words.length < 2) return;
-    const avail = mark.clientWidth;
-    const used = words[0].offsetWidth + words[1].offsetWidth;
-    const size = parseFloat(getComputedStyle(mark).fontSize);
-    const need = used + size * 0.16; // the two words and a breath between them
-    if (need > avail && avail > 0) mark.style.fontSize = ((size * avail) / need).toFixed(2) + "px";
+    // Measure a hidden copy at a large fixed size: exact, and untouched by the frame's
+    // own scaling or by whichever size the visible name is at this moment.
+    const probe = mark.cloneNode(true);
+    probe.removeAttribute("id");
+    probe.querySelectorAll("[id]").forEach((n) => n.removeAttribute("id"));
+    probe.setAttribute("aria-hidden", "true");
+    probe.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;transition:none;display:inline-flex;flex-direction:row;align-items:baseline;width:max-content;font-size:200px";
+    mark.parentNode.appendChild(probe);
+    const words = probe.querySelectorAll(".hero-word");
+    const line = probe.offsetWidth / 200;
+    const widest = Math.max(words[0].offsetWidth, words[1].offsetWidth) / 200;
+    probe.remove();
+    // Full size: one line edge to edge, or two lines on a tall screen.
+    const em = stage.classList.contains("is-tall") ? widest : line;
+    // Room for it inside a held print: the paper border closes in by --print on each side
+    // (phones scale the whole frame instead, so their margins never change).
+    const vw = window.innerWidth;
+    const avail = vw <= 600 ? mark.clientWidth
+      : stage.clientWidth - 2 * Math.min(48, Math.max(20, vw * 0.04)) - 2 * Math.min(22, Math.max(10, vw * 0.015));
+    if (avail > 0 && em > 0) mark.style.setProperty("--mark-big", Math.min((avail / em) * 0.99, window.innerHeight * 0.3).toFixed(2) + "px");
   }
   fit();
   window.addEventListener("resize", fit);

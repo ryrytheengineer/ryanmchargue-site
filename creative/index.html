@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="preload" href="assets/fonts/inter-display-black-caps.woff2?v=1" as="font" type="font/woff2" crossorigin/>
 <script>
 /* Scroll reveals only hide content when they can also show it again. */
 (function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;d.classList.add('js-motion');setTimeout(function(){if(window.__motionReady)return;d.classList.remove('js-motion');document.dispatchEvent(new Event('motion:off'))},4000)})();
@@ -381,7 +382,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261118n"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
+</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261118p"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
 /* Without scripts Short-Form is a list of its six films. */
 .sf{display:block}.sf-name,.sf-film,.sf-time,.sf-side{display:none}.sf-index{max-width:27rem}
 /* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
@@ -405,12 +406,18 @@ body{background:var(--paper);font-family:var(--font-sans)}
   <div class="hero-copy">
     <div class="hero-credit">
       <p class="hero-film-label">The Arsenal · Spec edit for Anduril</p>
-      <button type="button" class="hero-sound film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
+      <div class="hero-controls">
+        <button type="button" class="hero-sound hero-toggle" id="film-toggle" aria-label="Pause the film">
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button type="button" class="hero-sound film-mute-pulse" id="film-mute" aria-pressed="true" aria-label="Unmute">
         <svg class="icon-unmute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
         <svg class="icon-mute" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 4v-5.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
       </button>
+      </div>
     </div>
-    <!-- The wordmark is the film's control: Motion runs it, Matter holds the frame. -->
+    <!-- The name: a signature while the film runs, full width when it is held or over. -->
     <h1 class="hero-mark" id="top" aria-label="Motion & Matter">
       <button type="button" class="hero-word hero-word-motion" id="film-run" aria-pressed="true" aria-label="Motion: run the film"><span class="hero-word-text">Motion</span></button>
       <button type="button" class="hero-word hero-word-matter" id="film-hold" aria-pressed="false" aria-label="Matter: hold the frame"><span class="hero-word-text"><span class="hero-amp" aria-hidden="true">&</span>Matter</span></button>
@@ -963,7 +970,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </div>
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
-</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261118n"></script><script src="deck.js?v=20261118g"></script>
+</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261118p"></script><script src="deck.js?v=20261118g"></script>
 <script src="shorts.js?v=20261118e"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261118b"></script>
