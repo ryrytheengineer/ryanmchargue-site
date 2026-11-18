@@ -790,7 +790,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
     </div>
     <p class="sf-time" aria-hidden="true" data-reveal style="--d:2"><span class="tc" data-sf-clock>0:00</span></p>
     <div class="sf-index sv-picker" id="sv-picker" role="tablist" aria-label="Choose a short-form video" data-reveal style="--d:2"><noscript>
-      <a class="sv-pick" href="assets/shorts/zipline.mp4"><span>Zipline</span><span class="tc">0:59</span></a>
+      <a class="sv-pick" href="assets/shorts/zipline.mp4?v=20261118c"><span>Zipline</span><span class="tc">0:26</span></a>
       <a class="sv-pick" href="assets/shorts/terra-kaffe.mp4"><span>Terra Kaffe</span><span class="tc">0:27</span></a>
       <a class="sv-pick" href="assets/shorts/infinite-machine.mp4"><span>Infinite Machine</span><span class="tc">0:25</span></a>
       <a class="sv-pick" href="assets/shorts/light-phone.mp4"><span>Light Phone</span><span class="tc">0:24</span></a>
@@ -912,7 +912,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
 </script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261116a"></script><script src="deck.js?v=20261116a"></script>
-<script src="shorts.js?v=20261118a"></script>
+<script src="shorts.js?v=20261118c"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261118b"></script>
 <script src="reel.js?v=20261116d"></script>

@@ -6,13 +6,13 @@
     {
       company: "Zipline",
       lines: ["Zipline"],
-      src: "assets/shorts/zipline.mp4",
-      poster: "assets/shorts/zipline-poster.jpg",
+      src: "assets/shorts/zipline.mp4?v=20261118c",
+      poster: "assets/shorts/zipline-poster.jpg?v=20261118c",
       role: "Creative Director",
-      description: "Rapid Fire short-form",
+      description: "Future of delivery",
       film: "assets/films/zipline.mp4?v=20261118a",
       filmPoster: "assets/films/zipline-poster.jpg?v=20261118a",
-      dur: 59.033,
+      dur: 26.099,
     },
     {
       company: "Terra Kaffe",
