@@ -145,4 +145,5 @@
   });
 
   window.__videoLightboxOpen = () => open;
+  window.__videoLightboxPlay = (src, title, poster, from) => openVideo(src, title, poster, 0, from || null);
 })();

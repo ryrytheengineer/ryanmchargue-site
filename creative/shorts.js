@@ -10,7 +10,8 @@
       poster: "assets/shorts/zipline-poster.jpg",
       role: "Creative Director",
       description: "Rapid Fire short-form",
-      url: "https://www.linkedin.com/posts/ritwikpavan_i-toured-ziplines-hq-last-week-and-saw-the-activity-7425256192236519424-O4MA",
+      film: "assets/films/zipline.mp4?v=20261118a",
+      filmPoster: "assets/films/zipline-poster.jpg?v=20261118a",
       dur: 59.033,
     },
     {
@@ -29,7 +30,8 @@
       poster: "assets/shorts/infinite-machine-poster.jpg",
       role: "Creative Director",
       description: "Rapid Fire founder cut",
-      url: "https://www.linkedin.com/posts/ritwikpavan_i-did-a-rapid-fire-with-joseph-cohen-co-founder-activity-7424930340533633024-48Im",
+      film: "assets/films/infinite.mp4?v=20261118a",
+      filmPoster: "assets/films/infinite-poster.jpg?v=20261118a",
       dur: 25.2,
     },
     {
@@ -131,10 +133,11 @@
 
   function setMeta(item) {
     stage.setAttribute("aria-label", item.company + ", short-form film. Arrow keys change film, space pauses, M mutes.");
-    if (item.url) {
+    if (item.film) {
       linkEl.hidden = false;
-      linkEl.href = item.url;
-      linkEl.innerHTML = 'View on LinkedIn <span class="arr arr-ne" aria-hidden="true"></span>';
+      linkEl.href = item.film;
+      linkEl.removeAttribute("target");
+      linkEl.innerHTML = 'Watch full episode <span class="arr arr-ne" aria-hidden="true"></span>';
     } else {
       linkEl.hidden = true;
       linkEl.removeAttribute("href");
@@ -332,7 +335,15 @@
     e.stopPropagation();
     setMuted(!muted);
   });
-  linkEl.addEventListener("click", (e) => e.stopPropagation());
+  linkEl.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const item = SHORTS[index];
+    if (!item || !item.film || !window.__videoLightboxPlay) return;
+    e.preventDefault();
+    video.pause();
+    showPaused(true);
+    window.__videoLightboxPlay(item.film, item.company, item.filmPoster, stage);
+  });
 
   video.addEventListener("ended", () => {
     if (!closed) go(1);
