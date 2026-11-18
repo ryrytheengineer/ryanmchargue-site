@@ -207,3 +207,26 @@
 @media (prefers-reduced-motion:reduce){
   .hero-sound.film-mute-pulse{animation:none}
 }
+
+/* The film is shown whole. Its words run edge to edge, so nothing may crop it: the frame
+   sits at its own 16:9 inside the screen, and the bars around it glow with the footage. */
+.hero-stage{overflow:hidden}
+.hero-ambient{
+  position:absolute;left:-12%;top:-12%;width:124%;height:124%;
+  display:block;z-index:0;
+  filter:blur(56px) saturate(1.25);
+  opacity:.5;
+  transition:opacity .6s ease;
+}
+.hero-film .hero-stage video,
+.hero-film .hero-stage video{
+  position:relative;z-index:1;
+  object-fit:contain;object-position:center center;
+  background:transparent;
+  transform:none;animation:none;
+}
+@media(max-width:600px){
+  .hero-film .hero-stage video{object-fit:contain;object-position:center 46%}
+  .hero-ambient{opacity:.72;filter:blur(36px) saturate(1.45)}
+}
+.hero-state{display:none}

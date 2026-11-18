@@ -178,6 +178,24 @@
     io.observe(stage);
   }
 
+
+  /* ---------- Ambient: the bars around the film take its light ---------- */
+  const ambient = stage.querySelector(".hero-ambient");
+  const actx = ambient && ambient.getContext ? ambient.getContext("2d", { alpha: false }) : null;
+  let ambientTimer = 0;
+  function paintAmbient() {
+    if (!actx || video.readyState < 2) return;
+    try { actx.drawImage(video, 0, 0, ambient.width, ambient.height); } catch (_) {}
+  }
+  function ambientLoop() {
+    clearTimeout(ambientTimer);
+    paintAmbient();
+    if (!video.paused && !video.ended) ambientTimer = setTimeout(ambientLoop, reduce.matches ? 1000 : 120);
+  }
+  video.addEventListener("play", ambientLoop);
+  video.addEventListener("seeked", paintAmbient);
+  video.addEventListener("loadeddata", paintAmbient);
+
   /* ---------- Fit: the wordmark is one line, edge to edge ----------
      The CSS size assumes the site's two faces. If a fallback sets wider, trim to fit. */
   function fit() {
