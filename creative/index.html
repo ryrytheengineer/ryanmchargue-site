@@ -381,11 +381,12 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261118k"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
+</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261118n"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
 /* Without scripts Short-Form is a list of its six films. */
 .sf{display:block}.sf-name,.sf-film,.sf-time,.sf-side{display:none}.sf-index{max-width:27rem}
 /* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
-.deck-wrap{height:auto;display:block}.deck{aspect-ratio:auto;height:auto;margin:0 auto;display:grid;gap:22px}.project-card{position:relative;inset:auto;visibility:visible;opacity:1;aspect-ratio:5 / 7.55}.deck-controls{display:none}</style></noscript></head><body>
+.deck-wrap{height:auto;display:block}.deck{aspect-ratio:auto;height:auto;margin:0 auto;display:grid;gap:22px}.project-card{position:relative;inset:auto;visibility:visible;opacity:1;aspect-ratio:5 / 7.55}.deck-controls{display:none}
+.hero-stage{background:#000 url(assets/the-arsenal/hero-poster.jpg) center / cover no-repeat}</style></noscript></head><body>
 
 <header class="hero-film is-muted is-playing" id="film-stage">
   <nav class="hero-nav">
@@ -393,8 +394,9 @@ body{background:var(--paper);font-family:var(--font-sans)}
     <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow arr arr-ne" aria-hidden="true"></span></a>
   </nav>
   <div class="hero-stage" aria-hidden="true">
-    <canvas class="hero-ambient" width="64" height="36"></canvas>
-    <video id="film-video" playsinline muted autoplay preload="auto" data-start="0" poster="assets/the-arsenal/hero-poster.jpg?v=20261118j" src="assets/the-arsenal/the-arsenal.mp4?v=20261118j"></video>
+    <canvas class="hero-ambient" width="32" height="54"></canvas>
+    <video id="film-video" playsinline muted autoplay preload="auto" data-start="0" data-src-wide="assets/the-arsenal/the-arsenal.mp4?v=20261118j" data-poster-wide="assets/the-arsenal/hero-poster.jpg?v=20261118j" data-src-tall="assets/the-arsenal/the-arsenal-vertical.mp4?v=20261118n" data-poster-tall="assets/the-arsenal/hero-poster-vertical.jpg?v=20261118n"></video>
+    <script>(function(){var v=document.getElementById("film-video"),s=document.getElementById("film-stage"),t=window.innerWidth/Math.max(1,window.innerHeight)<0.9;s.classList.toggle("is-tall",t);v.poster=v.getAttribute(t?"data-poster-tall":"data-poster-wide");v.src=v.getAttribute(t?"data-src-tall":"data-src-wide");})();</script>
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
   <button type="button" class="hero-overlay" id="film-play" hidden aria-label="Play The Arsenal">
@@ -961,7 +963,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 </div>
 <script>
 function tryNext(img){let list=[];try{list=JSON.parse(img.getAttribute('data-sources')||'[]')}catch(e){};let index=Number(img.dataset.retry||0);if(index<list.length){img.dataset.retry=String(index+1);img.src=list[index];}else{img.style.display='none';let fallback=document.createElement('div');fallback.className='fallback-image';fallback.textContent=img.closest('.project-card').querySelector('h2').textContent;img.parentElement.insertBefore(fallback,img)}}
-</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261118k"></script><script src="deck.js?v=20261118g"></script>
+</script><script src="lume.js?v=20261117a" defer></script><script src="closing.js?v=20261116a" defer></script><script src="hero.js?v=20261118n"></script><script src="deck.js?v=20261118g"></script>
 <script src="shorts.js?v=20261118e"></script>
 <script src="studio.js?v=20261116d"></script>
 <script src="video-lightbox.js?v=20261118b"></script>

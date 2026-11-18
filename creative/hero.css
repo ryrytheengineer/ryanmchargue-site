@@ -208,25 +208,81 @@
   .hero-sound.film-mute-pulse{animation:none}
 }
 
-/* The film is shown whole. Its words run edge to edge, so nothing may crop it: the frame
-   sits at its own 16:9 inside the screen, and the bars around it glow with the footage. */
-.hero-stage{overflow:hidden}
-.hero-ambient{
-  position:absolute;left:-12%;top:-12%;width:124%;height:124%;
-  display:block;z-index:0;
-  filter:blur(56px) saturate(1.25);
-  opacity:.5;
-  transition:opacity .6s ease;
-}
-.hero-film .hero-stage video,
+/* The film is shown whole, and never inside a box.
+
+   Its words run edge to edge, so the frame always spans the full width and is never cropped
+   at the sides. There are two cuts of it: the widescreen film, and a vertical cut reframed
+   shot by shot for phones (hero.js picks one and sets .is-tall). Whatever shape is left
+   over is handled above and below the frame only:
+     screen wider than the cut    the frame fills the screen; a little sky falls outside.
+     screen taller than the cut   the frame hangs from the top and its foot dissolves into
+                                  its own light, under the wordmark.
+   The light is the film itself, mirrored and blurred (hero.js paints it), so the edge of
+   the picture and the start of the glow are the same colours: there is no line. */
+.hero-state{display:none}
+.hero-stage{overflow:hidden;background:#000}
+.hero-ambient{display:none}
 .hero-film .hero-stage video{
   position:relative;z-index:1;
   object-fit:contain;object-position:center center;
-  background:transparent;
-  transform:none;animation:none;
+  background:transparent;transform:none;animation:none;
 }
-@media(max-width:600px){
-  .hero-film .hero-stage video{object-fit:contain;object-position:center 46%}
-  .hero-ambient{opacity:.72;filter:blur(36px) saturate(1.45)}
+@supports (width:1cqw){
+  .hero-stage{container-type:size}
+  /* --gap is the room left over once the whole film is on screen: negative when the screen
+     is the wider shape, and then the overflow comes mostly off the top, away from the
+     wordmark. hero.js picks the widescreen film or the vertical cut and sets .is-tall. */
+  .hero-film .hero-stage video,
+  .hero-ambient{
+    --film-h:56.25cqw;
+    --gap:calc(100cqh - var(--film-h));
+    --film-y:min(0px,calc(var(--gap) * .75));
+  }
+  .hero-film.is-tall .hero-stage video,
+  .hero-film.is-tall .hero-ambient{
+    --film-h:177.778cqw;
+    --film-y:min(0px,calc(var(--gap) * .5));
+  }
+  .hero-film .hero-stage video{
+    position:absolute;left:0;top:var(--film-y);
+    width:100%;height:auto;aspect-ratio:16 / 9;
+    object-fit:cover;
+  }
+  .hero-film.is-tall .hero-stage video{aspect-ratio:9 / 16}
+  .hero-ambient{
+    position:absolute;z-index:0;
+    left:-7%;width:114%;
+    top:calc(var(--film-y) - var(--film-h));
+    height:calc(var(--film-h) * 3);
+    filter:blur(min(calc(var(--film-h) * .075),64px)) saturate(1.2);
+    opacity:.9;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 8%,rgba(0,0,0,.55) 26%,#000 34%,#000 66%,rgba(0,0,0,.55) 74%,transparent 92%);
+    mask-image:linear-gradient(to bottom,transparent 8%,rgba(0,0,0,.55) 26%,#000 34%,#000 66%,rgba(0,0,0,.55) 74%,transparent 92%);
+  }
+  /* The screen is taller than the film: its foot dissolves, by as much as there is room. */
+  @container (max-aspect-ratio:16/9){
+    .hero-film:not(.is-tall) .hero-stage video{
+      --feather:min(calc(var(--gap) * 2.2),calc(var(--film-h) * .34));
+      -webkit-mask-image:linear-gradient(to top,transparent 0,rgba(0,0,0,.5) calc(var(--feather) * .42),#000 var(--feather));
+      mask-image:linear-gradient(to top,transparent 0,rgba(0,0,0,.5) calc(var(--feather) * .42),#000 var(--feather));
+    }
+    .hero-film:not(.is-tall) .hero-ambient{display:block}
+  }
+  @container (max-aspect-ratio:9/16){
+    .hero-film.is-tall .hero-stage video{
+      --feather:min(calc(var(--gap) * 2.2),calc(var(--film-h) * .2));
+      -webkit-mask-image:linear-gradient(to top,transparent 0,rgba(0,0,0,.5) calc(var(--feather) * .42),#000 var(--feather));
+      mask-image:linear-gradient(to top,transparent 0,rgba(0,0,0,.5) calc(var(--feather) * .42),#000 var(--feather));
+    }
+    .hero-film.is-tall .hero-ambient{display:block}
+  }
+  /* Between the two shapes (a squarish window): the widescreen film floats, both edges dissolved. */
+  @container (max-aspect-ratio:5/4){
+    .hero-film:not(.is-tall) .hero-stage video,
+    .hero-film:not(.is-tall) .hero-ambient{--film-y:max(76px,calc(41cqh - var(--film-h) / 2))}
+    .hero-film:not(.is-tall) .hero-stage video{
+      -webkit-mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.6) 7%,#000 17%,#000 83%,rgba(0,0,0,.6) 93%,transparent 100%);
+      mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.6) 7%,#000 17%,#000 83%,rgba(0,0,0,.6) 93%,transparent 100%);
+    }
+  }
 }
-.hero-state{display:none}

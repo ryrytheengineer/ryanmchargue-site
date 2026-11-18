@@ -179,22 +179,60 @@
   }
 
 
-  /* ---------- Ambient: the bars around the film take its light ---------- */
+  /* ---------- Ambient: the film's own light, above and below it ----------
+     Three copies of the current frame in a tiny canvas: mirrored, upright, mirrored. The
+     CSS lays the middle copy behind the film and blurs the lot, so the picture's top and
+     bottom edges meet their own reflection and no border shows. Each paint is blended
+     over the last so the light breathes with the cut and never flickers. */
   const ambient = stage.querySelector(".hero-ambient");
   const actx = ambient && ambient.getContext ? ambient.getContext("2d", { alpha: false }) : null;
   let ambientTimer = 0;
-  function paintAmbient() {
-    if (!actx || video.readyState < 2) return;
-    try { actx.drawImage(video, 0, 0, ambient.width, ambient.height); } catch (_) {}
+  function sizeAmbient() {
+    if (!ambient) return;
+    const tall = stage.classList.contains("is-tall");
+    ambient.width = tall ? 18 : 32; ambient.height = (tall ? 32 : 18) * 3;
+  }
+  sizeAmbient();
+  function paintAmbient(blend) {
+    if (!actx || video.readyState < 2 || !ambient.offsetParent) return;
+    const w = ambient.width, h = ambient.height / 3;
+    try {
+      actx.globalAlpha = blend ? 0.45 : 1;
+      actx.drawImage(video, 0, h, w, h);
+      actx.save(); actx.translate(0, h); actx.scale(1, -1); actx.drawImage(video, 0, 0, w, h); actx.restore();
+      actx.save(); actx.translate(0, h * 3); actx.scale(1, -1); actx.drawImage(video, 0, 0, w, h); actx.restore();
+    } catch (_) {}
   }
   function ambientLoop() {
     clearTimeout(ambientTimer);
-    paintAmbient();
-    if (!video.paused && !video.ended) ambientTimer = setTimeout(ambientLoop, reduce.matches ? 1000 : 120);
+    paintAmbient(true);
+    if (!video.paused && !video.ended) ambientTimer = setTimeout(ambientLoop, reduce.matches ? 900 : 90);
   }
   video.addEventListener("play", ambientLoop);
-  video.addEventListener("seeked", paintAmbient);
-  video.addEventListener("loadeddata", paintAmbient);
+  video.addEventListener("seeked", () => paintAmbient(false));
+  video.addEventListener("loadeddata", () => paintAmbient(false));
+
+  /* ---------- Two cuts: widescreen, and the vertical one for tall screens ----------
+     The page sets the first one before this script runs. If the screen changes shape
+     (a phone turned on its side), the other cut takes over at the same moment in the film. */
+  function wantsTall() { return window.innerWidth / Math.max(1, window.innerHeight) < 0.9; }
+  function pickFilm() {
+    const tall = wantsTall();
+    if (tall === stage.classList.contains("is-tall")) { paintAmbient(false); return; }
+    const at = video.currentTime || 0, wasPaused = video.paused, wasMuted = video.muted;
+    stage.classList.toggle("is-tall", tall);
+    video.poster = video.getAttribute(tall ? "data-poster-tall" : "data-poster-wide");
+    video.src = video.getAttribute(tall ? "data-src-tall" : "data-src-wide");
+    video.muted = wasMuted;
+    sizeAmbient();
+    video.addEventListener("loadedmetadata", () => {
+      try { video.currentTime = at; } catch (_) {}
+      if (!wasPaused) video.play().catch(() => {});
+    }, { once: true });
+    video.load();
+  }
+  let pickTimer = 0;
+  window.addEventListener("resize", () => { clearTimeout(pickTimer); pickTimer = setTimeout(pickFilm, 180); });
 
   /* ---------- Fit: the wordmark is one line, edge to edge ----------
      The CSS size assumes the site's two faces. If a fallback sets wider, trim to fit. */
