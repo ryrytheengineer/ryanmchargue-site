@@ -1,8 +1,12 @@
+import { inject } from '@vercel/analytics';
 import { resolveConfig } from './config';
 import { createContext } from './gl/context';
 import { resizeLongEdge } from './gl/fbo';
 import { FluidSolver } from './fluid/solver';
 import { PointerInput } from './input/pointer';
+
+// Initialize Vercel Web Analytics
+inject();
 
 async function initInk(): Promise<void> {
   const canvas = document.getElementById('ink-canvas') as HTMLCanvasElement | null;
