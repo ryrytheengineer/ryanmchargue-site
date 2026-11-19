@@ -201,6 +201,11 @@ body{background:var(--paper);font-family:var(--font-sans)}
 .hero-nav .brand{color:#f7f5f0;font-weight:600;font-size:14px;letter-spacing:-.035em}
 .hero-nav .nav-link{font-size:12px;color:rgba(247,245,240,.72)}
 .hero-nav .nav-link:hover{color:#fff}
+.nav-social{display:flex;align-items:center;gap:18px}
+.hero-nav .nav-ig{display:grid;place-items:center;width:30px;height:30px;margin:-6px;color:rgba(247,245,240,.72);background:none;padding:0;border-radius:8px;transition:color .2s ease,transform .45s var(--ease)}
+.hero-nav .nav-ig svg{width:17px;height:17px;display:block}
+.hero-nav .nav-ig:hover,.hero-nav .nav-ig:focus-visible{color:#fff;transform:translateY(-1px)}
+.hero-nav .nav-ig:focus-visible{outline:1.5px solid rgba(247,245,240,.8);outline-offset:2px}
 .hero-stage{
   position:absolute;inset:0;
   background:#0c0c0b;
@@ -383,7 +388,7 @@ body{background:var(--paper);font-family:var(--font-sans)}
 }
 
 
-</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261116c"/><link rel="stylesheet" href="hero.css?v=20261118v"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><link rel="stylesheet" href="theme.css?v=20261119a"/><link rel="stylesheet" href="mark.css?v=20261118w"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
+</style><link rel="stylesheet" href="shorts.css?v=20261116e"/><link rel="stylesheet" href="studio.css?v=20261118b"/><link rel="stylesheet" href="motion.css?v=20261119b"/><link rel="stylesheet" href="hero.css?v=20261118v"/><link rel="stylesheet" href="opening.css?v=20261116e"/><link rel="stylesheet" href="lume.css?v=20261117c"/><link rel="stylesheet" href="closing.css?v=20261116a"/><link rel="stylesheet" href="deck.css?v=20261116a"/><link rel="stylesheet" href="reel.css?v=20261116i"/><link rel="stylesheet" href="theme.css?v=20261119a"/><link rel="stylesheet" href="mark.css?v=20261118w"/><noscript><style>.sheet{--sheet-img:url("assets/ces-founder-dinner-sheet.webp?v=20261115e")}
 /* Without scripts Short-Form is a list of its six films. */
 .sf{display:block}.sf-name,.sf-film,.sf-time,.sf-side{display:none}.sf-index{max-width:27rem}
 /* Without scripts the deck cannot be dealt, so the cards are laid out one after another. */
@@ -394,7 +399,10 @@ body{background:var(--paper);font-family:var(--font-sans)}
 <header class="hero-film is-muted is-playing" id="film-stage">
   <nav class="hero-nav">
     <a class="brand" href="/">Ryan McHargue</a>
-    <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow arr arr-ne" aria-hidden="true"></span></a>
+    <div class="nav-social">
+      <a class="nav-ig" href="https://www.instagram.com/motionandmattr/" rel="noopener" target="_blank" aria-label="Motion &amp; Matter on Instagram (opens in a new tab)" title="@motionandmattr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.05" fill="currentColor" stroke="none"/></svg></a>
+      <a class="nav-link" href="https://www.linkedin.com/in/ryanmchargue/" rel="noopener" target="_blank">LinkedIn <span class="link-arrow arr arr-ne" aria-hidden="true"></span></a>
+    </div>
   </nav>
   <div class="hero-stage" aria-hidden="true">
     <canvas class="hero-ambient" width="32" height="54"></canvas>

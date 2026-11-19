@@ -61,7 +61,8 @@
 @media (prefers-reduced-motion:no-preference){
   @keyframes hero-rise{from{opacity:0;transform:translate3d(0,14px,0)}}
   @keyframes hero-fade{from{opacity:0}}
-  .hero-nav > a{animation:hero-rise .56s var(--ease) backwards}
+  .hero-nav > a,.nav-social > a{animation:hero-rise .56s var(--ease) backwards}
+  .nav-social > a + a{animation-delay:60ms}
   .hero-cue{animation:hero-fade .5s ease .5s backwards}
 }
 
