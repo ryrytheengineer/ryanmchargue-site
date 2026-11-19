@@ -8,5 +8,8 @@
   "devDependencies": {
     "esbuild": "^0.25.0",
     "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
   }
 }
