@@ -138,3 +138,7 @@ a:focus-visible,button:focus-visible,
   --night:#0f0f0e;
   box-shadow:0 0 0 1px rgba(244,242,236,.09),0 40px 70px -40px rgba(0,0,0,.9);
 }
+
+/* Arsenal: link out to the Instagram post */
+.light-ig{margin:14px 0 0;font-size:13.5px;line-height:1.4}
+.light-ig .credit-link{color:var(--ink);font-weight:500}
