@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import { resolveConfig } from './config';
 import { createContext } from './gl/context';
 import { resizeLongEdge } from './gl/fbo';
@@ -124,6 +125,9 @@ async function initInk(): Promise<void> {
     }
   });
 }
+
+// Initialize Vercel Analytics
+inject();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => void initInk());
